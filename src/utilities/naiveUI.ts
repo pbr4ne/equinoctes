@@ -1,11 +1,13 @@
 import { 
     create,
-    NButton, 
+    NButton,
+    NCard,
   } from 'naive-ui';
   
   
   export const naive = create({
     components: [
-      NButton, 
+      NButton,
+      NCard,
     ],
   });
