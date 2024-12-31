@@ -80,14 +80,12 @@ export default defineComponent({
   }
 
   .content {
-  width: min(50vw, 50vh);
-  height: min(50vw, 50vh);
-  padding: max(20px, calc(min(50vw, 50vh) * 0.1));
-  box-sizing: border-box;
-}
-
-
-
+    width: calc(min(50vw, 50vh) - 40px); 
+    height: calc(min(50vw, 50vh) - 40px);
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
   .content-left {
     background: linear-gradient(to bottom, #f4a261, #e9c46a);
   }
