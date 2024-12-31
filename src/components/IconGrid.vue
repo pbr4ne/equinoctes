@@ -7,13 +7,17 @@
     >
       <n-button
         v-if="icon"
+        quaternary
         :round="true"
         size="large"
         class="grid-button"
         @click="handleButtonClick(index)"
       >
-        <component :is="icon" />
+        <template #icon>
+          <component :is="icon" class="icon"/>
+        </template>
       </n-button>
+      <div v-else class="empty-cell"></div>
     </n-grid-item>
   </n-grid>
 </template>
@@ -54,5 +58,8 @@ export default defineComponent({
   background: #f5f5f5;
   border: 1px solid #ddd;
   border-radius: 20px;
+}
+
+.icon {
 }
 </style>
