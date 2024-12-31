@@ -1,15 +1,10 @@
 <template>
   <div class="split-screen">
     <div class="side day">
-      <n-card title="Day" class="card">
-        <IconGrid :icons="dayIcons" />
-      </n-card>
+      <IconGrid :icons="dayIcons" />
     </div>
-
     <div class="side night">
-      <n-card title="Night" class="card">
-        <IconGrid :icons="nightIcons" />
-      </n-card>
+      <IconGrid :icons="nightIcons" />
     </div>
   </div>
 </template>
@@ -51,7 +46,7 @@ export default defineComponent({
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .day {
@@ -62,13 +57,5 @@ export default defineComponent({
   background: linear-gradient(to bottom, #2a2b4e, #000022);
   color: white;
 }
-
-.card {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-}
 </style>
+

@@ -43,12 +43,7 @@ export default defineComponent({
 
 <style scoped>
 .grid-container {
-  width: calc(100% - 40px);
-  height: calc(100% - 40px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
+  margin: 40px;
 }
 
 .grid-cell {
@@ -58,6 +53,6 @@ export default defineComponent({
   align-items: center;
   background: #f5f5f5;
   border: 1px solid #ddd;
+  border-radius: 20px;
 }
 </style>
-
