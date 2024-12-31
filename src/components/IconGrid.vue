@@ -1,5 +1,5 @@
 <template>
-  <n-grid :cols="5" :x-gap="10" :y-gap="10" class="grid-container">
+  <n-grid :cols="5" :x-gap="10" :y-gap="10">
     <n-grid-item
       v-for="(icon, index) in paddedIcons"
       :key="index"
@@ -52,10 +52,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.grid-container {
-  margin: 40px;
-}
-
 .grid-cell {
   aspect-ratio: 1 / 1;
   display: flex;

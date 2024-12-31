@@ -1,12 +1,12 @@
 <template>
-  <div class="split-screen">
-    <div class="side day">
-      <container :components="dayComponents" side="left"/>
-    </div>
-    <div class="side night">
-      <container :components="nightComponents" side="right"/>
-    </div>
-  </div>
+  <n-grid :cols="2">
+    <n-gi>
+      <container :components="dayComponents" side="left" class="day"/>
+    </n-gi>
+    <n-gi>
+      <container :components="nightComponents" side="right" class="night"/>
+    </n-gi>  
+  </n-grid>
 </template>
 
 <script lang="ts">
@@ -50,27 +50,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.split-screen {
-  display: flex;
-  height: 100vh;
-}
-
-.side {
-  flex: 1;
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
 .day {
   background: linear-gradient(to bottom, #e9c46a, #f4a261);
 }
 
 .night {
   background: linear-gradient(to bottom, #264653, #023047);
-  color: white;
 }
 </style>
-

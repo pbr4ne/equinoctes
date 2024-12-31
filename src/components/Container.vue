@@ -1,25 +1,31 @@
 <template>
-  <div :class="['container', positionClass]">
-    <div :class="['bordered-background', `bordered-background-${side}`]">
-      <div :class="['content', `content-${side}`]">
-        <component
-          :is="currentComponent.component"
-          v-bind="currentComponent.props"
-        />
-      </div>
-    </div>
-
-    <div class="button-group">
-      <button
-        v-for="(item, index) in components"
-        :key="index"
-        @click="currentComponentIndex = index"
-        :class="['icon-button', `icon-button-${side}`]"
-      >
-        <component :is="item.icon"/>
-      </button>
-    </div>
-  </div>
+    <n-flex justify="end" vertical style="height: 100vh;">
+      <n-space justify="center">
+        <n-card>hi</n-card>
+      </n-space>      
+      <n-space justify="center">
+        <div :class="['bordered-background', `bordered-background-${side}`]">
+          <div :class="['content', `content-${side}`]">
+            <component
+              :is="currentComponent.component"
+              v-bind="currentComponent.props"
+            />
+          </div>
+        </div>
+      </n-space>
+      <n-space justify="center">
+        <n-space justify="center" style="margin: 20px;">
+          <button
+            v-for="(item, index) in components"
+            :key="index"
+            @click="currentComponentIndex = index"
+            :class="['icon-button', `icon-button-${side}`]"
+          >
+            <component :is="item.icon"/>
+          </button>
+        </n-space>
+      </n-space>
+    </n-flex>  
 </template>
 
 <script lang="ts">
@@ -41,45 +47,15 @@ export default defineComponent({
     const currentComponentIndex = ref(0);
     const currentComponent = computed(() => props.components[currentComponentIndex.value]);
 
-    const positionClass = computed(() => {
-      return props.side === 'right' ? 'container-right' : 'container-left';
-    });
-
     return {
       currentComponentIndex,
       currentComponent,
-      positionClass,
     };
   },
 });
 </script>
 
-  <style scoped>
-  .container {
-    position: absolute;
-    bottom: 20px;
-
-    width: min(37.5vw, 50vh);
-    height: min(47.5vw, 60vh);
-
-    overflow: auto;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .container-left {
-    left: 25vw;
-    transform: translateX(-50%);
-  }
-
-  .container-right {
-    left: 75vw;
-    transform: translateX(-50%);
-  }
-
+<style scoped>
   .bordered-background {
     width: 100%;
     height: 100%;
@@ -104,12 +80,13 @@ export default defineComponent({
   }
 
   .content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  width: min(50vw, 50vh);
+  height: min(50vw, 50vh);
+  padding: max(20px, calc(min(50vw, 50vh) * 0.1));
+  box-sizing: border-box;
+}
+
+
 
   .content-left {
     background: linear-gradient(to bottom, #f4a261, #e9c46a);
@@ -117,14 +94,6 @@ export default defineComponent({
 
   .content-right {
     background: linear-gradient(to bottom, #023047, #264653);
-  }
-
-  .button-group {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-    justify-content: center;
-    position: relative;
   }
 
   .icon-button {
