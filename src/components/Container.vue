@@ -1,11 +1,14 @@
 <template>
-  <div class="container">
-    <div class="content">
-      <component
-        :is="currentComponent.component"
-        v-bind="currentComponent.props"
-      />
+  <div :class="['container', positionClass]">
+    <div class="bordered-background">
+      <div class="content">
+        <component
+          :is="currentComponent.component"
+          v-bind="currentComponent.props"
+        />
+      </div>
     </div>
+
     <div class="button-group">
       <button
         v-for="(item, index) in components"
@@ -28,14 +31,24 @@ export default defineComponent({
       type: Array,
       required: true,
     },
+    side: {
+      type: String,
+      default: 'left',
+      validator: (value: string) => ['left', 'right'].includes(value),
+    },
   },
   setup(props) {
     const currentComponentIndex = ref(0);
     const currentComponent = computed(() => props.components[currentComponentIndex.value]);
 
+    const positionClass = computed(() => {
+      return props.side === 'right' ? 'container-right' : 'container-left';
+    });
+
     return {
       currentComponentIndex,
       currentComponent,
+      positionClass,
     };
   },
 });
@@ -43,25 +56,56 @@ export default defineComponent({
 
 <style scoped>
   .container {
+    position: absolute;
+    bottom: 20px;
+
+    width: min(37.5vw, 50vh);
+    height: min(47.5vw, 60vh);
+
+    overflow: auto;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  .container-left {
+    left: 25vw;
+    transform: translateX(-50%);
+  }
+
+  .container-right {
+    left: 75vw;
+    transform: translateX(-50%);
+  }
+
+  .bordered-background {
     width: 100%;
     height: 100%;
+
+    background-color: #fff;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .button-group {
     display: flex;
     gap: 10px;
-    margin-top: 0px;
+    margin-top: 15px;
     justify-content: center;
     position: relative;
   }

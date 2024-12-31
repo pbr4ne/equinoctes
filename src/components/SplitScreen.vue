@@ -1,10 +1,10 @@
 <template>
   <div class="split-screen">
     <div class="side day">
-      <container :components="dayComponents" />
+      <container :components="dayComponents" side="left"/>
     </div>
     <div class="side night">
-      <container :components="nightComponents" />
+      <container :components="nightComponents" side="right"/>
     </div>
   </div>
 </template>
