@@ -1,10 +1,10 @@
 <template>
   <n-grid :cols="2">
     <n-gi>
-      <container :components="dayComponents" side="left" class="day"/>
+      <faction :components="dayComponents" side="left" class="day"/>
     </n-gi>
     <n-gi>
-      <container :components="nightComponents" side="right" class="night"/>
+      <faction :components="nightComponents" side="right" class="night"/>
     </n-gi>  
   </n-grid>
 </template>
@@ -13,7 +13,7 @@
 import { defineComponent, markRaw } from 'vue';
 import Achievements from '../achievements/Achievements.vue';
 import Buildings from '../buildings/Buildings.vue';
-import Container from './Container.vue';
+import Faction from './Faction.vue';
 import Lore from '../lore/Lore.vue';
 import Options from '../options/Options.vue';
 import DayGrid from '../grid/DayGrid.vue';
@@ -25,7 +25,7 @@ import { Notebook } from '@vicons/carbon';
 export default defineComponent({
   components: {
     Buildings,
-    Container,
+    Faction,
     Achievements,
     Lore,
     Options,

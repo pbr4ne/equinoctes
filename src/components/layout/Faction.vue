@@ -63,13 +63,13 @@ export default defineComponent({
     let lowNum = ref(0);
     let highNum = ref(0);
 
-    onMounted(() => {
-      setInterval(() => {        
-        lowNum.value = Math.random() * 100;
-        highNum.value = Math.random() * 100;
-        numberAnimationInstRef.value?.play();
-      }, 5000);
-    });
+    // onMounted(() => {
+    //   setInterval(() => {        
+    //     lowNum.value = Math.random() * 100;
+    //     highNum.value = Math.random() * 100;
+    //     numberAnimationInstRef.value?.play();
+    //   }, 5000);
+    // });
 
     return {
       currentComponentIndex,

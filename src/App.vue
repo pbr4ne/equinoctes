@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <FloatingSun />
-    <SplitScreen />
+    <celestial-body />
+    <split-screen />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import FloatingSun from './components/layout/FloatingSun.vue';
+import CelestialBody from './components/layout/CelestialBody.vue';
 import SplitScreen from './components/layout/SplitScreen.vue';
 
 export default defineComponent({
   components: {
-    FloatingSun,
+    CelestialBody,
     SplitScreen,
   },
 });
