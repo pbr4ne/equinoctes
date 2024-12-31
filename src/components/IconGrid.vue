@@ -3,13 +3,14 @@
     <n-grid-item
       v-for="(icon, index) in paddedIcons"
       :key="index"
-      class="grid-cell"
+      :class="['grid-cell', `grid-cell-${side}`]"
     >
       <n-button
         v-if="icon"
         quaternary
         :round="true"
         size="large"
+        :color="side === 'left' ? '#9e2a2b' : '#caf0f8'"
         class="grid-button"
         @click="handleButtonClick(index)"
       >
@@ -30,6 +31,11 @@ export default defineComponent({
     icons: {
       type: Array as PropType<Array<any>>,
       required: true,
+    },
+    side: {
+      type: String,
+      default: 'left',
+      validator: (value: string) => ['left', 'right'].includes(value),
     },
   },
   computed: {
@@ -55,8 +61,16 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f5f5f5;
-  border: 1px solid #ddd;
   border-radius: 20px;
+}
+
+.grid-cell-left {
+  background: #e9c46a;
+  border: 1px solid #264653;
+}
+
+.grid-cell-right {
+  background: #264653;
+  border: 1px solid #e9c46a;
 }
 </style>

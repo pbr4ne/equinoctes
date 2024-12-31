@@ -14,9 +14,9 @@
         v-for="(item, index) in components"
         :key="index"
         @click="currentComponentIndex = index"
-        class="icon-button"
+        :class="['icon-button', `icon-button-${side}`]"
       >
-        <component :is="item.icon" />
+        <component :is="item.icon"/>
       </button>
     </div>
   </div>
@@ -136,15 +136,21 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-color: #fff;
+  }
+
+  .icon-button-left {
+    background-color: #e9c46a;
+    border-color: #023047;
+    color:#9e2a2b;
+  }
+
+  .icon-button-right {
+    background-color: #264653;
+    border-color: #f4a261;
+    color:#caf0f8;
   }
 
   .icon-button:hover {
     background-color: #f0f0f0;
-  }
-
-  .icon-button > * {
-    font-size: 20px;
-    color: #666;
   }
 </style>
