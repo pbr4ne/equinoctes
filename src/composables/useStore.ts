@@ -4,6 +4,11 @@ import { GameState } from '../utilities/types';
 const initialState = (): GameState => ({
   lore: [],
   calendar: { days: 0, hours: 0, minutes: 0, accumulatedTime: 0 },
+  buildings: [],
+  sunGrid: [],
+  moonGrid: [],
+  sunLevel: 1,
+  moonLevel: 1,
 });
 
 export const useStore = defineStore('gameState', {
