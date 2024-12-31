@@ -34,7 +34,7 @@ import { defineComponent, ref, computed } from 'vue';
 export default defineComponent({
   props: {
     components: {
-      type: Array,
+      type: Array as () => Array<{ component: any, props: any, icon: any }>,
       required: true,
     },
     side: {
@@ -45,7 +45,7 @@ export default defineComponent({
   },
   setup(props) {
     const currentComponentIndex = ref(0);
-    const currentComponent = computed(() => props.components[currentComponentIndex.value]);
+    const currentComponent = computed(() => props.components[currentComponentIndex.value] as { component: any, props: any });
 
     return {
       currentComponentIndex,
