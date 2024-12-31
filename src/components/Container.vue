@@ -104,7 +104,7 @@ export default defineComponent({
 
   .bordered-background-left {
     background: linear-gradient(to bottom, #f4a261, #e9c46a);
-    border-color: #023047;
+    border-color: #9e2a2b;
   }
 
   .bordered-background-right {
@@ -140,7 +140,7 @@ export default defineComponent({
 
   .icon-button-left {
     background-color: #e9c46a;
-    border-color: #023047;
+    border-color: #9e2a2b;
     color:#9e2a2b;
   }
 
