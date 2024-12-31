@@ -6,9 +6,9 @@
           <n-text v-else class="lunar">Lunar Power: </n-text>
           <n-number-animation
             ref="numberAnimationInstRef"
-            :from="9.96"
-            :to="0.07"
-            :active="false"
+            :from="lowNum"
+            :to="highNum"
+            :active="true"
             :precision="2"
           />
         </n-h2>          
@@ -39,7 +39,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent, ref, computed, onMounted } from 'vue';
+import type { NumberAnimationInst } from 'naive-ui'
 
 export default defineComponent({
   props: {
@@ -56,10 +57,24 @@ export default defineComponent({
   setup(props) {
     const currentComponentIndex = ref(0);
     const currentComponent = computed(() => props.components[currentComponentIndex.value] as { component: any, props: any });
+    const numberAnimationInstRef = ref<NumberAnimationInst | null>(null);
+    let lowNum = ref(0);
+    let highNum = ref(0);
+
+    onMounted(() => {
+      setInterval(() => {        
+        lowNum.value = Math.random() * 100;
+        highNum.value = Math.random() * 100;
+        numberAnimationInstRef.value?.play();
+      }, 5000);
+    });
 
     return {
       currentComponentIndex,
       currentComponent,
+      lowNum,
+      highNum,
+      numberAnimationInstRef
     };
   },
 });
