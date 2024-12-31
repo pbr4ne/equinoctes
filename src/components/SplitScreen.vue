@@ -18,7 +18,9 @@ import Lore from './Lore.vue';
 import Options from './Options.vue';
 import DayGrid from './DayGrid.vue';
 import NightGrid from './NightGrid.vue';
-import { CubeOutline } from '@vicons/ionicons5';
+import { Grid28Regular, Options24Regular, BuildingLighthouse20Regular } from '@vicons/fluent';
+import { CrownOutlined } from '@vicons/antd';
+import { Notebook } from '@vicons/carbon';
 
 export default defineComponent({
   components: {
@@ -31,18 +33,18 @@ export default defineComponent({
   data() {
     return {
       dayComponents: [
-        { label: 'Grid', icon: markRaw(CubeOutline), component: markRaw(DayGrid)  },
-        { label: 'Buildings', icon: markRaw(CubeOutline), component: markRaw(Buildings) },
-        { label: 'Lore', icon: markRaw(CubeOutline), component: markRaw(Lore) },
-        { label: 'Achievements', icon: markRaw(CubeOutline), component: markRaw(Achievements) },
-        { label: 'Options', icon: markRaw(CubeOutline), component: markRaw(Options) },
+        { label: 'Grid', icon: markRaw(Grid28Regular), component: markRaw(DayGrid), props: {} },
+        { label: 'Buildings', icon: markRaw(BuildingLighthouse20Regular), component: markRaw(Buildings), props: {} },
+        { label: 'Lore', icon: markRaw(Notebook), component: markRaw(Lore), props: {} },
+        { label: 'Achievements', icon: markRaw(CrownOutlined), component: markRaw(Achievements), props: {} },
+        { label: 'Options', icon: markRaw(Options24Regular), component: markRaw(Options), props: {} },
       ],
       nightComponents: [
-        { label: 'Grid', icon: markRaw(CubeOutline), component: markRaw(NightGrid)  },
-        { label: 'Buildings', icon: markRaw(CubeOutline), component: markRaw(Buildings) },
-        { label: 'Lore', icon: markRaw(CubeOutline), component: markRaw(Lore) },
-        { label: 'Achievements', icon: markRaw(CubeOutline), component: markRaw(Achievements) },
-        { label: 'Options', icon: markRaw(CubeOutline), component: markRaw(Options) },
+        { label: 'Grid', icon: markRaw(Grid28Regular), component: markRaw(NightGrid), props: {} },
+        { label: 'Buildings', icon: markRaw(BuildingLighthouse20Regular), component: markRaw(Buildings), props: {} },
+        { label: 'Lore', icon: markRaw(Notebook), component: markRaw(Lore), props: {} },
+        { label: 'Achievements', icon: markRaw(CrownOutlined), component: markRaw(Achievements), props: {} },
+        { label: 'Options', icon: markRaw(Options24Regular), component: markRaw(Options), props: {} },
       ],
     };
   },
