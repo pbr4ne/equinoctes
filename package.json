@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "gsap": "^3.12.5",
+    "mitt": "^3.0.1",
     "naive-ui": "^2.40.1",
+    "pinia": "^2.3.0",
     "vue": "^3.4.37"
   },
   "devDependencies": {
