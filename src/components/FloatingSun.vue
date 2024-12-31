@@ -1,27 +1,32 @@
 <template>
-    <div class="sun-container">
-      <img :src="sunSvg" alt="sun" class="sun" ref="sun"/>
-    </div>
-  </template>
+  <div class="sun-container">
+    <img :src="currentIcon" alt="sun" class="sun" ref="sun" />
+  </div>
+</template>
   
-  <script setup lang="ts">
+<script setup lang="ts">
   import sunSvg from '@/assets/sun.svg';
+  import moonSvg from '@/assets/moon.svg';
   import { onMounted, ref } from 'vue';
   import { gsap } from 'gsap';
   import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
-  
+
   gsap.registerPlugin(MotionPathPlugin);
-  
+
   const sun = ref<HTMLImageElement | null>(null);
-  
-  onMounted(() => { 
+  const currentIcon = ref(sunSvg);
+
+  const isMoonVisible = ref(false);
+  const lastX = ref(0);
+
+  onMounted(() => {
     const path = `
       M -100,200
       C ${window.innerWidth / 4},0,
         ${(window.innerWidth * 3) / 4},0,
         ${window.innerWidth},200
     `;
-  
+
     gsap.to(sun.value, {
       duration: 8,
       repeat: -1,
@@ -29,6 +34,20 @@
       motionPath: {
         path: path,
         autoRotate: false,
+      },
+      onUpdate: () => {
+        const middleX = window.innerWidth / 2;
+        const sunX = Number(gsap.getProperty(sun.value, "x"));
+
+        if (sunX > middleX && lastX.value <= middleX) {
+          currentIcon.value = moonSvg;
+          isMoonVisible.value = true;
+        } else if (sunX < middleX && lastX.value >= middleX) {
+          currentIcon.value = sunSvg;
+          isMoonVisible.value = false;
+        }
+
+        lastX.value = sunX;
       },
     });
   });
