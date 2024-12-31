@@ -1,11 +1,37 @@
 <template>
     <div class="sun-container">
-        <img :src="sunSvg" alt="sun" class="sun"/>
+      <img :src="sunSvg" alt="sun" class="sun" ref="sun"/>
     </div>
   </template>
-
+  
   <script setup lang="ts">
-    import sunSvg from '@/assets/sun.svg';
+  import sunSvg from '@/assets/sun.svg';
+  import { onMounted, ref } from 'vue';
+  import { gsap } from 'gsap';
+  import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+  
+  gsap.registerPlugin(MotionPathPlugin);
+  
+  const sun = ref<HTMLImageElement | null>(null);
+  
+  onMounted(() => { 
+    const path = `
+      M -100,200
+      C ${window.innerWidth / 4},0,
+        ${(window.innerWidth * 3) / 4},0,
+        ${window.innerWidth},200
+    `;
+  
+    gsap.to(sun.value, {
+      duration: 8,
+      repeat: -1,
+      ease: 'power1.inOut',
+      motionPath: {
+        path: path,
+        autoRotate: false,
+      },
+    });
+  });
   </script>
   
   <style scoped>
@@ -23,25 +49,6 @@
     position: absolute;
     width: 64px;
     height: 64px;
-    animation: sunRiseAndSet 20s ease-in-out infinite;
-  }
-  
-  @keyframes sunRiseAndSet {
-    0% {
-      top: 150px;
-      left: -10%;
-      transform: translate(-50%, -50%);
-    }
-    50% {
-      top: 50px;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    100% {
-      top: 150px;
-      left: 110%;
-      transform: translate(-50%, -50%);
-    }
   }
   </style>
   
