@@ -14,7 +14,7 @@
         @click="handleButtonClick(index)"
       >
         <template #icon>
-          <component :is="icon" class="icon"/>
+          <component :is="icon"/>
         </template>
       </n-button>
       <div v-else class="empty-cell"></div>
@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, computed } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
 export default defineComponent({
   props: {
@@ -58,8 +58,5 @@ export default defineComponent({
   background: #f5f5f5;
   border: 1px solid #ddd;
   border-radius: 20px;
-}
-
-.icon {
 }
 </style>

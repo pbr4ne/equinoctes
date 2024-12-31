@@ -1,36 +1,24 @@
 <template>
   <div class="split-screen">
     <div class="side day">
-      <IconGrid :icons="dayIcons" />
+      <DayGrid />
     </div>
     <div class="side night">
-      <IconGrid :icons="nightIcons" />
+      <NightGrid />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, markRaw } from 'vue';
-import IconGrid from './IconGrid.vue';
-import { SunnyOutline, CloudOutline } from '@vicons/ionicons5';
-import { MoonOutline, StarOutline } from '@vicons/ionicons5';
+import { defineComponent } from 'vue';
+import DayGrid from './DayGrid.vue';
+import NightGrid from './NightGrid.vue';
 
 export default defineComponent({
   components: {
-    IconGrid,
-  },
-  data() {
-    return {
-      dayIcons: [
-        markRaw(SunnyOutline),
-        markRaw(CloudOutline),
-      ],
-      nightIcons: [
-        markRaw(MoonOutline),
-        markRaw(StarOutline),
-      ],
-    };
-  },
+    DayGrid,
+    NightGrid,
+  }
 });
 </script>
 
