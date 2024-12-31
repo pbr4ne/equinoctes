@@ -7,8 +7,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import FloatingSun from './components/FloatingSun.vue';
-import SplitScreen from './components/SplitScreen.vue';
+import FloatingSun from './components/layout/FloatingSun.vue';
+import SplitScreen from './components/layout/SplitScreen.vue';
 
 export default defineComponent({
   components: {

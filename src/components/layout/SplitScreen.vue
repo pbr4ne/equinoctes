@@ -11,13 +11,13 @@
 
 <script lang="ts">
 import { defineComponent, markRaw } from 'vue';
-import Achievements from './Achievements.vue';
-import Buildings from './Buildings.vue';
+import Achievements from '../achievements/Achievements.vue';
+import Buildings from '../buildings/Buildings.vue';
 import Container from './Container.vue';
-import Lore from './Lore.vue';
-import Options from './Options.vue';
-import DayGrid from './DayGrid.vue';
-import NightGrid from './NightGrid.vue';
+import Lore from '../lore/Lore.vue';
+import Options from '../options/Options.vue';
+import DayGrid from '../grid/DayGrid.vue';
+import NightGrid from '../grid/NightGrid.vue';
 import { Grid28Regular, Options24Regular, BuildingLighthouse20Regular } from '@vicons/fluent';
 import { CrownOutlined } from '@vicons/antd';
 import { Notebook } from '@vicons/carbon';
