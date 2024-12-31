@@ -2,6 +2,8 @@ import {
     create,
     NButton,
     NCard,
+    NGrid,
+    NGridItem,
   } from 'naive-ui';
   
   
@@ -9,5 +11,7 @@ import {
     components: [
       NButton,
       NCard,
+      NGrid,
+      NGridItem,
     ],
   });
