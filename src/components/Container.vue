@@ -1,7 +1,7 @@
 <template>
   <div :class="['container', positionClass]">
-    <div class="bordered-background">
-      <div class="content">
+    <div :class="['bordered-background', `bordered-background-${side}`]">
+      <div :class="['content', `content-${side}`]">
         <component
           :is="currentComponent.component"
           v-bind="currentComponent.props"
@@ -54,7 +54,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+  <style scoped>
   .container {
     position: absolute;
     bottom: 20px;
@@ -83,9 +83,8 @@ export default defineComponent({
   .bordered-background {
     width: 100%;
     height: 100%;
-
-    background-color: #fff;
-    border: 2px solid #ccc;
+    border: 2px solid;
+    border-radius: 20px;
     box-sizing: border-box;
     padding: 20px;
 
@@ -94,12 +93,30 @@ export default defineComponent({
     justify-content: center;
   }
 
+  .bordered-background-left {
+    background: linear-gradient(to bottom, #f4a261, #e9c46a);
+    border-color: #023047;
+  }
+
+  .bordered-background-right {
+    background: linear-gradient(to bottom, #023047, #264653);
+    border-color: #f4a261;
+  }
+
   .content {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .content-left {
+    background: linear-gradient(to bottom, #f4a261, #e9c46a);
+  }
+
+  .content-right {
+    background: linear-gradient(to bottom, #023047, #264653);
   }
 
   .button-group {
@@ -114,7 +131,7 @@ export default defineComponent({
     width: 40px;
     height: 40px;
     border: 1px solid #ccc;
-    border-radius: 12px;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;

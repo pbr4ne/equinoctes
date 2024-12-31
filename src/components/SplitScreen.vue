@@ -53,11 +53,11 @@ export default defineComponent({
 }
 
 .day {
-  background: linear-gradient(to bottom, #fdfbda, #ffeb88);
+  background: linear-gradient(to bottom, #e9c46a, #f4a261);
 }
 
 .night {
-  background: linear-gradient(to bottom, #2a2b4e, #000022);
+  background: linear-gradient(to bottom, #264653, #023047);
   color: white;
 }
 </style>
