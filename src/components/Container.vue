@@ -1,7 +1,17 @@
 <template>
     <n-flex justify="end" vertical style="height: 100vh;">
       <n-space justify="center">
-        <n-card>hi</n-card>
+        <n-h2>
+          <n-text v-if="side == 'left'" class="solar">Solar Power: </n-text>
+          <n-text v-else class="lunar">Lunar Power: </n-text>
+          <n-number-animation
+            ref="numberAnimationInstRef"
+            :from="9.96"
+            :to="0.07"
+            :active="false"
+            :precision="2"
+          />
+        </n-h2>          
       </n-space>      
       <n-space justify="center">
         <div :class="['bordered-background', `bordered-background-${side}`]">
@@ -69,6 +79,14 @@ export default defineComponent({
     justify-content: center;
   }
 
+  .solar {
+    color: #9e2a2b;
+  }
+
+  .lunar {
+    color: #caf0f8;
+  }
+
   .bordered-background-left {
     background: linear-gradient(to bottom, #f4a261, #e9c46a);
     border-color: #023047;
@@ -76,7 +94,7 @@ export default defineComponent({
 
   .bordered-background-right {
     background: linear-gradient(to bottom, #023047, #264653);
-    border-color: #f4a261;
+    border-color: #caf0f8;
   }
 
   .content {
@@ -113,7 +131,7 @@ export default defineComponent({
 
   .icon-button-right {
     background-color: #264653;
-    border-color: #f4a261;
+    border-color: #caf0f8;
     color:#caf0f8;
   }
 

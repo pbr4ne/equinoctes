@@ -67,6 +67,6 @@ export default defineComponent({
 
 .grid-cell-right {
   background: #264653;
-  border: 1px solid #e9c46a;
+  border: 1px solid #caf0f8;
 }
 </style>
