@@ -1,10 +1,13 @@
 <template>
+  <div class="layout-container">
+    <sun-rays v-if="side === 'left'" />
+
     <n-flex justify="end" vertical style="height: 100vh;">
       <n-space justify="center">
         <n-h2 class="power">
-          <n-text v-if="side == 'left'" class="solar">Solar Power: </n-text>
+          <n-text v-if="side === 'left'" class="solar">Solar Power: </n-text>
           <n-text v-else class="lunar">Lunar Power: </n-text>
-          <n-text :class="side == 'left' ? 'solar' : 'lunar'">
+          <n-text :class="side === 'left' ? 'solar' : 'lunar'">
             <n-number-animation
               ref="numberAnimationInstRef"
               :from="lowNum"
@@ -13,18 +16,17 @@
               :precision="2"
             />
           </n-text>
-        </n-h2>          
-      </n-space>      
+        </n-h2>
+      </n-space>
+
       <n-space justify="center">
         <div :class="['bordered-background', `bordered-background-${side}`]">
           <div :class="['content', `content-${side}`]">
-            <component
-              :is="currentComponent.component"
-              v-bind="currentComponent.props"
-            />
+            <component :is="currentComponent.component" v-bind="currentComponent.props" />
           </div>
         </div>
       </n-space>
+
       <n-space justify="center">
         <n-space justify="center" style="margin: 20px;">
           <button
@@ -37,31 +39,39 @@
           </button>
         </n-space>
       </n-space>
-    </n-flex>  
+    </n-flex>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted } from 'vue';
+import { defineComponent, ref, computed, onMounted } from 'vue'
 import type { NumberAnimationInst } from 'naive-ui'
+import SunRays from './SunRays.vue'
 
 export default defineComponent({
+  components: {
+    SunRays,
+  },
   props: {
     components: {
-      type: Array as () => Array<{ component: any, props: any, icon: any }>,
+      type: Array as () => Array<{ component: any; props: any; icon: any }>,
       required: true,
     },
     side: {
       type: String,
       default: 'left',
-      validator: (value: string) => ['left', 'right'].includes(value),
-    },
+      validator: (value: string) => ['left', 'right'].includes(value)
+    }
   },
   setup(props) {
-    const currentComponentIndex = ref(0);
-    const currentComponent = computed(() => props.components[currentComponentIndex.value] as { component: any, props: any });
-    const numberAnimationInstRef = ref<NumberAnimationInst | null>(null);
-    let lowNum = ref(0);
-    let highNum = ref(0);
+    const currentComponentIndex = ref(0)
+    const currentComponent = computed(
+      () => props.components[currentComponentIndex.value]
+    )
+
+    const numberAnimationInstRef = ref<NumberAnimationInst | null>(null)
+    const lowNum = ref(0)
+    const highNum = ref(0)
 
     // onMounted(() => {
     //   setInterval(() => {        
@@ -76,13 +86,19 @@ export default defineComponent({
       currentComponent,
       lowNum,
       highNum,
-      numberAnimationInstRef
-    };
-  },
-});
+      numberAnimationInstRef,
+    }
+  }
+})
 </script>
 
 <style scoped>
+  .layout-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
   .bordered-background {
     width: 100%;
     height: 100%;
@@ -90,7 +106,6 @@ export default defineComponent({
     border-radius: 20px;
     box-sizing: border-box;
     padding: 20px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -121,12 +136,12 @@ export default defineComponent({
   }
 
   .content {
-    width: calc(min(50vw, 50vh) - 40px); 
-    height: calc(min(50vw, 50vh) - 40px);
+    width: calc(min(50vw, 50vh));
+    height: calc(min(50vw, 50vh));
     padding: 20px;
     box-sizing: border-box;
   }
-  
+
   .content-left {
     background: linear-gradient(to bottom, #f4a261, #e9c46a);
   }
@@ -149,13 +164,13 @@ export default defineComponent({
   .icon-button-left {
     background-color: #e9c46a;
     border-color: #9e2a2b;
-    color:#9e2a2b;
+    color: #9e2a2b;
   }
 
   .icon-button-right {
     background-color: #264653;
     border-color: #caf0f8;
-    color:#caf0f8;
+    color: #caf0f8;
   }
 
   .icon-button:hover {
