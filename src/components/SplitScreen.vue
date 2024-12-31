@@ -15,6 +15,7 @@ import Container from './Container.vue';
 import Options from './Options.vue';
 import DayGrid from './DayGrid.vue';
 import NightGrid from './NightGrid.vue';
+import { CubeOutline } from '@vicons/ionicons5';
 
 export default defineComponent({
   components: {
@@ -24,12 +25,12 @@ export default defineComponent({
   data() {
     return {
       dayComponents: [
-        { label: 'Grid', component: markRaw(DayGrid)  },
-        { label: 'Options', component: markRaw(Options) },
+        { label: 'Grid', icon: markRaw(CubeOutline), component: markRaw(DayGrid)  },
+        { label: 'Options', icon: markRaw(CubeOutline), component: markRaw(Options) },
       ],
       nightComponents: [
-        { label: 'Grid', component: markRaw(NightGrid)  },
-        { label: 'Options', component: markRaw(Options) },
+        { label: 'Grid', icon: markRaw(CubeOutline), component: markRaw(NightGrid)  },
+        { label: 'Options', icon: markRaw(CubeOutline), component: markRaw(Options) },
       ],
     };
   },
