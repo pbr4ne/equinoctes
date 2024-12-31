@@ -19,7 +19,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Almendra+Display&family=Grenze+Gotisch:wght@100..900&family=Macondo+Swash+Caps&family=Zen+Tokyo+Zoo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@100..900&display=swap');
 
 #app {
   width: 100%;

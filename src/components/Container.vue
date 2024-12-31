@@ -2,8 +2,8 @@
     <n-flex justify="end" vertical style="height: 100vh;">
       <n-space justify="center">
         <n-h2 class="power">
-          <n-text v-if="side == 'left'" class="solar">solar power: </n-text>
-          <n-text v-else class="lunar">lunar power: </n-text>
+          <n-text v-if="side == 'left'" class="solar">Solar Power: </n-text>
+          <n-text v-else class="lunar">Lunar Power: </n-text>
           <n-text :class="side == 'left' ? 'solar' : 'lunar'">
             <n-number-animation
               ref="numberAnimationInstRef"
@@ -97,7 +97,8 @@ export default defineComponent({
   }
 
   .power {
-    font-family: "Macondo Swash Caps", serif;
+    font-family: "Grenze Gotisch", serif;
+    font-weight: 300;
     font-size: 2.5em;
   }
 
