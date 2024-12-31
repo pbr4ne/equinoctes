@@ -1,24 +1,38 @@
 <template>
   <div class="split-screen">
     <div class="side day">
-      <DayGrid />
+      <container :components="dayComponents" />
     </div>
     <div class="side night">
-      <NightGrid />
+      <container :components="nightComponents" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, markRaw } from 'vue';
+import Container from './Container.vue';
+import Options from './Options.vue';
 import DayGrid from './DayGrid.vue';
 import NightGrid from './NightGrid.vue';
 
 export default defineComponent({
   components: {
-    DayGrid,
-    NightGrid,
-  }
+    Container,
+    Options,
+  },
+  data() {
+    return {
+      dayComponents: [
+        { label: 'Grid', component: markRaw(DayGrid)  },
+        { label: 'Options', component: markRaw(Options) },
+      ],
+      nightComponents: [
+        { label: 'Grid', component: markRaw(NightGrid)  },
+        { label: 'Options', component: markRaw(Options) },
+      ],
+    };
+  },
 });
 </script>
 

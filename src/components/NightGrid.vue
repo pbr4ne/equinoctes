@@ -1,5 +1,5 @@
 <template>
-    <IconGrid :icons="nightIcons" />
+    <icon-grid :icons="nightIcons" />
 </template>
 
 <script lang="ts">
