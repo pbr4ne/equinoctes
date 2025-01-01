@@ -1,16 +1,16 @@
 <template>
-  <n-grid :cols="2">
-    <n-gi>
+  <n-grid :cols="visibleSides">
+    <n-grid-item>
       <faction :components="dayComponents" side="left" class="day"/>
-    </n-gi>
-    <n-gi>
+    </n-grid-item>
+    <n-grid-item>
       <faction :components="nightComponents" side="right" class="night"/>
-    </n-gi>  
+    </n-grid-item>  
   </n-grid>
 </template>
 
 <script setup lang="ts">
-import { markRaw } from 'vue';
+import { markRaw, ref, watchEffect } from 'vue';
 import Achievements from '../achievements/Achievements.vue';
 import Buildings from '../buildings/Buildings.vue';
 import Faction from './Faction.vue';
@@ -37,6 +37,29 @@ const nightComponents = [
   { label: 'Achievements', icon: markRaw(CrownOutlined), component: markRaw(Achievements), props: {} },
   { label: 'Options', icon: markRaw(Options24Regular), component: markRaw(Options), props: {} },
 ];
+
+const isSmallScreen = ref(isSmallWindow());
+const visibleSides = ref(2);
+
+const updateScreenSize = () => {
+    isSmallScreen.value = window.innerWidth < 730;
+    
+    if (isSmallScreen.value) {
+      visibleSides.value = 1;
+    } else if (!isSmallScreen.value) {
+      visibleSides.value = 2;
+    }
+  };
+
+  function isSmallWindow() {
+    return window.innerWidth < 730;
+  }
+
+  window.addEventListener('resize', updateScreenSize);
+
+  watchEffect(() => {
+    updateScreenSize();
+  })
 </script>
 
 <style scoped>
