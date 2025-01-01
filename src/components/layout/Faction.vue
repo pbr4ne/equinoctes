@@ -1,6 +1,7 @@
 <template>
   <div class="layout-container">
     <sun-rays v-if="side === 'left'" />
+    <moon-stars v-if="side === 'right'" />
 
     <n-flex justify="end" vertical style="height: 100vh;">
       <n-space justify="center">
@@ -44,12 +45,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import type { NumberAnimationInst } from 'naive-ui'
+import MoonStars from './MoonStars.vue'
 import SunRays from './SunRays.vue'
 
 export default defineComponent({
   components: {
+    MoonStars,
     SunRays,
   },
   props: {
