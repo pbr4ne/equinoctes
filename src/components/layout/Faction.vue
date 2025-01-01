@@ -5,19 +5,7 @@
 
     <n-flex justify="end" vertical style="height: 100vh;">
       <n-space justify="center" style="z-index: 9999">
-        <n-h2 class="power">
-          <n-text v-if="side === 'sun'" class="solar">Aurum: </n-text>
-          <n-text v-else class="lunar">Nocturne: </n-text>
-          <n-text :class="side === 'sun' ? 'solar' : 'lunar'">
-            <n-number-animation
-              ref="numberAnimationInstRef"
-              :from="lowNum"
-              :to="highNum"
-              :active="true"
-              :precision="0"
-            />
-          </n-text>
-        </n-h2>
+        <power :side="side" />
       </n-space>
 
       <n-space justify="center" style="z-index: 9999">
@@ -45,8 +33,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
-import type { NumberAnimationInst } from 'naive-ui';
+import { ref, computed } from 'vue';
+import Power from './Power.vue';
 import MoonStars from './MoonStars.vue';
 import SunRays from './SunRays.vue';
 
@@ -64,18 +52,6 @@ const props = defineProps({
 
 const currentComponentIndex = ref(0);
 const currentComponent = computed(() => props.components[currentComponentIndex.value]);
-
-const numberAnimationInstRef = ref<NumberAnimationInst | null>(null);
-const lowNum = ref(0);
-const highNum = ref(0);
-
-// onMounted(() => {
-//   setInterval(() => {
-//     lowNum.value = Math.random() * 100;
-//     highNum.value = Math.random() * 100;
-//     numberAnimationInstRef.value?.play();
-//   }, 5000);
-// });
 </script>
 
 <style scoped>
@@ -97,19 +73,7 @@ const highNum = ref(0);
     justify-content: center;
   }
 
-  .power {
-    font-family: "Grenze Gotisch", serif;
-    font-weight: 300;
-    font-size: 2.5em;
-  }
-
-  .solar {
-    color: #9e2a2b;
-  }
-
-  .lunar {
-    color: #caf0f8;
-  }
+  
 
   .bordered-background-sun {
     border-color: #9e2a2b;
