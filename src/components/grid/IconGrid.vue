@@ -23,32 +23,28 @@
   </n-grid>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
+<script setup lang="ts">
+import { defineProps, computed } from 'vue';
 
-export default defineComponent({
-  props: {
-    icons: {
-      type: Array as PropType<Array<any>>,
-      required: true,
-    },
-    side: {
-      type: String,
-      default: 'left',
-      validator: (value: string) => ['left', 'right'].includes(value),
-    },
+const props = defineProps({
+  icons: {
+    type: Array as () => Array<any>,
+    required: true,
   },
-  computed: {
-    paddedIcons() {
-      return [...this.icons, ...Array(25 - this.icons.length).fill(null)].slice(0, 25);
-    },
-  },
-  methods: {
-    handleButtonClick(index: number) {
-      console.log(`Button ${index} clicked!`);
-    },
+  side: {
+    type: String,
+    default: 'left',
+    validator: (value: string) => ['left', 'right'].includes(value),
   },
 });
+
+const paddedIcons = computed(() => {
+  return [...props.icons, ...Array(25 - props.icons.length).fill(null)].slice(0, 25);
+});
+
+function handleButtonClick(index: number) {
+  console.log(`Button ${index} clicked!`);
+}
 </script>
 
 <style scoped>

@@ -1,21 +1,13 @@
 <template>
   <div id="app">
     <celestial-body />
-    <split-screen />
+    <game />
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import CelestialBody from './components/layout/CelestialBody.vue';
-import SplitScreen from './components/layout/SplitScreen.vue';
-
-export default defineComponent({
-  components: {
-    CelestialBody,
-    SplitScreen,
-  },
-});
+import Game from './components/layout/Game.vue';
 </script>
 
 <style scoped>

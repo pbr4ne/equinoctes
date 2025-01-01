@@ -44,55 +44,38 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
-import type { NumberAnimationInst } from 'naive-ui'
-import MoonStars from './MoonStars.vue'
-import SunRays from './SunRays.vue'
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue';
+import type { NumberAnimationInst } from 'naive-ui';
+import MoonStars from './MoonStars.vue';
+import SunRays from './SunRays.vue';
 
-export default defineComponent({
+const props = defineProps({
   components: {
-    MoonStars,
-    SunRays,
+    type: Array as () => Array<{ component: any; props: any; icon: any }>,
+    required: true,
   },
-  props: {
-    components: {
-      type: Array as () => Array<{ component: any; props: any; icon: any }>,
-      required: true,
-    },
-    side: {
-      type: String,
-      default: 'left',
-      validator: (value: string) => ['left', 'right'].includes(value)
-    }
+  side: {
+    type: String,
+    default: 'left',
+    validator: (value: string) => ['left', 'right'].includes(value),
   },
-  setup(props) {
-    const currentComponentIndex = ref(0)
-    const currentComponent = computed(
-      () => props.components[currentComponentIndex.value]
-    )
+});
 
-    const numberAnimationInstRef = ref<NumberAnimationInst | null>(null)
-    const lowNum = ref(0)
-    const highNum = ref(0)
+const currentComponentIndex = ref(0);
+const currentComponent = computed(() => props.components[currentComponentIndex.value]);
 
-    // onMounted(() => {
-    //   setInterval(() => {        
-    //     lowNum.value = Math.random() * 100;
-    //     highNum.value = Math.random() * 100;
-    //     numberAnimationInstRef.value?.play();
-    //   }, 5000);
-    // });
+const numberAnimationInstRef = ref<NumberAnimationInst | null>(null);
+const lowNum = ref(0);
+const highNum = ref(0);
 
-    return {
-      currentComponentIndex,
-      currentComponent,
-      lowNum,
-      highNum,
-      numberAnimationInstRef,
-    }
-  }
-})
+// onMounted(() => {
+//   setInterval(() => {
+//     lowNum.value = Math.random() * 100;
+//     highNum.value = Math.random() * 100;
+//     numberAnimationInstRef.value?.play();
+//   }, 5000);
+// });
 </script>
 
 <style scoped>

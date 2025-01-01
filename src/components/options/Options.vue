@@ -2,15 +2,10 @@
     <n-button @click="reset">reset</n-button>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { useStore } from '../../composables/useStore';
 
-export default defineComponent({
-  methods: {
-    reset() {
-      useStore().reset();
-    },
-  },
-});
+function reset() {
+  useStore().reset();
+}
 </script>
