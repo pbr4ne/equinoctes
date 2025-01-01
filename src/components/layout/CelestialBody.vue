@@ -28,7 +28,7 @@
   //   `;
 
   //   gsap.to(sun.value, {
-  //     duration: 8,
+  //     duration: 20,
   //     repeat: -1,
   //     ease: 'power1.inOut',
   //     motionPath: {
@@ -39,10 +39,10 @@
   //       const middleX = window.innerWidth / 2;
   //       const sunX = Number(gsap.getProperty(sun.value, "x"));
 
-  //       if (sunX > middleX && lastX.value <= middleX) {
+  //       if (sunX > middleX) {
   //         currentIcon.value = moonSvg;
   //         isMoonVisible.value = true;
-  //       } else if (sunX < middleX && lastX.value >= middleX) {
+  //       } else if (sunX < middleX) {
   //         currentIcon.value = sunSvg;
   //         isMoonVisible.value = false;
   //       }
