@@ -7,8 +7,8 @@ const initialState = (): GameState => ({
   buildings: [],
   sunGrid: [],
   moonGrid: [],
-  sunLevel: 1,
-  moonLevel: 1,
+  sunLevel: 5,
+  moonLevel: 5,
 });
 
 export const useStore = defineStore('gameState', {

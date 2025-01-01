@@ -1,5 +1,5 @@
 <template>
-  <n-grid :cols="5" :x-gap="10" :y-gap="10">
+  <n-grid :cols="side == 'sun'? store.sunLevel : store.moonLevel" :x-gap="10" :y-gap="10">
     <n-grid-item
       v-for="(icon, index) in paddedIcons"
       :key="index"
@@ -25,6 +25,7 @@
 
 <script setup lang="ts">
 import { defineProps, computed } from 'vue';
+import { useStore } from '../../composables/useStore';
 
 const props = defineProps({
   icons: {
@@ -38,8 +39,12 @@ const props = defineProps({
   },
 });
 
+const store = useStore();
+
 const paddedIcons = computed(() => {
-  return [...props.icons, ...Array(25 - props.icons.length).fill(null)].slice(0, 25);
+  const level = props.side == 'sun' ? store.sunLevel : store.moonLevel;
+  const numGrids = level * level;
+  return [...props.icons, ...Array(numGrids - props.icons.length).fill(null)].slice(0, numGrids);
 });
 
 function handleButtonClick(index: number) {
