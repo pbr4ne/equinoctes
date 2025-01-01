@@ -4,7 +4,7 @@
     <moon-stars v-if="side === 'right'" />
 
     <n-flex justify="end" vertical style="height: 100vh;">
-      <n-space justify="center">
+      <n-space justify="center"  style="z-index: 9999">
         <n-h2 class="power">
           <n-text v-if="side === 'left'" class="solar">Solar Power: </n-text>
           <n-text v-else class="lunar">Lunar Power: </n-text>
@@ -20,7 +20,7 @@
         </n-h2>
       </n-space>
 
-      <n-space justify="center">
+      <n-space justify="center" style="z-index: 9999">
         <div :class="['bordered-background', `bordered-background-${side}`]">
           <div :class="['content', `content-${side}`]">
             <component :is="currentComponent.component" v-bind="currentComponent.props" />
@@ -28,7 +28,7 @@
         </div>
       </n-space>
 
-      <n-space justify="center">
+      <n-space justify="center" style="z-index: 9999">
         <n-space justify="center" style="margin: 20px;">
           <button
             v-for="(item, index) in components"
