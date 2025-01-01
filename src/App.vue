@@ -1,12 +1,10 @@
 <template>
   <div id="app">
-    <celestial-body />
     <game />
   </div>
 </template>
 
 <script setup lang="ts">
-import CelestialBody from './components/layout/CelestialBody.vue';
 import Game from './components/layout/Game.vue';
 </script>
 

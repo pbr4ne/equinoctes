@@ -1,4 +1,5 @@
 <template>
+  <celestial-body /> 
   <n-grid :cols="visibleSides">
     <n-grid-item>
       <faction :components="dayComponents" side="left" class="day"/>
@@ -11,6 +12,7 @@
 
 <script setup lang="ts">
 import { markRaw, ref, watchEffect } from 'vue';
+import CelestialBody from './CelestialBody.vue';
 import Achievements from '../achievements/Achievements.vue';
 import Buildings from '../buildings/Buildings.vue';
 import Faction from './Faction.vue';
