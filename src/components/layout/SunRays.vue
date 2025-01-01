@@ -29,10 +29,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { gsap } from 'gsap';
+import { useStore } from '../../composables/useStore';
+
+const store = useStore();
 
 const sunRayContainer = ref<HTMLElement | null>(null);
 
-const lineCount = 13;
+const lineCount = store.sunLevel * 5 - 10;
 const angleSpread = 90;
 const centerIndex = (lineCount - 1) / 2;
 

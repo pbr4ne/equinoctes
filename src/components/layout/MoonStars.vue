@@ -18,10 +18,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { gsap } from 'gsap';
+import { useStore } from '../../composables/useStore';
+
+const store = useStore();
 
 const moonStarsContainer = ref<HTMLDivElement | null>(null);
 
-const starCount = 20;
+const starCount = store.moonLevel * 20 - 40;
 
 const stars = Array.from({ length: starCount }, () => {
   //random size & spot
