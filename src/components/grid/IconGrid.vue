@@ -10,7 +10,7 @@
         quaternary
         :round="true"
         size="large"
-        :color="side === 'left' ? '#9e2a2b' : '#caf0f8'"
+        :color="side === 'sun' ? '#9e2a2b' : '#caf0f8'"
         class="grid-button"
         @click="handleButtonClick(index)"
       >
@@ -33,8 +33,8 @@ const props = defineProps({
   },
   side: {
     type: String,
-    default: 'left',
-    validator: (value: string) => ['left', 'right'].includes(value),
+    default: 'sun',
+    validator: (value: string) => ['sun', 'moon'].includes(value),
   },
 });
 
@@ -56,12 +56,12 @@ function handleButtonClick(index: number) {
   border-radius: 20px;
 }
 
-.grid-cell-left {
+.grid-cell-sun {
   background: #e9c46a;
   border: 1px solid #9e2a2b;
 }
 
-.grid-cell-right {
+.grid-cell-moon {
   background: #264653;
   border: 1px solid #caf0f8;
 }

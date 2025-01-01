@@ -1,14 +1,14 @@
 <template>
   <div class="layout-container">
-    <sun-rays v-if="side === 'left'" />
-    <moon-stars v-if="side === 'right'" />
+    <sun-rays v-if="side === 'sun'" />
+    <moon-stars v-if="side === 'moon'" />
 
     <n-flex justify="end" vertical style="height: 100vh;">
       <n-space justify="center"  style="z-index: 9999">
         <n-h2 class="power">
-          <n-text v-if="side === 'left'" class="solar">Solaris: </n-text>
+          <n-text v-if="side === 'sun'" class="solar">Aurum: </n-text>
           <n-text v-else class="lunar">Nocturne: </n-text>
-          <n-text :class="side === 'left' ? 'solar' : 'lunar'">
+          <n-text :class="side === 'sun' ? 'solar' : 'lunar'">
             <n-number-animation
               ref="numberAnimationInstRef"
               :from="lowNum"
@@ -57,8 +57,8 @@ const props = defineProps({
   },
   side: {
     type: String,
-    default: 'left',
-    validator: (value: string) => ['left', 'right'].includes(value),
+    default: 'sun',
+    validator: (value: string) => ['sun', 'moon'].includes(value),
   },
 });
 
@@ -111,13 +111,11 @@ const highNum = ref(0);
     color: #caf0f8;
   }
 
-  .bordered-background-left {
-    background: linear-gradient(to bottom, #f4a261, #e9c46a);
+  .bordered-background-sun {
     border-color: #9e2a2b;
   }
 
-  .bordered-background-right {
-    background: linear-gradient(to bottom, #023047, #264653);
+  .bordered-background-moon {
     border-color: #caf0f8;
   }
 
@@ -126,14 +124,6 @@ const highNum = ref(0);
     height: calc(min(50vw, 50vh));
     padding: 20px;
     box-sizing: border-box;
-  }
-
-  .content-left {
-    background: linear-gradient(to bottom, #f4a261, #e9c46a);
-  }
-
-  .content-right {
-    background: linear-gradient(to bottom, #023047, #264653);
   }
 
   .icon-button {
@@ -147,19 +137,23 @@ const highNum = ref(0);
     cursor: pointer;
   }
 
-  .icon-button-left {
+  .icon-button-sun {
     background-color: #e9c46a;
     border-color: #9e2a2b;
     color: #9e2a2b;
   }
 
-  .icon-button-right {
+  .icon-button-moon {
     background-color: #264653;
     border-color: #caf0f8;
     color: #caf0f8;
   }
 
-  .icon-button:hover {
-    background-color: #f0f0f0;
+  .icon-button-sun:hover {
+    background-color: #ffb703;
+  }
+
+  .icon-button-moon:hover {
+    background-color: #219ebc;
   }
 </style>

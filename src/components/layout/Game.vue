@@ -2,10 +2,10 @@
   <celestial-body /> 
   <n-grid :cols="visibleSides">
     <n-grid-item>
-      <faction :components="dayComponents" side="left" class="day"/>
+      <faction :components="dayComponents" side="sun" class="day"/>
     </n-grid-item>
     <n-grid-item>
-      <faction :components="nightComponents" side="right" class="night"/>
+      <faction :components="nightComponents" side="moon" class="night"/>
     </n-grid-item>  
   </n-grid>
 </template>

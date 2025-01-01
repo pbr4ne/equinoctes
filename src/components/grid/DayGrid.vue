@@ -1,5 +1,5 @@
 <template>
-    <icon-grid :icons="dayIcons" side="left"/>
+    <icon-grid :icons="dayIcons" side="sun"/>
 </template>
 
 <script setup lang="ts">
