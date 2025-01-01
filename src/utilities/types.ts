@@ -1,3 +1,5 @@
+import { DefineComponent } from "vue";
+
 export type faction = 'sun' | 'moon';
 
 export interface Calendar {
@@ -17,6 +19,7 @@ export interface Building {
     name: string;
     description: string;
     faction: faction;
+    icon: DefineComponent;
     unlocked: boolean;
     prerequisites: [
         power: number,

@@ -26,12 +26,9 @@
 <script setup lang="ts">
 import { defineProps, computed } from 'vue';
 import { useStore } from '../../composables/useStore';
+import { useBuildings } from '../../composables/useBuildings';
 
 const props = defineProps({
-  icons: {
-    type: Array as () => Array<any>,
-    required: true,
-  },
   side: {
     type: String,
     default: 'sun',
@@ -39,12 +36,15 @@ const props = defineProps({
   },
 });
 
+const buildings = useBuildings();
 const store = useStore();
 
 const paddedIcons = computed(() => {
   const level = props.side == 'sun' ? store.sunLevel : store.moonLevel;
   const numGrids = level * level;
-  return [...props.icons, ...Array(numGrids - props.icons.length).fill(null)].slice(0, numGrids);
+  const factionBuildings = props.side == 'sun' ? buildings.sunBuildings : buildings.moonBuildings;
+  const buildingIcons = factionBuildings.map((building) => building.icon);
+  return [...buildingIcons, ...Array(numGrids - buildingIcons.length).fill(null)].slice(0, numGrids);
 });
 
 function handleButtonClick(index: number) {
