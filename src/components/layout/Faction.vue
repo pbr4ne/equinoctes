@@ -6,15 +6,15 @@
     <n-flex justify="end" vertical style="height: 100vh;">
       <n-space justify="center"  style="z-index: 9999">
         <n-h2 class="power">
-          <n-text v-if="side === 'left'" class="solar">Solar Power: </n-text>
-          <n-text v-else class="lunar">Lunar Power: </n-text>
+          <n-text v-if="side === 'left'" class="solar">Solaris: </n-text>
+          <n-text v-else class="lunar">Nocturne: </n-text>
           <n-text :class="side === 'left' ? 'solar' : 'lunar'">
             <n-number-animation
               ref="numberAnimationInstRef"
               :from="lowNum"
               :to="highNum"
               :active="true"
-              :precision="2"
+              :precision="0"
             />
           </n-text>
         </n-h2>
