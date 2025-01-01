@@ -4,7 +4,7 @@
     <moon-stars v-if="side === 'moon'" />
 
     <n-flex justify="end" vertical style="height: 100vh;">
-      <n-space justify="center"  style="z-index: 9999">
+      <n-space justify="center" style="z-index: 9999">
         <n-h2 class="power">
           <n-text v-if="side === 'sun'" class="solar">Aurum: </n-text>
           <n-text v-else class="lunar">Nocturne: </n-text>

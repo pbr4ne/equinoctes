@@ -1,5 +1,5 @@
 <template>
-  <div class="sun-container">
+  <div class="sun-container" style="z-index: 9999;">
     <img :src="currentIcon" alt="sun" class="sun" ref="sun" />
   </div>
 </template>
