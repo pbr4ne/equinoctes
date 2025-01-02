@@ -1,5 +1,5 @@
 <template>
-  <n-grid :cols="side == 'sun'? store.sunLevel : store.moonLevel" :x-gap="10" :y-gap="10">
+  <n-grid :cols="side === 'sun' ? store.sunLevel : store.moonLevel" :x-gap="10" :y-gap="10">
     <n-grid-item
       v-for="(icon, index) in paddedIcons"
       :key="index"
@@ -14,9 +14,7 @@
         class="grid-button"
         @click="handleButtonClick(index)"
       >
-        <template #icon>
-          <component :is="icon"/>
-        </template>
+        <component :is="icon" class="button-icon" />
       </n-button>
       <div v-else class="empty-cell"></div>
     </n-grid-item>
@@ -40,9 +38,9 @@ const buildings = useBuildings();
 const store = useStore();
 
 const paddedIcons = computed(() => {
-  const level = props.side == 'sun' ? store.sunLevel : store.moonLevel;
+  const level = props.side === 'sun' ? store.sunLevel : store.moonLevel;
   const numGrids = level * level;
-  const factionBuildings = props.side == 'sun' ? buildings.sunBuildings : buildings.moonBuildings;
+  const factionBuildings = props.side === 'sun' ? buildings.sunBuildings : buildings.moonBuildings;
   const buildingIcons = factionBuildings.map((building) => building.icon);
   return [...buildingIcons, ...Array(numGrids - buildingIcons.length).fill(null)].slice(0, numGrids);
 });
@@ -59,6 +57,7 @@ function handleButtonClick(index: number) {
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+  position: relative;
 }
 
 .grid-cell-sun {
@@ -69,5 +68,34 @@ function handleButtonClick(index: number) {
 .grid-cell-moon {
   background: #264653;
   border: 1px solid #caf0f8;
+}
+
+.grid-button {
+  width: 50%;
+  height: 50%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.button-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-icon > svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.empty-cell {
+  width: 100%;
+  height: 100%;
 }
 </style>

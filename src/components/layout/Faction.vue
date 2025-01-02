@@ -10,7 +10,7 @@
 
       <n-space justify="center" style="z-index: 9999">
         <div :class="['bordered-background', `bordered-background-${side}`]">
-          <div :class="['content', `content-${side}`]">
+          <div :class="['content', `content-${side}`]" :style="{ padding: computedPadding }">
             <component :is="currentComponent.component" v-bind="currentComponent.props" />
           </div>
         </div>
@@ -34,6 +34,7 @@
 
 <script setup lang="ts">
 import { ref, computed, markRaw } from 'vue';
+import { useStore } from '../../composables/useStore';
 import Power from './Power.vue';
 import MoonStars from './MoonStars.vue';
 import SunRays from './SunRays.vue';
@@ -45,6 +46,8 @@ import FactionGrid from '../grid/FactionGrid.vue';
 import { Grid28Regular, Options24Regular, BuildingLighthouse20Regular } from '@vicons/fluent';
 import { CrownOutlined } from '@vicons/antd';
 import { Notebook } from '@vicons/carbon';
+
+const store = useStore();
 
 const props = defineProps({
   side: {
@@ -64,6 +67,9 @@ const components = [
 
 const currentComponentIndex = ref(0);
 const currentComponent = computed(() => components[currentComponentIndex.value]);
+// const computedPadding = 170 - (props.side == 'sun'? store.sunLevel : store.moonLevel) * 30 + 'px';
+// console.log(props.side, computedPadding);
+const computedPadding = '20px';
 </script>
 
 <style scoped>
@@ -96,7 +102,6 @@ const currentComponent = computed(() => components[currentComponentIndex.value])
 .content {
   width: calc(min(50vw, 50vh));
   height: calc(min(50vw, 50vh));
-  padding: 20px;
   box-sizing: border-box;
 }
 

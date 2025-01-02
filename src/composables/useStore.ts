@@ -7,7 +7,7 @@ const initialState = (): GameState => ({
   buildings: [],
   sunGrid: [],
   moonGrid: [],
-  sunLevel: 5,
+  sunLevel: 2,
   moonLevel: 5,
 });
 
