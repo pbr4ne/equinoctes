@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { GameState } from '../utilities/types';
-import { DefineComponent } from "vue";
+import { DefineComponent, markRaw } from "vue";
 import { SunnyOutline, CloudOutline, MoonOutline, StarOutline } from '@vicons/ionicons5';
 
 const initialState = (): GameState => ({
@@ -13,8 +13,8 @@ const initialState = (): GameState => ({
             name: 'Sun Building 1',
             description: 'Sun Building 1 description',
             faction: 'sun',
-            icon: SunnyOutline as DefineComponent,
-            unlocked: false,
+            icon: markRaw(SunnyOutline) as DefineComponent,
+            unlocked: true,
             prerequisites: [
                 0,
                 [],
@@ -26,7 +26,7 @@ const initialState = (): GameState => ({
             name: 'Sun Building 2',
             description: 'Sun Building 2 description',
             faction: 'sun',
-            icon: CloudOutline as DefineComponent,
+            icon: markRaw(CloudOutline) as DefineComponent,
             unlocked: false,
             prerequisites: [
                 0,
@@ -41,7 +41,7 @@ const initialState = (): GameState => ({
             name: 'Moon Building 1',
             description: 'Moon Building 1 description',
             faction: 'moon',
-            icon: MoonOutline as DefineComponent,
+            icon: markRaw(MoonOutline) as DefineComponent,
             unlocked: false,
             prerequisites: [
                 0,
@@ -54,7 +54,7 @@ const initialState = (): GameState => ({
             name: 'Moon Building 2',
             description: 'Moon Building 2 description',
             faction: 'moon',
-            icon: StarOutline as DefineComponent,
+            icon: markRaw(StarOutline) as DefineComponent,
             unlocked: false,
             prerequisites: [
                 0,
