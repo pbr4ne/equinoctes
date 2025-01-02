@@ -1,16 +1,16 @@
 <template>
   <div class="layout-container">
-    <sun-rays v-if="side === 'sun'" />
-    <moon-stars v-if="side === 'moon'" />
+    <sun-rays v-if="faction === 'sun'" />
+    <moon-stars v-if="faction === 'moon'" />
 
     <n-flex justify="end" vertical style="height: 100vh;">
       <n-space justify="center" style="z-index: 9999">
-        <power :side="side" />
+        <power :faction="faction" />
       </n-space>
 
       <n-space justify="center" style="z-index: 9999">
-        <div :class="['bordered-background', `bordered-background-${side}`]">
-          <div :class="['content', `content-${side}`]" :style="{ padding: computedPadding }">
+        <div :class="['bordered-background', `bordered-background-${faction}`]">
+          <div :class="['content', `content-${faction}`]" :style="{ padding: computedPadding }">
             <component :is="currentComponent.component" v-bind="currentComponent.props" />
           </div>
         </div>
@@ -22,7 +22,7 @@
             v-for="(item, index) in components"
             :key="index"
             @click="currentComponentIndex = index"
-            :class="['icon-button', `icon-button-${side}`]"
+            :class="['icon-button', `icon-button-${faction}`]"
           >
             <component :is="item.icon"/>
           </button>
@@ -50,7 +50,7 @@ import { Notebook } from '@vicons/carbon';
 const store = useStore();
 
 const props = defineProps({
-  side: {
+  faction: {
     type: String,
     default: 'sun',
     validator: (value: string) => ['sun', 'moon'].includes(value),
@@ -67,8 +67,8 @@ const components = [
 
 const currentComponentIndex = ref(0);
 const currentComponent = computed(() => components[currentComponentIndex.value]);
-// const computedPadding = 170 - (props.side == 'sun'? store.sunLevel : store.moonLevel) * 30 + 'px';
-// console.log(props.side, computedPadding);
+// const computedPadding = 170 - (props.faction == 'sun'? store.sunLevel : store.moonLevel) * 30 + 'px';
+// console.log(props.faction, computedPadding);
 const computedPadding = '20px';
 </script>
 

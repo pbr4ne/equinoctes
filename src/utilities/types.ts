@@ -1,6 +1,6 @@
 import { DefineComponent } from "vue";
 
-export type faction = 'sun' | 'moon';
+export type FactionKey = 'sun' | 'moon';
 
 export interface Calendar {
     days: number;
@@ -18,7 +18,7 @@ export interface Building {
     id: string;
     name: string;
     description: string;
-    faction: faction;
+    faction: FactionKey;
     icon: DefineComponent;
     unlocked: boolean;
     prerequisites: [
@@ -28,12 +28,17 @@ export interface Building {
     ]
 }
 
+export interface Faction {
+    level: number;
+    grid: Building[][];
+}
+
 export interface GameState {
     lore: LoreEntry[];
     calendar: Calendar;
     buildings: Building[];
-    sunGrid: Building[][];
-    moonGrid: Building[][];
-    sunLevel: number;
-    moonLevel: number;
+    factions: {
+        sun: Faction,
+        moon: Faction,
+    },
 }

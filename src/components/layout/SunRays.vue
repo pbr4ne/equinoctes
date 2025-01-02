@@ -35,7 +35,7 @@ const store = useStore();
 
 const sunRayContainer = ref<HTMLElement | null>(null);
 
-const lineCount = store.sunLevel * 5 - 10;
+const lineCount = store.factions.sun.level * 5 - 10;
 const angleSpread = 90;
 const centerIndex = (lineCount - 1) / 2;
 

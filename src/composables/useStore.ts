@@ -5,10 +5,16 @@ const initialState = (): GameState => ({
   lore: [],
   calendar: { days: 0, hours: 0, minutes: 0, accumulatedTime: 0 },
   buildings: [],
-  sunGrid: [],
-  moonGrid: [],
-  sunLevel: 2,
-  moonLevel: 5,
+  factions: {
+    sun: {
+      level: 2,
+      grid: [],
+    },
+    moon: {
+      level: 5,
+      grid: [],
+    },
+  },
 });
 
 export const useStore = defineStore('gameState', {

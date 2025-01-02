@@ -1,11 +1,11 @@
 <template>
   <celestial-body /> 
-  <n-grid :cols="visibleSides">
+  <n-grid :cols="visiblefactions">
     <n-grid-item>
-      <faction side="sun" class="day"/>
+      <faction faction="sun" class="day"/>
     </n-grid-item>
     <n-grid-item>
-      <faction side="moon" class="night"/>
+      <faction faction="moon" class="night"/>
     </n-grid-item>  
   </n-grid>
 </template>
@@ -16,15 +16,15 @@ import CelestialBody from './CelestialBody.vue';
 import Faction from './Faction.vue';
 
 const isSmallScreen = ref(isSmallWindow());
-const visibleSides = ref(2);
+const visiblefactions = ref(2);
 
 const updateScreenSize = () => {
   isSmallScreen.value = window.innerWidth < 730;
   
   if (isSmallScreen.value) {
-    visibleSides.value = 1;
+    visiblefactions.value = 1;
   } else {
-    visibleSides.value = 2;
+    visiblefactions.value = 2;
   }
 };
 

@@ -24,7 +24,7 @@ const store = useStore();
 
 const moonStarsContainer = ref<HTMLDivElement | null>(null);
 
-const starCount = store.moonLevel * 20 - 40;
+const starCount = store.factions.moon.level * 20 - 40;
 
 const stars = Array.from({ length: starCount }, () => {
   //random size & spot

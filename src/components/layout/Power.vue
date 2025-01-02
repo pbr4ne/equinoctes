@@ -1,8 +1,8 @@
 <template>
   <n-h2 class="power">
-    <n-text v-if="side === 'sun'" class="solar">Aurum: </n-text>
+    <n-text v-if="faction === 'sun'" class="solar">Aurum: </n-text>
     <n-text v-else class="lunar">Nocturne: </n-text>
-    <n-text :class="side === 'sun' ? 'solar' : 'lunar'">
+    <n-text :class="faction === 'sun' ? 'solar' : 'lunar'">
       <n-number-animation
         ref="numberAnimationInstRef"
         :from="lowNum"
@@ -19,7 +19,7 @@ import { ref, onMounted } from 'vue';
 import type { NumberAnimationInst } from 'naive-ui';
 
 defineProps({
-  side: {
+  faction: {
     type: String,
     default: 'sun',
     validator: (value: string) => ['sun', 'moon'].includes(value),
