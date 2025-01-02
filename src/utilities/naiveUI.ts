@@ -10,6 +10,7 @@ import {
     NLayoutContent,
     NLayoutSider,
     NNumberAnimation,
+    NScrollbar,
     NSpace,
     NText,
   } from 'naive-ui';
@@ -27,6 +28,7 @@ import {
       NLayoutContent,
       NLayoutSider,
       NNumberAnimation,
+      NScrollbar,
       NSpace,
       NText,
     ],

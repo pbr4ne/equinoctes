@@ -1,7 +1,7 @@
 <template>
   <n-grid :cols="store.factions[faction].level" :x-gap="10" :y-gap="10">
     <n-grid-item
-      v-for="(icon, index) in paddedIcons"
+      v-for="(icon, index) in buildingIcons"
       :key="index"
       :class="['grid-cell', `grid-cell-${faction}`]"
     >
@@ -24,7 +24,6 @@
 <script setup lang="ts">
 import { defineProps, computed, PropType } from 'vue';
 import { useStore } from '../../composables/useStore';
-import { useBuildings } from '../../composables/useBuildings';
 import { FactionKey } from '../../utilities/types';
 
 const props = defineProps({
@@ -36,12 +35,11 @@ const props = defineProps({
 });
 
 const store = useStore();
-const buildings = useBuildings();
 
-const paddedIcons = computed(() => {
+const buildingIcons = computed(() => {
   const factionBuildings = store.factions[props.faction].grid;
 
-  const allFactionBuildings = buildings.buildings[props.faction];
+  const allFactionBuildings = store.buildings[props.faction];
 
   const buildingIcons = factionBuildings.map((buildingId) => {
     if (!buildingId) return null;

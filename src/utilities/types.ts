@@ -36,7 +36,10 @@ export interface Faction {
 export interface GameState {
     lore: LoreEntry[];
     calendar: Calendar;
-    buildings: Building[];
+    buildings: {
+        sun: Building[],
+        moon: Building[],
+    };
     factions: {
         sun: Faction,
         moon: Faction,
