@@ -35,15 +35,20 @@ const props = defineProps({
   },
 });
 
-const buildings = useBuildings();
 const store = useStore();
+const buildings = useBuildings();
 
 const paddedIcons = computed(() => {
-  const level = store.factions[props.faction].level;
-  const numGrids = level * level;
-  const factionBuildings = props.faction === 'sun' ? buildings.sunBuildings : buildings.moonBuildings;
-  const buildingIcons = factionBuildings.map((building) => building.icon);
-  return [...buildingIcons, ...Array(numGrids - buildingIcons.length).fill(null)].slice(0, numGrids);
+  const factionBuildings = store.factions[props.faction].grid;
+
+  const allFactionBuildings = buildings.buildings[props.faction];
+
+  const buildingIcons = factionBuildings.map((buildingId) => {
+    if (!buildingId) return null;
+    return allFactionBuildings.find((b) => b.id === buildingId)?.icon || null;
+  });
+
+  return buildingIcons;
 });
 
 function handleButtonClick(index: number) {

@@ -30,7 +30,7 @@ export interface Building {
 
 export interface Faction {
     level: number;
-    grid: Building[][];
+    grid: (string | null)[];
 }
 
 export interface GameState {

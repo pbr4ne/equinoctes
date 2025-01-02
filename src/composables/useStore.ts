@@ -8,11 +8,11 @@ const initialState = (): GameState => ({
   factions: {
     sun: {
       level: 2,
-      grid: [],
+      grid: ["sun-1", null, null, "sun-2"],
     },
     moon: {
       level: 5,
-      grid: [],
+      grid: ["moon-1", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, "moon-2", null],
     },
   },
 });
