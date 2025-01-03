@@ -1,20 +1,20 @@
 <template>
   <n-grid :cols="store.factions[faction].level" :x-gap="10" :y-gap="10">
     <n-grid-item
-      v-for="(icon, index) in buildingIcons"
+      v-for="(building, index) in buildingIcons"
       :key="index"
       :class="['grid-cell', `grid-cell-${faction}`]"
     >
       <n-button
-        v-if="icon"
+        v-if="building"
         quaternary
         :round="true"
         size="large"
         :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
         class="grid-button"
-        @click="handleButtonClick(index)"
+        @click="clickBuilding(building)"
       >
-        <component :is="getIconComponent(icon)" class="button-icon" />
+        <component :is="getIconComponent(building.icon)" class="button-icon" />
       </n-button>
       <div v-else class="empty-cell"></div>
     </n-grid-item>
@@ -24,8 +24,7 @@
 <script setup lang="ts">
 import { defineProps, computed, PropType } from 'vue';
 import { useStore } from '../../composables/useStore';
-import { FactionKey } from '../../utilities/types';
-import { IconComponent, iconMap } from '../../utilities/types';
+import { Building, FactionKey, IconComponent, iconMap } from '../../utilities/types';
 
 const props = defineProps({
   faction: {
@@ -43,19 +42,19 @@ const getIconComponent = (iconName: string): IconComponent | null => {
 
 const buildingIcons = computed(() => {
   const factionBuildings = store.factions[props.faction].grid;
-
   const allFactionBuildings = store.buildings[props.faction];
 
   const buildingIcons = factionBuildings.map((buildingId) => {
     if (!buildingId) return null;
-    return allFactionBuildings.find((b) => b.id === buildingId)?.icon || null;
+    return allFactionBuildings.find((b) => b.id === buildingId) || null;
   });
 
+  console.log(buildingIcons);
   return buildingIcons;
 });
 
-function handleButtonClick(index: number) {
-  console.log(`Button ${index} clicked!`);
+function clickBuilding(building: Building) {
+  console.log(`Button ${building.id} clicked!`);
 }
 </script>
 

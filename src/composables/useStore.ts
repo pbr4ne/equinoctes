@@ -1,67 +1,65 @@
 import { defineStore } from 'pinia';
 import { GameState } from '../utilities/types';
-import { DefineComponent, markRaw } from "vue";
-import { SunnyOutline, CloudOutline, MoonOutline, StarOutline } from '@vicons/ionicons5';
 
 const initialState = (): GameState => ({
   lore: [],
   calendar: { days: 0, hours: 0, minutes: 0, accumulatedTime: 0 },
   buildings: {
     sun: [
-        {
-            id: 'sun-1',
-            name: 'Sun Building 1',
-            description: 'Sun Building 1 description',
-            faction: 'sun',
-            icon: 'SunnyOutline',
-            unlocked: true,
-            prerequisites: [
-                0,
-                [],
-                0,
-            ],
-        },
-        {
-            id: 'sun-2',
-            name: 'Sun Building 2',
-            description: 'Sun Building 2 description',
-            faction: 'sun',
-            icon: 'CloudOutline',
-            unlocked: false,
-            prerequisites: [
-                0,
-                [],
-                0,
-            ],
-        },        
+      {
+        id: 'sun-1',
+        name: 'Sun Building 1',
+        description: 'Sun Building 1 description',
+        faction: 'sun',
+        icon: 'SunnyOutline',
+        unlocked: true,
+        prerequisites: [
+          0,
+          [],
+          0,
+        ],
+      },
+      {
+        id: 'sun-2',
+        name: 'Sun Building 2',
+        description: 'Sun Building 2 description',
+        faction: 'sun',
+        icon: 'CloudOutline',
+        unlocked: false,
+        prerequisites: [
+          0,
+          [],
+          0,
+        ],
+      },        
     ],
     moon: [
-        {
-            id: 'moon-1',
-            name: 'Moon Building 1',
-            description: 'Moon Building 1 description',
-            faction: 'moon',
-            icon: 'MoonOutline',
-            unlocked: false,
-            prerequisites: [
-                0,
-                [],
-                0,
-            ],
-        },
-        {
-            id: 'moon-2',
-            name: 'Moon Building 2',
-            description: 'Moon Building 2 description',
-            faction: 'moon',
-            icon: 'StarOutline',
-            unlocked: false,
-            prerequisites: [
-                0,
-                [],
-                0,
-            ],
-        },
+      {
+        id: 'moon-1',
+        name: 'Moon Building 1',
+        description: 'Moon Building 1 description',
+        faction: 'moon',
+        icon: 'MoonOutline',
+        unlocked: false,
+        prerequisites: [
+          0,
+          [],
+          0,
+        ],
+      },
+      {
+        id: 'moon-2',
+        name: 'Moon Building 2',
+        description: 'Moon Building 2 description',
+        faction: 'moon',
+        icon: 'StarOutline',
+        unlocked: false,
+        prerequisites: [
+          0,
+          [],
+          0,
+        ],
+      },
     ],
 },
   factions: {

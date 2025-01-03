@@ -1,7 +1,12 @@
 <template>
   <n-scrollbar>
       <n-space vertical>
-        <n-button v-for="building in store.buildings.sun" :class="['buildingButton', `buildingButton-${faction}`]" :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'">
+        <n-button 
+          v-for="building in store.buildings.sun" 
+          :class="['buildingButton', `buildingButton-${faction}`]" 
+          :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
+          @click="buyBuilding(building)"
+        >
           <span>{{building.name}}</span>
         </n-button>
     </n-space>
@@ -11,7 +16,7 @@
 <script setup lang="ts">
 import { defineProps, PropType } from 'vue';
 import { useStore } from '../../composables/useStore';
-import { FactionKey } from '../../utilities/types';
+import { Building, FactionKey } from '../../utilities/types';
 
 const props = defineProps({
   faction: {
@@ -21,6 +26,10 @@ const props = defineProps({
   },
 });
 const store = useStore();
+
+const buyBuilding = (building: Building) => {
+  console.log(`Buying ${building.name}!`);
+};
 </script>
 
 <style scoped>
