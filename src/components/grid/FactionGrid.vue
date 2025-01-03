@@ -14,7 +14,7 @@
         class="grid-button"
         @click="handleButtonClick(index)"
       >
-        <component :is="icon" class="button-icon" />
+        <component :is="getIconComponent(icon)" class="button-icon" />
       </n-button>
       <div v-else class="empty-cell"></div>
     </n-grid-item>
@@ -25,6 +25,7 @@
 import { defineProps, computed, PropType } from 'vue';
 import { useStore } from '../../composables/useStore';
 import { FactionKey } from '../../utilities/types';
+import { IconComponent, iconMap } from '../../utilities/types';
 
 const props = defineProps({
   faction: {
@@ -35,6 +36,10 @@ const props = defineProps({
 });
 
 const store = useStore();
+
+const getIconComponent = (iconName: string): IconComponent | null => {
+    return iconMap[iconName] || null;
+  };
 
 const buildingIcons = computed(() => {
   const factionBuildings = store.factions[props.faction].grid;

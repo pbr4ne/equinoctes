@@ -1,4 +1,13 @@
-import { DefineComponent } from "vue";
+import { SunnyOutline, CloudOutline, MoonOutline, StarOutline } from '@vicons/ionicons5';
+
+export type IconComponent = typeof SunnyOutline;
+
+export const iconMap: Record<string, IconComponent> = {
+  SunnyOutline,
+  CloudOutline,
+  MoonOutline,
+  StarOutline,
+};
 
 export type FactionKey = 'sun' | 'moon';
 
@@ -19,7 +28,7 @@ export interface Building {
     name: string;
     description: string;
     faction: FactionKey;
-    icon: DefineComponent;
+    icon: string;
     unlocked: boolean;
     prerequisites: [
         power: number,

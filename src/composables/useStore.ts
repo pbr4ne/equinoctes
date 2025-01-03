@@ -13,7 +13,7 @@ const initialState = (): GameState => ({
             name: 'Sun Building 1',
             description: 'Sun Building 1 description',
             faction: 'sun',
-            icon: markRaw(SunnyOutline) as DefineComponent,
+            icon: 'SunnyOutline',
             unlocked: true,
             prerequisites: [
                 0,
@@ -26,7 +26,7 @@ const initialState = (): GameState => ({
             name: 'Sun Building 2',
             description: 'Sun Building 2 description',
             faction: 'sun',
-            icon: markRaw(CloudOutline) as DefineComponent,
+            icon: 'CloudOutline',
             unlocked: false,
             prerequisites: [
                 0,
@@ -41,7 +41,7 @@ const initialState = (): GameState => ({
             name: 'Moon Building 1',
             description: 'Moon Building 1 description',
             faction: 'moon',
-            icon: markRaw(MoonOutline) as DefineComponent,
+            icon: 'MoonOutline',
             unlocked: false,
             prerequisites: [
                 0,
@@ -54,7 +54,7 @@ const initialState = (): GameState => ({
             name: 'Moon Building 2',
             description: 'Moon Building 2 description',
             faction: 'moon',
-            icon: markRaw(StarOutline) as DefineComponent,
+            icon: 'StarOutline',
             unlocked: false,
             prerequisites: [
                 0,
