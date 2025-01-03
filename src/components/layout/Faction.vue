@@ -11,7 +11,10 @@
       <n-space justify="center" style="z-index: 9999">
         <div :class="['bordered-background', `bordered-background-${faction}`]">
           <div :class="['content', `content-${faction}`]" :style="{ padding: computedPadding }">
-            <component :is="currentComponent.component" v-bind="currentComponent.props" />
+            <component 
+              :is="currentComponent.component" 
+              v-bind="currentComponent.props"
+            />
           </div>
         </div>
       </n-space>
@@ -33,8 +36,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, markRaw } from 'vue';
+import { ref, computed, markRaw, onMounted, onBeforeUnmount } from 'vue';
 import { useStore } from '../../composables/useStore';
+import { emitter } from '../../utilities/emitter';
 import Power from './Power.vue';
 import MoonStars from './MoonStars.vue';
 import SunRays from './SunRays.vue';
@@ -70,6 +74,18 @@ const currentComponent = computed(() => components[currentComponentIndex.value])
 // const computedPadding = 170 - (props.faction == 'sun'? store.sunLevel : store.moonLevel) * 30 + 'px';
 // console.log(props.faction, computedPadding);
 const computedPadding = '20px';
+
+function handleSwitchToGrid() {
+  currentComponentIndex.value = 0;
+}
+
+onMounted(() => {
+  emitter.on('switch', handleSwitchToGrid);
+});
+
+onBeforeUnmount(() => {
+  emitter.off('switch', handleSwitchToGrid);
+});
 </script>
 
 <style scoped>

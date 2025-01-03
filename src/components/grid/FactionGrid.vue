@@ -16,13 +16,17 @@
       >
         <component :is="getIconComponent(building.icon)" class="button-icon" />
       </n-button>
-      <div v-else class="empty-cell"></div>
+      <div
+        v-else
+        class="empty-cell"
+        @click="onClickEmptyCell(index)"
+      ></div>
     </n-grid-item>
   </n-grid>
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed, PropType } from 'vue';
+import { computed, PropType } from 'vue';
 import { useStore } from '../../composables/useStore';
 import { Building, FactionKey, IconComponent, iconMap } from '../../utilities/types';
 
@@ -49,12 +53,20 @@ const buildingIcons = computed(() => {
     return allFactionBuildings.find((b) => b.id === buildingId) || null;
   });
 
-  console.log(buildingIcons);
   return buildingIcons;
 });
 
 function clickBuilding(building: Building) {
   console.log(`Button ${building.id} clicked!`);
+}
+
+function onClickEmptyCell(gridIndex: number) {
+  if (!store.selectedBuilding) {
+    return;
+  }
+
+  store.factions[props.faction].grid[gridIndex] = store.selectedBuilding.id;
+  store.selectedBuilding = null;
 }
 </script>
 

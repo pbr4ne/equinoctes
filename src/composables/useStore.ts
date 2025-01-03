@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia';
-import { GameState } from '../utilities/types';
+import { Building, GameState } from '../utilities/types';
 
 const initialState = (): GameState => ({
   lore: [],
   calendar: { days: 0, hours: 0, minutes: 0, accumulatedTime: 0 },
+  selectedBuilding: null as Building | null,
   buildings: {
     sun: [
       {
@@ -25,7 +26,7 @@ const initialState = (): GameState => ({
         description: 'Sun Building 2 description',
         faction: 'sun',
         icon: 'CloudOutline',
-        unlocked: false,
+        unlocked: true,
         prerequisites: [
           0,
           [],
@@ -40,7 +41,7 @@ const initialState = (): GameState => ({
         description: 'Moon Building 1 description',
         faction: 'moon',
         icon: 'MoonOutline',
-        unlocked: false,
+        unlocked: true,
         prerequisites: [
           0,
           [],
@@ -53,7 +54,7 @@ const initialState = (): GameState => ({
         description: 'Moon Building 2 description',
         faction: 'moon',
         icon: 'StarOutline',
-        unlocked: false,
+        unlocked: true,
         prerequisites: [
           0,
           [],
@@ -65,11 +66,11 @@ const initialState = (): GameState => ({
   factions: {
     sun: {
       level: 2,
-      grid: ["sun-1", null, null, "sun-2"],
+      grid: ["sun-1", null, null, null],
     },
     moon: {
       level: 5,
-      grid: ["moon-1", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, "moon-2", null],
+      grid: ["moon-1", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
     },
   },
 });
