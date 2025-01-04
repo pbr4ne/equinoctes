@@ -14,8 +14,8 @@
       <n-popover 
         v-if="building"
         trigger="hover"
-        :style="{ backgroundColor: faction == 'sun' ? '#9e2a2b' : '#caf0f8', color: faction == 'sun' ? '#e9c46a': '#264653', borderRadius: '12px', padding: '8px' }"
-        :arrow-style="{ backgroundColor: faction == 'sun' ? '#9e2a2b' : '#caf0f8' }"
+        :style="{ backgroundColor: faction == 'sun' ? '#9e2a2b' : '#caf0f8', color: faction == 'sun' ? '#e9c46a': '#264653', border: '1px solid black', borderRadius: '12px', padding: '8px' }"
+        :arrow-style="{ backgroundColor: faction == 'sun' ? '#9e2a2b' : '#caf0f8', border: '1px solid black' }"
       >
         <template #trigger>
           <component
