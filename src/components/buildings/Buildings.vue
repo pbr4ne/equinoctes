@@ -2,7 +2,7 @@
   <n-scrollbar>
       <n-space vertical>
         <n-button 
-          v-for="building in store.buildings[faction]"
+          v-for="building in unbuiltBuildings"
           :class="['buildingButton', `buildingButton-${faction}`]" 
           :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
           @click="buyBuilding(building)"
@@ -27,6 +27,8 @@ const props = defineProps({
   },
 });
 const store = useStore();
+
+const unbuiltBuildings = store.buildings[props.faction].filter((building) => !store.factions[props.faction].grid.includes(building.id));
 
 const buyBuilding = (building: Building) => {
   store.selectedBuilding = building;

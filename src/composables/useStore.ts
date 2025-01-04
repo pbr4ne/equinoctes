@@ -42,7 +42,7 @@ const initialState = (): GameState => ({
         name: 'Moon Building 1',
         description: 'Moon Building 1 description',
         faction: 'moon',
-        power: 5,
+        power: 1,
         icon: 'MoonOutline',
         unlocked: true,
         prerequisites: [
@@ -56,7 +56,7 @@ const initialState = (): GameState => ({
         name: 'Moon Building 2',
         description: 'Moon Building 2 description',
         faction: 'moon',
-        power: 1,
+        power: 5,
         icon: 'StarOutline',
         unlocked: true,
         prerequisites: [
