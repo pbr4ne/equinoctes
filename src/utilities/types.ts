@@ -1,4 +1,24 @@
-import { SunnyOutline, CloudOutline, MoonOutline, StarOutline } from '@vicons/ionicons5';
+import { 
+    SunnyOutline, 
+    CloudOutline, 
+    MoonOutline, 
+    StarOutline 
+} from '@vicons/ionicons5';
+
+import { 
+    Aperture,
+    Api,
+    DewPoint,
+} from '@vicons/carbon';
+
+import {
+    ArchitectureOutlined,
+} from '@vicons/material';
+
+import {
+    Bed24Regular,
+    PuzzleCube24Regular,
+} from '@vicons/fluent';
 
 export type IconComponent = typeof SunnyOutline;
 
@@ -7,6 +27,12 @@ export const iconMap: Record<string, IconComponent> = {
   CloudOutline,
   MoonOutline,
   StarOutline,
+  Aperture,
+  Api,
+  ArchitectureOutlined,
+  Bed24Regular,
+  PuzzleCube24Regular,
+  DewPoint,
 };
 
 export type FactionKey = 'sun' | 'moon';

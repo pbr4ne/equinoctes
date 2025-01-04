@@ -21,7 +21,7 @@ export const sunBuildings: Building[] = [
     description: 'Sun Building 2 description',
     faction: 'sun',
     icon: 'CloudOutline',
-    power: 5,
+    power: 2,
     unlocked: true,
     prerequisites: [
       0,
@@ -29,6 +29,48 @@ export const sunBuildings: Building[] = [
       0,
     ],
   },
+  {
+    id: 'sun-3',
+    name: 'Sun Building 3',
+    description: 'Sun Building 3 description',
+    faction: 'sun',
+    icon: 'Aperture',
+    power: 3,
+    unlocked: true,
+    prerequisites: [
+      0,
+      [],
+      0,
+    ],
+  },
+  {
+    id: 'sun-4',
+    name: 'Sun Building 4',
+    description: 'Sun Building 4 description',
+    faction: 'sun',
+    icon: 'Api',
+    power: 4,
+    unlocked: true,
+    prerequisites: [
+      0,
+      [],
+      0,
+    ],
+  },
+  {
+    id: 'sun-5',
+    name: 'Sun Building 5',
+    description: 'Sun Building 5 description',
+    faction: 'sun',
+    icon: 'ArchitectureOutlined',
+    power: 5,
+    unlocked: true,
+    prerequisites: [
+      0,
+      [],
+      0,
+    ],
+  }
 ];
 
 export const moonBuildings: Building[] = [
@@ -51,7 +93,7 @@ export const moonBuildings: Building[] = [
     name: 'Moon Building 2',
     description: 'Moon Building 2 description',
     faction: 'moon',
-    power: 5,
+    power: 2,
     icon: 'StarOutline',
     unlocked: true,
     prerequisites: [
@@ -60,4 +102,46 @@ export const moonBuildings: Building[] = [
       0,
     ],
   },
+  {
+    id: 'moon-3',
+    name: 'Moon Building 3',
+    description: 'Moon Building 3 description',
+    faction: 'moon',
+    power: 3,
+    icon: 'Bed24Regular',
+    unlocked: true,
+    prerequisites: [
+      0,
+      [],
+      0,
+    ],
+  },
+  {
+    id: 'moon-4',
+    name: 'Moon Building 4',
+    description: 'Moon Building 4 description',
+    faction: 'moon',
+    power: 4,
+    icon: 'PuzzleCube24Regular',
+    unlocked: true,
+    prerequisites: [
+      0,
+      [],
+      0,
+    ],
+  },
+  {
+    id: 'moon-5',
+    name: 'Moon Building 5',
+    description: 'Moon Building 5 description',
+    faction: 'moon',
+    power: 5,
+    icon: 'DewPoint',
+    unlocked: true,
+    prerequisites: [
+      0,
+      [],
+      0,
+    ],
+  }
 ];
