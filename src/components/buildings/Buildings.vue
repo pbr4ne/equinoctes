@@ -32,7 +32,7 @@ const store = useStore();
 const unbuiltBuildings = store.factions[props.faction].buildings.filter((building) => !store.factions[props.faction].grid.includes(building.id));
 
 const buyBuilding = (building: Building) => {
-  store.selectedBuilding = building;
+  store.factions[props.faction].selectedBuilding = building;
   emitter.emit('switch', { faction: props.faction });
 };
 </script>

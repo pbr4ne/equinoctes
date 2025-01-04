@@ -36,9 +36,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, markRaw, onMounted, onBeforeUnmount } from 'vue';
+import { ref, computed, markRaw, onMounted, onBeforeUnmount, PropType } from 'vue';
 import { useStore } from '../../composables/useStore';
 import { emitter } from '../../utilities/emitter';
+import { FactionKey } from '../../utilities/types';
 import Power from './Power.vue';
 import MoonStars from './MoonStars.vue';
 import SunRays from './SunRays.vue';
@@ -55,7 +56,7 @@ const store = useStore();
 
 const props = defineProps({
   faction: {
-    type: String,
+    type: String as PropType<FactionKey>,
     default: 'sun',
     validator: (value: string) => ['sun', 'moon'].includes(value),
   },

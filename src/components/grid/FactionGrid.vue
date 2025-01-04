@@ -6,8 +6,8 @@
       :class="[
         'grid-cell',
         `grid-cell-${faction}`,
-        store.selectedBuilding && building ? 'dim-building' : '',
-        store.selectedBuilding && !building ? 'highlight-empty' : '',
+        store.factions[props.faction].selectedBuilding && building ? 'dim-building' : '',
+        store.factions[props.faction].selectedBuilding && !building ? 'highlight-empty' : '',
         getCursorClass(building)
       ]"
     >
@@ -63,16 +63,18 @@ function clickBuilding(building: Building) {
 }
 
 function onClickEmptyCell(gridIndex: number) {
-  if (!store.selectedBuilding) {
+  const selectedBuilding = store.factions[props.faction].selectedBuilding;
+
+  if (!selectedBuilding) {
     return;
   }
-
-  store.factions[props.faction].grid[gridIndex] = store.selectedBuilding.id;
-  store.selectedBuilding = null;
+  
+  store.factions[props.faction].grid[gridIndex] = selectedBuilding.id;
+  store.factions[props.faction].selectedBuilding = null;
 }
 
 function getCursorClass(building: Building | null) {
-  if (store.selectedBuilding) {
+  if (store.factions[props.faction].selectedBuilding) {
     return building ? 'cursor-default' : 'cursor-pointer';
   } else {
     return building ? 'cursor-pointer' : 'cursor-default';
@@ -105,7 +107,7 @@ function getCursorClass(building: Building | null) {
 }
 
 .highlight-empty {
-  outline: 2px dashed #ffffffaa;
+  outline: 2px solid white;
   outline-offset: -2px;
 }
 

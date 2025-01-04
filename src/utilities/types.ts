@@ -69,12 +69,12 @@ export interface Faction {
     power: number;
     grid: (string | null)[];
     buildings: Building[];
+    selectedBuilding: Building | null;
 }
 
 export interface GameState {
     lore: LoreEntry[];
     calendar: Calendar;
-    selectedBuilding: Building | null,
     factions: {
         sun: Faction,
         moon: Faction,
