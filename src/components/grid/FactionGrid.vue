@@ -3,19 +3,21 @@
     <n-grid-item
       v-for="(building, index) in buildingIcons"
       :key="index"
-      :class="['grid-cell', `grid-cell-${faction}`]"
+      :class="[
+        'grid-cell',
+        `grid-cell-${faction}`,
+        store.selectedBuilding && building ? 'dim-building' : '',
+        store.selectedBuilding && !building ? 'highlight-empty' : '',
+        getCursorClass(building)
+      ]"
     >
-      <n-button
+      <component
         v-if="building"
-        quaternary
-        :round="true"
-        size="large"
+        :is="getIconComponent(building.icon)"
         :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
-        class="grid-button"
+        class="button-icon"
         @click="clickBuilding(building)"
-      >
-        <component :is="getIconComponent(building.icon)" class="button-icon" />
-      </n-button>
+      />
       <div
         v-else
         class="empty-cell"
@@ -68,6 +70,14 @@ function onClickEmptyCell(gridIndex: number) {
   store.factions[props.faction].grid[gridIndex] = store.selectedBuilding.id;
   store.selectedBuilding = null;
 }
+
+function getCursorClass(building: Building | null) {
+  if (store.selectedBuilding) {
+    return building ? 'cursor-default' : 'cursor-pointer';
+  } else {
+    return building ? 'cursor-pointer' : 'cursor-default';
+  }
+}
 </script>
 
 <style scoped>
@@ -76,7 +86,7 @@ function onClickEmptyCell(gridIndex: number) {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 15px;
   position: relative;
 }
 
@@ -90,32 +100,41 @@ function onClickEmptyCell(gridIndex: number) {
   border: 1px solid #caf0f8;
 }
 
-.grid-button {
-  width: 50%;
-  height: 50%;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  box-sizing: border-box;
+.dim-building {
+  opacity: 0.5;
+}
+
+.highlight-empty {
+  outline: 2px dashed #ffffffaa;
+  outline-offset: -2px;
 }
 
 .button-icon {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: fill 0.3s ease;
 }
 
-.button-icon > svg {
-  width: 100% !important;
-  height: 100% !important;
+.grid-cell-sun .button-icon:hover svg {
+  fill: #fca311;
+}
+
+.grid-cell-moon .button-icon:hover svg {
+  fill: #ade8f4;
 }
 
 .empty-cell {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+.cursor-default {
+  cursor: default;
 }
 </style>

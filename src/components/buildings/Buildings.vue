@@ -53,6 +53,6 @@ const buyBuilding = (building: Building) => {
 .buildingButton-moon {
   border: 1px solid #caf0f8;
   background-color: #264653;
-  color: #caf0f8;;
+  color: #caf0f8;
 }
 </style>
