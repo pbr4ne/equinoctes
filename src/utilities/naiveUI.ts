@@ -10,6 +10,7 @@ import {
     NLayoutContent,
     NLayoutSider,
     NNumberAnimation,
+    NPopover,
     NScrollbar,
     NSpace,
     NText,
@@ -28,8 +29,10 @@ import {
       NLayoutContent,
       NLayoutSider,
       NNumberAnimation,
+      NPopover,
       NScrollbar,
       NSpace,
       NText,
     ],
   });
+  

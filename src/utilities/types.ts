@@ -53,7 +53,6 @@ export interface Building {
     id: string;
     name: string;
     description: string;
-    faction: FactionKey;
     icon: string;
     power: number;
     unlocked: boolean;

@@ -11,13 +11,22 @@
         getCursorClass(building)
       ]"
     >
-      <component
+      <n-popover 
         v-if="building"
-        :is="getIconComponent(building.icon)"
-        :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
-        class="button-icon"
-        @click="clickBuilding(building)"
-      />
+        trigger="hover"
+        :style="{ backgroundColor: faction == 'sun' ? '#9e2a2b' : '#caf0f8', color: faction == 'sun' ? '#e9c46a': '#264653', borderRadius: '12px', padding: '8px' }"
+        :arrow-style="{ backgroundColor: faction == 'sun' ? '#9e2a2b' : '#caf0f8' }"
+      >
+        <template #trigger>
+          <component
+            :is="getIconComponent(building.icon)"
+            :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
+            class="button-icon"
+            @click="clickBuilding(building)"
+          />
+        </template>
+        <span style="border-radius: 25px;">{{building?.description}}</span>
+      </n-popover>
       <div
         v-else
         class="empty-cell"
@@ -136,6 +145,7 @@ function getCursorClass(building: Building | null) {
 .cursor-pointer {
   cursor: pointer;
 }
+
 .cursor-default {
   cursor: default;
 }

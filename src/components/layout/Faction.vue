@@ -4,11 +4,11 @@
     <moon-stars v-if="faction === 'moon'" />
 
     <n-flex justify="end" vertical style="height: 100vh;">
-      <n-space justify="center" style="z-index: 9999">
+      <n-space justify="center" style="z-index: 500">
         <power :faction="faction" />
       </n-space>
 
-      <n-space justify="center" style="z-index: 9999">
+      <n-space justify="center" style="z-index: 500">
         <div :class="['bordered-background', `bordered-background-${faction}`]">
           <div :class="['content', `content-${faction}`]" :style="{ padding: computedPadding }">
             <component 
@@ -19,7 +19,7 @@
         </div>
       </n-space>
 
-      <n-space justify="center" style="z-index: 9999">
+      <n-space justify="center" style="z-index: 500">
         <n-space justify="center" style="margin: 20px;">
           <button
             v-for="(item, index) in components"
