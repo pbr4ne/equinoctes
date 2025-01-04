@@ -17,7 +17,7 @@ export function startGameLoop() {
     }
 
     store.factions['sun'].grid.forEach(buildingId => {
-      const building = store.buildings['sun'].find(building => building.id === buildingId);
+      const building = store.factions['sun'].buildings.find(building => building.id === buildingId);
       if (building) {
         const powerIncrease = building.power * (delta / 1000);
         store.factions['sun'].power += powerIncrease;
@@ -26,7 +26,7 @@ export function startGameLoop() {
     });
 
     store.factions['moon'].grid.forEach(buildingId => {
-      const building = store.buildings['moon'].find(building => building.id === buildingId);
+      const building = store.factions['moon'].buildings.find(building => building.id === buildingId);
       if (building) {
         const powerIncrease = building.power * (delta / 1000);
         store.factions['moon'].power += powerIncrease;

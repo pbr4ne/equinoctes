@@ -6,20 +6,18 @@ const initialState = (): GameState => ({
   lore: [],
   calendar: { days: 0, hours: 0, minutes: 0, accumulatedTime: 0 },
   selectedBuilding: null as Building | null,
-  buildings: {
-    sun: sunBuildings,
-    moon: moonBuildings,
-  },
   factions: {
     sun: {
       level: 2,
       power: 0,
       grid: ["sun-1", null, null, null],
+      buildings: sunBuildings,
     },
     moon: {
       level: 5,
       power: 0,
       grid: ["moon-1", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+      buildings: moonBuildings,
     },
   },
 });

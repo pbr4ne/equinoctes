@@ -48,7 +48,7 @@ const getIconComponent = (iconName: string): IconComponent | null => {
 
 const buildingIcons = computed(() => {
   const factionBuildings = store.factions[props.faction].grid;
-  const allFactionBuildings = store.buildings[props.faction];
+  const allFactionBuildings = store.factions[props.faction].buildings;
 
   const buildingIcons = factionBuildings.map((buildingId) => {
     if (!buildingId) return null;

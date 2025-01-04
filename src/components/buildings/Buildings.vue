@@ -26,9 +26,10 @@ const props = defineProps({
     validator: (value: string) => ['sun', 'moon'].includes(value),
   },
 });
+
 const store = useStore();
 
-const unbuiltBuildings = store.buildings[props.faction].filter((building) => !store.factions[props.faction].grid.includes(building.id));
+const unbuiltBuildings = store.factions[props.faction].buildings.filter((building) => !store.factions[props.faction].grid.includes(building.id));
 
 const buyBuilding = (building: Building) => {
   store.selectedBuilding = building;
