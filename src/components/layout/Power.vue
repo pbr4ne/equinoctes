@@ -15,28 +15,44 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onBeforeUnmount, onMounted, PropType } from 'vue';
 import type { NumberAnimationInst } from 'naive-ui';
+import { useStore } from '../../composables/useStore';
+import { FactionKey } from '../../utilities/types';
 
-defineProps({
+const props = defineProps({
   faction: {
-    type: String,
+    type: String as PropType<FactionKey>,
     default: 'sun',
     validator: (value: string) => ['sun', 'moon'].includes(value),
   },
 });
 
+const store = useStore();
 const numberAnimationInstRef = ref<NumberAnimationInst | null>(null);
-const lowNum = ref(0);
-const highNum = ref(0);
 
-// onMounted(() => {
-//   setInterval(() => {
-//     lowNum.value = Math.random() * 100;
-//     highNum.value = Math.random() * 100;
-//     numberAnimationInstRef.value?.play();
-//   }, 5000);
-// });
+const lowNum = ref(store.factions[props.faction].power);
+const highNum = ref(store.factions[props.faction].power);
+
+const intervalId = ref<number | null>(null)
+
+onMounted(() => {
+  const offset = props.faction === 'moon' ? 2500 : 0
+
+  setTimeout(() => {
+    intervalId.value = window.setInterval(() => {
+      lowNum.value = highNum.value
+      highNum.value = store.factions[props.faction].power
+      numberAnimationInstRef.value?.play()
+    }, 5000)
+  }, offset)
+});
+
+onBeforeUnmount(() => {
+  if (intervalId.value) {
+    clearInterval(intervalId.value)
+  }
+});
 </script>
 
 <style scoped>

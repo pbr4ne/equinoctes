@@ -13,6 +13,7 @@ const initialState = (): GameState => ({
         description: 'Sun Building 1 description',
         faction: 'sun',
         icon: 'SunnyOutline',
+        power: 1,
         unlocked: true,
         prerequisites: [
           0,
@@ -26,6 +27,7 @@ const initialState = (): GameState => ({
         description: 'Sun Building 2 description',
         faction: 'sun',
         icon: 'CloudOutline',
+        power: 5,
         unlocked: true,
         prerequisites: [
           0,
@@ -40,6 +42,7 @@ const initialState = (): GameState => ({
         name: 'Moon Building 1',
         description: 'Moon Building 1 description',
         faction: 'moon',
+        power: 5,
         icon: 'MoonOutline',
         unlocked: true,
         prerequisites: [
@@ -53,6 +56,7 @@ const initialState = (): GameState => ({
         name: 'Moon Building 2',
         description: 'Moon Building 2 description',
         faction: 'moon',
+        power: 1,
         icon: 'StarOutline',
         unlocked: true,
         prerequisites: [
@@ -62,14 +66,16 @@ const initialState = (): GameState => ({
         ],
       },
     ],
-},
+  },
   factions: {
     sun: {
       level: 2,
+      power: 0,
       grid: ["sun-1", null, null, null],
     },
     moon: {
       level: 5,
+      power: 0,
       grid: ["moon-1", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
     },
   },

@@ -29,6 +29,7 @@ export interface Building {
     description: string;
     faction: FactionKey;
     icon: string;
+    power: number;
     unlocked: boolean;
     prerequisites: [
         power: number,
@@ -39,6 +40,7 @@ export interface Building {
 
 export interface Faction {
     level: number;
+    power: number;
     grid: (string | null)[];
 }
 

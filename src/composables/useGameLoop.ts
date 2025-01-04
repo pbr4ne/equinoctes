@@ -1,4 +1,5 @@
 import { useStore } from './useStore';
+import { emitter } from '../utilities/emitter';
 
 export function startGameLoop() {
   const store = useStore();
@@ -14,6 +15,24 @@ export function startGameLoop() {
       lastTick = now;
       store.updateTime(delta);
     }
+
+    store.factions['sun'].grid.forEach(buildingId => {
+      const building = store.buildings['sun'].find(building => building.id === buildingId);
+      if (building) {
+        const powerIncrease = building.power * (delta / 1000);
+        store.factions['sun'].power += powerIncrease;
+        emitter.emit('powerChanged', { faction: 'sun', power: store.factions['sun'].power });
+      }
+    });
+
+    store.factions['moon'].grid.forEach(buildingId => {
+      const building = store.buildings['moon'].find(building => building.id === buildingId);
+      if (building) {
+        const powerIncrease = building.power * (delta / 1000);
+        store.factions['moon'].power += powerIncrease;
+        emitter.emit('powerChanged', { faction: 'moon', power: store.factions['moon'].power });
+      }
+    });
 
     store._gameLoopId = requestAnimationFrame(gameLoop);
   };
