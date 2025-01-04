@@ -1,71 +1,14 @@
 import { defineStore } from 'pinia';
 import { Building, GameState } from '../utilities/types';
+import { sunBuildings, moonBuildings } from '../utilities/buildings';
 
 const initialState = (): GameState => ({
   lore: [],
   calendar: { days: 0, hours: 0, minutes: 0, accumulatedTime: 0 },
   selectedBuilding: null as Building | null,
   buildings: {
-    sun: [
-      {
-        id: 'sun-1',
-        name: 'Sun Building 1',
-        description: 'Sun Building 1 description',
-        faction: 'sun',
-        icon: 'SunnyOutline',
-        power: 1,
-        unlocked: true,
-        prerequisites: [
-          0,
-          [],
-          0,
-        ],
-      },
-      {
-        id: 'sun-2',
-        name: 'Sun Building 2',
-        description: 'Sun Building 2 description',
-        faction: 'sun',
-        icon: 'CloudOutline',
-        power: 5,
-        unlocked: true,
-        prerequisites: [
-          0,
-          [],
-          0,
-        ],
-      },        
-    ],
-    moon: [
-      {
-        id: 'moon-1',
-        name: 'Moon Building 1',
-        description: 'Moon Building 1 description',
-        faction: 'moon',
-        power: 1,
-        icon: 'MoonOutline',
-        unlocked: true,
-        prerequisites: [
-          0,
-          [],
-          0,
-        ],
-      },
-      {
-        id: 'moon-2',
-        name: 'Moon Building 2',
-        description: 'Moon Building 2 description',
-        faction: 'moon',
-        power: 5,
-        icon: 'StarOutline',
-        unlocked: true,
-        prerequisites: [
-          0,
-          [],
-          0,
-        ],
-      },
-    ],
+    sun: sunBuildings,
+    moon: moonBuildings,
   },
   factions: {
     sun: {
