@@ -12,28 +12,22 @@
         getCursorClass(building)
       ]"
     >
-      <n-popover 
+      <component
         v-if="building"
-        trigger="hover"
-        :style="{ backgroundColor: faction == 'sun' ? '#9e2a2b' : '#caf0f8', color: faction == 'sun' ? '#e9c46a': '#264653', border: '1px solid black', borderRadius: '12px', padding: '8px' }"
-        :arrow-style="{ backgroundColor: faction == 'sun' ? '#9e2a2b' : '#caf0f8', border: '1px solid black' }"
-        @update:show="(val: boolean) => onPopoverShow(val, building, index)"
-      >
-        <template #trigger>
-          <component
-            :is="getIconComponent(building.icon)"
-            :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
-            class="button-icon"
-            @click="clickBuilding(building)"
-          />
-        </template>
-        <span style="border-radius: 25px;">{{building?.description}}</span>
-      </n-popover>
+        :is="getIconComponent(building.icon)"
+        :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
+        class="button-icon"
+        @click="clickBuilding(building)"
+        @mouseenter="onBuildingEnter(building, index)"
+        @mouseleave="onBuildingLeave"
+      />
+
       <div
         v-else
         class="empty-cell"
         @click="onClickEmptyCell(index)"
       ></div>
+
       <div
         v-if="getCellAdjacencyModifier(index) !== null"
         class="adj-icon"
@@ -78,6 +72,15 @@ function onPopoverShow(showing: boolean, building: Building, index: number) {
     hoveredBuilding.value = null
     hoveredIndex.value = null
   }
+}
+
+function onBuildingEnter(building: Building, index: number) {
+  hoveredBuilding.value = building
+  hoveredIndex.value = index
+}
+function onBuildingLeave() {
+  hoveredBuilding.value = null
+  hoveredIndex.value = null
 }
 
 function getCellAdjacencyModifier(cellIndex: number): number | null {
