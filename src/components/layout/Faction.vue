@@ -5,7 +5,13 @@
 
     <n-flex justify="end" vertical style="height: 100vh;">
       <n-space justify="center" style="z-index: 500">
-        <div :class="['bordered-background', `bordered-background-${faction}`]">
+        <div 
+          :class="[
+            'bordered-background', 
+            `bordered-background-${faction}`
+          ]"
+          :style="currentHeader === Power ? { border: 'none' } : {}"
+        >
           <div class="power" :style="{ padding: computedPadding }">
             <component 
               :is="currentHeader" 
@@ -72,7 +78,7 @@ const components = [
 const currentComponentIndex = ref(0);
 const currentComponent = computed(() => components[currentComponentIndex.value]);
 const currentHeader = shallowRef(Power);
-const currentBuilding = ref(null);
+const currentBuilding = ref<string | null>(null);
 
 const headerProps = computed(() => {
   if (currentHeader.value === Power) {
@@ -80,7 +86,7 @@ const headerProps = computed(() => {
   } else if (currentHeader.value === BuildingDetails) {
     return { faction: props.faction, building: currentBuilding.value };
   } else {
-    return {};
+    return { faction: props.faction };
   }
 });
 
