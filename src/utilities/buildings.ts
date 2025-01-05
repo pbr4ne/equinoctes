@@ -26,6 +26,12 @@ export const sunBuildings: Building[] = [
       [],
       0,
     ],
+    adjacency: [
+      { dx: 0, dy: -1, modifier: 0.5 },
+      { dx: +1, dy: 0, modifier: 0.5 },
+      { dx: -1, dy: 0, modifier: 0.5 },
+      { dx: 0, dy: +1, modifier: 0.5 },
+    ],
   },
   {
     id: 'sun-3',
@@ -38,6 +44,12 @@ export const sunBuildings: Building[] = [
       0,
       [],
       0,
+    ],
+    adjacency: [
+      { dx: -1, dy: -1, modifier: -0.25},
+      { dx: +1, dy: -1, modifier: -0.25},
+      { dx: -1, dy: +1, modifier: -0.25},
+      { dx: +1, dy: +1, modifier: -0.25},
     ],
   },
   {
@@ -94,6 +106,16 @@ export const moonBuildings: Building[] = [
       [],
       0,
     ],
+    adjacency: [
+      { dx: 0, dy: -1, modifier: 0.5 },
+      { dx: +1, dy: 0, modifier: 0.5 },
+      { dx: -1, dy: 0, modifier: 0.5 },
+      { dx: 0, dy: +1, modifier: 0.5 },
+      { dx: -1, dy: -1, modifier: -0.25},
+      { dx: +1, dy: -1, modifier: -0.25},
+      { dx: -1, dy: +1, modifier: -0.25},
+      { dx: +1, dy: +1, modifier: -0.25},
+    ]
   },
   {
     id: 'moon-3',
@@ -107,6 +129,12 @@ export const moonBuildings: Building[] = [
       [],
       0,
     ],
+    adjacency: [
+      { dx: 0, dy: -1, modifier: 0.5 },
+      { dx: -1, dy: 0, modifier: 0.5 },
+      { dx: -1, dy: -1, modifier: -0.25},
+      { dx: -1, dy: +1, modifier: -0.25},
+    ]
   },
   {
     id: 'moon-4',

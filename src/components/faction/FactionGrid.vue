@@ -6,6 +6,7 @@
       :class="[
         'grid-cell',
         `grid-cell-${faction}`,
+        isCellInAdjacency(index) ? 'adjacency-highlight' : '',
         store.factions[props.faction].selectedBuilding && building ? 'dim-building' : '',
         store.factions[props.faction].selectedBuilding && !building ? 'highlight-empty' : '',
         getCursorClass(building)
@@ -16,6 +17,7 @@
         trigger="hover"
         :style="{ backgroundColor: faction == 'sun' ? '#9e2a2b' : '#caf0f8', color: faction == 'sun' ? '#e9c46a': '#264653', border: '1px solid black', borderRadius: '12px', padding: '8px' }"
         :arrow-style="{ backgroundColor: faction == 'sun' ? '#9e2a2b' : '#caf0f8', border: '1px solid black' }"
+        @update:show="(val: boolean) => onPopoverShow(val, building, index)"
       >
         <template #trigger>
           <component
@@ -37,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType } from 'vue';
+import { computed, PropType, ref } from 'vue';
 import { useStore } from '../../composables/useStore';
 import { Building, FactionKey, IconComponent, iconMap } from '../../utilities/types';
 
@@ -52,8 +54,42 @@ const props = defineProps({
 const store = useStore();
 
 const getIconComponent = (iconName: string): IconComponent | null => {
-    return iconMap[iconName] || null;
-  };
+   return iconMap[iconName] || null;
+};
+
+const hoveredBuilding = ref<Building | null>(null)
+const hoveredIndex = ref<number | null>(null)
+
+function onPopoverShow(showing: boolean, building: Building, index: number) {
+  if (showing) {
+    hoveredBuilding.value = building
+    hoveredIndex.value = index
+  } else {
+    hoveredBuilding.value = null
+    hoveredIndex.value = null
+  }
+}
+
+function isCellInAdjacency(cellIndex: number): boolean {
+  if (!hoveredBuilding.value || hoveredIndex.value == null) {
+    return false
+  }
+  if (!hoveredBuilding.value.adjacency) return false
+
+  const factionData = store.factions[props.faction]
+  const { level } = factionData
+
+  const { x: hx, y: hy } = getXY(hoveredIndex.value, level)
+  const { x: cx, y: cy } = getXY(cellIndex, level)
+
+  const dx = cx - hx
+  const dy = cy - hy
+
+  return hoveredBuilding.value.adjacency.some(offset => {
+    return offset.dx === dx && offset.dy === dy
+  })
+}
+
 
 const buildingIcons = computed(() => {
   const factionBuildings = store.factions[props.faction].grid;
@@ -88,6 +124,12 @@ function getCursorClass(building: Building | null) {
   } else {
     return building ? 'cursor-pointer' : 'cursor-default';
   }
+}
+
+function getXY(index: number, cols: number) {
+  const x = index % cols
+  const y = Math.floor(index / cols)
+  return { x, y }
 }
 </script>
 
@@ -149,4 +191,17 @@ function getCursorClass(building: Building | null) {
 .cursor-default {
   cursor: default;
 }
+
+
+.adjacency-highlight {
+  position: relative;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.3) 0px,
+    rgba(255, 255, 255, 0.3) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
 </style>

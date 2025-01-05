@@ -49,6 +49,12 @@ export interface LoreEntry {
     time: Calendar;
 }
 
+export interface AdjacencyOffset {
+    dx: number;
+    dy: number;
+    modifier: number;
+}
+
 export interface Building {
     id: string;
     name: string;
@@ -61,6 +67,7 @@ export interface Building {
         buildings: string[],
         level: number,
     ]
+    adjacency?: AdjacencyOffset[];
 }
 
 export interface Faction {
