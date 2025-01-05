@@ -19,13 +19,7 @@ import { emitter } from '../../utilities/emitter';
 import { useStore } from '../../composables/useStore';
 import { Building, FactionKey } from '../../utilities/types';
 
-const props = defineProps({
-  faction: {
-    type: String as PropType<FactionKey>,
-    default: 'sun',
-    validator: (value: string) => ['sun', 'moon'].includes(value),
-  },
-});
+const props = defineProps<{ faction: FactionKey }>()
 
 const store = useStore();
 

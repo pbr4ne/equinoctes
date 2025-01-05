@@ -54,13 +54,8 @@ import { Notebook } from '@vicons/carbon';
 
 const store = useStore();
 
-const props = defineProps({
-  faction: {
-    type: String as PropType<FactionKey>,
-    default: 'sun',
-    validator: (value: string) => ['sun', 'moon'].includes(value),
-  },
-});
+const props = defineProps<{ faction: FactionKey }>()
+
 
 const components = [
   { label: 'Grid', icon: markRaw(Grid28Regular), component: markRaw(FactionGrid), props },

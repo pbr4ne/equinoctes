@@ -20,14 +20,7 @@ import type { NumberAnimationInst } from 'naive-ui';
 import { useStore } from '../../composables/useStore';
 import { FactionKey } from '../../utilities/types';
 
-const props = defineProps({
-  faction: {
-    type: String as PropType<FactionKey>,
-    default: 'sun',
-    validator: (value: string) => ['sun', 'moon'].includes(value),
-  },
-});
-
+const props = defineProps<{ faction: FactionKey }>()
 const store = useStore();
 const numberAnimationInstRef = ref<NumberAnimationInst | null>(null);
 
