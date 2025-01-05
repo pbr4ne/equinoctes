@@ -6,7 +6,7 @@
       :class="[
         'grid-cell',
         `grid-cell-${faction}`,
-        isCellInAdjacency(index) ? 'adjacency-highlight' : '',
+        getCellAdjacencyModifier(index) !== null ? 'adjacency-highlight' : '',
         store.factions[props.faction].selectedBuilding && building ? 'dim-building' : '',
         store.factions[props.faction].selectedBuilding && !building ? 'highlight-empty' : '',
         getCursorClass(building)
@@ -34,6 +34,17 @@
         class="empty-cell"
         @click="onClickEmptyCell(index)"
       ></div>
+      <div
+        v-if="getCellAdjacencyModifier(index) !== null"
+        class="adj-icon"
+      >
+        <component
+          :is="(getCellAdjacencyModifier(index) ?? 0) > 0 ? ArrowBigUpLines : ArrowBigDownLines"
+          :style="{
+            color: (getCellAdjacencyModifier(index) ?? 0) > 0 ? '#ecf39e' : '#f26a8d'
+          }"
+        />
+      </div>
     </n-grid-item>
   </n-grid>
 </template>
@@ -42,6 +53,7 @@
 import { computed, PropType, ref } from 'vue';
 import { useStore } from '../../composables/useStore';
 import { Building, FactionKey, IconComponent, iconMap } from '../../utilities/types';
+import { ArrowBigUpLines, ArrowBigDownLines } from '@vicons/tabler';
 
 const props = defineProps({
   faction: {
@@ -70,11 +82,9 @@ function onPopoverShow(showing: boolean, building: Building, index: number) {
   }
 }
 
-function isCellInAdjacency(cellIndex: number): boolean {
-  if (!hoveredBuilding.value || hoveredIndex.value == null) {
-    return false
-  }
-  if (!hoveredBuilding.value.adjacency) return false
+function getCellAdjacencyModifier(cellIndex: number): number | null {
+  if (!hoveredBuilding.value || hoveredIndex.value == null) return null
+  if (!hoveredBuilding.value.adjacency) return null
 
   const factionData = store.factions[props.faction]
   const { level } = factionData
@@ -85,11 +95,10 @@ function isCellInAdjacency(cellIndex: number): boolean {
   const dx = cx - hx
   const dy = cy - hy
 
-  return hoveredBuilding.value.adjacency.some(offset => {
-    return offset.dx === dx && offset.dy === dy
-  })
-}
+  const offset = hoveredBuilding.value.adjacency.find(o => o.dx === dx && o.dy === dy)
 
+  return offset ? offset.modifier : null
+}
 
 const buildingIcons = computed(() => {
   const factionBuildings = store.factions[props.faction].grid;
@@ -204,4 +213,22 @@ function getXY(index: number, cols: number) {
   );
 }
 
+.adj-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 80%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adj-icon svg {
+  color: #fff;
+  width: 50%;
+  height: 50%;
+}
 </style>
