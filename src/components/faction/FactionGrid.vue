@@ -259,5 +259,6 @@ function getArrowColor(modifier: number | null): string {
   color: #fff;
   width: 50%;
   height: 50%;
+  z-index: 700;
 }
 </style>
