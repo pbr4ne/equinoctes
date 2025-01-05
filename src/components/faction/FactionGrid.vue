@@ -39,10 +39,8 @@
         class="adj-icon"
       >
         <component
-          :is="(getCellAdjacencyModifier(index) ?? 0) > 0 ? ArrowBigUpLines : ArrowBigDownLines"
-          :style="{
-            color: (getCellAdjacencyModifier(index) ?? 0) > 0 ? '#ecf39e' : '#f26a8d'
-          }"
+          :is="getArrowIcon(getCellAdjacencyModifier(index))"
+          :style="{ color: getArrowColor(getCellAdjacencyModifier(index)) }"
         />
       </div>
     </n-grid-item>
@@ -53,7 +51,7 @@
 import { computed, PropType, ref } from 'vue';
 import { useStore } from '../../composables/useStore';
 import { Building, FactionKey, IconComponent, iconMap } from '../../utilities/types';
-import { ArrowBigUpLines, ArrowBigDownLines } from '@vicons/tabler';
+import { ArrowBigTop, ArrowBigUpLine, ArrowBigUpLines, ArrowBigDown, ArrowBigDownLine, ArrowBigDownLines } from '@vicons/tabler';
 
 const props = defineProps({
   faction: {
@@ -139,6 +137,37 @@ function getXY(index: number, cols: number) {
   const x = index % cols
   const y = Math.floor(index / cols)
   return { x, y }
+}
+
+function getArrowIcon(modifier: number | null): IconComponent | null {
+  if (modifier === null) {
+    return null
+  }
+
+  if (modifier >= 0) {
+    if (modifier <= 0.25) {
+      return ArrowBigTop
+    } else if (modifier < 0.5) {
+      return ArrowBigUpLine
+    } else {
+      return ArrowBigUpLines
+    }
+  }
+
+  if (modifier > -0.25) {
+    return ArrowBigDown
+  } else if (modifier > -0.5) {
+    return ArrowBigDownLine
+  } else {
+    return ArrowBigDownLines
+  }
+}
+
+function getArrowColor(modifier: number | null): string {
+  if (modifier === null) {
+    return ''
+  }
+  return modifier >= 0 ? '#ecf39e' : '#f26a8d'
 }
 </script>
 
