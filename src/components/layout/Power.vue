@@ -1,8 +1,7 @@
 <template>
-  <n-h2 class="power">
-    <n-text v-if="faction === 'sun'" class="solar">Aurum: </n-text>
-    <n-text v-else class="lunar">Nocturne: </n-text>
-    <n-text :class="faction === 'sun' ? 'solar' : 'lunar'">
+    <n-text v-if="faction === 'sun'" class="power solar">Aurum: </n-text>
+    <n-text v-else class="power lunar">Nocturne: </n-text>
+    <n-text :class="['power', faction === 'sun' ? 'solar' : 'lunar']">
       <n-number-animation
         ref="numberAnimationInstRef"
         :from="lowNum"
@@ -11,7 +10,6 @@
         :precision="0"
       />
     </n-text>
-  </n-h2>
 </template>
 
 <script setup lang="ts">
@@ -52,7 +50,7 @@ onBeforeUnmount(() => {
 .power {
   font-family: "Grenze Gotisch", serif;
   font-weight: 300;
-  font-size: 2.5em;
+  font-size: 2em;
 }
 
 .solar {

@@ -5,12 +5,16 @@
 
     <n-flex justify="end" vertical style="height: 100vh;">
       <n-space justify="center" style="z-index: 500">
-        <power :faction="faction" />
+        <div :class="['bordered-background', `bordered-background-${faction}`]">
+          <div class="power" :style="{ padding: computedPadding }">
+            <power :faction="faction" />
+          </div>
+        </div>
       </n-space>
 
       <n-space justify="center" style="z-index: 500">
         <div :class="['bordered-background', `bordered-background-${faction}`]">
-          <div :class="['content', `content-${faction}`]" :style="{ padding: computedPadding }">
+          <div class="content" :style="{ padding: computedPadding }">
             <component 
               :is="currentComponent.component" 
               v-bind="currentComponent.props"
@@ -97,7 +101,6 @@ onBeforeUnmount(() => {
   border: 2px solid;
   border-radius: 20px;
   box-sizing: border-box;
-  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,6 +112,11 @@ onBeforeUnmount(() => {
 
 .bordered-background-moon {
   border-color: #caf0f8;
+}
+
+.power {
+  width: calc(min(50vw, 50vh));
+  box-sizing: border-box;
 }
 
 .content {
