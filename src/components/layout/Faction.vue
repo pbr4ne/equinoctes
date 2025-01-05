@@ -7,7 +7,7 @@
       <n-space justify="center" style="z-index: 500">
         <div :class="['bordered-background', `bordered-background-${faction}`]">
           <div class="power" :style="{ padding: computedPadding }">
-            <power :faction="faction" />
+            <component :is="currentHeader" :faction="faction" />
           </div>
         </div>
       </n-space>
@@ -41,7 +41,6 @@
 
 <script setup lang="ts">
 import { ref, computed, markRaw, onMounted, onBeforeUnmount, PropType } from 'vue';
-import { useStore } from '../../composables/useStore';
 import { emitter } from '../../utilities/emitter';
 import { FactionKey } from '../../utilities/types';
 import Power from './Power.vue';
@@ -56,10 +55,7 @@ import { Grid28Regular, Options24Regular, BuildingLighthouse20Regular } from '@v
 import { CrownOutlined } from '@vicons/antd';
 import { Notebook } from '@vicons/carbon';
 
-const store = useStore();
-
 const props = defineProps<{ faction: FactionKey }>()
-
 
 const components = [
   { label: 'Grid', icon: markRaw(Grid28Regular), component: markRaw(FactionGrid), props },
@@ -71,6 +67,8 @@ const components = [
 
 const currentComponentIndex = ref(0);
 const currentComponent = computed(() => components[currentComponentIndex.value]);
+const currentHeader = markRaw(Power);
+
 // const computedPadding = 170 - (props.faction == 'sun'? store.sunLevel : store.moonLevel) * 30 + 'px';
 // console.log(props.faction, computedPadding);
 const computedPadding = '20px';
