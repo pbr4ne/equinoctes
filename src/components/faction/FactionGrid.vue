@@ -12,7 +12,6 @@
         :isDimmed="!!store.factions[faction].selectedBuilding && !!building"
         :isHighlightEmpty="!!store.factions[faction].selectedBuilding && !building"
         :cursorClass="getCursorClass(building)"
-
         :clickBuilding="clickBuilding"
         :clickEmpty="onClickEmptyCell"
         :enterBuilding="onBuildingEnter"
@@ -23,24 +22,27 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { useStore } from '../../composables/useStore'
-import type { Building, FactionKey } from '../../utilities/types'
-import GridCell from './GridCell.vue'
+import { computed, ref } from 'vue';
+import { useStore } from '../../composables/useStore';
+import { emitter } from '../../utilities/emitter';
+import type { Building, FactionKey } from '../../utilities/types';
+import GridCell from './GridCell.vue';
 
-const props = defineProps<{ faction: FactionKey }>()
-const store = useStore()
-
-const hoveredBuilding = ref<Building | null>(null)
-const hoveredIndex = ref<number | null>(null)
+const props = defineProps<{ faction: FactionKey }>();
+const store = useStore();
+const hoveredBuilding = ref<Building | null>(null);
+const hoveredIndex = ref<number | null>(null);
 
 function onBuildingEnter(building: Building, index: number) {
-  hoveredBuilding.value = building
-  hoveredIndex.value = index
+  hoveredBuilding.value = building;
+  hoveredIndex.value = index;
+  emitter.emit('buildingEnter', { faction: props.faction, buildingId: building.id });
 }
+
 function onBuildingLeave() {
-  hoveredBuilding.value = null
-  hoveredIndex.value = null
+  hoveredBuilding.value = null;
+  hoveredIndex.value = null;
+  emitter.emit('buildingLeave', { faction: props.faction });
 }
 
 function getCellAdjacencyModifier(cellIndex: number): number | null {

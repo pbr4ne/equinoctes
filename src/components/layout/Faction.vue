@@ -7,7 +7,10 @@
       <n-space justify="center" style="z-index: 500">
         <div :class="['bordered-background', `bordered-background-${faction}`]">
           <div class="power" :style="{ padding: computedPadding }">
-            <component :is="currentHeader" :faction="faction" />
+            <component 
+              :is="currentHeader" 
+              v-bind="headerProps"
+            />
           </div>
         </div>
       </n-space>
@@ -40,9 +43,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, markRaw, onMounted, onBeforeUnmount, PropType } from 'vue';
+import { ref, computed, markRaw, onMounted, onBeforeUnmount, shallowRef } from 'vue';
 import { emitter } from '../../utilities/emitter';
 import { FactionKey } from '../../utilities/types';
+import BuildingDetails from './BuildingDetails.vue';
 import Power from './Power.vue';
 import MoonStars from './MoonStars.vue';
 import SunRays from './SunRays.vue';
@@ -67,7 +71,18 @@ const components = [
 
 const currentComponentIndex = ref(0);
 const currentComponent = computed(() => components[currentComponentIndex.value]);
-const currentHeader = markRaw(Power);
+const currentHeader = shallowRef(Power);
+const currentBuilding = ref(null);
+
+const headerProps = computed(() => {
+  if (currentHeader.value === Power) {
+    return { faction: props.faction };
+  } else if (currentHeader.value === BuildingDetails) {
+    return { faction: props.faction, building: currentBuilding.value };
+  } else {
+    return {};
+  }
+});
 
 // const computedPadding = 170 - (props.faction == 'sun'? store.sunLevel : store.moonLevel) * 30 + 'px';
 // console.log(props.faction, computedPadding);
@@ -76,13 +91,27 @@ const computedPadding = '20px';
 function handleSwitchToGrid() {
   currentComponentIndex.value = 0;
 }
+function handleSwitchToBuilding({ faction, buildingId }: { faction: FactionKey; buildingId: string }) {
+  if (faction !== props.faction) return;
+  currentBuilding.value = buildingId;
+  currentHeader.value = markRaw(BuildingDetails);
+}
+function handleSwitchToPower({ faction }: { faction: FactionKey; }) {
+  if (faction !== props.faction) return;
+  currentBuilding.value = null;
+  currentHeader.value = markRaw(Power);
+}
 
 onMounted(() => {
   emitter.on('switch', handleSwitchToGrid);
+  emitter.on('buildingEnter', ({ faction, buildingId }) => handleSwitchToBuilding({ faction, buildingId }));
+  emitter.on('buildingLeave', ({ faction }) => handleSwitchToPower({ faction }));
 });
 
 onBeforeUnmount(() => {
   emitter.off('switch', handleSwitchToGrid);
+  emitter.off('buildingEnter', handleSwitchToBuilding);
+  emitter.off('buildingLeave', handleSwitchToPower);
 });
 </script>
 
