@@ -27,13 +27,20 @@ import { ref, computed } from 'vue';
 import { useStore } from '../../composables/useStore';
 import { FactionKey } from '../../utilities/types';
 
-const props = defineProps<{faction: FactionKey}>();
+const props = defineProps<{ faction: FactionKey }>();
 const faction = props.faction;
 const store = useStore();
 
-const currentPage = ref(1);
 const totalLore = computed(() => store.factions[faction].lore.length);
 const pageCount = computed(() => totalLore.value);
+
+const firstUnreadIndex = store.factions[faction].lore.findIndex(lore => !lore.read);
+
+const initialPage = firstUnreadIndex !== -1 
+  ? firstUnreadIndex + 1 
+  : (pageCount.value > 0 ? pageCount.value : 1);
+
+const currentPage = ref(initialPage);
 
 const currentLore = computed(() => {
   const index = currentPage.value - 1;
