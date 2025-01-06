@@ -6,8 +6,11 @@
         adjacencyModifier !== null ? 'adjacency-highlight' : '',
         isDimmed ? 'dim-building' : '',
         isHighlightEmpty ? 'highlight-empty' : '',
-        cursorClass
+        cursorClass,
+        hovered && !building ? 'hovered' : ''
       ]"
+      @mouseenter="onMouseEnter"
+      @mouseleave="onMouseLeave"
     >
       <component
         v-if="building"
@@ -38,7 +41,7 @@
   </template>
   
   <script setup lang="ts">
-  import { defineProps, computed } from 'vue'
+  import { defineProps, computed, ref } from 'vue'
   import type { Building, FactionKey } from '../../utilities/types'
   import { ArrowBigTop, ArrowBigUpLine, ArrowBigUpLines, ArrowBigDown, ArrowBigDownLine, ArrowBigDownLines } from '@vicons/tabler'
   import { iconMap } from '../../utilities/types'
@@ -56,6 +59,18 @@
     enterBuilding: (b: Building, i: number) => void
     leaveBuilding: () => void
   }>()
+
+  const hovered = ref(false);
+
+  function onMouseEnter() {
+    if (!props.building && props.isHighlightEmpty) {
+      hovered.value = true;
+    }
+  }
+
+  function onMouseLeave() {
+    hovered.value = false;
+  }
   
   const iconComponent = computed(() => {
     if (!props.building) return null
@@ -163,6 +178,11 @@
   
   .cursor-default {
     cursor: default;
+  }
+
+  .hovered {
+    outline: 3px solid yellow;
+    outline-offset: -3px;
   }
   </style>
   
