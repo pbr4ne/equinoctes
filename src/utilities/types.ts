@@ -72,6 +72,13 @@ export interface Building {
     adjacency?: AdjacencyOffset[];
 }
 
+export interface Milestones {
+    sunUnlocked: boolean;
+    moonUnlocked: boolean;
+    aurum100: boolean;
+    nocturne100: boolean;
+}
+
 export interface Faction {
     level: number;
     power: number;
@@ -87,4 +94,5 @@ export interface GameState {
         sun: Faction,
         moon: Faction,
     },
+    milestones: Milestones,
 }

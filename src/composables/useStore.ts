@@ -34,6 +34,12 @@ const initialState = (): GameState => ({
       }],
     },
   },
+  milestones: {
+    sunUnlocked: false,
+    moonUnlocked: false,
+    aurum100: false,
+    nocturne100: false,
+  },
 });
 
 export const useStore = defineStore('gameState', {

@@ -45,6 +45,22 @@ function computeFactionBuildings(factionKey: FactionKey, delta: number) {
     const powerGain = powerIncrease * (delta / 1000);
     faction.power += powerGain;
     
+    if (faction.power > 100) {      
+      if (factionKey === 'sun' && !store.milestones.aurum100) {
+        store.milestones.aurum100 = true;
+        faction.lore.push({
+          description: `The sun faction has reached 100 power!`,
+          time: store.calendar,
+        });
+      } else if (factionKey === 'moon' && !store.milestones.nocturne100) {
+        store.milestones.nocturne100 = true;
+        faction.lore.push({
+          description: `The moon faction has reached 100 power!`,
+          time: store.calendar,
+        });
+      }
+    }
+
     emitter.emit('powerChanged', { faction: factionKey, power: faction.power });
   });
 }
