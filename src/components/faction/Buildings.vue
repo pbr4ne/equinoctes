@@ -2,10 +2,12 @@
   <n-scrollbar>
       <n-space vertical>
         <n-button 
-          v-for="building in unbuiltBuildings"
+          v-for="building, index in unbuiltBuildings"
           :class="['buildingButton', `buildingButton-${faction}`]" 
           :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
           @click="buyBuilding(building)"
+          @mouseenter="onBuildingEnter(building, index)"
+          @mouseleave="onBuildingLeave"
         >
           <span>{{building.name}}</span>
         </n-button>
@@ -14,21 +16,26 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue';
 import { emitter } from '../../utilities/emitter';
 import { useStore } from '../../composables/useStore';
 import { Building, FactionKey } from '../../utilities/types';
 
 const props = defineProps<{ faction: FactionKey }>()
-
 const store = useStore();
-
 const unbuiltBuildings = store.factions[props.faction].buildings.filter((building) => !store.factions[props.faction].grid.includes(building.id));
 
 const buyBuilding = (building: Building) => {
   store.factions[props.faction].selectedBuilding = building;
   emitter.emit('switch', { faction: props.faction });
 };
+
+function onBuildingEnter(building: Building, index: number) {
+  emitter.emit('buildingEnter', { faction: props.faction, buildingId: building.id });
+}
+
+function onBuildingLeave() {
+  emitter.emit('buildingLeave', { faction: props.faction });
+}
 </script>
 
 <style scoped>
