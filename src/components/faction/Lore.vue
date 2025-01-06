@@ -10,6 +10,7 @@
     </n-scrollbar>
 
     <n-pagination
+      v-if="pageCount > 1"
       class="lore-pagination"
       :page="currentPage"
       :page-count="pageCount"
