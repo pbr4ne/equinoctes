@@ -44,6 +44,7 @@
               <n-badge 
                 v-if="item.label === 'Lore'"
                 :value="loreCount"
+                :show="loreCount > 0"
                 color="red"
                 dot
                 processing

@@ -36,12 +36,20 @@ const pageCount = computed(() => totalLore.value);
 
 const currentLore = computed(() => {
   const index = currentPage.value - 1;
+  markLoreAsRead(index);
   return store.factions[faction].lore[index] || null;
 });
 
 const handlePageChange = (page: number) => {
   if (page >= 1 && page <= pageCount.value) {
     currentPage.value = page;
+  }
+};
+
+const markLoreAsRead = (index: number) => {
+  const loreItem = store.factions[faction].lore[index];
+  if (loreItem && !loreItem.read) {
+    loreItem.read = true;
   }
 };
 </script>
