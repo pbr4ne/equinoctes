@@ -1,9 +1,14 @@
 <template>
-  <span :class="['building', `building-${faction}`]">{{ building?.description }}</span>
+  <span :class="['building', `building-${faction}`]">
+    {{ building?.description }}
+    <br />
+    Power: {{ building?.power }} ({{ buildingPower }})
+  </span>
 </template>
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
+import { useBuilding } from '../../composables/useBuilding';
 import { useStore } from '../../composables/useStore';
 import type { FactionKey } from '../../utilities/types';
 
@@ -11,6 +16,10 @@ const props = defineProps<{ faction: FactionKey, building: string }>();
 const store = useStore();
 
 const building = store.factions[props.faction].buildings.find((b) => b.id === props.building);
+
+const { computeBuildingPower } = useBuilding();
+
+const buildingPower = building ? computeBuildingPower(props.faction, building) : 0;
 </script>
 
 <style scoped>

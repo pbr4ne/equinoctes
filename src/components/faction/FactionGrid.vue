@@ -98,6 +98,7 @@ function onClickEmptyCell(gridIndex: number) {
   if (!selectedBuilding) return;
 
   store.factions[props.faction].grid[gridIndex] = selectedBuilding.id;
+  selectedBuilding.index = gridIndex;
   store.factions[props.faction].selectedBuilding = null;
 }
 

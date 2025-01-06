@@ -38,9 +38,8 @@ function computeFactionBuildings(factionKey: FactionKey, delta: number) {
     if (!building) return;
 
     const powerIncrease = computeBuildingPower(
-      faction,
+      factionKey,
       building,
-      index,
     );
 
     const powerGain = powerIncrease * (delta / 1000);

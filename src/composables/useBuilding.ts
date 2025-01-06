@@ -1,17 +1,17 @@
+import { FactionKey, Building } from '../utilities/types';
 import { useStore } from './useStore';
-import { Faction, Building, FactionKey } from '../utilities/types';
 
 export const useBuilding = () => {
 
   const computeBuildingPower = (
-    faction: Faction,
+    factionKey: FactionKey,
     building: Building,
-    index: number
   ) => {
-    const { level, grid, buildings } = faction;
+    const store = useStore();
+    const { level, grid, buildings } = store.factions[factionKey];
   
     let totalPower = building.power;
-    let adjacencySum = 0; 
+    let adjacencySum = 0;
     
     grid.forEach((neighbourId, neighbourIndex) => {
       
@@ -20,7 +20,8 @@ export const useBuilding = () => {
       const neighborBldg = buildings.find(b => b.id === neighbourId);
       if (!neighborBldg || !neighborBldg.adjacency) return;
   
-      const { x: bx, y: by } = getXY(index, level);
+      if (building.index === null) return;
+      const { x: bx, y: by } = getXY(building.index, level);
       const { x: nx, y: ny } = getXY(neighbourIndex, level);
   
       const dx = bx - nx;

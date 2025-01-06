@@ -8,6 +8,7 @@ export const sunBuildings: Building[] = [
     icon: 'SunnyOutline',
     power: 1,
     unlocked: true,
+    index: 0,
     prerequisites: [
       0,
       [],
@@ -21,6 +22,7 @@ export const sunBuildings: Building[] = [
     icon: 'CloudOutline',
     power: 2,
     unlocked: true,
+    index: null,
     prerequisites: [
       0,
       [],
@@ -40,6 +42,7 @@ export const sunBuildings: Building[] = [
     icon: 'Aperture',
     power: 3,
     unlocked: true,
+    index: null,
     prerequisites: [
       0,
       [],
@@ -59,6 +62,7 @@ export const sunBuildings: Building[] = [
     icon: 'Api',
     power: 4,
     unlocked: true,
+    index: null,
     prerequisites: [
       0,
       [],
@@ -72,6 +76,7 @@ export const sunBuildings: Building[] = [
     icon: 'ArchitectureOutlined',
     power: 5,
     unlocked: true,
+    index: null,
     prerequisites: [
       0,
       [],
@@ -88,6 +93,7 @@ export const moonBuildings: Building[] = [
     power: 1,
     icon: 'MoonOutline',
     unlocked: true,
+    index: 0,
     prerequisites: [
       0,
       [],
@@ -101,6 +107,7 @@ export const moonBuildings: Building[] = [
     power: 2,
     icon: 'StarOutline',
     unlocked: true,
+    index: null,
     prerequisites: [
       0,
       [],
@@ -124,6 +131,7 @@ export const moonBuildings: Building[] = [
     power: 3,
     icon: 'Bed24Regular',
     unlocked: true,
+    index: null,
     prerequisites: [
       0,
       [],
@@ -143,6 +151,7 @@ export const moonBuildings: Building[] = [
     power: 4,
     icon: 'PuzzleCube24Regular',
     unlocked: true,
+    index: null,
     prerequisites: [
       0,
       [],
@@ -156,6 +165,7 @@ export const moonBuildings: Building[] = [
     power: 5,
     icon: 'DewPoint',
     unlocked: true,
+    index: null,
     prerequisites: [
       0,
       [],

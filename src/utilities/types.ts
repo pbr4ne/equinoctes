@@ -62,6 +62,7 @@ export interface Building {
     icon: string;
     power: number;
     unlocked: boolean;
+    index: number | null;
     prerequisites: [
         power: number,
         buildings: string[],
