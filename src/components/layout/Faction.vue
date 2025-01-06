@@ -34,18 +34,37 @@
 
       <n-space justify="center" style="z-index: 500">
         <n-space justify="center" style="margin: 20px;">
-            <n-popover trigger="hover" v-for="(item, index) in components">
-              <template #trigger>
-                  <button
-                    :key="index"
-                    @click="currentComponentIndex = index"
-                    :class="['icon-button', `icon-button-${faction}`]"
-                  >
-                    <component :is="item.icon"/>
-                  </button>
-              </template>              
-              <span>{{ item.label }}</span>
-            </n-popover>
+          <n-popover 
+            v-for="(item, index) in components" 
+            :key="index" 
+            trigger="hover"
+            placement="top"
+          >
+            <template #trigger>
+              <n-badge 
+                v-if="item.label === 'Lore'"
+                :value="loreCount"
+                color="red"
+                dot
+                processing
+              >
+                <button
+                  @click="currentComponentIndex = index"
+                  :class="['icon-button', `icon-button-${faction}`]"
+                >
+                  <component :is="item.icon"/>
+                </button>
+              </n-badge>
+              <button 
+                v-else
+                @click="currentComponentIndex = index"
+                :class="['icon-button', `icon-button-${faction}`]"
+              >
+                <component :is="item.icon"/>
+              </button>
+            </template>
+            <span>{{ item.label }}</span>
+          </n-popover>
         </n-space>
       </n-space>
     </n-flex>
@@ -56,6 +75,7 @@
 import { ref, computed, markRaw, onMounted, onBeforeUnmount, shallowRef } from 'vue';
 import { emitter } from '../../utilities/emitter';
 import { FactionKey } from '../../utilities/types';
+import { useStore } from '../../composables/useStore';
 import BuildingDetails from './BuildingDetails.vue';
 import Power from './Power.vue';
 import MoonStars from './MoonStars.vue';
@@ -69,7 +89,12 @@ import { Grid28Regular, Options24Regular, BuildingLighthouse20Regular } from '@v
 import { CrownOutlined } from '@vicons/antd';
 import { Notebook } from '@vicons/carbon';
 
-const props = defineProps<{ faction: FactionKey }>()
+const props = defineProps<{ faction: FactionKey }>();
+const store = useStore();
+
+const loreCount = computed(() => {
+  return store.factions[props.faction].lore.filter(lore => !lore.read).length;
+});
 
 const components = [
   { label: 'City', icon: markRaw(Grid28Regular), component: markRaw(FactionGrid), props },
@@ -171,6 +196,7 @@ onBeforeUnmount(() => {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  position: relative;
 }
 
 .icon-button-sun {
@@ -192,4 +218,9 @@ onBeforeUnmount(() => {
 .icon-button-moon:hover {
   background-color: #219ebc;
 }
+
+.n-badge__content {
+  font-size: 0.75em;
+}
 </style>
+

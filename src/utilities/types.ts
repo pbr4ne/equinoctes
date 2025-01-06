@@ -47,6 +47,7 @@ export interface Calendar {
 export interface LoreEntry {
     description: string;
     time: Calendar;
+    read?: boolean;
 }
 
 export interface AdjacencyOffset {

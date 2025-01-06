@@ -1,5 +1,6 @@
 import { 
     create,
+    NBadge,
     NButton,
     NCard,
     NFlex,
@@ -21,6 +22,7 @@ import {
   
   export const naive = create({
     components: [
+      NBadge,
       NButton,
       NCard,
       NFlex,
