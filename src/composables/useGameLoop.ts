@@ -1,4 +1,4 @@
-import { useBuilding } from './useBuilding';
+import { useBuildings } from './useBuildings';
 import { useStore } from './useStore';
 import { emitter } from '../utilities/emitter';
 import { FactionKey } from '../utilities/types';
@@ -29,7 +29,7 @@ export function startGameLoop() {
 
 function computeFactionBuildings(factionKey: FactionKey, delta: number) {
   const store = useStore();
-  const { computeBuildingPower } = useBuilding();
+  const { computeBuildingPower } = useBuildings();
   const { factions } = store;
 
   const faction = factions[factionKey];

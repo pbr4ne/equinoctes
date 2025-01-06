@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { Building, GameState } from '../utilities/types';
-import { sunBuildings, moonBuildings } from '../utilities/buildings';
+import { sunBuildings, moonBuildings } from './useBuildings';
 
 const initialState = (): GameState => ({
   lore: [],

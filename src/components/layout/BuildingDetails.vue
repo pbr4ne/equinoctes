@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
-import { useBuilding } from '../../composables/useBuilding';
+import { useBuildings } from '../../composables/useBuildings';
 import { useStore } from '../../composables/useStore';
 import type { FactionKey } from '../../utilities/types';
 
@@ -17,7 +17,7 @@ const store = useStore();
 
 const building = store.factions[props.faction].buildings.find((b) => b.id === props.building);
 
-const { computeBuildingPower } = useBuilding();
+const { computeBuildingPower } = useBuildings();
 
 const buildingPower = building ? computeBuildingPower(props.faction, building) : 0;
 </script>
