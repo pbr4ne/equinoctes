@@ -34,14 +34,18 @@
 
       <n-space justify="center" style="z-index: 500">
         <n-space justify="center" style="margin: 20px;">
-          <button
-            v-for="(item, index) in components"
-            :key="index"
-            @click="currentComponentIndex = index"
-            :class="['icon-button', `icon-button-${faction}`]"
-          >
-            <component :is="item.icon"/>
-          </button>
+            <n-popover trigger="hover" v-for="(item, index) in components">
+              <template #trigger>
+                  <button
+                    :key="index"
+                    @click="currentComponentIndex = index"
+                    :class="['icon-button', `icon-button-${faction}`]"
+                  >
+                    <component :is="item.icon"/>
+                  </button>
+              </template>              
+              <span>{{ item.label }}</span>
+            </n-popover>
         </n-space>
       </n-space>
     </n-flex>
@@ -68,7 +72,7 @@ import { Notebook } from '@vicons/carbon';
 const props = defineProps<{ faction: FactionKey }>()
 
 const components = [
-  { label: 'Grid', icon: markRaw(Grid28Regular), component: markRaw(FactionGrid), props },
+  { label: 'City', icon: markRaw(Grid28Regular), component: markRaw(FactionGrid), props },
   { label: 'Buildings', icon: markRaw(BuildingLighthouse20Regular), component: markRaw(Buildings), props },
   { label: 'Lore', icon: markRaw(Notebook), component: markRaw(Lore), props },
   { label: 'Achievements', icon: markRaw(CrownOutlined), component: markRaw(Achievements), props },
