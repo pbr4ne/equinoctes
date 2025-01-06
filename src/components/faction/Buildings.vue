@@ -9,7 +9,13 @@
           @mouseenter="onBuildingEnter(building, index)"
           @mouseleave="onBuildingLeave"
         >
-          <span>{{building.name}}</span>
+          <n-icon>
+            <component
+              :is="iconMap[building.icon]"
+              :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
+            />
+          </n-icon>
+          <span> {{building.name}}</span>
         </n-button>
     </n-space>
   </n-scrollbar>
@@ -18,7 +24,7 @@
 <script setup lang="ts">
 import { emitter } from '../../utilities/emitter';
 import { useStore } from '../../composables/useStore';
-import { Building, FactionKey } from '../../utilities/types';
+import { Building, FactionKey, iconMap } from '../../utilities/types';
 
 const props = defineProps<{ faction: FactionKey }>()
 const store = useStore();
@@ -42,7 +48,7 @@ function onBuildingLeave() {
 .buildingButton {
   font-family: "Grenze Gotisch", serif;
   font-weight: 300;
-  font-size: 2em;
+  font-size: 1.5em;
   border-radius: 20px;
 }
 
