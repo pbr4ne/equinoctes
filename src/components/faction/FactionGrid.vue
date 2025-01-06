@@ -1,28 +1,24 @@
 <template>
   <n-grid :cols="store.factions[faction].level" :x-gap="10" :y-gap="10">
     <n-grid-item
-      v-for="(building, index) in buildingIcons"
-      :key="index"
+      v-for="(cell, cellIndex) in cells"
+      :key="cellIndex"
     >
       <GridCell
         :faction="faction"
-        :index="index"
-        :building="building"
-        :adjacencyModifier="getCellAdjacencyModifier(index)"
-        :isDimmed="!!store.factions[faction].selectedBuilding && !!building"
-        :isHighlightEmpty="!!store.factions[faction].selectedBuilding && !building"
-        :cursorClass="getCursorClass(building)"
-        :clickBuilding="clickBuilding"
-        :clickEmpty="onClickEmptyCell"
-        :enterBuilding="onBuildingEnter"
-        :leaveBuilding="onBuildingLeave"
+        :index="cellIndex"
+        :cell="cell"
+        @clickBuilding="clickBuilding"
+        @clickEmpty="onClickEmptyCell"
+        @enterBuilding="onBuildingEnter"
+        @leaveBuilding="onBuildingLeave"
       />
     </n-grid-item>
   </n-grid>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useStore } from '../../composables/useStore';
 import { emitter } from '../../utilities/emitter';
 import type { Building, FactionKey } from '../../utilities/types';
@@ -30,6 +26,7 @@ import GridCell from './GridCell.vue';
 
 const props = defineProps<{ faction: FactionKey }>();
 const store = useStore();
+
 const hoveredBuilding = ref<Building | null>(null);
 const hoveredIndex = ref<number | null>(null);
 
@@ -46,33 +43,50 @@ function onBuildingLeave() {
 }
 
 function getCellAdjacencyModifier(cellIndex: number): number | null {
-  if (!hoveredBuilding.value || hoveredIndex.value == null) return null
-  if (!hoveredBuilding.value.adjacency) return null
+  if (!hoveredBuilding.value || hoveredIndex.value == null) return null;
+  if (!hoveredBuilding.value.adjacency) return null;
 
-  const factionData = store.factions[props.faction]
-  const { level } = factionData
+  const { level } = store.factions[props.faction];
+  const { x: hx, y: hy } = getXY(hoveredIndex.value, level);
+  const { x: cx, y: cy } = getXY(cellIndex, level);
 
-  const { x: hx, y: hy } = getXY(hoveredIndex.value, level)
-  const { x: cx, y: cy } = getXY(cellIndex, level)
+  const dx = cx - hx;
+  const dy = cy - hy;
+  const offset = hoveredBuilding.value.adjacency.find(o => o.dx === dx && o.dy === dy);
 
-  const dx = cx - hx
-  const dy = cy - hy
-
-  const offset = hoveredBuilding.value.adjacency.find(o => o.dx === dx && o.dy === dy)
-
-  return offset ? offset.modifier : null
+  return offset ? offset.modifier : null;
 }
 
-const buildingIcons = computed(() => {
+const buildingIcons = computed<(Building | null)[]>(() => {
   const factionBuildings = store.factions[props.faction].grid;
   const allFactionBuildings = store.factions[props.faction].buildings;
 
-  const buildingIcons = factionBuildings.map((buildingId) => {
+  return factionBuildings.map((buildingId) => {
     if (!buildingId) return null;
     return allFactionBuildings.find((b) => b.id === buildingId) || null;
   });
+});
 
-  return buildingIcons;
+const cells = computed(() => {
+  const selectedBuilding = store.factions[props.faction].selectedBuilding;
+
+  return buildingIcons.value.map((building, index) => {
+    const adjacencyModifier = getCellAdjacencyModifier(index);
+
+    const hasSelected = !!selectedBuilding;
+    const isOccupied = !!building;
+    const isDimmed = hasSelected && isOccupied;
+    const isHighlightEmpty = hasSelected && !isOccupied;
+    const cursorClass = getCursorClass(building);
+
+    return {
+      building,
+      adjacencyModifier,
+      isDimmed,
+      isHighlightEmpty,
+      cursorClass,
+    };
+  });
 });
 
 function clickBuilding(building: Building) {
@@ -81,17 +95,15 @@ function clickBuilding(building: Building) {
 
 function onClickEmptyCell(gridIndex: number) {
   const selectedBuilding = store.factions[props.faction].selectedBuilding;
+  if (!selectedBuilding) return;
 
-  if (!selectedBuilding) {
-    return;
-  }
-  
   store.factions[props.faction].grid[gridIndex] = selectedBuilding.id;
   store.factions[props.faction].selectedBuilding = null;
 }
 
 function getCursorClass(building: Building | null) {
-  if (store.factions[props.faction].selectedBuilding) {
+  const selected = !!store.factions[props.faction].selectedBuilding;
+  if (selected) {
     return building ? 'cursor-default' : 'cursor-pointer';
   } else {
     return building ? 'cursor-pointer' : 'cursor-default';
@@ -99,8 +111,8 @@ function getCursorClass(building: Building | null) {
 }
 
 function getXY(index: number, cols: number) {
-  const x = index % cols
-  const y = Math.floor(index / cols)
-  return { x, y }
+  const x = index % cols;
+  const y = Math.floor(index / cols);
+  return { x, y };
 }
 </script>

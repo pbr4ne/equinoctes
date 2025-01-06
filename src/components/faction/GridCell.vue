@@ -3,95 +3,116 @@
       :class="[
         'grid-cell',
         `grid-cell-${faction}`,
-        adjacencyModifier !== null ? 'adjacency-highlight' : '',
-        isDimmed ? 'dim-building' : '',
-        isHighlightEmpty ? 'highlight-empty' : '',
-        cursorClass,
-        hovered && !building ? 'hovered' : ''
+        cell.adjacencyModifier !== null ? 'adjacency-highlight' : '',
+        cell.isDimmed ? 'dim-building' : '',
+        cell.isHighlightEmpty ? 'highlight-empty' : '',
+        cell.cursorClass,
+        hovered && !cell.building ? 'hovered' : ''
       ]"
-      @mouseenter="onMouseEnter"
-      @mouseleave="onMouseLeave"
+      @mouseenter="handleMouseEnter"
+      @mouseleave="handleMouseLeave"
     >
       <component
-        v-if="building"
+        v-if="cell.building"
         :is="iconComponent"
         :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
         class="button-icon"
-        @click="clickBuilding(building)"
-        @mouseenter="enterBuilding(building, index)"
-        @mouseleave="leaveBuilding"
+        @click="onClickBuilding"
       />
-  
+
       <div
         v-else
         class="empty-cell"
-        @click="clickEmpty(index)"
+        @click="onClickEmpty"
       ></div>
-  
+
       <div
-        v-if="adjacencyModifier !== null"
+        v-if="cell.adjacencyModifier !== null"
         class="adj-icon"
       >
         <component
-          :is="getArrowIcon(adjacencyModifier)"
-          :style="{ color: getArrowColor(adjacencyModifier) }"
+          :is="getArrowIcon(cell.adjacencyModifier)"
+          :style="{ color: getArrowColor(cell.adjacencyModifier) }"
         />
       </div>
     </div>
   </template>
   
-  <script setup lang="ts">
-  import { defineProps, computed, ref } from 'vue'
+<script setup lang="ts">
+  import { ref, computed } from 'vue'
   import type { Building, FactionKey } from '../../utilities/types'
   import { ArrowBigTop, ArrowBigUpLine, ArrowBigUpLines, ArrowBigDown, ArrowBigDownLine, ArrowBigDownLines } from '@vicons/tabler'
   import { iconMap } from '../../utilities/types'
   
   const props = defineProps<{
-    faction: FactionKey
-    index: number
-    building: Building | null
-    adjacencyModifier: number | null
-    isDimmed: boolean
-    isHighlightEmpty: boolean
-    cursorClass: string
-    clickBuilding: (b: Building) => void
-    clickEmpty: (index: number) => void
-    enterBuilding: (b: Building, i: number) => void
-    leaveBuilding: () => void
-  }>()
+    faction: FactionKey,
+    index: number,
+    cell: {
+      building: Building | null,
+      adjacencyModifier: number | null,
+      isDimmed: boolean,
+      isHighlightEmpty: boolean,
+      cursorClass: string
+    },
+  }>();
+
+  const emits = defineEmits(['clickBuilding', 'clickEmpty', 'enterBuilding', 'leaveBuilding']);
 
   const hovered = ref(false);
-
-  function onMouseEnter() {
-    if (!props.building && props.isHighlightEmpty) {
-      hovered.value = true;
-    }
-  }
-
-  function onMouseLeave() {
-    hovered.value = false;
-  }
   
   const iconComponent = computed(() => {
-    if (!props.building) return null
-    return iconMap[props.building.icon] || null
-  })
+    if (!props.cell.building) return null
+    return iconMap[props.cell.building.icon] || null
+  });
+
+  function handleMouseEnter() {
+    if (props.cell.building) {
+      emits('enterBuilding', props.cell.building, props.index)
+    } else if (props.cell.isHighlightEmpty) {
+      hovered.value = true
+    }
+  }
+
+  function handleMouseLeave() {
+    hovered.value = false
+    if (props.cell.building) {
+      emits('leaveBuilding')
+    }
+  }
+
+  function onClickBuilding() {
+    if (!props.cell.building) return;
+    emits('clickBuilding', props.cell.building);
+  }
+
+  function onClickEmpty() {
+    emits('clickEmpty', props.index);
+  }
+
+  function onEnterBuilding() {
+    if (!props.cell.building) return;
+    emits('enterBuilding', props.cell.building, props.index);
+  }
+
+  function onLeaveBuilding() {
+    emits('leaveBuilding');
+  }
   
   function getArrowIcon(modifier: number | null) {
-    if (modifier === null) return null
+    if (modifier === null) return null;
     if (modifier >= 0) {
-      if (modifier <= 0.25) return ArrowBigTop
-      else if (modifier < 0.5) return ArrowBigUpLine
-      else return ArrowBigUpLines
+      if (modifier <= 0.25) return ArrowBigTop;
+      else if (modifier < 0.5) return ArrowBigUpLine;
+      else return ArrowBigUpLines;
     }
-    if (modifier > -0.25) return ArrowBigDown
-    else if (modifier > -0.5) return ArrowBigDownLine
-    else return ArrowBigDownLines
+    if (modifier > -0.25) return ArrowBigDown;
+    else if (modifier > -0.5) return ArrowBigDownLine;
+    else return ArrowBigDownLines;
   }
   
   function getArrowColor(modifier: number | null): string {
-    if (modifier === null) return ''
-    return modifier >= 0 ? '#ecf39e' : '#f26a8d'
+    if (modifier === null) return '';
+    return modifier >= 0 ? '#ecf39e' : '#f26a8d';
   }
   </script>
   
