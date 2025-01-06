@@ -77,10 +77,10 @@ export interface Faction {
     grid: (string | null)[];
     buildings: Building[];
     selectedBuilding: Building | null;
+    lore: LoreEntry[];
 }
 
 export interface GameState {
-    lore: LoreEntry[];
     calendar: Calendar;
     factions: {
         sun: Faction,
