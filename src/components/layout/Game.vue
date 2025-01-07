@@ -1,22 +1,26 @@
 <template>
   <celestial-body /> 
   <n-grid :cols="visiblefactions">
-    <n-grid-item>
+    <n-grid-item v-if="!isSmallWindow() || (isSmallWindow() && store.currentlyDay)">
       <faction faction="sun" class="day"/>
     </n-grid-item>
-    <n-grid-item>
+    <n-grid-item v-if="!isSmallWindow() || (isSmallWindow() && !store.currentlyDay)">
       <faction faction="moon" class="night"/>
     </n-grid-item>  
   </n-grid>
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
+import { useStore } from '../../composables/useStore';
 import CelestialBody from './CelestialBody.vue';
 import Faction from './Faction.vue';
 
+const store = useStore();
+
 const isSmallScreen = ref(isSmallWindow());
-const visiblefactions = ref(2);
+const unlockedFactions = computed(() => store.milestones.moonUnlocked? 2 : 1);
+const visiblefactions = ref(unlockedFactions.value);
 
 const updateScreenSize = () => {
   isSmallScreen.value = window.innerWidth < 730;
@@ -24,7 +28,12 @@ const updateScreenSize = () => {
   if (isSmallScreen.value) {
     visiblefactions.value = 1;
   } else {
-    visiblefactions.value = 2;
+    if (unlockedFactions.value === 1) {
+      visiblefactions.value = 1;
+    }
+    else {
+      visiblefactions.value = 2;
+    }
   }
 };
 
