@@ -16,10 +16,10 @@ export function startGameLoop() {
     if (delta >= TICK_RATE) {
       lastTick = now;
       store.updateTime(delta);
-    }
 
-    computeFactionBuildings('sun', delta);
-    computeFactionBuildings('moon', delta);
+      computeFactionBuildings('sun', delta);
+      computeFactionBuildings('moon', delta);
+    }
 
     store._gameLoopId = requestAnimationFrame(gameLoop);
   };
@@ -42,7 +42,7 @@ function computeFactionBuildings(factionKey: FactionKey, delta: number) {
       building,
     );
 
-    const powerGain = powerIncrease * (delta / 1000);
+    const powerGain = powerIncrease * (delta / 1440);
     faction.power += powerGain;
     
     if (faction.power > 100) {      
