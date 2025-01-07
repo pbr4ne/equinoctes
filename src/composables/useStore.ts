@@ -40,6 +40,7 @@ const initialState = (): GameState => ({
     aurum100: false,
     nocturne100: false,
   },
+  fullDaySeconds: 120,
 });
 
 export const useStore = defineStore('gameState', {
@@ -49,8 +50,8 @@ export const useStore = defineStore('gameState', {
     _gameLoopId: null as null | number,
 
     updateTime(deltaTime: number) {
-      //1 day takes 15 mins
-      const realWorldMillisecondsPerInGameMinute = 625;
+      //1 day takes 2 mins
+      const realWorldMillisecondsPerInGameMinute = 1000 * this.fullDaySeconds;
       let inGameMinutesPassed = deltaTime / realWorldMillisecondsPerInGameMinute;
       
       this.calendar.accumulatedTime = (this.calendar.accumulatedTime ?? 0) + inGameMinutesPassed;

@@ -95,4 +95,5 @@ export interface GameState {
         moon: Faction,
     },
     milestones: Milestones,
+    fullDaySeconds: number,
 }

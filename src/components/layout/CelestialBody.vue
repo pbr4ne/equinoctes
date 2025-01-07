@@ -10,14 +10,16 @@
   import { onMounted, ref } from 'vue';
   import { gsap } from 'gsap';
   import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+  import { useStore } from '../../composables/useStore';
 
   gsap.registerPlugin(MotionPathPlugin);
 
+  const store = useStore();
   const celestial = ref<HTMLImageElement | null>(null);
   const currentIcon = ref(sunSvg);
-
   const isMoonVisible = ref(false);
   const lastX = ref(0);
+  const dayDuration = store.fullDaySeconds;
 
   onMounted(() => {
     const path = `
@@ -28,7 +30,7 @@
     `;
 
     gsap.to(celestial.value, {
-      duration: 20,
+      duration: dayDuration,
       repeat: -1,
       ease: 'power1.inOut',
       motionPath: {
