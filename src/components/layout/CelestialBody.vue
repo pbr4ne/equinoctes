@@ -1,6 +1,6 @@
 <template>
-  <div class="sun-container" style="z-index: 9999;">
-    <img :src="currentIcon" alt="sun" class="sun" ref="sun" />
+  <div class="celestial-container" style="z-index: 9999;">
+    <img :src="currentIcon" alt="sun" class="celestial" ref="celestial"/>
   </div>
 </template>
   
@@ -13,48 +13,48 @@
 
   gsap.registerPlugin(MotionPathPlugin);
 
-  const sun = ref<HTMLImageElement | null>(null);
+  const celestial = ref<HTMLImageElement | null>(null);
   const currentIcon = ref(sunSvg);
 
   const isMoonVisible = ref(false);
   const lastX = ref(0);
 
-  // onMounted(() => {
-  //   const path = `
-  //     M -100,200
-  //     C ${window.innerWidth / 4},0,
-  //       ${(window.innerWidth * 3) / 4},0,
-  //       ${window.innerWidth},200
-  //   `;
+  onMounted(() => {
+    const path = `
+      M -100,200
+      C ${window.innerWidth / 4},0,
+        ${(window.innerWidth * 3) / 4},0,
+        ${window.innerWidth},200
+    `;
 
-  //   gsap.to(sun.value, {
-  //     duration: 20,
-  //     repeat: -1,
-  //     ease: 'power1.inOut',
-  //     motionPath: {
-  //       path: path,
-  //       autoRotate: false,
-  //     },
-  //     onUpdate: () => {
-  //       const middleX = window.innerWidth / 2;
-  //       const sunX = Number(gsap.getProperty(sun.value, "x"));
+    gsap.to(celestial.value, {
+      duration: 20,
+      repeat: -1,
+      ease: 'power1.inOut',
+      motionPath: {
+        path: path,
+        autoRotate: false,
+      },
+      onUpdate: () => {
+        const middleX = window.innerWidth / 2;
+        const celestialX = Number(gsap.getProperty(celestial.value, "x"));
 
-  //       if (sunX > middleX) {
-  //         currentIcon.value = moonSvg;
-  //         isMoonVisible.value = true;
-  //       } else if (sunX < middleX) {
-  //         currentIcon.value = sunSvg;
-  //         isMoonVisible.value = false;
-  //       }
+        if (celestialX > middleX) {
+          currentIcon.value = moonSvg;
+          isMoonVisible.value = true;
+        } else if (celestialX < middleX) {
+          currentIcon.value = sunSvg;
+          isMoonVisible.value = false;
+        }
 
-  //       lastX.value = sunX;
-  //     },
-  //   });
-  // });
+        lastX.value = celestialX;
+      },
+    });
+  });
   </script>
   
   <style scoped>
-  .sun-container {
+  .celestial-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -64,7 +64,7 @@
     z-index: 10;
   }
   
-  .sun {
+  .celestial {
     position: absolute;
     width: 64px;
     height: 64px;
