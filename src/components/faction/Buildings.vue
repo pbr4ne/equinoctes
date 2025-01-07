@@ -2,13 +2,13 @@
   <n-scrollbar>
       <n-space vertical>
         <n-button 
-          v-for="building, index in unbuiltBuildings"
+          v-for="building, index in visibleBuildings"
           :class="['buildingButton', `buildingButton-${faction}`]" 
           :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
           @click="buyBuilding(building)"
           @mouseenter="onBuildingEnter(building, index)"
           @mouseleave="onBuildingLeave"
-          :disabled="store.currentlyDay && props.faction !== 'sun' || !store.currentlyDay && props.faction !== 'moon'"
+          :disabled="store.currentlyDay && props.faction !== 'sun' || !store.currentlyDay && props.faction !== 'moon' || !canBuyBuilding(building)"
         >
           <n-icon>
             <component
@@ -23,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import { emitter } from '../../utilities/emitter';
 import { useStore } from '../../composables/useStore';
 import { Building, FactionKey, iconMap } from '../../utilities/types';
@@ -30,6 +31,21 @@ import { Building, FactionKey, iconMap } from '../../utilities/types';
 const props = defineProps<{ faction: FactionKey }>()
 const store = useStore();
 const unbuiltBuildings = store.factions[props.faction].buildings.filter((building) => !store.factions[props.faction].grid.includes(building.id));
+const visibleBuildings = computed(() => 
+  unbuiltBuildings.filter((building) => {
+    if (building.viewPrerequisite.power) {
+      return store.factions[props.faction].power >= building.viewPrerequisite.power;
+    }
+    return true;
+  })
+);
+
+const canBuyBuilding = (building: Building) => {
+  if (building.buildPrerequisite.power) {
+    return store.factions[props.faction].power >= building.buildPrerequisite.power;
+  }
+  return true;
+}
 
 const buyBuilding = (building: Building) => {
   store.factions[props.faction].selectedBuilding = building;

@@ -57,11 +57,8 @@ export const sunBuildings: Building[] = [
     power: 1,
     unlocked: true,
     index: 0,
-    prerequisites: [
-      0,
-      [],
-      0,
-    ],
+    viewPrerequisite: {},
+    buildPrerequisite: {},
   },
   {
     id: 'sun-2',
@@ -71,11 +68,10 @@ export const sunBuildings: Building[] = [
     power: 2,
     unlocked: true,
     index: null,
-    prerequisites: [
-      0,
-      [],
-      0,
-    ],
+    viewPrerequisite: {},
+    buildPrerequisite: {
+      power: 10,
+    },
     adjacency: [
       { dx: 0, dy: -1, modifier: 0.5 },
       { dx: +1, dy: 0, modifier: 0.5 },
@@ -91,11 +87,12 @@ export const sunBuildings: Building[] = [
     power: 3,
     unlocked: true,
     index: null,
-    prerequisites: [
-      0,
-      [],
-      0,
-    ],
+    viewPrerequisite: {
+      power: 15,
+    },
+    buildPrerequisite: {
+      power: 20,
+    },
     adjacency: [
       { dx: -1, dy: -1, modifier: -0.25},
       { dx: +1, dy: -1, modifier: -0.25},
@@ -111,11 +108,12 @@ export const sunBuildings: Building[] = [
     power: 4,
     unlocked: true,
     index: null,
-    prerequisites: [
-      0,
-      [],
-      0,
-    ],
+    viewPrerequisite: {
+      power: 25,
+    },
+    buildPrerequisite: {
+      power: 30,
+    },
   },
   {
     id: 'sun-5',
@@ -125,11 +123,12 @@ export const sunBuildings: Building[] = [
     power: 5,
     unlocked: true,
     index: null,
-    prerequisites: [
-      0,
-      [],
-      0,
-    ],
+    viewPrerequisite: {
+      power: 35,
+    },
+    buildPrerequisite: {
+      power: 40,
+    },
   }
 ];
 
@@ -142,11 +141,8 @@ export const moonBuildings: Building[] = [
     icon: 'MoonOutline',
     unlocked: true,
     index: 0,
-    prerequisites: [
-      0,
-      [],
-      0,
-    ],
+    viewPrerequisite: {},
+    buildPrerequisite: {},
   },
   {
     id: 'moon-2',
@@ -156,11 +152,8 @@ export const moonBuildings: Building[] = [
     icon: 'StarOutline',
     unlocked: true,
     index: null,
-    prerequisites: [
-      0,
-      [],
-      0,
-    ],
+    viewPrerequisite: {},
+    buildPrerequisite: {},
     adjacency: [
       { dx: 0, dy: -1, modifier: 0.5 },
       { dx: +1, dy: 0, modifier: 0.5 },
@@ -180,11 +173,8 @@ export const moonBuildings: Building[] = [
     icon: 'Bed24Regular',
     unlocked: true,
     index: null,
-    prerequisites: [
-      0,
-      [],
-      0,
-    ],
+    viewPrerequisite: {},
+    buildPrerequisite: {},
     adjacency: [
       { dx: 0, dy: -1, modifier: 0.5 },
       { dx: -1, dy: 0, modifier: 0.5 },
@@ -200,11 +190,8 @@ export const moonBuildings: Building[] = [
     icon: 'PuzzleCube24Regular',
     unlocked: true,
     index: null,
-    prerequisites: [
-      0,
-      [],
-      0,
-    ],
+    viewPrerequisite: {},
+    buildPrerequisite: {},
   },
   {
     id: 'moon-5',
@@ -214,10 +201,7 @@ export const moonBuildings: Building[] = [
     icon: 'DewPoint',
     unlocked: true,
     index: null,
-    prerequisites: [
-      0,
-      [],
-      0,
-    ],
+    viewPrerequisite: {},
+    buildPrerequisite: {},
   }
 ];

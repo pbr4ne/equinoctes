@@ -56,6 +56,12 @@ export interface AdjacencyOffset {
     modifier: number;
 }
 
+export interface BuildingPrerequisite {
+    power?: number;
+    buildings?: string[];
+    level?: number;
+}
+
 export interface Building {
     id: string;
     name: string;
@@ -64,11 +70,8 @@ export interface Building {
     power: number;
     unlocked: boolean;
     index: number | null;
-    prerequisites: [
-        power: number,
-        buildings: string[],
-        level: number,
-    ]
+    viewPrerequisite: BuildingPrerequisite,
+    buildPrerequisite: BuildingPrerequisite,
     adjacency?: AdjacencyOffset[];
 }
 
