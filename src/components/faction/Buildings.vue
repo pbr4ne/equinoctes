@@ -32,15 +32,15 @@ const unbuiltBuildings = store.factions[props.faction].buildings.filter((buildin
 
 const buyBuilding = (building: Building) => {
   store.factions[props.faction].selectedBuilding = building;
-  emitter.emit('switch', { faction: props.faction });
+  emitter.emit('switchedToGrid', { faction: props.faction });
 };
 
 function onBuildingEnter(building: Building, index: number) {
-  emitter.emit('buildingEnter', { faction: props.faction, buildingId: building.id });
+  emitter.emit('buildingEntered', { faction: props.faction, buildingId: building.id });
 }
 
 function onBuildingLeave() {
-  emitter.emit('buildingLeave', { faction: props.faction });
+  emitter.emit('buildingLeft', { faction: props.faction });
 }
 </script>
 

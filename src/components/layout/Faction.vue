@@ -139,15 +139,15 @@ function handleSwitchToPower({ faction }: { faction: FactionKey; }) {
 }
 
 onMounted(() => {
-  emitter.on('switch', handleSwitchToGrid);
-  emitter.on('buildingEnter', ({ faction, buildingId }) => handleSwitchToBuilding({ faction, buildingId }));
-  emitter.on('buildingLeave', ({ faction }) => handleSwitchToPower({ faction }));
+  emitter.on('switchedToGrid', handleSwitchToGrid);
+  emitter.on('buildingEntered', ({ faction, buildingId }) => handleSwitchToBuilding({ faction, buildingId }));
+  emitter.on('buildingLeft', ({ faction }) => handleSwitchToPower({ faction }));
 });
 
 onBeforeUnmount(() => {
-  emitter.off('switch', handleSwitchToGrid);
-  emitter.off('buildingEnter', handleSwitchToBuilding);
-  emitter.off('buildingLeave', handleSwitchToPower);
+  emitter.off('switchedToGrid', handleSwitchToGrid);
+  emitter.off('buildingEntered', handleSwitchToBuilding);
+  emitter.off('buildingLeft', handleSwitchToPower);
 });
 </script>
 

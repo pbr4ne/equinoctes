@@ -3,10 +3,10 @@ import { FactionKey } from './types';
 
 type GameEvent = {
   autosaved: { timestamp: Date; storeId: string };
-  switch: { faction: string };
+  switchedToGrid: { faction: string };
   powerChanged: { faction: string; power: number };
-  buildingEnter: { faction: FactionKey; buildingId: string };
-  buildingLeave: {  faction: FactionKey; };
+  buildingEntered: { faction: FactionKey; buildingId: string };
+  buildingLeft: {  faction: FactionKey; };
 };
 
 export const emitter = mitt<GameEvent>();

@@ -10,8 +10,8 @@
         :cell="cell"
         @clickBuilding="clickBuilding"
         @clickEmpty="onClickEmptyCell"
-        @enterBuilding="onBuildingEnter"
-        @leaveBuilding="onBuildingLeave"
+        @enterBuilding="onEnterBuilding"
+        @leaveBuilding="onLeaveBuilding"
       />
     </n-grid-item>
   </n-grid>
@@ -30,16 +30,16 @@ const store = useStore();
 const hoveredBuilding = ref<Building | null>(null);
 const hoveredIndex = ref<number | null>(null);
 
-function onBuildingEnter(building: Building, index: number) {
+function onEnterBuilding(building: Building, index: number) {
   hoveredBuilding.value = building;
   hoveredIndex.value = index;
-  emitter.emit('buildingEnter', { faction: props.faction, buildingId: building.id });
+  emitter.emit('buildingEntered', { faction: props.faction, buildingId: building.id });
 }
 
-function onBuildingLeave() {
+function onLeaveBuilding() {
   hoveredBuilding.value = null;
   hoveredIndex.value = null;
-  emitter.emit('buildingLeave', { faction: props.faction });
+  emitter.emit('buildingLeft', { faction: props.faction });
 }
 
 function getCellAdjacencyModifier(cellIndex: number): number | null {
