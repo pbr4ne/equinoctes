@@ -2,7 +2,7 @@
     <n-text v-if="faction === 'sun'" class="power solar">Aurum: </n-text>
     <n-text v-else class="power lunar">Nocturne: </n-text>
     <n-text :class="['power', faction === 'sun' ? 'solar' : 'lunar']">
-      {{ Math.round(store.factions[props.faction].power) }}
+      {{  Math.round(store.factions[props.faction].power) }}
     </n-text>
 </template>
 
@@ -18,7 +18,8 @@ const store = useStore();
 .power {
   font-family: "Grenze Gotisch", serif;
   font-weight: 300;
-  font-size: 2em;
+  font-size: 2.5em;
+  padding-left: 5px;
 }
 
 .solar {

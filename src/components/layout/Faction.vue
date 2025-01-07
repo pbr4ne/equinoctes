@@ -180,6 +180,9 @@ onBeforeUnmount(() => {
 .power {
   width: calc(min(50vw, 50vh));
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .content {
