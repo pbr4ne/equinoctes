@@ -96,4 +96,5 @@ export interface GameState {
     },
     milestones: Milestones,
     fullDaySeconds: number,
+    currentlyDay: boolean,
 }

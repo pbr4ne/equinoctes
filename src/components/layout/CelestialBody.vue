@@ -38,15 +38,14 @@
         autoRotate: false,
       },
       onUpdate: () => {
-        const middleX = window.innerWidth / 2;
         const celestialX = Number(gsap.getProperty(celestial.value, "x"));
 
-        if (celestialX > middleX) {
-          currentIcon.value = moonSvg;
-          isMoonVisible.value = true;
-        } else if (celestialX < middleX) {
+        if (store.currentlyDay) {
           currentIcon.value = sunSvg;
           isMoonVisible.value = false;
+        } else {
+          currentIcon.value = moonSvg;
+          isMoonVisible.value = true;
         }
 
         lastX.value = celestialX;

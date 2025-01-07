@@ -40,7 +40,8 @@ const initialState = (): GameState => ({
     aurum100: false,
     nocturne100: false,
   },
-  fullDaySeconds: 120,
+  fullDaySeconds: 30,
+  currentlyDay: true,
 });
 
 export const useStore = defineStore('gameState', {
@@ -50,26 +51,25 @@ export const useStore = defineStore('gameState', {
     _gameLoopId: null as null | number,
 
     updateTime(deltaTime: number) {
-      //1 day takes 2 mins
-      const realWorldMillisecondsPerInGameMinute = 1000 * this.fullDaySeconds;
-      let inGameMinutesPassed = deltaTime / realWorldMillisecondsPerInGameMinute;
-      
+      //1 day takes 30 seconds
+      const inGameMinutesPassed = deltaTime * (1440 / (this.fullDaySeconds * 1000));
+
       this.calendar.accumulatedTime = (this.calendar.accumulatedTime ?? 0) + inGameMinutesPassed;
       
       while (this.calendar.accumulatedTime >= 1) {
         this.calendar.minutes += 1;
         this.calendar.accumulatedTime -= 1;
       }
-       
       if (this.calendar.minutes >= 60) {
         this.calendar.hours += Math.floor(this.calendar.minutes / 60);
-        this.calendar.minutes = this.calendar.minutes % 60;
+        this.calendar.minutes %= 60;
       }
-       
       if (this.calendar.hours >= 24) {
         this.calendar.days += Math.floor(this.calendar.hours / 24);
-        this.calendar.hours = this.calendar.hours % 24;
+        this.calendar.hours %= 24;
       }
+
+      this.currentlyDay = this.calendar.hours >= 0 && this.calendar.hours < 12;
     },
 
     listenForEvents() {
