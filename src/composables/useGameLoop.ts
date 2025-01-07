@@ -56,6 +56,13 @@ function computeFactionBuildings(factionKey: FactionKey, delta: number) {
   const { computeBuildingPower } = useBuildings();
   const { factions } = store;
 
+  //disable during off-time
+  if (factionKey === 'sun' && !store.currentlyDay) {
+    return;
+  } else if (factionKey === 'moon' && store.currentlyDay) {
+    return;
+  }
+
   const faction = factions[factionKey];
   faction.grid.forEach((buildingId, index) => {
     const building = faction.buildings.find((b) => b.id === buildingId);
@@ -66,7 +73,7 @@ function computeFactionBuildings(factionKey: FactionKey, delta: number) {
       building,
     );
 
-    const powerGain = powerIncrease * (delta / 1440);
+    const powerGain = powerIncrease * (delta / 1000);
     faction.power += powerGain;
     
     if (faction.power > 100) {      
