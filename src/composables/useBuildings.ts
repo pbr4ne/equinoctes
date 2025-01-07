@@ -59,6 +59,8 @@ export const sunBuildings: Building[] = [
     index: 0,
     viewPrerequisite: {},
     buildPrerequisite: {},
+    viewUnlocked: true,
+    buildUnlocked: true,
   },
   {
     id: 'sun-2',
@@ -89,6 +91,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 15,
+      buildings: ['sun-2'],
     },
     buildPrerequisite: {
       power: 20,

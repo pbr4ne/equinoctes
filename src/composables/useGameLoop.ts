@@ -17,14 +17,38 @@ export function startGameLoop() {
       lastTick = now;
       store.updateTime(delta);
 
+      //compute power for each built building
       computeFactionBuildings('sun', delta);
       computeFactionBuildings('moon', delta);
+
+      //unlock buildings
+      unlockBuildings('sun');
+      unlockBuildings('moon');
     }
 
     store._gameLoopId = requestAnimationFrame(gameLoop);
   };
 
   store._gameLoopId = requestAnimationFrame(gameLoop);
+}
+
+function unlockBuildings(factionKey: FactionKey) {
+  const store = useStore();
+  const { sunBuildings, moonBuildings } = useBuildings();
+  const faction = store.factions[factionKey];
+  const factionBuildings = factionKey === 'sun' ? sunBuildings : moonBuildings;
+
+  factionBuildings.filter((b) => !b.viewUnlocked).forEach((building) => {
+    let canUnlock = !building.viewPrerequisite?.power || faction.power >= building.viewPrerequisite.power;
+
+    if (canUnlock) {
+      const index = faction.buildings.findIndex((b) => b.id === building.id);
+      if (index !== -1) {
+        faction.buildings[index] = { ...building, viewUnlocked: true };
+        console.log(`Building ${building.name} unlocked for ${factionKey} faction`);
+      }
+    }
+  });
 }
 
 function computeFactionBuildings(factionKey: FactionKey, delta: number) {

@@ -72,6 +72,8 @@ export interface Building {
     index: number | null;
     viewPrerequisite: BuildingPrerequisite,
     buildPrerequisite: BuildingPrerequisite,
+    viewUnlocked?: boolean;
+    buildUnlocked?: boolean;
     adjacency?: AdjacencyOffset[];
 }
 

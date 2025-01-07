@@ -30,15 +30,12 @@ import { Building, FactionKey, iconMap } from '../../utilities/types';
 
 const props = defineProps<{ faction: FactionKey }>()
 const store = useStore();
-const unbuiltBuildings = store.factions[props.faction].buildings.filter((building) => !store.factions[props.faction].grid.includes(building.id));
 const visibleBuildings = computed(() => 
-  unbuiltBuildings.filter((building) => {
-    if (building.viewPrerequisite.power) {
-      return store.factions[props.faction].power >= building.viewPrerequisite.power;
-    }
-    return true;
-  })
-);
+  store.factions[props.faction].buildings.filter((building) => 
+    !store.factions[props.faction].grid.includes(building.id)).filter((building) => 
+      building.viewUnlocked
+    )
+  );
 
 const canBuyBuilding = (building: Building) => {
   if (building.buildPrerequisite.power) {
