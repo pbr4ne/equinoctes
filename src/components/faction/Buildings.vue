@@ -15,7 +15,7 @@
               :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
             />
           </n-icon>
-          <span> {{building.name}}</span>
+          <span style="padding-left: 10px;"> {{building.name}}</span>
         </n-button>
     </n-space>
   </n-scrollbar>
