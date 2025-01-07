@@ -8,6 +8,7 @@
           @click="buyBuilding(building)"
           @mouseenter="onBuildingEnter(building, index)"
           @mouseleave="onBuildingLeave"
+          :disabled="store.currentlyDay && props.faction !== 'sun' || !store.currentlyDay && props.faction !== 'moon'"
         >
           <n-icon>
             <component

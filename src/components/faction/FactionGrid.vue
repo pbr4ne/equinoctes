@@ -78,6 +78,7 @@ const cells = computed(() => {
     const isDimmed = hasSelected && isOccupied;
     const isHighlightEmpty = hasSelected && !isOccupied;
     const cursorClass = getCursorClass(building);
+    const isDisabled = store.currentlyDay && props.faction === 'moon' || !store.currentlyDay && props.faction === 'sun';
 
     return {
       building,
@@ -85,6 +86,7 @@ const cells = computed(() => {
       isDimmed,
       isHighlightEmpty,
       cursorClass,
+      isDisabled,
     };
   });
 });

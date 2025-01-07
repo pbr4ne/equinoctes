@@ -6,8 +6,9 @@
       cell.adjacencyModifier !== null ? 'adjacency-highlight' : '',
       cell.isDimmed ? 'dim-building' : '',
       cell.isHighlightEmpty ? 'highlight-empty' : '',
-      cell.cursorClass,
-      hovered && !cell.building ? 'hovered' : ''
+      cell.isDisabled ? 'cursor-not-allowed' : cell.cursorClass,
+      hovered && !cell.building ? 'hovered' : '',
+      cell.isDisabled ? 'dim-building' : ''
     ]"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
@@ -52,7 +53,8 @@ const props = defineProps<{
     adjacencyModifier: number | null,
     isDimmed: boolean,
     isHighlightEmpty: boolean,
-    cursorClass: string
+    cursorClass: string,
+    isDisabled: boolean,
   },
 }>();
 
@@ -190,6 +192,10 @@ function getArrowColor(modifier: number | null): string {
 
 .cursor-default {
   cursor: default;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
 }
 
 .hovered {
