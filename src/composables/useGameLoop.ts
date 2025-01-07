@@ -24,12 +24,56 @@ export function startGameLoop() {
       //unlock buildings
       unlockBuildings('sun');
       unlockBuildings('moon');
+
+      //milestones
+      computeMilestones();
     }
 
     store._gameLoopId = requestAnimationFrame(gameLoop);
   };
 
   store._gameLoopId = requestAnimationFrame(gameLoop);
+}
+
+function computeMilestones() {
+  const store = useStore();
+  const { factions } = store;
+  const sunFaction = factions['sun'];
+  const moonFaction = factions['moon'];
+
+  if (sunFaction.power > 0 && !store.milestones.sunUnlocked) {
+    store.milestones.sunUnlocked = true;
+    sunFaction.lore.push({
+      description: `The sun faction has been unlocked!`,
+      time: store.calendar,
+    });
+  }
+
+  if (moonFaction.power > 0 && !store.milestones.moonUnlocked) {
+    store.milestones.moonUnlocked = true;
+    moonFaction.lore.push({
+      description: `The moon faction has been unlocked!`,
+      time: store.calendar,
+    });
+  }
+
+  //sun power
+  if (sunFaction.power > 100 && !store.milestones.aurum100) {
+    store.milestones.aurum100 = true;
+    sunFaction.lore.push({
+      description: `The sun faction has reached 100 power!`,
+      time: store.calendar,
+    });
+  }
+
+  //moon power
+  if (moonFaction.power > 100 && !store.milestones.nocturne100) {
+    store.milestones.nocturne100 = true;
+    moonFaction.lore.push({
+      description: `The moon faction has reached 100 power!`,
+      time: store.calendar,
+    });
+  }
 }
 
 function unlockBuildings(factionKey: FactionKey) {
@@ -74,23 +118,7 @@ function computeFactionBuildings(factionKey: FactionKey, delta: number) {
     );
 
     const powerGain = powerIncrease * (delta / 1000);
-    faction.power += powerGain;
-    
-    if (faction.power > 100) {      
-      if (factionKey === 'sun' && !store.milestones.aurum100) {
-        store.milestones.aurum100 = true;
-        faction.lore.push({
-          description: `The sun faction has reached 100 power!`,
-          time: store.calendar,
-        });
-      } else if (factionKey === 'moon' && !store.milestones.nocturne100) {
-        store.milestones.nocturne100 = true;
-        faction.lore.push({
-          description: `The moon faction has reached 100 power!`,
-          time: store.calendar,
-        });
-      }
-    }
+    faction.power += powerGain;    
 
     emitter.emit('powerChanged', { faction: factionKey, power: faction.power });
   });
