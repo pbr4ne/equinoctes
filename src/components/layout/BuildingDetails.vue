@@ -7,7 +7,7 @@
       Power: {{ building?.power }} 
       <span 
         v-if="buildingPower !== building?.power" 
-        :style="{ color: buildingPower < (building?.power ?? 0) ? 'red' : 'green' }"
+        :class="{'power-lower': buildingPower < (building?.power ?? 0), 'power-higher': buildingPower > (building?.power ?? 0)}"
       >
         ({{ buildingPower }})
       </span>
@@ -47,5 +47,13 @@ const buildingPower = building ? computeBuildingPower(props.faction, building) :
 
 .building-moon {
   color: #caf0f8;
+}
+
+.power-lower {
+  color: red;
+}
+
+.power-higher {
+  color: green;
 }
 </style>
