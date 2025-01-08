@@ -64,15 +64,27 @@ function computeMilestones() {
       description: `The sun faction has reached 100 power!`,
       time: store.calendar,
     });
+    sunFaction.level = 3;
+  }
+
+  //sun power
+  if (sunFaction.power > 200 && !store.milestones.aurum200) {
+    store.milestones.aurum200 = true;
+    sunFaction.lore.push({
+      description: `The sun faction has reached 200 power!`,
+      time: store.calendar,
+    });
+    sunFaction.level = 4;
   }
 
   //moon power
-  if (moonFaction.power > 100 && !store.milestones.nocturne100) {
+  if (moonFaction.power > 5 && !store.milestones.nocturne100) {
     store.milestones.nocturne100 = true;
     moonFaction.lore.push({
       description: `The moon faction has reached 100 power!`,
       time: store.calendar,
     });
+    moonFaction.level = 3;
   }
 }
 

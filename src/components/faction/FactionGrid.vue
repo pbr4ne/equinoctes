@@ -88,7 +88,7 @@ const cells = computed(() => {
       cursorClass,
       isDisabled,
     };
-  });
+  }).slice(0, store.factions[props.faction].level * store.factions[props.faction].level);
 });
 
 function clickBuilding(building: Building) {
