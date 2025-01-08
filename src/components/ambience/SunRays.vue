@@ -34,10 +34,12 @@ const lineCount = computed(() => {
     case 2:
       return 0;
     case 3:
-      return 4;
+      return 0;
     case 4:
-      return 10;
+      return 6;
     case 5:
+      return 10;
+    case 6:
       return 30;
     default:
       return 0;

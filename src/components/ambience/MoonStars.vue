@@ -20,13 +20,13 @@ const store = useStore();
 const moonStarsContainer = ref<HTMLDivElement | null>(null);
 const starCount = computed(() => {
   switch (store.factions.moon.level) {
-    case 2:
-      return 0;
     case 3:
-      return 10;
+      return 0;
     case 4:
-      return 20;
+      return 10;
     case 5:
+      return 20;
+    case 6:
       return 100;
     default:
       return 0;

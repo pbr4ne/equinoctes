@@ -6,9 +6,9 @@ const initialState = (): GameState => ({
   calendar: { days: 0, hours: 0, minutes: 0, accumulatedTime: 0 },
   factions: {
     sun: {
-      level: 2,
+      level: 3,
       power: 0,
-      grid: ["sun-farming-1", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+      grid: [null, null, null, null, "sun-farming-1", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
       buildings: sunBuildings,
       selectedBuilding: null as Building | null,
       lore: [{
@@ -23,9 +23,9 @@ const initialState = (): GameState => ({
       }],
     },
     moon: {
-      level: 2,
+      level: 3,
       power: 0,
-      grid: ["moon-sustenance-1", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+      grid: [null, null, null, null, "moon-sustenance-1", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
       buildings: moonBuildings,
       selectedBuilding: null as Building | null,
       lore: [{
@@ -35,12 +35,18 @@ const initialState = (): GameState => ({
     },
   },
   milestones: {
-    sunUnlocked: false,
-    moonUnlocked: false,
-    aurum100: false,
-    aurum200: false,
-    nocturne100: false,
-    nocturne200: false,
+    sun: {
+      unlocked: false,
+      level4: false,
+      level5: false,
+      level6: false,
+    },
+    moon: {
+      unlocked: false,
+      level4: false,
+      level5: false,
+      level6: false,
+    },
   },
   fullDaySeconds: 30,
   currentlyDay: true,

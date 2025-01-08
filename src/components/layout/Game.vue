@@ -28,7 +28,7 @@ import { ArrowCircleRight24Regular } from '@vicons/fluent';
 const store = useStore();
 
 const isSmallScreen = ref(isSmallWindow());
-const unlockedFactions = computed(() => (store.milestones.moonUnlocked ? 2 : 1));
+const unlockedFactions = computed(() => (store.milestones.moon.unlocked ? 2 : 1));
 const visiblefactions = ref(unlockedFactions.value);
 const currentFaction = ref(store.currentlyDay ? 'sun' : 'moon');
 

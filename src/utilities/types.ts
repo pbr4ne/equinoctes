@@ -47,14 +47,10 @@ export interface Building {
 }
 
 export interface Milestones {
-  sunUnlocked: boolean;
-  moonUnlocked: boolean;
-  aurum100: boolean;
-  aurum200: boolean;
-  aurum300: boolean;
-  nocturne100: boolean;
-  nocturne200: boolean;
-  nocturne300: boolean;
+  unlocked: boolean;
+  level4: boolean;
+  level5: boolean;
+  level6: boolean;
 }
 
 export interface Faction {
@@ -72,7 +68,10 @@ export interface GameState {
       sun: Faction,
       moon: Faction,
   },
-  milestones: Milestones,
+  milestones: {
+    sun: Milestones,
+    moon: Milestones,
+  }
   fullDaySeconds: number,
   currentlyDay: boolean,
   speedMultiplier: number,
