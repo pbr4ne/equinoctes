@@ -1,8 +1,5 @@
 <template>
-  <div      
-    class="sun-rays-overlay"
-    ref="sunRayContainer"
-  >
+  <div class="sun-rays-overlay" ref="sunRayContainer">
     <svg
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
@@ -10,16 +7,12 @@
       height="100%"
     >
       <g>
-        <line
-          v-for="(l, i) in lines"
-          :key="i"
-          :x1="l.x"
-          y1="0"
-          :x2="l.x"
-          y2="120"
-          :stroke="l.color"
-          stroke-width="0.1"
-          :transform="`rotate(${l.angle}, ${l.x}, 0)`"
+        <SunRayLine
+          v-for="(line, index) in lines"
+          :key="line.id"
+          :x="line.x"
+          :angle="line.angle"
+          :color="line.color"
         />
       </g>
     </svg>
@@ -27,81 +20,77 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { gsap } from 'gsap';
+import { ref, computed, watch } from 'vue';
 import { useStore } from '../../composables/useStore';
+import SunRayLine from './SunRayLine.vue';
 
 const store = useStore();
-
 const sunRayContainer = ref<HTMLElement | null>(null);
-
-const lineCount = store.factions.sun.level * 5 - 10;
 const angleSpread = 90;
-const centerIndex = (lineCount - 1) / 2;
+let nextId = 0;
 
-const lines = ref(
-  [...Array(lineCount)].map((_, i) => {
-    const x = (i * 100) / (lineCount - 1);
+const lineCount = computed(() => store.factions.sun.level * 5 - 10);
 
-    //angles
-    const angleOffset = centerIndex - i;
-    const angle = (angleOffset * angleSpread) / (lineCount - 1);
+const lines = ref<
+  {
+    id: number;
+    x: number;
+    angle: number;
+    color: string;
+  }[]
+>([]);
 
-    //randomize colour
-    const randomHue = 55 + (Math.random() - 0.5) * 20;
-    const color = `hsl(${randomHue}, 100%, 50%)`;
+const createLine = (i: number, currentLineCount: number) => {
+  const x = (i * 100) / (currentLineCount - 1);
 
-    return { x, angle, color };
-  })
+  const centerIndex = (currentLineCount - 1) / 2;
+  const angleOffset = centerIndex - i;
+  const angle = (angleOffset * angleSpread) / (currentLineCount - 1);
+
+  const randomHue = 55 + (Math.random() - 0.5) * 20;
+  const color = `hsl(${randomHue}, 100%, 50%)`;
+
+  return {
+    id: nextId++,
+    x,
+    angle,
+    color,
+  };
+};
+
+const initializeLines = () => {
+  const count = lineCount.value;
+  lines.value = Array.from({ length: count }, (_, i) => createLine(i, count));
+};
+
+initializeLines();
+
+//watch for changes in the line count and adjust the lines array accordingly
+watch(
+  lineCount,
+  (newCount, oldCount) => {
+    if (newCount > oldCount) {
+      //add new lines
+      for (let i = oldCount; i < newCount; i++) {
+        lines.value.push(createLine(i, newCount));
+      }
+    } else if (newCount < oldCount) {
+      //remove excess lines
+      lines.value.splice(newCount, oldCount - newCount);
+    }
+  },
+  { immediate: false }
 );
-
-onMounted(() => {
-  if (sunRayContainer.value) {
-    const lineEls = sunRayContainer.value.querySelectorAll('line');
-    lineEls.forEach((line, index) => {
-      const totalLength = (line as SVGGeometryElement).getTotalLength();
-
-      const tl = gsap.timeline({ repeat: -1 });
-
-      tl.set(line, {
-        strokeDasharray: totalLength,
-        strokeDashoffset: totalLength,
-      });
-
-      const randomDelay = Math.random() * 3;
-
-      //draw line
-      tl.to(line, {
-        strokeDashoffset: 0,
-        duration: 5,
-        delay: randomDelay,
-        ease: 'power1.inOut',
-      });
-
-      //keep visible
-      tl.to(line, {
-        duration: 2,
-      });
-
-      //hide line
-      tl.to(line, {
-        strokeDashoffset: -totalLength,
-        duration: 5,
-        ease: 'power1.inOut',
-      });
-    });
-  }
-});
 </script>
 
 <style scoped>
 .sun-rays-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 500;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 500;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 </style>
