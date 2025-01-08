@@ -75,6 +75,7 @@ const iconComponent = computed(() => {
   if (!iconComponent) {
     return iconMap['Question24Filled'];
   }
+  return iconMap[iconName];
 });
 
 function handleMouseEnter() {

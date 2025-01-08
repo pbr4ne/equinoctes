@@ -5,13 +5,13 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
       id: 'sun-1',
       name: 'Sun Building 1',
       description: 'Sun Building 1 description',
-      icon: 'SunnfyOutline',
+      icon: 'SunnyOutline',
     },
     {
       id: 'sun-2',
       name: 'Sun Building 2',
       description: 'Sun Building 2 description',
-      icon: 'CloufdOutline',
+      icon: 'CloudOutline',
     },
     {
       id: 'sun-3',
