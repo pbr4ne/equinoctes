@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { computed, ref, watchEffect, watch } from 'vue';
 import { useStore } from '../../composables/useStore';
-import CelestialBody from './CelestialBody.vue';
+import CelestialBody from '../ambience/CelestialBody.vue';
 import Faction from './Faction.vue';
 import { ArrowCircleRight24Regular } from '@vicons/fluent';
 
