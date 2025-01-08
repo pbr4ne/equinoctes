@@ -44,6 +44,7 @@ const initialState = (): GameState => ({
   },
   fullDaySeconds: 30,
   currentlyDay: true,
+  speedMultiplier: 1,
 });
 
 export const useStore = defineStore('gameState', {
@@ -52,9 +53,23 @@ export const useStore = defineStore('gameState', {
   actions: {
     _gameLoopId: null as null | number,
 
+    initializeSpeedMultiplier() {
+      const urlSearchParams = new URLSearchParams(window.location.search);
+      if (urlSearchParams.get('SPEED')) {
+        const parsedMultiplier = parseFloat(urlSearchParams.get('SPEED')!);
+        if (!isNaN(parsedMultiplier) && parsedMultiplier > 0) {
+          this.speedMultiplier = parsedMultiplier;
+        } else {
+          console.warn(`Invalid SPEED parameter: ${urlSearchParams.get('SPEED')}. Using default multiplier of 1.`);
+        }
+      }
+    },
+
     updateTime(deltaTime: number) {
-      //1 day takes 30 seconds
-      const inGameMinutesPassed = deltaTime * (1440 / (this.fullDaySeconds * 1000));
+      const multiplier = this.speedMultiplier;
+
+      // 1 day takes `fullDaySeconds` real-world seconds
+      const inGameMinutesPassed = deltaTime * (1440 / (this.fullDaySeconds * 1000)) * multiplier;
 
       this.calendar.accumulatedTime = (this.calendar.accumulatedTime ?? 0) + inGameMinutesPassed;
       

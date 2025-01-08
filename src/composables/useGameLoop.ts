@@ -5,12 +5,13 @@ import { FactionKey } from '../utilities/types';
 
 export function startGameLoop() {
   const store = useStore();
+  store.initializeSpeedMultiplier();
 
   const TICK_RATE = 50;
-  let lastTick = Date.now();
+  let lastTick = performance.now();
 
   const gameLoop = () => {
-    const now = Date.now();
+    const now = performance.now();
     const delta = now - lastTick;
 
     if (delta >= TICK_RATE) {
@@ -116,15 +117,15 @@ function unlockBuildings(factionKey: FactionKey) {
   });
 }
 
-function computeFactionBuildings(factionKey: FactionKey, delta: number) {
+export function computeFactionBuildings(factionKey: FactionKey, delta: number) {
   const store = useStore();
   const { computeBuildingPower } = useBuildings();
-  const { factions } = store;
+  const { factions, speedMultiplier, currentlyDay } = store;
 
   //disable during off-time
-  if (factionKey === 'sun' && !store.currentlyDay) {
+  if (factionKey === 'sun' && !currentlyDay) {
     return;
-  } else if (factionKey === 'moon' && store.currentlyDay) {
+  } else if (factionKey === 'moon' && currentlyDay) {
     return;
   }
 
@@ -133,12 +134,9 @@ function computeFactionBuildings(factionKey: FactionKey, delta: number) {
     const building = faction.buildings.find((b) => b.id === buildingId);
     if (!building) return;
 
-    const powerIncrease = computeBuildingPower(
-      factionKey,
-      building,
-    );
+    const powerIncrease = computeBuildingPower(factionKey, building);
 
-    const powerGain = powerIncrease * (delta / 1000);
+    const powerGain = powerIncrease * (delta / 1000) * speedMultiplier;
     faction.power += powerGain;    
 
     emitter.emit('powerChanged', { faction: factionKey, power: faction.power });
