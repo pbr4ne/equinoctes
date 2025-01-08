@@ -7,18 +7,21 @@
       No free slots in the grid
     </span>
     <span v-else>
-      {{ singleBuildingMetadata?.name }}
       {{ singleBuildingMetadata?.description }}
       <br />
-      Power: {{ building?.power }} 
+      {{ faction === 'sun' ? 'Aurum/s:' : 'Nocturne/s' }} {{ building?.power }} 
       <span 
         v-if="buildingPower !== building?.power" 
         :class="{'power-lower': buildingPower < (building?.power ?? 0), 'power-higher': buildingPower > (building?.power ?? 0)}"
       >
         ({{ buildingPower }})
       </span>
+      <span v-if="parent === 'buildings'">
+        <br />
+        Cost: {{ building?.buildPrerequisite?.power }} {{ faction === 'sun' ? 'Aurum' : 'Nocturne' }}
+      </span>
     </span>
-  </span>
+  </span>   
 </template>
 
 <script setup lang="ts">
