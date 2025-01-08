@@ -1,74 +1,138 @@
 <template>
   <div class="celestial-container" style="z-index: 9999;">
-    <img :src="currentIcon" alt="sun" class="celestial" ref="celestial"/>
+    <img :src="currentIcon" alt="celestial body" class="celestial" ref="celestial" />
   </div>
 </template>
   
 <script setup lang="ts">
-  import sunSvg from '@/assets/sun.svg';
-  import moonSvg from '@/assets/moon.svg';
-  import { onMounted, ref } from 'vue';
-  import { gsap } from 'gsap';
-  import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
-  import { useStore } from '../../composables/useStore';
+import { onMounted, onBeforeUnmount, ref, watch } from 'vue';
+import sunSvg from '@/assets/sun.svg';
+import moonSvg from '@/assets/moon.svg';
+import { gsap } from 'gsap';
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { useStore } from '../../composables/useStore';
 
-  gsap.registerPlugin(MotionPathPlugin);
+gsap.registerPlugin(MotionPathPlugin);
 
-  const store = useStore();
-  const celestial = ref<HTMLImageElement | null>(null);
-  const currentIcon = ref(sunSvg);
-  const isMoonVisible = ref(false);
-  const lastX = ref(0);
-  const dayDuration = store.fullDaySeconds;
+const store = useStore();
+const celestial = ref<HTMLImageElement | null>(null);
+const currentIcon = ref(sunSvg);
+const isMoonVisible = ref(false);
+const lastX = ref(0);
+const dayDuration = ref(store.fullDaySeconds / store.speedMultiplier);
 
-  onMounted(() => {
-    const path = `
-      M -100,200
-      C ${window.innerWidth / 4},0,
-        ${(window.innerWidth * 3) / 4},0,
-        ${window.innerWidth},200
-    `;
+let animation: gsap.core.Tween | null = null;
 
-    gsap.to(celestial.value, {
-      duration: dayDuration,
-      repeat: -1,
-      ease: 'power1.inOut',
-      motionPath: {
-        path: path,
-        autoRotate: false,
-      },
-      onUpdate: () => {
-        const celestialX = Number(gsap.getProperty(celestial.value, "x"));
+const screenResized = ref(false);
 
-        if (store.currentlyDay) {
-          currentIcon.value = sunSvg;
-          isMoonVisible.value = false;
-        } else {
-          currentIcon.value = moonSvg;
-          isMoonVisible.value = true;
-        }
+const createMotionPath = () => {
+  return `
+    M -100,200
+    C ${window.innerWidth / 4},0,
+      ${(window.innerWidth * 3) / 4},0,
+      ${window.innerWidth},200
+  `;
+};
 
-        lastX.value = celestialX;
-      },
-    });
+const startAnimation = () => {
+  const path = createMotionPath();
+
+  animation = gsap.to(celestial.value, {
+    duration: dayDuration.value,
+    repeat: -1,
+    ease: 'power1.inOut',
+    motionPath: {
+      path: path,
+      autoRotate: false,
+    },
+    onUpdate: () => {
+      const celestialX = Number(gsap.getProperty(celestial.value, 'x'));
+
+      if (store.currentlyDay) {
+        currentIcon.value = sunSvg;
+        isMoonVisible.value = false;
+      } else {
+        currentIcon.value = moonSvg;
+        isMoonVisible.value = true;
+      }
+
+      lastX.value = celestialX;
+    },
   });
-  </script>
-  
-  <style scoped>
-  .celestial-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 200px;
-    pointer-events: none;
-    z-index: 10;
+};
+
+const handleResize = () => {
+  screenResized.value = true;
+};
+
+onMounted(() => {
+  startAnimation();
+
+  window.addEventListener('resize', handleResize);
+});
+
+watch(
+  () => store.currentlyDay,
+  (newVal, oldVal) => {
+    if (screenResized.value && celestial.value && animation) {
+      animation.kill();
+
+      dayDuration.value = store.fullDaySeconds / store.speedMultiplier;
+
+      const newPath = createMotionPath();
+
+      animation = gsap.to(celestial.value, {
+        duration: dayDuration.value,
+        repeat: -1,
+        ease: 'power1.inOut',
+        motionPath: {
+          path: newPath,
+          autoRotate: false,
+        },
+        onUpdate: () => {
+          const celestialX = Number(gsap.getProperty(celestial.value, 'x'));
+
+          if (store.currentlyDay) {
+            currentIcon.value = sunSvg;
+            isMoonVisible.value = false;
+          } else {
+            currentIcon.value = moonSvg;
+            isMoonVisible.value = true;
+          }
+
+          lastX.value = celestialX;
+        },
+      });
+
+      screenResized.value = false;
+    }
   }
-  
-  .celestial {
-    position: absolute;
-    width: 64px;
-    height: 64px;
+);
+
+onBeforeUnmount(() => {
+  //cleanup
+  if (animation) {
+    animation.kill();
   }
-  </style>
+
+  window.removeEventListener('resize', handleResize);
+});
+</script>
   
+<style scoped>
+.celestial-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.celestial {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+}
+</style>
