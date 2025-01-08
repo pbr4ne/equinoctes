@@ -3,7 +3,7 @@
     :class="[
       'grid-cell',
       `grid-cell-${faction}`,
-      cell.adjacencyModifier !== null ? 'adjacency-highlight' : '',
+      !cell.isDisabled && cell.adjacencyModifier !== null ? 'adjacency-highlight' : '',
       cell.isDimmed ? 'dim-building' : '',
       cell.isHighlightEmpty ? 'highlight-empty' : '',
       cell.isDisabled ? 'cursor-not-allowed' : cell.cursorClass,
@@ -32,13 +32,13 @@
       class="adj-icon"
     >
       <component
-        :is="getArrowIcon(cell.adjacencyModifier)"
+        :is="!cell.isDisabled && getArrowIcon(cell.adjacencyModifier)"
         :style="{ color: getArrowColor(cell.adjacencyModifier) }"
       />
     </div>
   </div>
 </template>
-  
+
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import type { Building, FactionKey } from '../../utilities/types'
