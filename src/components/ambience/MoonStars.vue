@@ -18,7 +18,21 @@ import MoonStar from './MoonStar.vue';
 
 const store = useStore();
 const moonStarsContainer = ref<HTMLDivElement | null>(null);
-const starCount = computed(() => store.factions.moon.level * 20 - 40);
+const starCount = computed(() => {
+  switch (store.factions.moon.level) {
+    case 2:
+      return 0;
+    case 3:
+      return 10;
+    case 4:
+      return 20;
+    case 5:
+      return 100;
+    default:
+      return 0;
+  }
+});
+
 let nextId = 0;
 
 const stars = ref<

@@ -29,7 +29,20 @@ const sunRayContainer = ref<HTMLElement | null>(null);
 const angleSpread = 90;
 let nextId = 0;
 
-const lineCount = computed(() => store.factions.sun.level * 5 - 10);
+const lineCount = computed(() => {
+  switch (store.factions.sun.level) {
+    case 2:
+      return 0;
+    case 3:
+      return 4;
+    case 4:
+      return 10;
+    case 5:
+      return 30;
+    default:
+      return 0;
+  }
+});
 
 const lines = ref<
   {
@@ -45,7 +58,9 @@ const createLine = (i: number, currentLineCount: number) => {
 
   const centerIndex = (currentLineCount - 1) / 2;
   const angleOffset = centerIndex - i;
-  const angle = (angleOffset * angleSpread) / (currentLineCount - 1);
+  
+  const randomAdjustment = (Math.random() - 0.5) * 5;
+  const angle = (angleOffset * angleSpread) / (currentLineCount - 1) + randomAdjustment;
 
   const randomHue = 55 + (Math.random() - 0.5) * 20;
   const color = `hsl(${randomHue}, 100%, 50%)`;
