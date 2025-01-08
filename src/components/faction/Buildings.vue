@@ -8,7 +8,7 @@
           @click="buyBuilding(building)"
           @mouseenter="onBuildingEnter(building, index)"
           @mouseleave="onBuildingLeave"
-          :disabled="store.currentlyDay && props.faction !== 'sun' || !store.currentlyDay && props.faction !== 'moon' || !canBuyBuilding(building)"
+          :disabled="!canBuyBuilding(building)"
         >
           <n-icon>
             <component
@@ -55,6 +55,14 @@ const getIcon = (building: Building) => {
 }
 
 const canBuyBuilding = (building: Building) => {
+  if (store.currentlyDay && props.faction !== 'sun' || !store.currentlyDay && props.faction !== 'moon') {
+    return false;
+  }
+
+  if (!store.factions[props.faction].grid.slice(0, store.factions[props.faction].level * store.factions[props.faction].level).some((slot) => slot === null)) {
+    return false;
+  }
+
   if (building.buildPrerequisite.power) {
     return store.factions[props.faction].power >= building.buildPrerequisite.power;
   }

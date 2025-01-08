@@ -98,11 +98,11 @@ const loreCount = computed(() => {
 });
 
 const components = [
-  { sunLabel: 'Heliotropolis', moonLabel: 'Cynthas City', icon: markRaw(Grid28Regular), component: markRaw(FactionGrid), props },
-  { sunLabel: 'Wonders', moonLabel: 'Endeavours', icon: markRaw(BuildingLighthouse20Regular), component: markRaw(Buildings), props },
-  { sunLabel: 'Revelations', moonLabel: 'Mysterium', icon: markRaw(Notebook), component: markRaw(Lore), props },
-  { sunLabel: 'Milestones', moonLabel: 'Milestones', icon: markRaw(CrownOutlined), component: markRaw(Achievements), props },
-  { sunLabel: 'Options', moonLabel: 'Options', icon: markRaw(Options24Regular), component: markRaw(Options), props },
+  { id: 'city', sunLabel: 'Heliotropolis', moonLabel: 'Cynthas City', icon: markRaw(Grid28Regular), component: markRaw(FactionGrid), props },
+  { id: 'buildings', sunLabel: 'Wonders', moonLabel: 'Endeavours', icon: markRaw(BuildingLighthouse20Regular), component: markRaw(Buildings), props },
+  { id: 'lore', sunLabel: 'Revelations', moonLabel: 'Mysterium', icon: markRaw(Notebook), component: markRaw(Lore), props },
+  { id: 'milestones', sunLabel: 'Milestones', moonLabel: 'Milestones', icon: markRaw(CrownOutlined), component: markRaw(Achievements), props },
+  { id: 'options', sunLabel: 'Options', moonLabel: 'Options', icon: markRaw(Options24Regular), component: markRaw(Options), props },
 ];
 
 const currentComponentIndex = ref(0);
@@ -114,7 +114,7 @@ const headerProps = computed(() => {
   if (currentHeader.value === Power) {
     return { faction: props.faction };
   } else if (currentHeader.value === BuildingDetails) {
-    return { faction: props.faction, building: currentBuilding.value };
+    return { faction: props.faction, building: currentBuilding.value, parent: currentComponent.value.id };
   } else {
     return { faction: props.faction };
   }

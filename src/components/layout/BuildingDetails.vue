@@ -1,6 +1,12 @@
 <template>
   <span :class="['building', `building-${faction}`]">
-    <span v-if="store.currentlyDay && props.faction === 'sun' || !store.currentlyDay && props.faction === 'moon'">
+    <span v-if="isOffTime()">
+      Cannot interact during the {{ store.currentlyDay ? 'day' : 'night' }}
+    </span>
+    <span v-else-if="noSlots()">
+      No free slots in the grid
+    </span>
+    <span v-else>
       {{ singleBuildingMetadata?.name }}
       {{ singleBuildingMetadata?.description }}
       <br />
@@ -12,9 +18,6 @@
         ({{ buildingPower }})
       </span>
     </span>
-    <span v-else>
-      Cannot interact during the {{ store.currentlyDay ? 'day' : 'night' }}
-    </span>
   </span>
 </template>
 
@@ -25,7 +28,7 @@ import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/use
 import { useStore } from '../../composables/useStore';
 import type { FactionKey } from '../../utilities/types';
 
-const props = defineProps<{ faction: FactionKey, building: string }>();
+const props = defineProps<{ faction: FactionKey, building: string, parent: string }>();
 const store = useStore();
 
 const building = store.factions[props.faction].buildings.find((b) => b.id === props.building);
@@ -35,6 +38,14 @@ const singleBuildingMetadata = buildingMetadata.find((b) => b.id === props.build
 const { computeBuildingPower } = useBuildings();
 
 const buildingPower = building ? computeBuildingPower(props.faction, building) : 0;
+
+const isOffTime = () => {
+  return store.currentlyDay ? props.faction !== 'sun' : props.faction !== 'moon';
+}
+
+const noSlots = () => {
+  return props.parent === 'buildings' && !store.factions[props.faction].grid.slice(0, store.factions[props.faction].level * store.factions[props.faction].level).some((slot) => slot === null);
+}
 </script>
 
 <style scoped>
