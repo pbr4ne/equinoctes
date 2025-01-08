@@ -28,7 +28,7 @@ import { emitter } from '../../utilities/emitter';
 import { useStore } from '../../composables/useStore';
 import { Building, FactionKey, iconMap } from '../../utilities/types';
 
-const props = defineProps<{ faction: FactionKey }>()
+const props = defineProps<{ faction: FactionKey }>();
 const store = useStore();
 const visibleBuildings = computed(() => 
   store.factions[props.faction].buildings.filter((building) => 
