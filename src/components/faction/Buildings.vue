@@ -12,11 +12,11 @@
         >
           <n-icon>
             <component
-              :is="iconMap[building.icon]"
+              :is="getIcon(building)"
               :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
             />
           </n-icon>
-          <span style="padding-left: 10px;"> {{building.name}}</span>
+          <span style="padding-left: 10px;"> {{getBuildingMetadata(building).name}}</span>
         </n-button>
     </n-space>
   </n-scrollbar>
@@ -26,16 +26,41 @@
 import { computed } from 'vue';
 import { emitter } from '../../utilities/emitter';
 import { useStore } from '../../composables/useStore';
-import { Building, FactionKey, iconMap } from '../../utilities/types';
+import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
+import { Building, BuildingMetadata, FactionKey, iconMap } from '../../utilities/types';
 
 const props = defineProps<{ faction: FactionKey }>();
 const store = useStore();
+const buildingMetadata = props.faction === 'sun' ? sunBuildingMetadata : moonBuildingMetadata;
 const visibleBuildings = computed(() => 
   store.factions[props.faction].buildings.filter((building) => 
     !store.factions[props.faction].grid.includes(building.id)).filter((building) => 
       building.viewUnlocked
     )
   );
+
+const getBuildingMetadata = (building: Building) => {
+  
+  const metaBuild = buildingMetadata.find((b) => b.id === building.id);
+  if (!metaBuild) {
+    console.error(`No metadata found for building ${building.id}`);
+    return {} as BuildingMetadata;
+  }
+  return metaBuild;
+}
+
+const getIcon = (building: Building) => {
+  const metaBuild = getBuildingMetadata(building);
+  const iconName = metaBuild?.icon;
+  
+  const iconComponent = iconMap[iconName];
+
+  if (!iconComponent) {
+    return iconMap['Question24Filled'];
+  }
+  
+  return iconComponent;
+}
 
 const canBuyBuilding = (building: Building) => {
   if (building.buildPrerequisite.power) {

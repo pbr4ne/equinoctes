@@ -1,28 +1,30 @@
 import { 
-    SunnyOutline, 
-    CloudOutline, 
-    MoonOutline, 
-    StarOutline 
+  SunnyOutline, 
+  CloudOutline, 
+  MoonOutline, 
+  StarOutline 
 } from '@vicons/ionicons5';
 
 import { 
-    Aperture,
-    Api,
-    DewPoint,
+  Aperture,
+  Api,
+  DewPoint,
 } from '@vicons/carbon';
 
 import {
-    ArchitectureOutlined,
+  ArchitectureOutlined,
 } from '@vicons/material';
 
 import {
-    Bed24Regular,
-    PuzzleCube24Regular,
+  Question24Filled,
+  Bed24Regular,
+  PuzzleCube24Regular,
 } from '@vicons/fluent';
 
 export type IconComponent = typeof SunnyOutline;
 
 export const iconMap: Record<string, IconComponent> = {
+  Question24Filled,
   SunnyOutline,
   CloudOutline,
   MoonOutline,
@@ -38,68 +40,72 @@ export const iconMap: Record<string, IconComponent> = {
 export type FactionKey = 'sun' | 'moon';
 
 export interface Calendar {
-    days: number;
-    hours: number;
-    minutes: number;
-    accumulatedTime?: number;
+  days: number;
+  hours: number;
+  minutes: number;
+  accumulatedTime?: number;
 }
 
 export interface LoreEntry {
-    description: string;
-    time: Calendar;
-    read?: boolean;
+  description: string;
+  time: Calendar;
+  read?: boolean;
 }
 
 export interface AdjacencyOffset {
-    dx: number;
-    dy: number;
-    modifier: number;
+  dx: number;
+  dy: number;
+  modifier: number;
 }
 
 export interface BuildingPrerequisite {
-    power?: number;
-    buildings?: string[];
-    level?: number;
+  power?: number;
+  buildings?: string[];
+  level?: number;
+}
+
+export interface BuildingMetadata {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
 }
 
 export interface Building {
-    id: string;
-    name: string;
-    description: string;
-    icon: string;
-    power: number;
-    unlocked: boolean;
-    index: number | null;
-    viewPrerequisite: BuildingPrerequisite,
-    buildPrerequisite: BuildingPrerequisite,
-    viewUnlocked?: boolean;
-    buildUnlocked?: boolean;
-    adjacency?: AdjacencyOffset[];
+  id: string;
+  power: number;
+  unlocked: boolean;
+  index: number | null;
+  viewPrerequisite: BuildingPrerequisite,
+  buildPrerequisite: BuildingPrerequisite,
+  viewUnlocked?: boolean;
+  buildUnlocked?: boolean;
+  adjacency?: AdjacencyOffset[];
 }
 
 export interface Milestones {
-    sunUnlocked: boolean;
-    moonUnlocked: boolean;
-    aurum100: boolean;
-    nocturne100: boolean;
+  sunUnlocked: boolean;
+  moonUnlocked: boolean;
+  aurum100: boolean;
+  nocturne100: boolean;
 }
 
 export interface Faction {
-    level: number;
-    power: number;
-    grid: (string | null)[];
-    buildings: Building[];
-    selectedBuilding: Building | null;
-    lore: LoreEntry[];
+  level: number;
+  power: number;
+  grid: (string | null)[];
+  buildings: Building[];
+  selectedBuilding: Building | null;
+  lore: LoreEntry[];
 }
 
 export interface GameState {
-    calendar: Calendar;
-    factions: {
-        sun: Faction,
-        moon: Faction,
-    },
-    milestones: Milestones,
-    fullDaySeconds: number,
-    currentlyDay: boolean,
+  calendar: Calendar;
+  factions: {
+      sun: Faction,
+      moon: Faction,
+  },
+  milestones: Milestones,
+  fullDaySeconds: number,
+  currentlyDay: boolean,
 }

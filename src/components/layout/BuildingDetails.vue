@@ -1,8 +1,8 @@
 <template>
   <span :class="['building', `building-${faction}`]">
     <span v-if="store.currentlyDay && props.faction === 'sun' || !store.currentlyDay && props.faction === 'moon'">
-      {{ building?.name }}
-      {{ building?.description }}
+      {{ singleBuildingMetadata?.name }}
+      {{ singleBuildingMetadata?.description }}
       <br />
       Power: {{ building?.power }} 
       <span 
@@ -21,6 +21,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import { useBuildings } from '../../composables/useBuildings';
+import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
 import { useStore } from '../../composables/useStore';
 import type { FactionKey } from '../../utilities/types';
 
@@ -28,6 +29,8 @@ const props = defineProps<{ faction: FactionKey, building: string }>();
 const store = useStore();
 
 const building = store.factions[props.faction].buildings.find((b) => b.id === props.building);
+const buildingMetadata = props.faction === 'sun' ? sunBuildingMetadata : moonBuildingMetadata;
+const singleBuildingMetadata = buildingMetadata.find((b) => b.id === props.building);
 
 const { computeBuildingPower } = useBuildings();
 

@@ -51,9 +51,6 @@ function getXY(index: number, cols: number) {
 export const sunBuildings: Building[] = [
   {
     id: 'sun-1',
-    name: 'Sun Building 1',
-    description: 'Sun Building 1 description',
-    icon: 'SunnyOutline',
     power: 1,
     unlocked: true,
     index: 0,
@@ -64,9 +61,6 @@ export const sunBuildings: Building[] = [
   },
   {
     id: 'sun-2',
-    name: 'Sun Building 2',
-    description: 'Sun Building 2 description',
-    icon: 'CloudOutline',
     power: 2,
     unlocked: true,
     index: null,
@@ -83,9 +77,6 @@ export const sunBuildings: Building[] = [
   },
   {
     id: 'sun-3',
-    name: 'Sun Building 3',
-    description: 'Sun Building 3 description',
-    icon: 'Aperture',
     power: 3,
     unlocked: true,
     index: null,
@@ -105,9 +96,6 @@ export const sunBuildings: Building[] = [
   },
   {
     id: 'sun-4',
-    name: 'Sun Building 4',
-    description: 'Sun Building 4 description',
-    icon: 'Api',
     power: 4,
     unlocked: true,
     index: null,
@@ -120,9 +108,6 @@ export const sunBuildings: Building[] = [
   },
   {
     id: 'sun-5',
-    name: 'Sun Building 5',
-    description: 'Sun Building 5 description',
-    icon: 'ArchitectureOutlined',
     power: 5,
     unlocked: true,
     index: null,
@@ -138,10 +123,7 @@ export const sunBuildings: Building[] = [
 export const moonBuildings: Building[] = [
   {
     id: 'moon-1',
-    name: 'Moon Building 1',
-    description: 'Moon Building 1 description',
     power: 1,
-    icon: 'MoonOutline',
     unlocked: true,
     index: 0,
     viewPrerequisite: {},
@@ -149,10 +131,7 @@ export const moonBuildings: Building[] = [
   },
   {
     id: 'moon-2',
-    name: 'Moon Building 2',
-    description: 'Moon Building 2 description',
     power: 2,
-    icon: 'StarOutline',
     unlocked: true,
     index: null,
     viewPrerequisite: {},
@@ -170,10 +149,7 @@ export const moonBuildings: Building[] = [
   },
   {
     id: 'moon-3',
-    name: 'Moon Building 3',
-    description: 'Moon Building 3 description',
     power: 3,
-    icon: 'Bed24Regular',
     unlocked: true,
     index: null,
     viewPrerequisite: {},
@@ -187,10 +163,7 @@ export const moonBuildings: Building[] = [
   },
   {
     id: 'moon-4',
-    name: 'Moon Building 4',
-    description: 'Moon Building 4 description',
     power: 4,
-    icon: 'PuzzleCube24Regular',
     unlocked: true,
     index: null,
     viewPrerequisite: {},
@@ -198,10 +171,7 @@ export const moonBuildings: Building[] = [
   },
   {
     id: 'moon-5',
-    name: 'Moon Building 5',
-    description: 'Moon Building 5 description',
     power: 5,
-    icon: 'DewPoint',
     unlocked: true,
     index: null,
     viewPrerequisite: {},

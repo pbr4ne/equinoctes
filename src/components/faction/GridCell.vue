@@ -42,6 +42,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import type { Building, FactionKey } from '../../utilities/types'
+import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
 import { ArrowBigTop, ArrowBigUpLine, ArrowBigUpLines, ArrowBigDown, ArrowBigDownLine, ArrowBigDownLines } from '@vicons/tabler'
 import { iconMap } from '../../utilities/types'
 
@@ -61,10 +62,19 @@ const props = defineProps<{
 const emits = defineEmits(['clickBuilding', 'clickEmpty', 'enterBuilding', 'leaveBuilding']);
 
 const hovered = ref(false);
+const buildingMetadata = props.faction === 'sun' ? sunBuildingMetadata : moonBuildingMetadata;
 
 const iconComponent = computed(() => {
   if (!props.cell.building) return null
-  return iconMap[props.cell.building.icon] || null
+  const building = props.cell.building;
+  const iconName = buildingMetadata.find((b) => b.id === building.id)?.icon;
+  if (!iconName) {
+    return iconMap['Question24Filled'];
+  }
+  const iconComponent = iconMap[iconName];
+  if (!iconComponent) {
+    return iconMap['Question24Filled'];
+  }
 });
 
 function handleMouseEnter() {
