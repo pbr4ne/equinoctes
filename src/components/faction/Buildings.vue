@@ -26,18 +26,24 @@
 import { computed } from 'vue';
 import { emitter } from '../../utilities/emitter';
 import { useStore } from '../../composables/useStore';
+import { sunBuildings, moonBuildings } from '../../composables/useBuildings';
 import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
 import { Building, BuildingMetadata, FactionKey } from '../../utilities/types';
 
 const props = defineProps<{ faction: FactionKey }>();
 const store = useStore();
+const buildingData = props.faction === 'sun' ? sunBuildings : moonBuildings;
 const buildingMetadata = props.faction === 'sun' ? sunBuildingMetadata : moonBuildingMetadata;
 const visibleBuildings = computed(() => 
-  store.factions[props.faction].buildings.filter((building) => 
-    !store.factions[props.faction].grid.includes(building.id)).filter((building) => 
+  store.factions[props.faction].buildings
+    .filter((building) => 
+      !store.factions[props.faction].grid.includes(building.id)
+    )
+    .filter((building) => 
       building.viewUnlocked
     )
-  );
+    .sort((a, b) => buildingData.filter((b) => b.id === a.id)[0].power - buildingData.filter((c) => c.id === b.id)[0].power)
+);
 
 const getBuildingMetadata = (building: Building) => {
   
