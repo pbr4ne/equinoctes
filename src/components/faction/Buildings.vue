@@ -27,7 +27,7 @@ import { computed } from 'vue';
 import { emitter } from '../../utilities/emitter';
 import { useStore } from '../../composables/useStore';
 import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
-import { Building, BuildingMetadata, FactionKey, iconMap } from '../../utilities/types';
+import { Building, BuildingMetadata, FactionKey } from '../../utilities/types';
 
 const props = defineProps<{ faction: FactionKey }>();
 const store = useStore();
@@ -51,15 +51,7 @@ const getBuildingMetadata = (building: Building) => {
 
 const getIcon = (building: Building) => {
   const metaBuild = getBuildingMetadata(building);
-  const iconName = metaBuild?.icon;
-  
-  const iconComponent = iconMap[iconName];
-
-  if (!iconComponent) {
-    return iconMap['Question24Filled'];
-  }
-  
-  return iconComponent;
+  return metaBuild?.icon;
 }
 
 const canBuyBuilding = (building: Building) => {

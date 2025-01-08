@@ -1,41 +1,4 @@
-import { 
-  SunnyOutline, 
-  CloudOutline, 
-  MoonOutline, 
-  StarOutline 
-} from '@vicons/ionicons5';
-
-import { 
-  Aperture,
-  Api,
-  DewPoint,
-} from '@vicons/carbon';
-
-import {
-  ArchitectureOutlined,
-} from '@vicons/material';
-
-import {
-  Question24Filled,
-  Bed24Regular,
-  PuzzleCube24Regular,
-} from '@vicons/fluent';
-
-export type IconComponent = typeof SunnyOutline;
-
-export const iconMap: Record<string, IconComponent> = {
-  Question24Filled,
-  SunnyOutline,
-  CloudOutline,
-  MoonOutline,
-  StarOutline,
-  Aperture,
-  Api,
-  ArchitectureOutlined,
-  Bed24Regular,
-  PuzzleCube24Regular,
-  DewPoint,
-};
+import { DefineComponent } from "vue";
 
 export type FactionKey = 'sun' | 'moon';
 
@@ -68,7 +31,7 @@ export interface BuildingMetadata {
   id: string;
   name: string;
   description: string;
-  icon: string;
+  icon: DefineComponent;
 }
 
 export interface Building {

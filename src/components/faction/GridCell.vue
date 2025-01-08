@@ -44,7 +44,6 @@ import { ref, computed } from 'vue'
 import type { Building, FactionKey } from '../../utilities/types'
 import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
 import { ArrowBigTop, ArrowBigUpLine, ArrowBigUpLines, ArrowBigDown, ArrowBigDownLine, ArrowBigDownLines } from '@vicons/tabler'
-import { iconMap } from '../../utilities/types'
 
 const props = defineProps<{
   faction: FactionKey,
@@ -67,15 +66,7 @@ const buildingMetadata = props.faction === 'sun' ? sunBuildingMetadata : moonBui
 const iconComponent = computed(() => {
   if (!props.cell.building) return null
   const building = props.cell.building;
-  const iconName = buildingMetadata.find((b) => b.id === building.id)?.icon;
-  if (!iconName) {
-    return iconMap['Question24Filled'];
-  }
-  const iconComponent = iconMap[iconName];
-  if (!iconComponent) {
-    return iconMap['Question24Filled'];
-  }
-  return iconMap[iconName];
+  return buildingMetadata.find((b) => b.id === building.id)?.icon;
 });
 
 function handleMouseEnter() {
