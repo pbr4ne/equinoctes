@@ -78,13 +78,23 @@ function computeMilestones() {
   }
 
   //moon power
-  if (moonFaction.power > 5 && !store.milestones.nocturne100) {
+  if (moonFaction.power > 100 && !store.milestones.nocturne100) {
     store.milestones.nocturne100 = true;
     moonFaction.lore.push({
       description: `The moon faction has reached 100 power!`,
       time: store.calendar,
     });
     moonFaction.level = 3;
+  }
+
+  //moon power
+  if (moonFaction.power > 200 && !store.milestones.nocturne200) {
+    store.milestones.nocturne200 = true;
+    moonFaction.lore.push({
+      description: `The moon faction has reached 200 power!`,
+      time: store.calendar,
+    });
+    moonFaction.level = 4;
   }
 }
 
