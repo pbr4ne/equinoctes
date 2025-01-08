@@ -51,8 +51,10 @@ export interface Milestones {
   moonUnlocked: boolean;
   aurum100: boolean;
   aurum200: boolean;
+  aurum300: boolean;
   nocturne100: boolean;
   nocturne200: boolean;
+  nocturne300: boolean;
 }
 
 export interface Faction {
