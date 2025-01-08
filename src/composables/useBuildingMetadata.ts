@@ -24,68 +24,385 @@ import {
 import { DefineComponent } from 'vue';
 
 export const sunBuildingMetadata: BuildingMetadata[] = [
-    {
-      id: 'sun-1',
-      name: 'Sun Building 1',
-      description: 'Sun Building 1 description',
-      icon: SunnyOutline as DefineComponent,
-    },
-    {
-      id: 'sun-2',
-      name: 'Sun Building 2',
-      description: 'Sun Building 2 description',
-      icon: CloudOutline as DefineComponent,
-    },
-    {
-      id: 'sun-3',
-      name: 'Sun Building 3',
-      description: 'Sun Building 3 description',
-      icon: Aperture as DefineComponent,
-    },
-    {
-      id: 'sun-4',
-      name: 'Sun Building 4',
-      description: 'Sun Building 4 description',
-      icon: Api as DefineComponent,
-    },
-    {
-      id: 'sun-5',
-      name: 'Sun Building 5',
-      description: 'Sun Building 5 description',
-      icon: ArchitectureOutlined as DefineComponent,
-    }
-  ];
+  // ─────────────────────────────────────────────────────────────────────────────
+  // FARMING
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'sun-farming-1',
+    name: 'Golden Fields',
+    description: 'Golden Fields description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-farming-2',
+    name: 'Glasshouse',
+    description: 'Glasshouse description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-farming-3',
+    name: 'Arboretum',
+    description: 'Arboretum description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-farming-4',
+    name: 'Solarium',
+    description: 'Solarium description',
+    icon: Question24Filled as DefineComponent,
+  },
+  // ─────────────────────────────────────────────────────────────────────────────
+  // PRODUCTION
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'sun-production-1',
+    name: 'Earthen Factory',
+    description: 'Earthen Factory description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-production-2',
+    name: 'Gasworks',
+    description: 'Gasworks description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-production-3',
+    name: 'Infernal Forge',
+    description: 'Infernal Forge description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-production-4',
+    name: 'Solar Foundry',
+    description: 'Solar Foundry description',
+    icon: Question24Filled as DefineComponent,
+  },
+  // ─────────────────────────────────────────────────────────────────────────────
+  // RELIGION
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'sun-religion-1',
+    name: 'Glowing Shrine',
+    description: 'Glowing Shrine description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-religion-2',
+    name: 'Radiant Obelisk',
+    description: 'Radiant Obelisk description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-religion-3',
+    name: 'Sunspire Temple',
+    description: 'Sunspire Temple description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-religion-4',
+    name: 'Zenith Chancery',
+    description: 'Zenith Chancery description',
+    icon: Question24Filled as DefineComponent,
+  },
+  // ─────────────────────────────────────────────────────────────────────────────
+  // ENTERTAINMENT
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'sun-entertainment-1',
+    name: 'Desert Zoo',
+    description: 'Desert Zoo description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-entertainment-2',
+    name: 'Sunlit Ampitheatre',
+    description: 'Sunlit Ampitheatre description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-entertainment-3',
+    name: 'Hippodrome',
+    description: 'Hippodrome description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-entertainment-4',
+    name: 'Circus of Lights',
+    description: 'Circus of Lights description',
+    icon: Question24Filled as DefineComponent,
+  },
+  // ─────────────────────────────────────────────────────────────────────────────
+  // EDUCATION
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'sun-education-1',
+    name: 'Sundial',
+    description: 'Sundial description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-education-2',
+    name: 'Children\'s Creche',
+    description: 'Children\'s Creche description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-education-3',
+    name: 'School of Industry',
+    description: 'School of Industry description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-education-4',
+    name: 'Luminary College',
+    description: 'Luminary College description',
+    icon: Question24Filled as DefineComponent,
+  },
+  // ─────────────────────────────────────────────────────────────────────────────
+  // OTHER
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'sun-other-1',
+    name: 'Forest Herbalist',
+    description: 'Forest Herbalist description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-other-2',
+    name: 'Sprawling Meadows',
+    description: 'Sprawling Meadows description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-other-3',
+    name: 'Atrium',
+    description: 'Atrium description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-other-4',
+    name: 'Prismatic Array',
+    description: 'Prismatic Array description',
+    icon: Question24Filled as DefineComponent,
+  },
+  // ─────────────────────────────────────────────────────────────────────────────
+  // ENDGAME
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'sun-endgame-1',
+    name: 'Everburning Flame',
+    description: 'Everburning Flame description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-endgame-2',
+    name: 'Chariot of the Sun',
+    description: 'Chariot of the Sun description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-endgame-3',
+    name: 'Perihelion',
+    description: 'Perihelion description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'sun-endgame-4',
+    name: 'Aphelion',
+    description: 'Aphelion description',
+    icon: Question24Filled as DefineComponent,
+  }
+];
 
-  export const moonBuildingMetadata: BuildingMetadata[] = [
-    {
-      id: 'moon-1',
-      name: 'Moon Building 1',
-      description: 'Moon Building 1 description',
-      icon: MoonOutline as DefineComponent,
-    },
-    {
-      id: 'moon-2',
-      name: 'Moon Building 2',
-      description: 'Moon Building 2 description',
-      icon: StarOutline as DefineComponent,
-    },
-    {
-      id: 'moon-3',
-      name: 'Moon Building 3',
-      description: 'Moon Building 3 description',
-      icon: Bed24Regular as DefineComponent,
-    },
-    {
-      id: 'moon-4',
-      name: 'Moon Building 4',
-      description: 'Moon Building 4 description',
-      icon: PuzzleCube24Regular as DefineComponent,
-    },
-    {
-      id: 'moon-5',
-      name: 'Moon Building 5',
-      description: 'Moon Building 5 description',
-      icon: DewPoint as DefineComponent,
-    }
-  ];
-  
+export const moonBuildingMetadata: BuildingMetadata[] = [
+  // ─────────────────────────────────────────────────────────────────────────────
+  // SUSTENANCE
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'moon-sustenance-1',
+    name: 'Moonlit Rookery',
+    description: 'Moonlit Rookery description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-sustenance-2',
+    name: 'Tide Pools',
+    description: 'Tide Pools description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-sustenance-3',
+    name: 'Lunar Grotto',
+    description: 'Lunar Grotto description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-sustenance-4',
+    name: 'Nocturnal Vineyard',
+    description: 'Nocturnal Vineyard description',
+    icon: Question24Filled as DefineComponent,
+  },
+  // ─────────────────────────────────────────────────────────────────────────────
+  // SCIENCE
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'moon-science-1',
+    name: 'Gazing Scope',
+    description: 'Gazing Scope description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-science-2',
+    name: 'Observatory',
+    description: 'Observatory description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-science-3',
+    name: 'Planetarium',
+    description: 'Planetarium description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-science-4',
+    name: 'Astrolabe',
+    description: 'Astrolabe description',
+    icon: Question24Filled as DefineComponent,
+  },
+  // ─────────────────────────────────────────────────────────────────────────────
+  // RELIGION
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'moon-religion-1',
+    name: 'Obsidian Crypt',
+    description: 'Obsidian Crypt description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-religion-2',
+    name: 'Necropolis',
+    description: 'Necropolis description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-religion-3',
+    name: 'Athenaeum',
+    description: 'Athenaeum description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-religion-4',
+    name: 'Celestial Cathedral',
+    description: 'Celestial Cathedral description',
+    icon: Question24Filled as DefineComponent,
+  },
+  // ─────────────────────────────────────────────────────────────────────────────
+  // ENTERTAINMENT
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'moon-entertainment-1',
+    name: 'Oneirium',
+    description: 'Oneirium description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-entertainment-2',
+    name: 'Hedge Maze',
+    description: 'Hedge Maze description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-entertainment-3',
+    name: 'Shadow Theatre',
+    description: 'Shadow Theatre description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-entertainment-4',
+    name: 'Midnight Symphony',
+    description: 'Midnight Symphony description',
+    icon: Question24Filled as DefineComponent,
+  },
+  // ─────────────────────────────────────────────────────────────────────────────
+  // EDUCATION
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'moon-education-1',
+    name: 'Night School',
+    description: 'Night School description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-education-2',
+    name: 'Twilight Symposium',
+    description: 'Twilight Symposium description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-education-3',
+    name: 'University of Cynthas',
+    description: 'University of Cynthas description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-education-4',
+    name: 'Quantum Academy',
+    description: 'Quantum Academy description',
+    icon: Question24Filled as DefineComponent,
+  },
+  // ─────────────────────────────────────────────────────────────────────────────
+  // OTHER
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'moon-other-1',
+    name: 'Lighthouse',
+    description: 'Lighthouse description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-other-2',
+    name: 'Eclipse Sanctuary',
+    description: 'Eclipse Sanctuary description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-other-3',
+    name: 'Sensory Chamber',
+    description: 'Sensory Chamber description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-other-4',
+    name: 'Museum of Night',
+    description: 'Museum of Night description',
+    icon: Question24Filled as DefineComponent,
+  },
+  // ─────────────────────────────────────────────────────────────────────────────
+  // ENDGAME
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: 'moon-endgame-1',
+    name: 'Auroral Archives',
+    description: 'Auroral Archives description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-endgame-2',
+    name: 'Reliquary of the Moon',
+    description: 'Reliquary of the Moon description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-endgame-3',
+    name: 'Perihelion',
+    description: 'Perihelion description',
+    icon: Question24Filled as DefineComponent,
+  },
+  {
+    id: 'moon-endgame-4',
+    name: 'Aphelion',
+    description: 'Aphelion description',
+    icon: Question24Filled as DefineComponent,
+  }
+];

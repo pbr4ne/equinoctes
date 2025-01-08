@@ -8,7 +8,7 @@ const initialState = (): GameState => ({
     sun: {
       level: 2,
       power: 0,
-      grid: ["sun-1", null, null, null],
+      grid: ["sun-farming-1", null, null, null],
       buildings: sunBuildings,
       selectedBuilding: null as Building | null,
       lore: [{
@@ -25,7 +25,7 @@ const initialState = (): GameState => ({
     moon: {
       level: 5,
       power: 0,
-      grid: ["moon-1", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+      grid: ["moon-sustenance-1", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
       buildings: moonBuildings,
       selectedBuilding: null as Building | null,
       lore: [{
