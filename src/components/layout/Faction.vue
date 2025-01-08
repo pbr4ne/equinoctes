@@ -42,7 +42,7 @@
           >
             <template #trigger>
               <n-badge 
-                v-if="item.sunLabel === 'Lore'"
+                v-if="item.sunLabel === 'Revelations'"
                 :value="loreCount"
                 :show="loreCount > 0"
                 color="red"
@@ -98,11 +98,11 @@ const loreCount = computed(() => {
 });
 
 const components = [
-  { sunLabel: 'Sun City', moonLabel: 'Moon City', icon: markRaw(Grid28Regular), component: markRaw(FactionGrid), props },
-  { sunLabel: 'Buildings', moonLabel: 'Buildings', icon: markRaw(BuildingLighthouse20Regular), component: markRaw(Buildings), props },
-  { sunLabel: 'Lore', moonLabel: 'Lore', icon: markRaw(Notebook), component: markRaw(Lore), props },
-  { sunLabel: 'Achievements', moonLabel: 'Achievements', icon: markRaw(CrownOutlined), component: markRaw(Achievements), props },
-  { sunLabel: 'Options', moonLabel: 'City', icon: markRaw(Options24Regular), component: markRaw(Options), props },
+  { sunLabel: 'Heliotropolis', moonLabel: 'Cynthas City', icon: markRaw(Grid28Regular), component: markRaw(FactionGrid), props },
+  { sunLabel: 'Wonders', moonLabel: 'Endeavours', icon: markRaw(BuildingLighthouse20Regular), component: markRaw(Buildings), props },
+  { sunLabel: 'Revelations', moonLabel: 'Mysterium', icon: markRaw(Notebook), component: markRaw(Lore), props },
+  { sunLabel: 'Milestones', moonLabel: 'Milestones', icon: markRaw(CrownOutlined), component: markRaw(Achievements), props },
+  { sunLabel: 'Options', moonLabel: 'Options', icon: markRaw(Options24Regular), component: markRaw(Options), props },
 ];
 
 const currentComponentIndex = ref(0);
