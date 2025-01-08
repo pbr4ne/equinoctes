@@ -2,9 +2,15 @@
   <span :class="['building', `building-${faction}`]">
     <span v-if="store.currentlyDay && props.faction === 'sun' || !store.currentlyDay && props.faction === 'moon'">
       {{ building?.name }}
-    {{ building?.description }}
-    <br />
-    Power: {{ building?.power }} ({{ buildingPower }})
+      {{ building?.description }}
+      <br />
+      Power: {{ building?.power }} 
+      <span 
+        v-if="buildingPower !== building?.power" 
+        :style="{ color: buildingPower < (building?.power ?? 0) ? 'red' : 'green' }"
+      >
+        ({{ buildingPower }})
+      </span>
     </span>
     <span v-else>
       Cannot interact during the {{ store.currentlyDay ? 'day' : 'night' }}

@@ -12,7 +12,7 @@
           ]"
           :style="currentHeader === Power ? { border: 'none' } : {}"
         >
-          <div class="power" :style="{ padding: computedPadding }">
+          <div class="header" :style="{ padding: computedPadding }">
             <component 
               :is="currentHeader" 
               v-bind="headerProps"
@@ -177,7 +177,7 @@ onBeforeUnmount(() => {
   border-color: #caf0f8;
 }
 
-.power {
+.header {
   width: calc(min(50vw, 50vh));
   box-sizing: border-box;
   display: flex;
