@@ -8,6 +8,7 @@
       cell.isHighlightEmpty ? 'highlight-empty' : '',
       cell.isDisabled ? 'cursor-not-allowed' : cell.cursorClass,
       hovered && !cell.building ? 'hovered' : '',
+      hovered && !cell.building ? (faction === 'sun' ? 'hovered-sun' : 'hovered-moon') : '',
       cell.isDisabled ? 'dim-building' : ''
     ]"
     @mouseenter="handleMouseEnter"
@@ -201,8 +202,15 @@ function getArrowColor(modifier: number | null): string {
 }
 
 .hovered {
-  outline: 3px solid yellow;
   outline-offset: -3px;
+}
+
+.hovered-sun {
+  outline: 3px solid #264653;
+}
+
+.hovered-moon {
+  outline: 3px solid #e9c46a;
 }
 </style>
   
