@@ -50,7 +50,6 @@ export interface Milestones {
   unlocked: boolean;
   level4: boolean;
   level5: boolean;
-  level6: boolean;
 }
 
 export interface Faction {

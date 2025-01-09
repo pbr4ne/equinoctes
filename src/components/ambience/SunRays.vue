@@ -31,15 +31,11 @@ let nextId = 0;
 
 const lineCount = computed(() => {
   switch (store.factions.sun.level) {
-    case 2:
-      return 0;
     case 3:
-      return 0;
-    case 4:
       return 6;
-    case 5:
+    case 4:
       return 10;
-    case 6:
+    case 5:
       return 30;
     default:
       return 0;

@@ -39,13 +39,11 @@ const initialState = (): GameState => ({
       unlocked: false,
       level4: false,
       level5: false,
-      level6: false,
     },
     moon: {
       unlocked: false,
       level4: false,
       level5: false,
-      level6: false,
     },
   },
   fullDaySeconds: 30,
