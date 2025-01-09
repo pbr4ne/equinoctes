@@ -1,13 +1,13 @@
 <template>
   <span :class="['building', `building-${faction}`]">
-    <span v-if="isOffTime()">
+    <span v-if="isOffTime">
       Cannot interact during the {{ store.currentlyDay ? 'day' : 'night' }}
     </span>
-    <span v-else-if="noSlots()">
+    <span v-else-if="noSlots">
       No free slots in the grid
     </span>
     <span v-else-if="store.factions[faction].selectedBuilding">
-      Place a building. Navigate back to Buildings tab to cancel.
+      Place a building. Navigate to another tab to cancel.
     </span>
     <span v-else>
       <span><b>{{ singleBuildingMetadata?.name }}</b></span><br />
@@ -29,38 +29,54 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { useBuildings } from '../../composables/useBuildings';
 import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
 import { useStore } from '../../composables/useStore';
 import type { FactionKey } from '../../utilities/types';
 
-const props = defineProps<{ faction: FactionKey, building: string, parent: string }>();
+const props = defineProps<{ 
+  faction: FactionKey, 
+  building: string | null, 
+  parent: string 
+}>();
+
 const store = useStore();
-
-const building = store.factions[props.faction].buildings.find((b) => b.id === props.building);
-const buildingMetadata = props.faction === 'sun' ? sunBuildingMetadata : moonBuildingMetadata;
-const singleBuildingMetadata = buildingMetadata.find((b) => b.id === props.building);
-
 const { computeBuildingPower } = useBuildings();
 
-const buildingPower = building ? computeBuildingPower(props.faction, building) : 0;
+const building = computed(() => {
+  if (!props.building) return null;
+  return store.factions[props.faction].buildings.find((b) => b.id === props.building) || null;
+});
+
+const buildingMetadata = computed(() => {
+  return props.faction === 'sun' ? sunBuildingMetadata : moonBuildingMetadata;
+});
+
+const singleBuildingMetadata = computed(() => {
+  if (!props.building) return null;
+  return buildingMetadata.value.find((b) => b.id === props.building) || null;
+});
+
+const buildingPower = computed(() => {
+  return building.value ? computeBuildingPower(props.faction, building.value) : 0;
+});
 
 const processedDescription = computed(() => {
-  if (!singleBuildingMetadata?.description) return '';
-  let desc = singleBuildingMetadata.description;
+  if (!singleBuildingMetadata.value?.description) return '';
+  let desc = singleBuildingMetadata.value.description;
   desc = desc.replace(/RADIANT LADY/gi, '<span style="color: #264653; font-weight: bold;">RADIANT LADY</span>');
   desc = desc.replace(/\bLADY\b/gi, '<span style="color: #264653; font-weight: bold;">LADY</span>');
   return desc;
 });
 
-const isOffTime = () => {
+const isOffTime = computed(() => {
   return store.currentlyDay ? props.faction !== 'sun' : props.faction !== 'moon';
-}
+});
 
-const noSlots = () => {
+const noSlots = computed(() => {
   return props.parent === 'buildings' && !store.factions[props.faction].grid.some((slot) => slot === null);
-}
+});
 </script>
 
 <style scoped>

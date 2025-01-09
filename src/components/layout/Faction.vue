@@ -5,20 +5,7 @@
 
     <n-flex justify="end" vertical style="height: 100vh;">
       <n-space justify="center" style="z-index: 500">
-        <div 
-          :class="[
-            'bordered-background', 
-            `bordered-background-${faction}`
-          ]"
-          :style="currentHeaderComponent === Power ? { border: 'none' } : {}"
-        >
-          <div class="header" :style="{ padding: computedPadding }">
-            <component 
-              :is="currentHeaderComponent" 
-              v-bind="headerProps"
-            />
-          </div>
-        </div>
+        <faction-header :faction="faction" :building="currentBuilding" :parent="components[currentComponentIndex].id" />
       </n-space>
 
       <n-space justify="center" style="z-index: 500">
@@ -47,8 +34,7 @@ import { ref, computed, markRaw, onMounted, onBeforeUnmount, shallowRef } from '
 import { emitter } from '../../utilities/emitter';
 import { FactionKey } from '../../utilities/types';
 import { useStore } from '../../composables/useStore';
-import BuildingDetails from './BuildingDetails.vue';
-import Power from './Power.vue';
+import FactionHeader from './FactionHeader.vue';
 import MoonStars from '../ambience/MoonStars.vue';
 import SunRays from '../ambience/SunRays.vue';
 import Achievements from '../faction/Achievements.vue';
@@ -94,29 +80,14 @@ const currentComponent = computed(() => {
     console.warn(`No component found for tab id: ${selectedTab.id}`);
     return { component: null, props: {} };
   }
+  console.log('currentComponent', componentToRender);
   return {
     component: componentToRender,
     props: { faction: props.faction },
   };
 });
 
-const currentHeaderComponent = shallowRef(Power);
 const currentBuilding = ref<string | null>(null);
-
-const headerProps = computed(() => {
-  if (currentHeaderComponent.value === Power) {
-    return { faction: props.faction };
-  } else if (currentHeaderComponent.value === BuildingDetails) {
-    return { 
-      faction: props.faction, 
-      building: currentBuilding.value, 
-      parent: components[currentComponentIndex.value].id 
-    };
-  } else {
-    return { faction: props.faction };
-  }
-});
-
 const computedPadding = '20px';
 
 function handleSwitchToGrid() {
@@ -126,7 +97,7 @@ function handleSwitchToGrid() {
 function handleSwitchToBuilding({ faction, buildingId }: { faction: FactionKey; buildingId: string }) {
   if (faction !== props.faction) return;
   currentBuilding.value = buildingId;
-  currentHeaderComponent.value = markRaw(BuildingDetails);
+  console.log('handleSwitchToBuilding currentBuilding', currentBuilding.value);
 }
 
 function handleSwitchToPower({ faction }: { faction: FactionKey }) {
@@ -137,7 +108,6 @@ function handleSwitchToPower({ faction }: { faction: FactionKey }) {
   }
 
   currentBuilding.value = null;
-  currentHeaderComponent.value = markRaw(Power);
 }
 
 const handleTabSelected = (index: number) => {
@@ -149,7 +119,6 @@ const handleTabSelected = (index: number) => {
     store.factions[props.faction].selectedBuilding = null;
   }
   currentComponentIndex.value = index;
-  currentHeaderComponent.value = markRaw(Power);
 };
 
 onMounted(() => {
@@ -189,14 +158,6 @@ onBeforeUnmount(() => {
 
 .bordered-background-moon {
   border-color: #caf0f8;
-}
-
-.header {
-  width: calc(min(50vw, 50vh));
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .content {
