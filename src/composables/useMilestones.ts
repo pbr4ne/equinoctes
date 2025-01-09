@@ -34,7 +34,21 @@ export function computeMilestones() {
         faction.lore.push({
           description: `The ${factionKey} faction has reached ${power} power!`,
           time: store.calendar,
-        });
+        });        
+        
+        //size up the grid:
+        
+        //add a new null cell to the end of each row
+        for (let row = faction.level; row > 0; row--) {
+          const index = row * faction.level;
+          faction.grid.splice(index, 0, null);
+        }
+      
+        //add a blank new row
+        for (let i = 0; i < level; i++) {
+          faction.grid.push(null);
+        }
+
         faction.level = level;
       }
     });

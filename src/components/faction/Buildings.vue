@@ -65,7 +65,7 @@ const canBuyBuilding = (building: Building) => {
     return false;
   }
 
-  if (!store.factions[props.faction].grid.slice(0, store.factions[props.faction].level * store.factions[props.faction].level).some((slot) => slot === null)) {
+  if (!store.factions[props.faction].grid.some((slot) => slot === null)) {
     return false;
   }
 

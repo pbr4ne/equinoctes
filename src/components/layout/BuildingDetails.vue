@@ -44,14 +44,9 @@ const buildingPower = building ? computeBuildingPower(props.faction, building) :
 
 const processedDescription = computed(() => {
   if (!singleBuildingMetadata?.description) return '';
-
   let desc = singleBuildingMetadata.description;
-
   desc = desc.replace(/RADIANT LADY/gi, '<span style="color: #264653; font-weight: bold;">RADIANT LADY</span>');
-
   desc = desc.replace(/\bLADY\b/gi, '<span style="color: #264653; font-weight: bold;">LADY</span>');
-
-  console.log(desc);
   return desc;
 });
 
@@ -60,7 +55,7 @@ const isOffTime = () => {
 }
 
 const noSlots = () => {
-  return props.parent === 'buildings' && !store.factions[props.faction].grid.slice(0, store.factions[props.faction].level * store.factions[props.faction].level).some((slot) => slot === null);
+  return props.parent === 'buildings' && !store.factions[props.faction].grid.some((slot) => slot === null);
 }
 </script>
 

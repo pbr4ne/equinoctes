@@ -49,7 +49,6 @@
       if (audio.value) {
         if (audio.value.volume < 0.1) {
           audio.value.volume = Math.min(audio.value.volume + step, 1);
-          console.log(audio.value.volume);
         } else {
           clearInterval(fadeIntervalId as number);
           fadeIntervalId = null;

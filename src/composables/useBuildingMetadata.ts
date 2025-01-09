@@ -72,7 +72,9 @@ import {
   BuildingFactory,
   ChartBubble,
   CurrencyEthereum,
+  Moon2,
   SteeringWheel,
+  Sun,
   Trees,
 } from '@vicons/tabler';
 
@@ -140,7 +142,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
     id: 'sun-religion-1',
     name: 'Glowing Shrine',
     description: 'Glowing Shrine description',
-    icon: BrightnessHighOutlined as DefineComponent,
+    icon: Sun as DefineComponent,
   },
   {
     id: 'sun-religion-2',
@@ -330,9 +332,9 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
   // ─────────────────────────────────────────────────────────────────────────────
   {
     id: 'moon-religion-1',
-    name: 'Obsidian Crypt',
-    description: 'Obsidian Crypt description',
-    icon: BuildingArch as DefineComponent,
+    name: 'Obsidian Shrine',
+    description: 'Obsidian Shrine description',
+    icon: MoonOutline as DefineComponent,
   },
   {
     id: 'moon-religion-2',
@@ -452,7 +454,7 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
     id: 'moon-endgame-3',
     name: 'Perihelion',
     description: 'Perihelion description',
-    icon: MoonOutline as DefineComponent,
+    icon: Moon2 as DefineComponent,
   },
   {
     id: 'moon-endgame-4',
