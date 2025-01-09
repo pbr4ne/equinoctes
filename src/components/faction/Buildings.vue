@@ -91,9 +91,8 @@ function onBuildingLeave() {
 
 <style scoped>
 .buildingButton {
-  font-family: "Grenze Gotisch", serif;
-  font-weight: 300;
-  font-size: 1.5em;
+  font-family: "Texturina", serif;
+  font-size: 1.25em;
   border-radius: 20px;
 }
 

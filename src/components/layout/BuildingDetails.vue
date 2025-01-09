@@ -47,9 +47,9 @@ const processedDescription = computed(() => {
 
   let desc = singleBuildingMetadata.description;
 
-  desc = desc.replace(/RADIANT LADY/gi, '<span style="color: #264653">RADIANT LADY</span>');
+  desc = desc.replace(/RADIANT LADY/gi, '<span style="color: #264653; font-weight: bold;">RADIANT LADY</span>');
 
-  desc = desc.replace(/\bLADY\b/gi, '<span style="color: #264653">LADY</span>');
+  desc = desc.replace(/\bLADY\b/gi, '<span style="color: #264653; font-weight: bold;">LADY</span>');
 
   console.log(desc);
   return desc;
@@ -66,8 +66,7 @@ const noSlots = () => {
 
 <style scoped>
 .building {
-  font-family: "Grenze Gotisch", serif;
-  font-weight: 300;
+  font-family: "Texturina", serif;
   font-size: 1.25em;
 }
 
