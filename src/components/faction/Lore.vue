@@ -18,6 +18,7 @@
       :page-size="1"
       :show-size-picker="false"
 			:page-slot="3"
+      :theme-overrides="faction === 'sun' ? sunPaginationThemeOverride : moonPaginationThemeOverride"
     />
   </div>
 </template>
@@ -60,6 +61,42 @@ const markLoreAsRead = (index: number) => {
     loreItem.read = true;
   }
 };
+
+const sunPaginationThemeOverride = {
+  "itemTextColorHover": "#9e2a2b",
+  "itemTextColorPressed": "#9e2a2b",
+  "itemTextColorActive": "#9e2a2b",
+
+  "itemBorderActive": "1px solid #9e2a2b",
+
+  "itemColorDisabled": "#0000",
+  "itemBorderDisabled": "#0000",
+  "itemTextColorDisabled": "#0000",
+
+  "buttonIconColor": "#9e2a2b",
+  "buttonIconColorHover": "#e9c46a",
+  "buttonColorPressed": "#9e2a2b",
+  "buttonBorder": "1px solid #9e2a2b",
+  "itemTextColor": "#9e2a2b",
+}
+
+const moonPaginationThemeOverride = {
+  "itemTextColorHover": "#caf0f8",
+  "itemTextColorPressed": "#caf0f8",
+  "itemTextColorActive": "#caf0f8",
+
+  "itemBorderActive": "1px solid #caf0f8",
+
+  "itemColorDisabled": "#0000",
+  "itemBorderDisabled": "#0000",
+  "itemTextColorDisabled": "#0000",
+
+  "buttonIconColor": "#caf0f8",
+  "buttonIconColorHover": "#264653",
+  "buttonColorPressed": "#caf0f8",
+  "buttonBorder": "1px solid #caf0f8",
+  "itemTextColor": "#caf0f8",
+}
 </script>
 
 <style scoped>
