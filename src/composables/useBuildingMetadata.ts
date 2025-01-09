@@ -85,25 +85,25 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-farming-1',
     name: 'Golden Fields',
-    description: 'Golden Fields description',
+    description: 'And Esu the Favoured had a Field of Gold, and in that field the stalks did grow to the height of the temple, with trunks as thick as cedars, and Esu bade the woodcutters chop them down, for such was the bounty of the RADIANT LADY.',
     icon: SoilMoistureField as DefineComponent,
   },
   {
     id: 'sun-farming-2',
     name: 'Glasshouse',
-    description: 'Glasshouse description',
+    description: 'And the LADY said, build unto me a house of glass, that I may bless thy bounty within. And the harvest was good.',
     icon: OtherHousesOutlined as DefineComponent,
   },
   {
     id: 'sun-farming-3',
     name: 'Arboretum',
-    description: 'Arboretum description',
+    description: 'And the LADY said unto Goah, plant for me two of every tree, that I may look upon them know that they are not alone. Also just in case one dies you have a spare.',
     icon: Trees as DefineComponent,
   },
   {
     id: 'sun-farming-4',
     name: 'Solarium',
-    description: 'Solarium description',
+    description: 'Within the palace was a great room of glass adjacent to the royal chambers, where the queen could pray to the LADY and tend to her garden. And when she prayed one day for a child, unto her it was delivered, for such was her faith in the LADY’s blessings.',
     icon: ChartSunburst as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
@@ -112,25 +112,25 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-production-1',
     name: 'Earthen Factory',
-    description: 'Earthen Factory description',
+    description: 'In the days of the First Ones there was a great pit, wherefrom the soil would burst like water from a spring. And the children of the LADY would steal from this spring, for the First Ones would catch and eat them if they were caught.\n\nAnd the soil from the First Ones pit was so rich and thick that it would grow a forest from a single acorn.',
     icon: BuildingFactory as DefineComponent,
   },
   {
     id: 'sun-production-2',
     name: 'Gasworks',
-    description: 'Gasworks description',
+    description: 'For just as thy leavings enrich the soil, so too are thy passings of air blessed by my divine wind.',
     icon: CloudSatelliteServices as DefineComponent,
   },
   {
     id: 'sun-production-3',
     name: 'Infernal Forge',
-    description: 'Infernal Forge description',
+    description: 'For within this oven of clay is a fragment of my eternally burning heart. And the LADY bade Ilsu make a sign of clay which cautioned the people of Onkuril not to touch the oven with their bare hands, lest they immolate.',
     icon: BonfireSharp as DefineComponent,
   },
   {
     id: 'sun-production-4',
     name: 'Solar Foundry',
-    description: 'Solar Foundry description',
+    description: 'Great lenses rimmed in gold were arrayed, and as the LADY crossed the sky the lenses did catch her radiance and set it upon the crucible',
     icon: SolarPanel as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
@@ -145,19 +145,19 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-religion-2',
     name: 'Radiant Obelisk',
-    description: 'Radiant Obelisk description',
+    description: 'And Bulau remarked that it looked like a man’s nethers, and the obelisk flashed with the Lady’s light, and struck Bulau blind for a fortnight for such blasphemy.',
     icon: Poll24Regular as DefineComponent,
   },
   {
     id: 'sun-religion-3',
     name: 'Sunspire Temple',
-    description: 'Sunspire Temple description',
+    description: 'Build unto me a house with a great tower with a bell, that when I cross its path shall show upon the great yard the time of day, that thou shall know when the bells shall chime and summon my faithful to prayer.',
     icon: TempleHinduFilled as DefineComponent,
   },
   {
     id: 'sun-religion-4',
     name: 'Zenith Chancery',
-    description: 'Zenith Chancery description',
+    description: 'Thou shalt be my Chancellor upon this Earth, said the LADY, and keepeth for me the records of my coming and going, and mark my path across the sky, and through thee the people shall know the time to sow and the time to reap.',
     icon: StormOutlined as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
@@ -166,7 +166,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-entertainment-1',
     name: 'Desert Zoo',
-    description: 'Desert Zoo description',
+    description: '…and giraffes, and great sloths, and three-toed orangutans, and humpy-backed camels, and some chimpanzees, and…',
     icon: AnimalTurtle24Regular as DefineComponent,
   },
   {
@@ -178,7 +178,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-entertainment-3',
     name: 'Hippodrome',
-    description: 'Hippodrome description',
+    description: 'Shartan did clarify to Sula that hippopotamus simply meant fat horse, and that the drome was not meant for them but for chariots. And Sula was sad.',
     icon: Lasso24Regular as DefineComponent,
   },
   {
@@ -199,7 +199,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-education-2',
     name: 'Children\'s Creche',
-    description: 'Children\'s Creche description',
+    description: 'Proper care and education for thy children remains a cornerstone of thy covenant.',
     icon: BedroomBabyOutlined as DefineComponent,
   },
   {
@@ -220,19 +220,19 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-other-1',
     name: 'Forest Herbalist',
-    description: 'Forest Herbalist description',
+    description: '…and heather, and dillweed, and rosepetals, and bark of the sunwood, and make a fine paste and feed it to him at sunset, and by morn he shall rise again as strong as the day he defeated Salomund the Sallow…',
     icon: ForestOutlined as DefineComponent,
   },
   {
     id: 'sun-other-2',
     name: 'Sprawling Meadows',
-    description: 'Sprawling Meadows description',
+    description: 'It is every faithful’s final duty to lie down in the meadow and become one with all the flowers, awaiting the Pyremaster.',
     icon: GrassOutlined as DefineComponent,
   },
   {
     id: 'sun-other-3',
     name: 'Atrium',
-    description: 'Atrium description',
+    description: 'And Bolu said that such a thing as a roof of glass could not be done, and the LADY was displeased.',
     icon: HexagonOutlined as DefineComponent,
   },
   {
