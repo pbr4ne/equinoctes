@@ -49,11 +49,14 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '../../composables/useStore'
 import { ref, computed } from 'vue'
+import { useStore } from '../../composables/useStore'
 import type { Building, FactionKey } from '../../utilities/types'
 import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
-import { ArrowBigTop, ArrowBigUpLine, ArrowBigUpLines, ArrowBigDown, ArrowBigDownLine, ArrowBigDownLines } from '@vicons/tabler'
+import {
+  ArrowBigTop, ArrowBigUpLine, ArrowBigUpLines,
+  ArrowBigDown, ArrowBigDownLine, ArrowBigDownLines
+} from '@vicons/tabler'
 
 const props = defineProps<{
   faction: FactionKey,
@@ -68,23 +71,36 @@ const props = defineProps<{
   },
 }>();
 
-const emits = defineEmits(['clickBuilding', 'clickEmpty', 'enterBuilding', 'leaveBuilding', 'deleteBuilding']);
+const emits = defineEmits([
+  'clickBuilding',
+  'clickEmpty',
+  'enterBuilding',
+  'leaveBuilding',
+  'deleteBuilding',
+  'enterCell',
+  'leaveCell'
+]);
 
 const store = useStore();
 const cellHovered = ref(false);
 const hovered = ref(false);
-const buildingMetadata = props.faction === 'sun' ? sunBuildingMetadata : moonBuildingMetadata;
+
+const buildingMetadata = props.faction === 'sun'
+  ? sunBuildingMetadata
+  : moonBuildingMetadata;
 
 const iconComponent = computed(() => {
-  if (!props.cell.building) return null
+  if (!props.cell.building) return null;
   const building = props.cell.building;
   return buildingMetadata.find((b) => b.id === building.id)?.icon;
 });
 
 function handleMouseEnter() {
   cellHovered.value = true;
+  emits('enterCell', props.index, props.cell.building);
+
   if (props.cell.building) {
-    emits('enterBuilding', props.cell.building, props.index)
+    emits('enterBuilding', props.cell.building, props.index);
   } else if (props.cell.isHighlightEmpty) {
     hovered.value = true;
   }
@@ -93,6 +109,8 @@ function handleMouseEnter() {
 function handleMouseLeave() {
   cellHovered.value = false;
   hovered.value = false;
+  emits('leaveCell');
+
   if (props.cell.building) {
     emits('leaveBuilding');
   }
@@ -111,7 +129,6 @@ function onDeleteBuilding() {
   if (!props.cell.building) return;
   emits('deleteBuilding', props.cell.building, props.index);
 
-  const building = props.cell.building;
   store.factions[props.faction].grid[props.index] = null;
   emits('leaveBuilding');
 }
@@ -120,12 +137,13 @@ function getArrowIcon(modifier: number | null) {
   if (modifier === null) return null;
   if (modifier >= 0) {
     if (modifier <= 0.25) return ArrowBigTop;
-    else if (modifier < 0.5) return ArrowBigUpLine;
-    else return ArrowBigUpLines;
+    if (modifier < 0.5) return ArrowBigUpLine;
+    return ArrowBigUpLines;
+  } else {
+    if (modifier > -0.25) return ArrowBigDown;
+    if (modifier > -0.5) return ArrowBigDownLine;
+    return ArrowBigDownLines;
   }
-  if (modifier > -0.25) return ArrowBigDown;
-  else if (modifier > -0.5) return ArrowBigDownLine;
-  else return ArrowBigDownLines;
 }
 
 function getArrowColor(modifier: number | null): string {

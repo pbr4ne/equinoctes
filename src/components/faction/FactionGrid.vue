@@ -8,10 +8,12 @@
         :faction="faction"
         :index="cellIndex"
         :cell="cell"
-        @clickBuilding="clickBuilding"
-        @clickEmpty="onClickEmptyCell"
+        @enterCell="onEnterCell"
+        @leaveCell="onLeaveCell"
         @enterBuilding="onEnterBuilding"
         @leaveBuilding="onLeaveBuilding"
+        @clickBuilding="clickBuilding"
+        @clickEmpty="onClickEmptyCell"
       />
     </n-grid-item>
   </n-grid>
@@ -30,15 +32,21 @@ const store = useStore();
 const hoveredBuilding = ref<Building | null>(null);
 const hoveredIndex = ref<number | null>(null);
 
-function onEnterBuilding(building: Building, index: number) {
-  hoveredBuilding.value = building;
+function onEnterCell(index: number, building: Building | null) {
   hoveredIndex.value = index;
+  hoveredBuilding.value = store.factions[props.faction].selectedBuilding || building;
+}
+
+function onLeaveCell() {
+  hoveredIndex.value = null;
+  hoveredBuilding.value = null;
+}
+
+function onEnterBuilding(building: Building, index: number) {
   emitter.emit('buildingEntered', { faction: props.faction, buildingId: building.id });
 }
 
 function onLeaveBuilding() {
-  hoveredBuilding.value = null;
-  hoveredIndex.value = null;
   emitter.emit('buildingLeft', { faction: props.faction });
 }
 
@@ -78,7 +86,10 @@ const cells = computed(() => {
     const isDimmed = hasSelected && isOccupied;
     const isHighlightEmpty = hasSelected && !isOccupied;
     const cursorClass = getCursorClass(building);
-    const isDisabled = store.currentlyDay && props.faction === 'moon' || !store.currentlyDay && props.faction === 'sun';
+    const isDisabled = (
+      (store.currentlyDay && props.faction === 'moon') ||
+      (!store.currentlyDay && props.faction === 'sun')
+    );
 
     return {
       building,
@@ -88,7 +99,7 @@ const cells = computed(() => {
       cursorClass,
       isDisabled,
     };
-  }).slice(0, store.factions[props.faction].level * store.factions[props.faction].level);
+  }).slice(0, store.factions[props.faction].level ** 2);
 });
 
 function clickBuilding(building: Building) {
