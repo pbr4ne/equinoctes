@@ -1,0 +1,108 @@
+<template>
+  <n-space justify="center" style="z-index: 500">
+    <n-space justify="center" style="margin: 20px;">
+      <n-popover 
+        v-for="(item, index) in components" 
+        :key="item.id" 
+        trigger="hover"
+        placement="top"
+      >
+        <template #trigger>
+          <n-badge 
+            v-if="item.id === 'lore'"
+            :value="loreCount"
+            :show="loreCount > 0"
+            color="red"
+            dot
+            processing
+          >
+            <button
+              @click="selectTab(index)"
+              :class="['icon-button', `icon-button-${faction}`]"
+              aria-label="Select {{ currentLabel(item) }} tab"
+            >
+              <component :is="item.icon"/>
+            </button>
+          </n-badge>
+          <button 
+            v-else
+            @click="selectTab(index)"
+            :class="['icon-button', `icon-button-${faction}`]"
+            aria-label="Select {{ currentLabel(item) }} tab"
+          >
+            <component :is="item.icon"/>
+          </button>
+        </template>
+        <span>{{ currentLabel(item) }}</span>
+      </n-popover>
+    </n-space>
+  </n-space>
+</template>
+
+<script setup lang="ts">
+import { defineProps, defineEmits } from 'vue';
+import { FactionKey } from '../../utilities/types';
+
+interface TabComponent {
+  id: string;
+  sunLabel: string;
+  moonLabel: string;
+  icon: any;
+}
+
+const props = defineProps<{
+  faction: FactionKey;
+  components: TabComponent[];
+  loreCount: number;
+}>();
+
+const emit = defineEmits<{
+  (e: 'tab-selected', index: number): void;
+}>();
+
+const selectTab = (index: number) => {
+  emit('tab-selected', index);
+};
+
+const currentLabel = (item: TabComponent) => {
+  return props.faction === 'sun' ? item.sunLabel : item.moonLabel;
+};
+</script>
+
+<style scoped>
+.icon-button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.icon-button-sun {
+  background-color: #e9c46a;
+  border-color: #9e2a2b;
+  color: #9e2a2b;
+}
+
+.icon-button-moon {
+  background-color: #264653;
+  border-color: #caf0f8;
+  color: #caf0f8;
+}
+
+.icon-button-sun:hover {
+  background-color: #ffb703;
+}
+
+.icon-button-moon:hover {
+  background-color: #219ebc;
+}
+
+.n-badge__content {
+  font-size: 0.75em;
+}
+</style>

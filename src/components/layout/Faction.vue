@@ -10,11 +10,11 @@
             'bordered-background', 
             `bordered-background-${faction}`
           ]"
-          :style="currentHeader === Power ? { border: 'none' } : {}"
+          :style="currentHeaderComponent === Power ? { border: 'none' } : {}"
         >
           <div class="header" :style="{ padding: computedPadding }">
             <component 
-              :is="currentHeader" 
+              :is="currentHeaderComponent" 
               v-bind="headerProps"
             />
           </div>
@@ -32,42 +32,12 @@
         </div>
       </n-space>
 
-      <n-space justify="center" style="z-index: 500">
-        <n-space justify="center" style="margin: 20px;">
-          <n-popover 
-            v-for="(item, index) in components" 
-            :key="index" 
-            trigger="hover"
-            placement="top"
-          >
-            <template #trigger>
-              <n-badge 
-                v-if="item.sunLabel === 'Revelations'"
-                :value="loreCount"
-                :show="loreCount > 0"
-                color="red"
-                dot
-                processing
-              >
-                <button
-                  @click="currentComponentIndex = index"
-                  :class="['icon-button', `icon-button-${faction}`]"
-                >
-                  <component :is="item.icon"/>
-                </button>
-              </n-badge>
-              <button 
-                v-else
-                @click="currentComponentIndex = index"
-                :class="['icon-button', `icon-button-${faction}`]"
-              >
-                <component :is="item.icon"/>
-              </button>
-            </template>
-            <span>{{ faction == 'sun' ? item.sunLabel : item.moonLabel }}</span>
-          </n-popover>
-        </n-space>
-      </n-space>
+      <Tabs 
+        :faction="faction" 
+        :components="components" 
+        :loreCount="loreCount"
+        @tab-selected="handleTabSelected"
+      />
     </n-flex>
   </div>
 </template>
@@ -86,11 +56,13 @@ import Buildings from '../faction/Buildings.vue';
 import Lore from '../faction/Lore.vue';
 import Options from '../faction/Options.vue';
 import FactionGrid from '../faction/FactionGrid.vue';
+import Tabs from './Tabs.vue';
 import { Grid28Regular, Options24Regular, BuildingLighthouse20Regular } from '@vicons/fluent';
 import { CrownOutlined } from '@vicons/antd';
 import { Notebook } from '@vicons/carbon';
 
 const props = defineProps<{ faction: FactionKey }>();
+
 const store = useStore();
 
 const loreCount = computed(() => {
@@ -98,45 +70,79 @@ const loreCount = computed(() => {
 });
 
 const components = [
-  { id: 'city', sunLabel: 'Heliotropolis', moonLabel: 'Cynthas City', icon: markRaw(Grid28Regular), component: markRaw(FactionGrid), props },
-  { id: 'buildings', sunLabel: 'Wonders', moonLabel: 'Endeavours', icon: markRaw(BuildingLighthouse20Regular), component: markRaw(Buildings), props },
-  { id: 'lore', sunLabel: 'Revelations', moonLabel: 'Mysterium', icon: markRaw(Notebook), component: markRaw(Lore), props },
-  { id: 'milestones', sunLabel: 'Milestones', moonLabel: 'Milestones', icon: markRaw(CrownOutlined), component: markRaw(Achievements), props },
-  { id: 'options', sunLabel: 'Options', moonLabel: 'Options', icon: markRaw(Options24Regular), component: markRaw(Options), props },
+  { id: 'city', sunLabel: 'Heliotropolis', moonLabel: 'Cynthas City', icon: markRaw(Grid28Regular) },
+  { id: 'buildings', sunLabel: 'Wonders', moonLabel: 'Endeavours', icon: markRaw(BuildingLighthouse20Regular) },
+  { id: 'lore', sunLabel: 'Revelations', moonLabel: 'Mysterium', icon: markRaw(Notebook) },
+  { id: 'milestones', sunLabel: 'Milestones', moonLabel: 'Milestones', icon: markRaw(CrownOutlined) },
+  { id: 'options', sunLabel: 'Options', moonLabel: 'Options', icon: markRaw(Options24Regular) },
 ];
 
 const currentComponentIndex = ref(0);
-const currentComponent = computed(() => components[currentComponentIndex.value]);
-const currentHeader = shallowRef(Power);
+
+const componentMap: { [key: string]: any } = {
+  city: markRaw(FactionGrid),
+  buildings: markRaw(Buildings),
+  lore: markRaw(Lore),
+  milestones: markRaw(Achievements),
+  options: markRaw(Options),
+};
+
+const currentComponent = computed(() => {
+  const selectedTab = components[currentComponentIndex.value];
+  const componentToRender = componentMap[selectedTab.id];
+  if (!componentToRender) {
+    console.warn(`No component found for tab id: ${selectedTab.id}`);
+    return { component: null, props: {} };
+  }
+  return {
+    component: componentToRender,
+    props: { faction: props.faction },
+  };
+});
+
+const currentHeaderComponent = shallowRef(Power);
 const currentBuilding = ref<string | null>(null);
 
 const headerProps = computed(() => {
-  if (currentHeader.value === Power) {
+  if (currentHeaderComponent.value === Power) {
     return { faction: props.faction };
-  } else if (currentHeader.value === BuildingDetails) {
-    return { faction: props.faction, building: currentBuilding.value, parent: currentComponent.value.id };
+  } else if (currentHeaderComponent.value === BuildingDetails) {
+    return { 
+      faction: props.faction, 
+      building: currentBuilding.value, 
+      parent: components[currentComponentIndex.value].id 
+    };
   } else {
     return { faction: props.faction };
   }
 });
 
-// const computedPadding = 170 - (props.faction == 'sun'? store.sunLevel : store.moonLevel) * 30 + 'px';
-// console.log(props.faction, computedPadding);
 const computedPadding = '20px';
 
 function handleSwitchToGrid() {
   currentComponentIndex.value = 0;
 }
+
 function handleSwitchToBuilding({ faction, buildingId }: { faction: FactionKey; buildingId: string }) {
   if (faction !== props.faction) return;
   currentBuilding.value = buildingId;
-  currentHeader.value = markRaw(BuildingDetails);
+  currentHeaderComponent.value = markRaw(BuildingDetails);
 }
+
 function handleSwitchToPower({ faction }: { faction: FactionKey; }) {
   if (faction !== props.faction) return;
   currentBuilding.value = null;
-  currentHeader.value = markRaw(Power);
+  currentHeaderComponent.value = markRaw(Power);
 }
+
+const handleTabSelected = (index: number) => {
+  if (index < 0 || index >= components.length) {
+    console.warn(`Tab index ${index} is out of bounds.`);
+    return;
+  }
+  currentComponentIndex.value = index;
+  currentHeaderComponent.value = markRaw(Power);
+};
 
 onMounted(() => {
   emitter.on('switchedToGrid', handleSwitchToGrid);
@@ -190,41 +196,4 @@ onBeforeUnmount(() => {
   height: calc(min(50vw, 50vh));
   box-sizing: border-box;
 }
-
-.icon-button {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-}
-
-.icon-button-sun {
-  background-color: #e9c46a;
-  border-color: #9e2a2b;
-  color: #9e2a2b;
-}
-
-.icon-button-moon {
-  background-color: #264653;
-  border-color: #caf0f8;
-  color: #caf0f8;
-}
-
-.icon-button-sun:hover {
-  background-color: #ffb703;
-}
-
-.icon-button-moon:hover {
-  background-color: #219ebc;
-}
-
-.n-badge__content {
-  font-size: 0.75em;
-}
 </style>
-
