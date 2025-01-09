@@ -1,45 +1,78 @@
 import { BuildingMetadata } from '../utilities/types';
 
 import {
-  MdPlanet
 } from '@vicons/ionicons4';
 
 import { 
   BonfireSharp,
   TelescopeSharp,
-  LibrarySharp
+  PlanetOutline,
+  LogoElectron,
+  MusicalNotesOutline,
+  PrismOutline,
+  SkullOutline,
+  MoonOutline
 } from '@vicons/ionicons5';
 
 import { 
+  ChartMarimekko,
   ChartSunburst,
+  CloudSatelliteServices,
+  ContourDraw,
+  Fire,
+  Moonrise,
   SoilMoistureField,
   SolarPanel,
+  Sunny,
 } from '@vicons/carbon';
 
 import {
-  BookDead,
   Church,
-  School,
+  Crow,
   WineBottle,
+  YinYang,
 } from '@vicons/fa';
 
 import {
+  AvTimerOutlined,
+  BedroomBabyOutlined,
   BrightnessHighOutlined,
-  LibraryMusicOutlined,
+  ForestOutlined,
+  GrassOutlined,
+  HexagonOutlined,
   OtherHousesOutlined,
+  SchoolOutlined,
+  StormOutlined,
   TempleHinduFilled,
   TheaterComedyOutlined,
+  TimelapseOutlined,
+  VolcanoOutlined,
 } from '@vicons/material';
 
 import {
-  Question24Filled,
   AnimalTurtle24Regular,
   BuildingLighthouse20Filled,
   BuildingBank24Filled,
+  Autocorrect24Regular,
+  Blur24Regular,
+  CameraDome16Regular,
+  DesignIdeas24Regular,
+  Fingerprint24Regular,
+  Iot24Regular,
+  Lasso24Regular,
+  Poll24Regular,
+  Tent24Regular,
+  Library24Regular,
+  BuildingGovernment24Regular,
+  BookClock24Regular,
 } from '@vicons/fluent';
 
 import {
+  BuildingArch,
   BuildingFactory,
+  ChartBubble,
+  CurrencyEthereum,
+  SteeringWheel,
   Trees,
 } from '@vicons/tabler';
 
@@ -86,7 +119,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
     id: 'sun-production-2',
     name: 'Gasworks',
     description: 'Gasworks description',
-    icon: Question24Filled as DefineComponent,
+    icon: CloudSatelliteServices as DefineComponent,
   },
   {
     id: 'sun-production-3',
@@ -113,7 +146,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
     id: 'sun-religion-2',
     name: 'Radiant Obelisk',
     description: 'Radiant Obelisk description',
-    icon: Question24Filled as DefineComponent,
+    icon: Poll24Regular as DefineComponent,
   },
   {
     id: 'sun-religion-3',
@@ -125,7 +158,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
     id: 'sun-religion-4',
     name: 'Zenith Chancery',
     description: 'Zenith Chancery description',
-    icon: Question24Filled as DefineComponent,
+    icon: StormOutlined as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
   // ENTERTAINMENT
@@ -140,19 +173,19 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
     id: 'sun-entertainment-2',
     name: 'Sunlit Ampitheatre',
     description: 'Sunlit Ampitheatre description',
-    icon: Question24Filled as DefineComponent,
+    icon: Blur24Regular as DefineComponent,
   },
   {
     id: 'sun-entertainment-3',
     name: 'Hippodrome',
     description: 'Hippodrome description',
-    icon: Question24Filled as DefineComponent,
+    icon: Lasso24Regular as DefineComponent,
   },
   {
     id: 'sun-entertainment-4',
     name: 'Circus of Lights',
     description: 'Circus of Lights description',
-    icon: Question24Filled as DefineComponent,
+    icon: Tent24Regular as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
   // EDUCATION
@@ -161,25 +194,25 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
     id: 'sun-education-1',
     name: 'Sundial',
     description: 'Sundial description',
-    icon: Question24Filled as DefineComponent,
+    icon: AvTimerOutlined as DefineComponent,
   },
   {
     id: 'sun-education-2',
     name: 'Children\'s Creche',
     description: 'Children\'s Creche description',
-    icon: Question24Filled as DefineComponent,
+    icon: BedroomBabyOutlined as DefineComponent,
   },
   {
     id: 'sun-education-3',
     name: 'School of Industry',
     description: 'School of Industry description',
-    icon: Question24Filled as DefineComponent,
+    icon: Iot24Regular as DefineComponent,
   },
   {
     id: 'sun-education-4',
     name: 'Luminary College',
     description: 'Luminary College description',
-    icon: Question24Filled as DefineComponent,
+    icon: VolcanoOutlined as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
   // OTHER
@@ -188,25 +221,25 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
     id: 'sun-other-1',
     name: 'Forest Herbalist',
     description: 'Forest Herbalist description',
-    icon: Question24Filled as DefineComponent,
+    icon: ForestOutlined as DefineComponent,
   },
   {
     id: 'sun-other-2',
     name: 'Sprawling Meadows',
     description: 'Sprawling Meadows description',
-    icon: Question24Filled as DefineComponent,
+    icon: GrassOutlined as DefineComponent,
   },
   {
     id: 'sun-other-3',
     name: 'Atrium',
     description: 'Atrium description',
-    icon: Question24Filled as DefineComponent,
+    icon: HexagonOutlined as DefineComponent,
   },
   {
     id: 'sun-other-4',
     name: 'Prismatic Array',
     description: 'Prismatic Array description',
-    icon: Question24Filled as DefineComponent,
+    icon: PrismOutline as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
   // ENDGAME
@@ -215,25 +248,25 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
     id: 'sun-endgame-1',
     name: 'Everburning Flame',
     description: 'Everburning Flame description',
-    icon: Question24Filled as DefineComponent,
+    icon: Fire as DefineComponent,
   },
   {
     id: 'sun-endgame-2',
     name: 'Chariot of the Sun',
     description: 'Chariot of the Sun description',
-    icon: Question24Filled as DefineComponent,
+    icon: SteeringWheel as DefineComponent,
   },
   {
     id: 'sun-endgame-3',
     name: 'Perihelion',
     description: 'Perihelion description',
-    icon: Question24Filled as DefineComponent,
+    icon: Sunny as DefineComponent,
   },
   {
     id: 'sun-endgame-4',
     name: 'Aphelion',
     description: 'Aphelion description',
-    icon: Question24Filled as DefineComponent,
+    icon: YinYang as DefineComponent,
   }
 ];
 
@@ -245,19 +278,19 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
     id: 'moon-sustenance-1',
     name: 'Moonlit Rookery',
     description: 'Moonlit Rookery description',
-    icon: Question24Filled as DefineComponent,
+    icon: Crow as DefineComponent,
   },
   {
     id: 'moon-sustenance-2',
     name: 'Tide Pools',
     description: 'Tide Pools description',
-    icon: Question24Filled as DefineComponent,
+    icon: ChartBubble as DefineComponent,
   },
   {
     id: 'moon-sustenance-3',
     name: 'Lunar Grotto',
     description: 'Lunar Grotto description',
-    icon: Question24Filled as DefineComponent,
+    icon: TimelapseOutlined as DefineComponent,
   },
   {
     id: 'moon-sustenance-4',
@@ -272,19 +305,19 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
     id: 'moon-science-1',
     name: 'Gazing Scope',
     description: 'Gazing Scope description',
-    icon: Question24Filled as DefineComponent,
+    icon: CameraDome16Regular as DefineComponent,
   },
   {
     id: 'moon-science-2',
     name: 'Observatory',
     description: 'Observatory description',
-    icon: Question24Filled as DefineComponent,
+    icon: Moonrise as DefineComponent,
   },
   {
     id: 'moon-science-3',
     name: 'Planetarium',
     description: 'Planetarium description',
-    icon: MdPlanet as DefineComponent,
+    icon: PlanetOutline as DefineComponent,
   },
   {
     id: 'moon-science-4',
@@ -299,19 +332,19 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
     id: 'moon-religion-1',
     name: 'Obsidian Crypt',
     description: 'Obsidian Crypt description',
-    icon: Question24Filled as DefineComponent,
+    icon: BuildingArch as DefineComponent,
   },
   {
     id: 'moon-religion-2',
     name: 'Necropolis',
     description: 'Necropolis description',
-    icon: BookDead as DefineComponent,
+    icon: SkullOutline as DefineComponent,
   },
   {
     id: 'moon-religion-3',
     name: 'Athenaeum',
     description: 'Athenaeum description',
-    icon: Question24Filled as DefineComponent,
+    icon: Library24Regular as DefineComponent,
   },
   {
     id: 'moon-religion-4',
@@ -326,13 +359,13 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
     id: 'moon-entertainment-1',
     name: 'Oneirium',
     description: 'Oneirium description',
-    icon: Question24Filled as DefineComponent,
+    icon: Autocorrect24Regular as DefineComponent,
   },
   {
     id: 'moon-entertainment-2',
     name: 'Hedge Maze',
     description: 'Hedge Maze description',
-    icon: Question24Filled as DefineComponent,
+    icon: Fingerprint24Regular as DefineComponent,
   },
   {
     id: 'moon-entertainment-3',
@@ -344,7 +377,7 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
     id: 'moon-entertainment-4',
     name: 'Midnight Symphony',
     description: 'Midnight Symphony description',
-    icon: LibraryMusicOutlined as DefineComponent,
+    icon: MusicalNotesOutline as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
   // EDUCATION
@@ -353,25 +386,25 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
     id: 'moon-education-1',
     name: 'Night School',
     description: 'Night School description',
-    icon: Question24Filled as DefineComponent,
+    icon: SchoolOutlined as DefineComponent,
   },
   {
     id: 'moon-education-2',
     name: 'Twilight Symposium',
     description: 'Twilight Symposium description',
-    icon: Question24Filled as DefineComponent,
+    icon: DesignIdeas24Regular as DefineComponent,
   },
   {
     id: 'moon-education-3',
     name: 'University of Cynthas',
     description: 'University of Cynthas description',
-    icon: Question24Filled as DefineComponent,
+    icon: BuildingGovernment24Regular as DefineComponent,
   },
   {
     id: 'moon-education-4',
     name: 'Quantum Academy',
     description: 'Quantum Academy description',
-    icon: School as DefineComponent,
+    icon: LogoElectron as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
   // OTHER
@@ -386,13 +419,13 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
     id: 'moon-other-2',
     name: 'Eclipse Sanctuary',
     description: 'Eclipse Sanctuary description',
-    icon: Question24Filled as DefineComponent,
+    icon: ContourDraw as DefineComponent,
   },
   {
     id: 'moon-other-3',
     name: 'Sensory Chamber',
     description: 'Sensory Chamber description',
-    icon: Question24Filled as DefineComponent,
+    icon: ChartMarimekko as DefineComponent,
   },
   {
     id: 'moon-other-4',
@@ -407,24 +440,24 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
     id: 'moon-endgame-1',
     name: 'Auroral Archives',
     description: 'Auroral Archives description',
-    icon: LibrarySharp as DefineComponent,
+    icon: BookClock24Regular as DefineComponent,
   },
   {
     id: 'moon-endgame-2',
     name: 'Reliquary of the Moon',
     description: 'Reliquary of the Moon description',
-    icon: Question24Filled as DefineComponent,
+    icon: CurrencyEthereum as DefineComponent,
   },
   {
     id: 'moon-endgame-3',
     name: 'Perihelion',
     description: 'Perihelion description',
-    icon: Question24Filled as DefineComponent,
+    icon: MoonOutline as DefineComponent,
   },
   {
     id: 'moon-endgame-4',
     name: 'Aphelion',
     description: 'Aphelion description',
-    icon: Question24Filled as DefineComponent,
+    icon: YinYang as DefineComponent,
   }
 ];

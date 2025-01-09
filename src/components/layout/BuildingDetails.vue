@@ -25,7 +25,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
 import { useBuildings } from '../../composables/useBuildings';
 import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
 import { useStore } from '../../composables/useStore';
