@@ -16,6 +16,7 @@
   >
       <ArrowCircleRight24Regular />
   </button>
+  <MusicPlayer />
 </template>
 
 <script setup lang="ts">
@@ -23,6 +24,7 @@ import { computed, ref, watchEffect, watch } from 'vue';
 import { useStore } from '../../composables/useStore';
 import CelestialBody from '../ambience/CelestialBody.vue';
 import Faction from './Faction.vue';
+import MusicPlayer from './MusicPlayer.vue';
 import { ArrowCircleRight24Regular } from '@vicons/fluent';
 
 const store = useStore();
