@@ -61,8 +61,7 @@ const createLine = (i: number, currentLineCount: number) => {
   const centerIndex = (currentLineCount - 1) / 2;
   const angleOffset = centerIndex - i;
   
-  const randomAdjustment = (Math.random() - 0.5) * 5;
-  const angle = (angleOffset * angleSpread) / (currentLineCount - 1) + randomAdjustment;
+  const angle = (angleOffset * angleSpread) / (currentLineCount - 1);
 
   const randomHue = 55 + (Math.random() - 0.5) * 20;
   const color = `hsl(${randomHue}, 100%, 50%)`;
