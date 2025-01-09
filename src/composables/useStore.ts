@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { Building, GameState } from '../utilities/types';
-import { sunBuildings, moonBuildings } from './useBuildings';
+import { useBuildings } from './useBuildings';
 
 const initialState = (): GameState => ({
   calendar: { days: 0, hours: 0, minutes: 0, accumulatedTime: 0 },
@@ -9,7 +9,7 @@ const initialState = (): GameState => ({
       level: 3,
       power: 0,
       grid: [null, null, null, null, "sun-religion-1", null, null, null, null],
-      buildings: sunBuildings,
+      buildings: useBuildings().sunBuildings,
       selectedBuilding: null as Building | null,
       lore: [{
         time: { days: 0, hours: 0, minutes: 0, accumulatedTime: 0 },
@@ -26,7 +26,7 @@ const initialState = (): GameState => ({
       level: 3,
       power: 0,
       grid: [null, null, null, null, "moon-religion-1", null, null, null, null],
-      buildings: moonBuildings,
+      buildings: useBuildings().moonBuildings,
       selectedBuilding: null as Building | null,
       lore: [{
         time: { days: 0, hours: 0, minutes: 0, accumulatedTime: 0 },

@@ -26,13 +26,14 @@
 import { computed } from 'vue';
 import { emitter } from '../../utilities/emitter';
 import { useStore } from '../../composables/useStore';
-import { sunBuildings, moonBuildings } from '../../composables/useBuildings';
+import { useBuildings } from '../../composables/useBuildings';
 import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
 import { Building, BuildingMetadata, FactionKey } from '../../utilities/types';
 
 const props = defineProps<{ faction: FactionKey }>();
 const store = useStore();
-const buildingData = props.faction === 'sun' ? sunBuildings : moonBuildings;
+const useBuildingsInstance = useBuildings();
+const buildingData = props.faction === 'sun' ? useBuildingsInstance.sunBuildings : useBuildingsInstance.moonBuildings;
 const buildingMetadata = props.faction === 'sun' ? sunBuildingMetadata : moonBuildingMetadata;
 const visibleBuildings = computed(() => 
   store.factions[props.faction].buildings
