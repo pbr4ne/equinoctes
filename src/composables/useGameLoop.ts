@@ -44,7 +44,14 @@ function unlockBuildings(factionKey: FactionKey) {
   const factionBuildings = factionKey === 'sun' ? sunBuildings : moonBuildings;
 
   factionBuildings.filter((b) => !b.viewUnlocked).forEach((building) => {
-    let canUnlock = !building.viewPrerequisite?.power || faction.power >= building.viewPrerequisite.power;
+    const powerPrerequisiteMet = !building.viewPrerequisite?.power || faction.power >= building.viewPrerequisite.power;
+
+    const buildingsPrerequisite = building.viewPrerequisite?.buildings;
+    const buildingsPrerequisiteMet = !buildingsPrerequisite || buildingsPrerequisite.every((requiredBuildingId) => {
+      return faction.grid.includes(requiredBuildingId);
+    });
+
+    const canUnlock = powerPrerequisiteMet && buildingsPrerequisiteMet;
 
     if (canUnlock) {
       const index = faction.buildings.findIndex((b) => b.id === building.id);
