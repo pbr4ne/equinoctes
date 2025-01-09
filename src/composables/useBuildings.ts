@@ -56,7 +56,7 @@ export const sunBuildings: Building[] = [
     id: 'sun-farming-1',
     power: 1,
     unlocked: true,
-    index: 0,
+    index: null,
     viewPrerequisite: {},
     buildPrerequisite: {},
     viewUnlocked: true,
@@ -139,7 +139,7 @@ export const sunBuildings: Building[] = [
     id: 'sun-production-1',
     power: 1,
     unlocked: false,
-    index: 0,
+    index: null,
     viewPrerequisite: {},
     buildPrerequisite: {
       power: 40,
@@ -224,7 +224,7 @@ export const sunBuildings: Building[] = [
     id: 'sun-religion-1',
     power: 1,
     unlocked: false,
-    index: 0,
+    index: 4,
     viewPrerequisite: {},
     buildPrerequisite: {
       power: 40,
@@ -304,7 +304,7 @@ export const sunBuildings: Building[] = [
     id: 'sun-entertainment-1',
     power: 1,
     unlocked: false,
-    index: 0,
+    index: null,
     viewPrerequisite: {},
     buildPrerequisite: {
       power: 40,
@@ -389,7 +389,7 @@ export const sunBuildings: Building[] = [
     id: 'sun-education-1',
     power: 1,
     unlocked: false,
-    index: 0,
+    index: null,
     viewPrerequisite: {},
     buildPrerequisite: {
       power: 40,
@@ -467,7 +467,7 @@ export const sunBuildings: Building[] = [
     id: 'sun-other-1',
     power: 1,
     unlocked: false,
-    index: 0,
+    index: null,
     viewPrerequisite: {},
     buildPrerequisite: {
       power: 40,
@@ -637,7 +637,7 @@ export const moonBuildings: Building[] = [
     id: 'moon-sustenance-1',
     power: 1,
     unlocked: true,
-    index: 0,
+    index: null,
     viewPrerequisite: {},
     buildPrerequisite: {
       power: 40,
@@ -717,7 +717,7 @@ export const moonBuildings: Building[] = [
     id: 'moon-science-1',
     power: 1,
     unlocked: false,
-    index: 0,
+    index: null,
     viewPrerequisite: {},
     buildPrerequisite: {
       power: 40,
@@ -804,7 +804,7 @@ export const moonBuildings: Building[] = [
     id: 'moon-religion-1',
     power: 1,
     unlocked: false,
-    index: 0,
+    index: 4,
     viewPrerequisite: {},
     buildPrerequisite: {
       power: 40,
@@ -886,7 +886,7 @@ export const moonBuildings: Building[] = [
     id: 'moon-entertainment-1',
     power: 1,
     unlocked: false,
-    index: 0,
+    index: null,
     viewPrerequisite: {},
     buildPrerequisite: {
       power: 40,
@@ -967,7 +967,7 @@ export const moonBuildings: Building[] = [
     id: 'moon-education-1',
     power: 1,
     unlocked: false,
-    index: 0,
+    index: null,
     viewPrerequisite: {},
     buildPrerequisite: {
       power: 40,
@@ -1047,7 +1047,7 @@ export const moonBuildings: Building[] = [
     id: 'moon-other-1',
     power: 1,
     unlocked: false,
-    index: 0,
+    index: null,
     viewPrerequisite: {},
     buildPrerequisite: {
       power: 40,
