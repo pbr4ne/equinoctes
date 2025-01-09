@@ -7,6 +7,7 @@
       No free slots in the grid
     </span>
     <span v-else>
+      <span><b>{{ singleBuildingMetadata?.name }}</b></span><br />
       <span v-html="processedDescription"></span>
       <br />
       {{ faction === 'sun' ? 'Aurum/s:' : 'Nocturne/s' }} {{ building?.power }} 
