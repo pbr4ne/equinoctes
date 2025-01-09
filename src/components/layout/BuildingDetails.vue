@@ -7,7 +7,7 @@
       No free slots in the grid
     </span>
     <span v-else>
-      {{ singleBuildingMetadata?.description }}
+      <span v-html="processedDescription"></span>
       <br />
       {{ faction === 'sun' ? 'Aurum/s:' : 'Nocturne/s' }} {{ building?.power }} 
       <span 
@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import { useBuildings } from '../../composables/useBuildings';
 import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
 import { useStore } from '../../composables/useStore';
@@ -40,6 +41,19 @@ const singleBuildingMetadata = buildingMetadata.find((b) => b.id === props.build
 const { computeBuildingPower } = useBuildings();
 
 const buildingPower = building ? computeBuildingPower(props.faction, building) : 0;
+
+const processedDescription = computed(() => {
+  if (!singleBuildingMetadata?.description) return '';
+
+  let desc = singleBuildingMetadata.description;
+
+  desc = desc.replace(/RADIANT LADY/gi, '<span style="color: #264653">RADIANT LADY</span>');
+
+  desc = desc.replace(/\bLADY\b/gi, '<span style="color: #264653">LADY</span>');
+
+  console.log(desc);
+  return desc;
+});
 
 const isOffTime = () => {
   return store.currentlyDay ? props.faction !== 'sun' : props.faction !== 'moon';
