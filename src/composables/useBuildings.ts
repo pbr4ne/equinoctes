@@ -69,6 +69,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['sun-farming-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -88,6 +89,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['sun-farming-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -113,6 +115,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['sun-farming-3'],
     },
     buildPrerequisite: {
       power: 200,
@@ -151,6 +154,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['sun-production-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -169,6 +173,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['sun-production-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -194,6 +199,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['sun-production-3'],
     },
     buildPrerequisite: {
       power: 200,
@@ -233,6 +239,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['sun-religion-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -252,6 +259,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['sun-religion-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -274,6 +282,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['sun-religion-3'],
     },
     buildPrerequisite: {
       power: 200,
@@ -310,6 +319,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['sun-entertainment-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -329,6 +339,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['sun-entertainment-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -354,6 +365,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['sun-entertainment-3'],
     },
     buildPrerequisite: {
       power: 200,
@@ -392,6 +404,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['sun-education-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -410,6 +423,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['sun-education-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -430,6 +444,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['sun-education-3'],
     },
     buildPrerequisite: {
       power: 200,
@@ -467,6 +482,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['sun-other-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -486,6 +502,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['sun-other-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -506,6 +523,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['sun-other-3'],
     },
     buildPrerequisite: {
       power: 200,
@@ -528,10 +546,13 @@ export const sunBuildings: Building[] = [
     id: 'sun-endgame-1',
     power: 1,
     unlocked: false,
-    index: 0,
-    viewPrerequisite: {},
+    index: null,
+    viewPrerequisite: {
+      buildings: ['sun-farming-4', 'sun-production-4', 'sun-religion-4', 'sun-entertainment-4', 'sun-education-4', 'sun-other-4'],
+    },
     buildPrerequisite: {
       power: 40,
+      buildings: ['sun-farming-4', 'sun-production-4', 'sun-religion-4', 'sun-entertainment-4', 'sun-education-4', 'sun-other-4'],
     },
     viewUnlocked: false,
     buildUnlocked: false,
@@ -543,6 +564,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['sun-endgame-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -562,6 +584,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['sun-endgame-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -587,6 +610,7 @@ export const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['sun-endgame-3'],
     },
     buildPrerequisite: {
       power: 200,
@@ -628,6 +652,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['moon-sustenance-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -647,6 +672,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['moon-sustenance-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -669,6 +695,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['moon-sustenance-3'],
     },
     buildPrerequisite: {
       power: 200,
@@ -705,6 +732,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['moon-science-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -725,6 +753,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['moon-science-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -750,6 +779,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['moon-science-3'],
     },
     buildPrerequisite: {
       power: 200,
@@ -789,6 +819,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['moon-religion-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -807,6 +838,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['moon-religion-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -827,6 +859,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['moon-religion-3'],
     },
     buildPrerequisite: {
       power: 200,
@@ -868,6 +901,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['moon-entertainment-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -887,6 +921,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['moon-entertainment-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -908,6 +943,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['moon-entertainment-3'],
     },
     buildPrerequisite: {
       power: 200,
@@ -946,6 +982,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['moon-education-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -965,6 +1002,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['moon-education-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -986,6 +1024,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['moon-education-3'],
     },
     buildPrerequisite: {
       power: 200,
@@ -1023,6 +1062,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['moon-other-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -1041,6 +1081,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['moon-other-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -1061,6 +1102,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['moon-other-3'],
     },
     buildPrerequisite: {
       power: 200,
@@ -1087,11 +1129,13 @@ export const moonBuildings: Building[] = [
     id: 'moon-endgame-1',
     power: 1,
     unlocked: false,
-    index: 0,
-    viewPrerequisite: {},
+    index: null,
+    viewPrerequisite: {
+      buildings: ['moon-sustenance-4', 'moon-science-4', 'moon-religion-4', 'moon-entertainment-4', 'moon-education-4', 'moon-other-4'],
+    },
     buildPrerequisite: {
       power: 20,
-      buildings: [],
+      buildings: ['moon-sustenance-4', 'moon-science-4', 'moon-religion-4', 'moon-entertainment-4', 'moon-education-4', 'moon-other-4'],
     },
     viewUnlocked: false,
     buildUnlocked: false,
@@ -1103,6 +1147,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 40,
+      buildings: ['moon-endgame-1'],
     },
     buildPrerequisite: {
       power: 80,
@@ -1122,6 +1167,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 70,
+      buildings: ['moon-endgame-2'],
     },
     buildPrerequisite: {
       power: 140,
@@ -1144,6 +1190,7 @@ export const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
+      buildings: ['moon-endgame-3'],
     },
     buildPrerequisite: {
       power: 200,
