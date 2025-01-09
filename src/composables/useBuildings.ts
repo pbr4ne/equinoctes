@@ -227,7 +227,7 @@ export const sunBuildings: Building[] = [
     index: 4,
     viewPrerequisite: {},
     buildPrerequisite: {
-      power: 40,
+      power: 0,
     },
     viewUnlocked: false,
     buildUnlocked: false,
@@ -807,7 +807,7 @@ export const moonBuildings: Building[] = [
     index: 4,
     viewPrerequisite: {},
     buildPrerequisite: {
-      power: 40,
+      power: 0,
     },
     viewUnlocked: false,
     buildUnlocked: false,

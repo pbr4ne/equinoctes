@@ -29,6 +29,14 @@
     ></div>
 
     <div
+      v-if="cellHovered && cell.building && !cell.isDisabled"
+      :class="['delete-icon', `delete-icon-${faction}`]"
+      @click.stop="onDeleteBuilding"
+    >
+      &#10005;
+    </div>
+
+    <div
       v-if="cell.adjacencyModifier !== null"
       class="adj-icon"
     >
@@ -41,6 +49,7 @@
 </template>
 
 <script setup lang="ts">
+import { useStore } from '../../composables/useStore'
 import { ref, computed } from 'vue'
 import type { Building, FactionKey } from '../../utilities/types'
 import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
@@ -59,8 +68,10 @@ const props = defineProps<{
   },
 }>();
 
-const emits = defineEmits(['clickBuilding', 'clickEmpty', 'enterBuilding', 'leaveBuilding']);
+const emits = defineEmits(['clickBuilding', 'clickEmpty', 'enterBuilding', 'leaveBuilding', 'deleteBuilding']);
 
+const store = useStore();
+const cellHovered = ref(false);
 const hovered = ref(false);
 const buildingMetadata = props.faction === 'sun' ? sunBuildingMetadata : moonBuildingMetadata;
 
@@ -71,17 +82,19 @@ const iconComponent = computed(() => {
 });
 
 function handleMouseEnter() {
+  cellHovered.value = true;
   if (props.cell.building) {
     emits('enterBuilding', props.cell.building, props.index)
   } else if (props.cell.isHighlightEmpty) {
-    hovered.value = true
+    hovered.value = true;
   }
 }
 
 function handleMouseLeave() {
-  hovered.value = false
+  cellHovered.value = false;
+  hovered.value = false;
   if (props.cell.building) {
-    emits('leaveBuilding')
+    emits('leaveBuilding');
   }
 }
 
@@ -92,6 +105,15 @@ function onClickBuilding() {
 
 function onClickEmpty() {
   emits('clickEmpty', props.index);
+}
+
+function onDeleteBuilding() {
+  if (!props.cell.building) return;
+  emits('deleteBuilding', props.cell.building, props.index);
+
+  const building = props.cell.building;
+  store.factions[props.faction].grid[props.index] = null;
+  emits('leaveBuilding');
 }
 
 function getArrowIcon(modifier: number | null) {
@@ -212,5 +234,33 @@ function getArrowColor(modifier: number | null): string {
 .hovered-moon {
   outline: 3px solid #e9c46a;
 }
+
+.delete-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+  z-index: 1000;
+}
+
+.delete-icon-sun {
+  color: #264653;
+}
+
+.delete-icon-moon {
+  color: #e9c46a;
+}
+
+.delete-icon:hover {
+  color: #ffffff;
+}
 </style>
-  
