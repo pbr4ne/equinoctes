@@ -129,8 +129,13 @@ function handleSwitchToBuilding({ faction, buildingId }: { faction: FactionKey; 
   currentHeaderComponent.value = markRaw(BuildingDetails);
 }
 
-function handleSwitchToPower({ faction }: { faction: FactionKey; }) {
+function handleSwitchToPower({ faction }: { faction: FactionKey }) {
   if (faction !== props.faction) return;
+  
+  if (store.factions[faction].selectedBuilding) {
+    return; 
+  }
+
   currentBuilding.value = null;
   currentHeaderComponent.value = markRaw(Power);
 }
@@ -139,6 +144,9 @@ const handleTabSelected = (index: number) => {
   if (index < 0 || index >= components.length) {
     console.warn(`Tab index ${index} is out of bounds.`);
     return;
+  }
+  if (index > 0) {
+    store.factions[props.faction].selectedBuilding = null;
   }
   currentComponentIndex.value = index;
   currentHeaderComponent.value = markRaw(Power);

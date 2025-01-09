@@ -6,6 +6,9 @@
     <span v-else-if="noSlots()">
       No free slots in the grid
     </span>
+    <span v-else-if="store.factions[faction].selectedBuilding">
+      Place a building. Navigate back to Buildings tab to cancel.
+    </span>
     <span v-else>
       <span><b>{{ singleBuildingMetadata?.name }}</b></span><br />
       <span v-html="processedDescription"></span>
@@ -22,7 +25,7 @@
         Cost: {{ building?.buildPrerequisite?.power }} {{ faction === 'sun' ? 'Aurum' : 'Nocturne' }}
       </span>
     </span>
-  </span>   
+  </span>
 </template>
 
 <script setup lang="ts">
