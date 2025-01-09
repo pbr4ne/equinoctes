@@ -19,7 +19,7 @@ function reset() {
 
 <style scoped>
 .buildingButton {
-  font-family: "Grenze Gotisch", serif;
+  font-family: "Texturina", serif;
   font-weight: 300;
   font-size: 1.5em;
   border-radius: 20px;
