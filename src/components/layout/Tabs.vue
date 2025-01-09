@@ -12,7 +12,7 @@
             v-if="item.id === 'lore'"
             :value="loreCount"
             :show="loreCount > 0"
-            color="red"
+            :color="faction === 'sun' ? '#264653' : '#e9c46a'"
             dot
             processing
           >
