@@ -1,5 +1,5 @@
 <template>
-  <span :class="['building', `building-${faction}`]">
+  <span :class="['details', `details-${faction}`]">
     <span v-if="isOffTime">
       Cannot interact during the {{ store.currentlyDay ? 'day' : 'night' }}
     </span>
@@ -88,15 +88,15 @@ const noSlots = computed(() => {
 </script>
 
 <style scoped>
-.building {
+.details {
   font-size: 1.25em;
 }
 
-.building-sun {
+.details-sun {
   color: #9e2a2b;
 }
 
-.building-moon {
+.details-moon {
   color: #caf0f8;
 }
 
