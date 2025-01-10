@@ -1,30 +1,32 @@
 <template>
-  <n-space vertical>
-    <n-space>      
+  <n-scrollbar>
+    <n-space vertical>
+      <n-space>      
+        <n-button 
+          :class="['buildingButton', `buildingButton-${faction}`]" 
+          :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
+          @click="resetRun">Reset Run
+        </n-button>
+      </n-space>    
+      <n-card 
+        title="Credits"
+        :theme-overrides="faction === 'sun' ? sunCardThemeOverride : moonCardThemeOverride"
+        style="border-radius: 20px;"
+      >
+        <p v-if="faction === 'sun'">Radiant Lady: <a href="https://github.com/pbr4ne" :class="[`link-${faction}`]" target="_blank">pbrane</a></p>
+        <p v-if="faction === 'moon'">Moon Lord: pbrane</p>
+        <p>Writing: <a href="https://jamesfunfer.com" :class="[`link-${faction}`]" target="_blank">James Funfer</a></p>
+        <p>Music: <a href="https://www.youtube.com/user/Kitchen1066" :class="[`link-${faction}`]" target="_blank">terranaut1066</a></p>
+        <p>Did Some Math: Travis</p>
+        <p>Special Thanks: Blake, Cheese, Julz, Kakumeii, Sof</p>
+      </n-card>
       <n-button 
-        :class="['buildingButton', `buildingButton-${faction}`]" 
-        :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
-        @click="resetRun">Reset Run
-      </n-button>
-    </n-space>    
-    <n-card 
-      title="Credits"
-      :theme-overrides="faction === 'sun' ? sunCardThemeOverride : moonCardThemeOverride"
-      style="font-family: Texturina, serif; border-radius: 20px;"
-    >
-      <p v-if="faction === 'sun'">Radiant Lady: <a href="https://github.com/pbr4ne" :class="[`link-${faction}`]" target="_blank">pbrane</a></p>
-      <p v-if="faction === 'moon'">Moon Lord: pbrane</p>
-      <p>Writing: <a href="https://jamesfunfer.com" :class="[`link-${faction}`]" target="_blank">James Funfer</a></p>
-      <p>Music: <a href="https://www.youtube.com/user/Kitchen1066" :class="[`link-${faction}`]" target="_blank">terranaut1066</a></p>
-      <p>Did Some Math: Travis</p>
-      <p>Special Thanks: Cheese, Julz, Kakumeii, Sof</p>
-    </n-card>
-    <n-button 
-        :class="['buildingButton', `buildingButton-${faction}`]" 
-        :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
-        @click="resetAll">Hard Reset (resets achievements)
-      </n-button>
-  </n-space>
+          :class="['buildingButton', `buildingButton-${faction}`]" 
+          :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
+          @click="resetAll">Hard Reset (resets achievements)
+        </n-button>
+    </n-space>
+  </n-scrollbar>
 </template>
 
 <script setup lang="ts">
@@ -58,7 +60,6 @@ const moonCardThemeOverride = {
 
 <style scoped>
 .buildingButton {
-  font-family: "Texturina", serif;
   font-weight: 300;
   font-size: 1.5em;
   border-radius: 20px;

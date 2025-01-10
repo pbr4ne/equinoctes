@@ -34,7 +34,7 @@ const props = defineProps<{ faction: FactionKey, building: string | null, parent
 
 <style scoped>
 .header {
-  width: calc(min(50vw, 50vh));
+  width: min(550px, 50svh);
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -61,7 +61,6 @@ const props = defineProps<{ faction: FactionKey, building: string | null, parent
 }
 
 .building {
-  font-family: "Texturina", serif;
   font-size: 1.25em;
 }
 

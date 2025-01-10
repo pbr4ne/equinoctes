@@ -13,7 +13,7 @@ import Game from './components/layout/Game.vue';
 
 #app {
   width: 100%;
-  height: 100vh;
+  height: 100svh;
   position: relative;
   overflow: hidden;
 }

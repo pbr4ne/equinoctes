@@ -3,7 +3,7 @@
     <sun-rays v-if="faction === 'sun'" />
     <moon-stars v-if="faction === 'moon'" />
 
-    <n-flex justify="end" vertical style="height: 100vh;">
+    <n-flex justify="end" vertical style="height: 100svh;">
       <n-space justify="center" style="z-index: 500">
         <faction-header :faction="faction" :building="currentBuilding" :parent="components[currentComponentIndex].id" />
       </n-space>
@@ -128,10 +128,16 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .layout-container {
   position: relative;
-  width: 100%;
-  height: 100%;
+  box-sizing: border-box;
+  padding: 0 30px;
 }
 
 .bordered-background {
@@ -154,8 +160,8 @@ onBeforeUnmount(() => {
 }
 
 .content {
-  width: calc(min(50vw, 50vh));
-  height: calc(min(50vw, 50vh));
+  width: min(550px, 50svh);
   box-sizing: border-box;
+  aspect-ratio: 1 / 1;
 }
 </style>

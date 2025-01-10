@@ -112,7 +112,6 @@ function onBuildingLeave() {
 
 <style scoped>
 .buildingButton {
-  font-family: "Texturina", serif;
   font-size: 1.25em;
   border-radius: 20px;
 }
@@ -130,7 +129,6 @@ function onBuildingLeave() {
 }
 
 .noBuilding {
-  font-family: "Texturina", serif;
   font-size: 1.25em;
 }
 

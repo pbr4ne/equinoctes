@@ -84,7 +84,6 @@ const noSlots = computed(() => {
 
 <style scoped>
 .building {
-  font-family: "Texturina", serif;
   font-size: 1.25em;
 }
 

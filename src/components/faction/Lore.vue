@@ -118,8 +118,6 @@ const moonPaginationThemeOverride = {
 
 .lore {
   display: block;
-  font-family: "Texturina", serif;
-  font-weight: 300;
   font-size: 1.25em;
   white-space: pre-wrap;
 }
