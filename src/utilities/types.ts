@@ -53,6 +53,12 @@ export interface Milestones {
   offTimeBuilding?: boolean;
   offTimeProgress?: boolean;
   morePowerful?: boolean;
+  endgame1?: boolean;
+  endgame2?: boolean;
+  cooperativeEnding?: boolean;
+  wonEnding?: boolean;
+  lostEnding?: boolean;
+  neitherEnding?: boolean;
 }
 
 export interface Achievements {

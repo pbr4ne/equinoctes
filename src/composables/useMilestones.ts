@@ -135,13 +135,120 @@ export function useMilestones() {
       }
 
       //if offtime progress built
-      if (faction.grid.some((cell) => cell === `${factionKey}-other-1`) && !factionMilestones.offTimeProgress) {
+      if (faction.grid.some((cell) => cell === `${factionKey}-other-3`) && !factionMilestones.offTimeProgress) {
         faction.lore.push({
           description: `Can now progress during off-time`,
           time: store.calendar,
         });
         factionMilestones.offTimeProgress = true;
         newLoreAndMilestone(factionKey);
+      }
+
+      //if first endgame building built
+      if (faction.grid.some((cell) => cell === `${factionKey}-endgame-1`) && !factionMilestones.endgame1) {
+        faction.lore.push({
+          description: `Endgame msg 1`,
+          time: store.calendar,
+        });
+        factionMilestones.endgame1 = true;
+        newLoreAndMilestone(factionKey);
+      }
+
+      //if second endgame building built
+      if (faction.grid.some((cell) => cell === `${factionKey}-endgame-2`) && !factionMilestones.endgame2) {
+        faction.lore.push({
+          description: `Endgame msg 2`,
+          time: store.calendar,
+        });
+        factionMilestones.endgame2 = true;
+        newLoreAndMilestone(factionKey);
+      }
+
+      //other faction
+      const otherFactionKey = factionKey === 'sun' ? 'moon' : 'sun';
+      const otherFaction = store.factions[otherFactionKey];
+
+      //if both good ending buildings built
+      if (faction.grid.some((cell) => cell === `${factionKey}-endgame-4`) && otherFaction.grid.some((cell) => cell === `${factionKey}-endgame-4`) && !factionMilestones.cooperativeEnding &&
+        !factionMilestones.lostEnding && !factionMilestones.wonEnding && !factionMilestones.neitherEnding
+      ) {
+        faction.lore.push({
+          description: `Good ending`,
+          time: store.calendar,
+        });
+
+        otherFaction.lore.push({
+          description: `Good ending`,
+          time: store.calendar,
+        });
+        
+        //win milestone
+        factionMilestones.cooperativeEnding = true;
+        store.milestones[otherFactionKey].cooperativeEnding = true;
+
+        //win achievement
+        store.factionAchievements[factionKey].cooperativeEnding = true;
+        store.factionAchievements[otherFactionKey].cooperativeEnding = true;
+        store.factions[factionKey].unseenAchievements = true;
+        store.factions[otherFactionKey].unseenAchievements = true;
+
+        createNotification('Good Ending Achieved', factionKey, true, false);
+      }
+
+      //if bad ending building built
+      if (faction.grid.some((cell) => cell === `${factionKey}-endgame-3`) && !factionMilestones.wonEnding && 
+        !factionMilestones.lostEnding && !factionMilestones.cooperativeEnding && !factionMilestones.neitherEnding
+      ) {
+        faction.lore.push({
+          description: `Bad ending (winner)`,
+          time: store.calendar,
+        });
+
+        otherFaction.lore.push({
+          description: `Bad ending (loser)`,
+          time: store.calendar,
+        });
+
+        //ending milestone
+        factionMilestones.wonEnding = true;
+        store.milestones[otherFactionKey].lostEnding = true;
+
+        //ending achievement
+        store.factionAchievements[factionKey].wonEnding = true;
+        store.factionAchievements[otherFactionKey].lostEnding = true;
+
+        store.factions[factionKey].unseenAchievements = true;
+        store.factions[otherFactionKey].unseenAchievements = true;
+
+        createNotification('Bad Ending Achieved', factionKey, false, false);
+      }
+
+      //if terrible ending
+      if (store.calendar.days > 100 && !factionMilestones.neitherEnding && 
+        !factionMilestones.lostEnding && !factionMilestones.cooperativeEnding && !factionMilestones.wonEnding
+      ) {
+        faction.lore.push({
+          description: `worst ending`,
+          time: store.calendar,
+        });
+
+        otherFaction.lore.push({
+          description: `worst ending`,
+          time: store.calendar,
+        });
+
+        //ending milestone
+        factionMilestones.neitherEnding = true;
+        store.milestones[otherFactionKey].neitherEnding = true;
+
+        //ending achievement
+        store.factionAchievements[factionKey].neitherEnding = true;
+        store.factionAchievements[otherFactionKey].neitherEnding = true;
+
+        store.factions[factionKey].unseenAchievements = true;
+        store.factions[otherFactionKey].unseenAchievements = true;
+
+        createNotification('Neither Ending Achieved', factionKey, false, true);
       }
 
       milestoneLevels.forEach(({ power, levelKey, level }) => {

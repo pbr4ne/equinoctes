@@ -735,11 +735,11 @@ const sunBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
-      buildings: ['sun-endgame-3'],
+      buildings: ['sun-endgame-2'],
     },
     buildPrerequisite: {
       power: 200,
-      buildings: ['sun-endgame-3'],
+      buildings: ['sun-endgame-2'],
     },
     viewUnlocked: false,
     buildUnlocked: false,
@@ -1315,11 +1315,11 @@ const moonBuildings: Building[] = [
     index: null,
     viewPrerequisite: {
       power: 100,
-      buildings: ['moon-endgame-3'],
+      buildings: ['moon-endgame-2'],
     },
     buildPrerequisite: {
       power: 200,
-      buildings: ['moon-endgame-3'],
+      buildings: ['moon-endgame-2'],
     },
     viewUnlocked: false,
     buildUnlocked: false,
