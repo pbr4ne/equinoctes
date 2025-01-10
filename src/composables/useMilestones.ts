@@ -6,8 +6,8 @@ export function computeMilestones() {
   const { factions, milestones } = store;
 
   const milestoneLevels = [
-    { power: 100, levelKey: 'level4', level: 4 },
-    { power: 200, levelKey: 'level5', level: 5 },
+    { power: 10000, levelKey: 'level4', level: 4 },
+    { power: 100000, levelKey: 'level5', level: 5 },
   ];
 
   const factionsToCheck: { factionKey: FactionKey; milestonesKey: FactionKey }[] = [
