@@ -1,8 +1,10 @@
 <template>
   <n-message-provider :theme-overrides="computedThemeOverrides">
-    <div id="app">
-      <game />
-    </div>
+    <n-dialog-provider>
+      <div id="app">
+        <game />
+      </div>
+    </n-dialog-provider>
   </n-message-provider>
 </template>
 
@@ -12,8 +14,8 @@ import Game from './components/layout/Game.vue';
 
 const computedThemeOverrides = computed(() => {
     return {
-      colorInfo: '#f4a261',
-      textColorInfo: '#023047',
+      colorWarning: '#077d7d',
+      textColorWarning: '#023047',
     }
   });
 </script>

@@ -2,7 +2,7 @@ import { useStore } from './useStore';
 import { FactionKey } from '../utilities/types';
 
 function sendMessage(message: string) {
-  window.$message.info(message);
+  window.$message.warning(message);
 }
 
 function newLore(factionKey: FactionKey) {
