@@ -12,8 +12,8 @@
         :faction="faction"  
       />
       <div v-else-if="!building && parent === 'buildings'" :class="['building', `building-${faction}`]">
-        <span v-if="faction === 'sun'">Choose a Wonder</span>
-        <span v-else>Choose an Endeavour</span>
+        <span v-if="faction === 'sun'">Choose a Wonder to build</span>
+        <span v-else>Choose an Endeavour to build</span>
       </div>
       <building-details
         v-else
