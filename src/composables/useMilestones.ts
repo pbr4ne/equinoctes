@@ -1,30 +1,65 @@
 import { useStore } from './useStore';
-import { FactionKey } from '../utilities/types';
+import { Achievements, Faction, FactionKey, Milestones } from '../utilities/types';
 import useNotifs from './useNotifs';
 
-export function useMilestones() {
-  const { createMessage, createNotification } = useNotifs();
+export function useMilestones() { 
 
+  const store = useStore();
+  const { createMessage, createNotification } = useNotifs();
+  
   const sendMessage = (message: string, factionKey: FactionKey) => {
     createMessage(message, factionKey);
   }
-
+  
   const newLoreAndMilestone = (factionKey: FactionKey) => {
     factionKey === 'sun' ? sendMessage('New Revelation and Milestone', factionKey) : sendMessage('New Mysterium and Milestone', factionKey);
   }
-
+  
   const newLore = (factionKey: FactionKey) => {
     factionKey === 'sun' ? sendMessage('New Revelation', factionKey) : sendMessage('New Mysterium', factionKey);
   }
-
+  
   const newMilestone = (factionKey: FactionKey) => {
     factionKey === 'sun' ? sendMessage('New Milestone', factionKey) : sendMessage('New Milestone', factionKey);
   }
+  
+  const sunPerihelionBuilt = `And the tides did still
+    And the SILVER LORD was as distant as the twinkling children
+    An Age of Bounty had begun
+    And the City of Cynthas did wither
+    `;
+  
+  const moonPerihelionBuilt = `Thy wan’dring gaze hath found at last
+    All truths of future, present, past
+    Beyond the stars, beyond the veil
+    Thy soul’s next journey hath set sail
+  
+    Weep not for those still ‘neath the sun
+    Though certainly their time is done
+    & all shall wither on the vine
+    Eternal glory is now thine
+    `;
+  
+  const sunAphelionBuilt = `And so was built in Heliotropolis a great edifice with two faces, and under the light of the LADY did they chant her praises, and
+  
+    By the light of my Eye
+    Under darkened Sky
+  
+    We are One`;
+  
+  const moonAphelionBuilt = `By the light of my Eye
+    Under darkened Sky
+    In Cynthas City
+    A temple so pretty
+  
+    And upon break of day under the light of the LADY did they chant her praises, and sing in raised voices:
+  
+    We are One`;
+  
+  const neitherEndingText = `Heat death of the universe... great job. Next time try building more stuff?`;
 
   const computeMilestones = () => {
-    const store = useStore();
-    
-    const { factions, milestones } = store;
+    const store = useStore();    
 
     const milestoneLevels = [
       { power: 10000, levelKey: 'level4', level: 4 },
@@ -37,11 +72,16 @@ export function useMilestones() {
     ];
 
     factionsToCheck.forEach(({ factionKey, milestonesKey }) => {
-      const faction = factions[factionKey];
-      const factionMilestones = milestones[milestonesKey];
+      const faction = store.factions[factionKey];
+      const otherFactionKey = factionKey === 'sun' ? 'moon' : 'sun';
+      const otherFaction = store.factions[otherFactionKey];
+      const milestones = store.milestones[factionKey];
+      const otherMilestones = store.milestones[otherFactionKey];
+      const achievements = store.factionAchievements[factionKey];
+      const otherAchievements = store.factionAchievements[otherFactionKey];
 
-      if (faction.power > 0 && !factionMilestones.unlocked) {
-        factionMilestones.unlocked = true;
+      if (faction.power > 0 && !milestones.unlocked) {
+        milestones.unlocked = true;
         if (factionKey === 'sun') {
           faction.lore.push({
             description: `O Lady, why did you leave me in darkness?
@@ -79,8 +119,8 @@ export function useMilestones() {
         }      
       }
 
-      if (faction.power > 10000 && faction.power > factions.moon.power * 1.5 && !factionMilestones.morePowerful) {
-        factionMilestones.morePowerful = true;
+      if (faction.power > 10000 && faction.power > otherFaction.power * 1.5 && !milestones.morePowerful) {
+        milestones.morePowerful = true;
         store.factionAchievements[factionKey].morePowerful = true;
 
         if (factionKey === 'sun') {
@@ -125,131 +165,85 @@ export function useMilestones() {
       }
 
       //if offtime building built
-      if (faction.grid.some((cell) => cell === `${factionKey}-other-1`) && !factionMilestones.offTimeBuilding) {
-        faction.lore.push({
-          description: `Can now build during off-time`,
-          time: store.calendar,
-        });
-        factionMilestones.offTimeBuilding = true;
+      if (faction.grid.some((cell) => cell === `${factionKey}-other-1`) && !milestones.offTimeBuilding) {
+        if (factionKey === 'sun') {
+          faction.lore.push({
+            description: `Can now build during off-time`,
+            time: store.calendar,
+          });
+        } else {
+          faction.lore.push({
+            description: `Can now build during off-time`,
+            time: store.calendar,
+          });
+        }
+        milestones.offTimeBuilding = true;
         newLoreAndMilestone(factionKey);
       }
 
       //if offtime progress built
-      if (faction.grid.some((cell) => cell === `${factionKey}-other-3`) && !factionMilestones.offTimeProgress) {
-        faction.lore.push({
-          description: `Can now progress during off-time`,
-          time: store.calendar,
-        });
-        factionMilestones.offTimeProgress = true;
+      if (faction.grid.some((cell) => cell === `${factionKey}-other-3`) && !milestones.offTimeProgress) {
+        if (factionKey === 'sun') {
+          faction.lore.push({
+            description: `Can now build during off-time`,
+            time: store.calendar,
+          });
+        } else {
+          faction.lore.push({
+            description: `Can now build during off-time`,
+            time: store.calendar,
+          });
+        }
+        milestones.offTimeProgress = true;
         newLoreAndMilestone(factionKey);
       }
 
       //if first endgame building built
-      if (faction.grid.some((cell) => cell === `${factionKey}-endgame-1`) && !factionMilestones.endgame1) {
-        faction.lore.push({
-          description: `Endgame msg 1`,
-          time: store.calendar,
-        });
-        factionMilestones.endgame1 = true;
+      if (faction.grid.some((cell) => cell === `${factionKey}-endgame-1`) && !milestones.endgame1) {
+        if (factionKey === 'sun') {
+          faction.lore.push({
+            description: `Can now build during off-time`,
+            time: store.calendar,
+          });
+        } else {
+          faction.lore.push({
+            description: `Under the LORD’s silver light, the floors of the archive suddenly glow with arcane energy and a message appears:
+
+<i>You have grown so distant, my other half, and our people suffer. We must again be united, that bounty and truth may both belong to our children.</i>
+
+Further instructions guide you to build a special reliquary…
+`,
+            time: store.calendar,
+          });
+        }
+        milestones.endgame1 = true;
         newLoreAndMilestone(factionKey);
       }
 
       //if second endgame building built
-      if (faction.grid.some((cell) => cell === `${factionKey}-endgame-2`) && !factionMilestones.endgame2) {
-        faction.lore.push({
-          description: `Endgame msg 2`,
-          time: store.calendar,
-        });
-        factionMilestones.endgame2 = true;
+      if (faction.grid.some((cell) => cell === `${factionKey}-endgame-2`) && !milestones.endgame2) {
+        if (factionKey === 'sun') {
+          faction.lore.push({
+            description: `Can now build during off-time`,
+            time: store.calendar,
+          });
+        } else {
+          faction.lore.push({
+            description: `Completing the LORD’s special reliquary, a relic appears within its hallowed halls unexpectedly: an orb which glows silver on one face and golden upon the other, representing two sides of the same deity.
+
+Only one thing remains to reunite the people of Heliotropolis and Cynthas. Or, you could build the Perihelion and unlock the final mysteries of the moon. What effect that shall have on the Lady’s gardens, however, remains to be seen…
+`,
+            time: store.calendar,
+          });
+        }
+        milestones.endgame2 = true;
         newLoreAndMilestone(factionKey);
       }
 
-      //other faction
-      const otherFactionKey = factionKey === 'sun' ? 'moon' : 'sun';
-      const otherFaction = store.factions[otherFactionKey];
-
-      //if both good ending buildings built
-      if (faction.grid.some((cell) => cell === `${factionKey}-endgame-4`) && otherFaction.grid.some((cell) => cell === `${factionKey}-endgame-4`) && !factionMilestones.cooperativeEnding &&
-        !factionMilestones.lostEnding && !factionMilestones.wonEnding && !factionMilestones.neitherEnding
-      ) {
-        faction.lore.push({
-          description: `Good ending`,
-          time: store.calendar,
-        });
-
-        otherFaction.lore.push({
-          description: `Good ending`,
-          time: store.calendar,
-        });
-        
-        //win milestone
-        factionMilestones.cooperativeEnding = true;
-        store.milestones[otherFactionKey].cooperativeEnding = true;
-
-        //win achievement
-        store.factionAchievements[factionKey].cooperativeEnding = true;
-        store.factionAchievements[otherFactionKey].cooperativeEnding = true;
-        store.factions[factionKey].unseenAchievements = true;
-        store.factions[otherFactionKey].unseenAchievements = true;
-
-        createNotification('Good Ending Achieved', factionKey, true, false);
-      }
-
-      //if bad ending building built
-      if (faction.grid.some((cell) => cell === `${factionKey}-endgame-3`) && !factionMilestones.wonEnding && 
-        !factionMilestones.lostEnding && !factionMilestones.cooperativeEnding && !factionMilestones.neitherEnding
-      ) {
-        faction.lore.push({
-          description: `Bad ending (winner)`,
-          time: store.calendar,
-        });
-
-        otherFaction.lore.push({
-          description: `Bad ending (loser)`,
-          time: store.calendar,
-        });
-
-        //ending milestone
-        factionMilestones.wonEnding = true;
-        store.milestones[otherFactionKey].lostEnding = true;
-
-        //ending achievement
-        store.factionAchievements[factionKey].wonEnding = true;
-        store.factionAchievements[otherFactionKey].lostEnding = true;
-
-        store.factions[factionKey].unseenAchievements = true;
-        store.factions[otherFactionKey].unseenAchievements = true;
-
-        createNotification('Bad Ending Achieved', factionKey, false, false);
-      }
-
-      //if terrible ending
-      if (store.calendar.days > 1000 && !factionMilestones.neitherEnding && 
-        !factionMilestones.lostEnding && !factionMilestones.cooperativeEnding && !factionMilestones.wonEnding
-      ) {
-        faction.lore.push({
-          description: `worst ending`,
-          time: store.calendar,
-        });
-
-        otherFaction.lore.push({
-          description: `worst ending`,
-          time: store.calendar,
-        });
-
-        //ending milestone
-        factionMilestones.neitherEnding = true;
-        store.milestones[otherFactionKey].neitherEnding = true;
-
-        //ending achievement
-        store.factionAchievements[factionKey].neitherEnding = true;
-        store.factionAchievements[otherFactionKey].neitherEnding = true;
-
-        store.factions[factionKey].unseenAchievements = true;
-        store.factions[otherFactionKey].unseenAchievements = true;
-
-        createNotification('Neither Ending Achieved', factionKey, false, true);
-      }
+      perihelionBuilt(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
+      aphelionBuilt(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
+      bothAphelionBuilt(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
+      neitherEnding(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
 
       milestoneLevels.forEach(({ power, levelKey, level }) => {
         if (faction.power > power && !factionMilestones[levelKey]) {
@@ -296,5 +290,104 @@ export function useMilestones() {
       });
     });
   }
+
+  function perihelionBuilt(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
+    if (hasEnded(milestone)) {
+      return;
+    }
+  
+    if (hasBuilding(faction, factionKey, 'endgame-3')) {
+      const perihelionBuilt = factionKey === 'sun'? sunPerihelionBuilt : moonPerihelionBuilt;
+  
+      addLore(faction, perihelionBuilt);
+      addLore(otherFaction, perihelionBuilt);
+  
+      milestone.wonEnding = true;
+      otherMilestone.lostEnding = true;
+  
+      if (factionKey === 'sun') {
+        achievements.wonEnding = true;
+        otherAchievements.lostEnding = true;
+      } else {
+        achievements.lostEnding = true;
+        otherAchievements.wonEnding = true;
+      }
+  
+      createNotification(perihelionBuilt, factionKey, false, false);
+    }
+  }
+  
+  function aphelionBuilt(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievement: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
+    if (hasEnded(milestone) || milestone.endgame4) {
+      return;
+    }
+  
+    if (hasBuilding(faction, factionKey, 'endgame-4')) {
+      const aphelionBuilt = factionKey === 'sun'? sunAphelionBuilt : moonAphelionBuilt;
+  
+      addLore(faction, aphelionBuilt);
+    }
+  }
+  
+  function bothAphelionBuilt(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
+    if (hasEnded(milestone)) {
+      return;
+    }
+  
+    if (hasBuilding(faction, factionKey, 'endgame-4') && hasBuilding(otherFaction, otherFactionKey, 'endgame-4')) {
+      const aphelionBuilt = factionKey === 'sun'? sunAphelionBuilt : moonAphelionBuilt;
+  
+      addLore(faction, aphelionBuilt);
+  
+      milestone.cooperativeEnding = true;
+      otherMilestone.cooperativeEnding = true;
+  
+      achievements.cooperativeEnding = true;
+      otherAchievements.cooperativeEnding = true;
+  
+      faction.unseenAchievements = true;
+      otherFaction.unseenAchievements = true;
+  
+      createNotification(aphelionBuilt, factionKey, true, false);
+    }
+  }
+  
+  function neitherEnding(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
+    if (hasEnded(milestone)) {
+      return;
+    }
+  
+    if (store.calendar.days > 1000) {
+      addLore(faction, neitherEndingText);
+      addLore(otherFaction, neitherEndingText);
+  
+      milestone.neitherEnding = true;
+      otherMilestone.neitherEnding = true;
+  
+      achievements.neitherEnding = true;
+      otherAchievements.neitherEnding = true;
+  
+      faction.unseenAchievements = true;
+      otherFaction.unseenAchievements = true;
+  
+      createNotification(neitherEndingText, factionKey, false, true);
+    }
+  }
+  
+  function hasBuilding(faction: Faction, factionKey: FactionKey, buildingSuffix: string) {
+    return faction.grid.some((building) => building === `${factionKey}-${buildingSuffix}`);
+  }
+  
+  function hasEnded(milestone: Milestones) {
+    return milestone.cooperativeEnding || milestone.lostEnding || milestone.wonEnding || milestone.neitherEnding;
+  }
+  
+  function addLore(faction: Faction, description: string) {
+    faction.lore.push({
+      description: description,
+      time: store.calendar,
+    });
+  }  
+
   return { computeMilestones };
 }

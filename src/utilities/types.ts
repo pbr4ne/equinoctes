@@ -54,6 +54,7 @@ export interface Milestones {
   morePowerful?: boolean;
   endgame1?: boolean;
   endgame2?: boolean;
+  endgame4?: boolean;
   cooperativeEnding?: boolean;
   wonEnding?: boolean;
   lostEnding?: boolean;
