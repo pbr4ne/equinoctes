@@ -52,6 +52,7 @@ export interface Milestones {
   level5?: boolean;
   offTimeBuilding?: boolean;
   offTimeProgress?: boolean;
+  morePowerful?: boolean;
 }
 
 export interface Achievements {
@@ -59,6 +60,7 @@ export interface Achievements {
   level3Buildings?: boolean;
   level4Buildings?: boolean;
   level5Buildings?: boolean;
+  morePowerful?: boolean;
   cooperativeEnding?: boolean;
   wonEnding?: boolean;
   lostEnding?: boolean;

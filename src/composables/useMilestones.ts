@@ -74,6 +74,30 @@ In Sky you Lie, if Mine you Die
       }      
     }
 
+    if (faction.power > 10000 && faction.power > factions.moon.power * 1.5 && !factionMilestones.morePowerful) {
+      factionMilestones.morePowerful = true;
+      store.factionAchievements[factionKey].morePowerful = true;
+
+      if (factionKey === 'sun') {
+        faction.lore.push({
+          description: `You have seen the moon grow dimmer at night, and the long, hot summers and far-off smoke of the wildfires. The Lady is pleased, and the moon folks’ power wanes as she desires, but at what cost?
+`,
+          time: store.calendar,
+        });
+      } else {
+        faction.lore.push({
+          description: `The harvests have been thin, but it matters not. There are truths that lie beyond life and this prison of flesh, your lord has shown you that. When the final secrets of the night are revealed…
+
+You close your eyes and dream of what lies beyond the sky. In the distance, you can hear the crashing of the surf. The tides are stronger than ever before…
+`,
+          time: store.calendar,
+        });
+      }
+
+      store.factions[factionKey].unseenAchievements = true;
+      newLoreAndMilestone(factionKey);
+    }
+
     //if 9 buildings in grid
     if (faction.grid.filter((cell) => cell).length >= 9 && !store.factionAchievements[factionKey].level3Buildings) {
       store.factionAchievements[factionKey].level3Buildings = true;
