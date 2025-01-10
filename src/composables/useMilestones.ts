@@ -1,6 +1,22 @@
 import { useStore } from './useStore';
 import { FactionKey } from '../utilities/types';
 
+function sendMessage(message: string) {
+  window.$message.success(message);
+}
+
+function newLore(factionKey: FactionKey) {
+  factionKey === 'sun' ? sendMessage('New Revelation') : sendMessage('New Mysterium');
+}
+
+function newMilestone() {
+  sendMessage('New Milestone');
+}
+
+function newLoreAndMilestone(factionKey: FactionKey) {
+  factionKey === 'sun' ? sendMessage('New Revelation and Milestone') : sendMessage('New Mysterium and Milestone');
+}
+
 export function computeMilestones() {
   const store = useStore();
   const { factions, milestones } = store;
@@ -27,24 +43,30 @@ export function computeMilestones() {
       });
       store.factionAchievements[factionKey].met = true;
       store.factions[factionKey].unseenAchievements = true;
+      
+      const loreMessage = factionKey === 'sun' ? 'New revelation' : 'The moon faction has been unlocked!';
+      newLoreAndMilestone(factionKey);
     }
 
     //if 9 buildings in grid
     if (faction.grid.filter((cell) => cell).length >= 9 && !store.factionAchievements[factionKey].level3Buildings) {
       store.factionAchievements[factionKey].level3Buildings = true;
       store.factions[factionKey].unseenAchievements = true;
+      newLoreAndMilestone(factionKey);
     }
 
     //if 16 buildings in grid
     if (faction.grid.filter((cell) => cell).length >= 16 && !store.factionAchievements[factionKey].level4Buildings) {
       store.factionAchievements[factionKey].level4Buildings = true;
       store.factions[factionKey].unseenAchievements = true;
+      newMilestone();
     }
 
     //if 25 buildings in grid
     if (faction.grid.filter((cell) => cell).length >= 25 && !store.factionAchievements[factionKey].level5Buildings) {
       store.factionAchievements[factionKey].level5Buildings = true;
       store.factions[factionKey].unseenAchievements = true;
+      newMilestone();
     }
 
     //if offtime building built
@@ -54,6 +76,7 @@ export function computeMilestones() {
         time: store.calendar,
       });
       factionMilestones.offTimeBuilding = true;
+      newLoreAndMilestone(factionKey);
     }
 
     //if offtime progress built
@@ -63,6 +86,7 @@ export function computeMilestones() {
         time: store.calendar,
       });
       factionMilestones.offTimeProgress = true;
+      newLoreAndMilestone(factionKey);
     }
 
     milestoneLevels.forEach(({ power, levelKey, level }) => {
@@ -87,6 +111,7 @@ export function computeMilestones() {
         }
 
         faction.level = level;
+        newLoreAndMilestone(factionKey);
       }
     });
   });

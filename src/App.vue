@@ -1,7 +1,9 @@
 <template>
-  <div id="app">
-    <game />
-  </div>
+  <n-message-provider>
+    <div id="app">
+      <game />
+    </div>
+  </n-message-provider>
 </template>
 
 <script setup lang="ts">

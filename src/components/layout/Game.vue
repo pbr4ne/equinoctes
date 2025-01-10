@@ -26,6 +26,7 @@ import CelestialBody from '../ambience/CelestialBody.vue';
 import Faction from './Faction.vue';
 import MusicPlayer from './MusicPlayer.vue';
 import { ArrowCircleRight24Regular } from '@vicons/fluent';
+import { useMessage } from 'naive-ui';
 
 const store = useStore();
 
@@ -33,6 +34,9 @@ const isSmallScreen = ref(isSmallWindow());
 const unlockedFactions = computed(() => (store.milestones.moon.unlocked ? 2 : 1));
 const visiblefactions = ref(unlockedFactions.value);
 const currentFaction = ref(store.currentlyDay ? 'sun' : 'moon');
+
+//for message provider
+window.$message = useMessage();
 
 const updateScreenSize = () => {
   isSmallScreen.value = window.innerWidth < 730;
