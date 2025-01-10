@@ -2,7 +2,7 @@
     <n-text v-if="faction === 'sun'" class="power solar">Aurum: </n-text>
     <n-text v-else class="power lunar">Nocturne: </n-text>
     <n-text :class="['power', faction === 'sun' ? 'solar' : 'lunar']">
-      {{  Math.round(store.factions[props.faction].power) }}
+      {{  Intl.NumberFormat().format(Math.round(store.factions[props.faction].power)) }}
     </n-text>
 </template>
 
