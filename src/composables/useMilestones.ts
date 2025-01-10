@@ -56,6 +56,36 @@ You close your eyes and dream of what lies beyond the sky. In the distance, you 
   const sunOffTimeProgress = `Can now progress during off-time`;
   const moonOffTimeProgress = `Can now progress during off-time`;
 
+  const sunFirstEndgameBuilt = `As the pages yellow after years of chanting the hymns within under the Lady’s light, a secret message appears between the lines of text, bidding you to build a great brazier, which the Lady shall kiss with her light to bestow a flame that never dies.
+
+Upon building the brazier, the lady is true to her word. No oil or fuel is needed; it simply burns as though it came from the sun herself.
+
+Gazing at the very same page under the light of the everburning flame, a new message appears in a silvery script:
+
+We are one and the same, my lady
+
+You await the next message from your gods…
+`;
+
+  const moonFirstEndgameBuilt = `Under the LORD’s silver light, the floors of the archive suddenly glow with arcane energy and a message appears:
+
+<i>You have grown so distant, my other half, and our people suffer. We must again be united, that bounty and truth may both belong to our children.</i>
+
+Further instructions guide you to build a special reliquary…
+`;
+
+  const sunSecondEndgameBuilt = `The next message speaks of a golden chariot, a symbol of the Lady’s journey across the sky each day. The forges burn for weeks on end to smelt the metals, and finally it is ready. At first you believe it to be solely a symbol of the lady’s grace, but under the light of the moon, the chariot transforms to silver!
+
+Indeed, it is a symbol not just of the lady’s passage across the sky, but of the lord’s as well.
+
+The next day, a message from Cynthas City.
+`;
+
+  const moonSecondEndgameBuilt = `Completing the LORD’s special reliquary, a relic appears within its hallowed halls unexpectedly: an orb which glows silver on one face and golden upon the other, representing two sides of the same deity.
+
+Only one thing remains to reunite the people of Heliotropolis and Cynthas. Or, you could build the Perihelion and unlock the final mysteries of the moon. What effect that shall have on the Lady’s gardens, however, remains to be seen…
+`
+
   const sunPerihelionBuilt = `And the tides did still
 And the SILVER LORD was as distant as the twinkling children
 An Age of Bounty had begun
@@ -124,47 +154,8 @@ We are One`;
       offtimeBuilding(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
       offtimeProgress(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
 
-      //if first endgame building built
-      if (faction.grid.some((cell) => cell === `${factionKey}-endgame-1`) && !milestones.endgame1) {
-        if (factionKey === 'sun') {
-          faction.lore.push({
-            description: `Can now build during off-time`,
-            time: store.calendar,
-          });
-        } else {
-          faction.lore.push({
-            description: `Under the LORD’s silver light, the floors of the archive suddenly glow with arcane energy and a message appears:
-
-<i>You have grown so distant, my other half, and our people suffer. We must again be united, that bounty and truth may both belong to our children.</i>
-
-Further instructions guide you to build a special reliquary…
-`,
-            time: store.calendar,
-          });
-        }
-        milestones.endgame1 = true;
-        newLoreAndMilestone(factionKey);
-      }
-
-      //if second endgame building built
-      if (faction.grid.some((cell) => cell === `${factionKey}-endgame-2`) && !milestones.endgame2) {
-        if (factionKey === 'sun') {
-          faction.lore.push({
-            description: `Can now build during off-time`,
-            time: store.calendar,
-          });
-        } else {
-          faction.lore.push({
-            description: `Completing the LORD’s special reliquary, a relic appears within its hallowed halls unexpectedly: an orb which glows silver on one face and golden upon the other, representing two sides of the same deity.
-
-Only one thing remains to reunite the people of Heliotropolis and Cynthas. Or, you could build the Perihelion and unlock the final mysteries of the moon. What effect that shall have on the Lady’s gardens, however, remains to be seen…
-`,
-            time: store.calendar,
-          });
-        }
-        milestones.endgame2 = true;
-        newLoreAndMilestone(factionKey);
-      }
+      firstEndgameBuildingBuilt(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
+      secondEndgameBuildingBuilt(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
 
       perihelionBuilt(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
       aphelionBuilt(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
@@ -298,6 +289,30 @@ Only one thing remains to reunite the people of Heliotropolis and Cynthas. Or, y
         addLore(faction, moonOffTimeProgress);
       }
       milestone.offTimeProgress = true;
+      newLoreAndMilestone(factionKey);
+    }
+  }
+
+  function firstEndgameBuildingBuilt(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
+    if (hasBuilding(faction, factionKey, 'endgame-1') && !milestone.endgame1) {
+      if (factionKey === 'sun') {
+        addLore(faction, sunFirstEndgameBuilt);
+      } else {
+        addLore(faction, moonFirstEndgameBuilt);
+      }
+      milestone.endgame1 = true;
+      newLoreAndMilestone(factionKey);
+    }
+  }
+
+  function secondEndgameBuildingBuilt(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
+    if (hasBuilding(faction, factionKey, 'endgame-2') && !milestone.endgame2) {
+      if (factionKey === 'sun') {
+        addLore(faction, sunSecondEndgameBuilt);
+      } else {
+        addLore(faction, moonSecondEndgameBuilt);
+      }
+      milestone.endgame2 = true;
       newLoreAndMilestone(factionKey);
     }
   }
