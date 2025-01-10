@@ -160,7 +160,7 @@ function getIconColour() {
 function onClickBuilding() {
   if (!props.cell.building || props.cell.isDisabled) return;
   
-  if(store.factions[props.faction].boost?.building === props.cell.building.id) {
+  if(store.factions[props.faction].boost?.building) {
     return;
   }
 
