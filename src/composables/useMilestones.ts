@@ -25,6 +25,7 @@ export function computeMilestones() {
         description: `The ${factionKey} faction has been unlocked!`,
         time: store.calendar,
       });
+      store.factionAchievements[factionKey].met = true;
     }
 
     milestoneLevels.forEach(({ power, levelKey, level }) => {

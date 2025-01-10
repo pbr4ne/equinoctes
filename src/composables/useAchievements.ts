@@ -25,6 +25,11 @@ export const useAchievements = () => {
 const sunAchievementMetadata = () => {
     return [
         {
+            id: 'met',
+            name: 'Achievement 0',
+            description: 'Unlock the faction',
+        },
+        {
             id: 'level3Buildings',
             name: 'Achievement 1',
             description: 'Unlock all level 3 buildings',
@@ -64,6 +69,11 @@ const sunAchievementMetadata = () => {
 
 const moonAchievementMetadata = () => {
     return [
+        {
+            id: 'met',
+            name: 'Achievement 0',
+            description: 'Unlock the faction',
+        },
         {
             id: 'level3Buildings',
             name: 'Achievement 1',
