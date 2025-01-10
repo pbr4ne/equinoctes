@@ -102,8 +102,7 @@ const cells = computed(() => {
   }).slice(0, store.factions[props.faction].level ** 2);
 });
 
-function clickBuilding(building: Building) {
-  console.log(`Button ${building.id} clicked!`);
+function clickBuilding(building: Building) {  
 }
 
 function onClickEmptyCell(gridIndex: number) {

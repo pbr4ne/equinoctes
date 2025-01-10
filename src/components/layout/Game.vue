@@ -26,7 +26,7 @@ import CelestialBody from '../ambience/CelestialBody.vue';
 import Faction from './Faction.vue';
 import MusicPlayer from './MusicPlayer.vue';
 import { ArrowCircleRight24Regular } from '@vicons/fluent';
-import { useMessage } from 'naive-ui';
+import { startGameLoop } from '../../composables/useGameLoop'; 
 
 const store = useStore();
 
@@ -35,8 +35,7 @@ const unlockedFactions = computed(() => (store.milestones.moon.unlocked ? 2 : 1)
 const visiblefactions = ref(unlockedFactions.value);
 const currentFaction = ref(store.currentlyDay ? 'sun' : 'moon');
 
-//for message provider
-window.$message = useMessage();
+startGameLoop();
 
 const updateScreenSize = () => {
   isSmallScreen.value = window.innerWidth < 730;
@@ -72,6 +71,8 @@ window.addEventListener('resize', updateScreenSize);
 watchEffect(() => {
   updateScreenSize();
 });
+
+
 </script>
 
 <style scoped>

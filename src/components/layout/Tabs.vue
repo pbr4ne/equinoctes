@@ -105,8 +105,6 @@ const unseenAchievements = computed(() => {
 });
 
 const getSelectedStyle = computed(() => (index: number) => {
-  console.log('getSelectedStyle', index, props.currentComponentIndex);
-  console.log(props.currentComponentIndex === index ? (props.faction === 'sun' ? '#9e2a2b' : '#caf0f8') : '');
   return {    
     backgroundColor: props.currentComponentIndex === index ? (props.faction === 'sun' ? '#9e2a2b' : '#caf0f8') : '',
     color: props.currentComponentIndex === index ? (props.faction === 'sun' ? '#e9c46a' : '#264653') : ''
@@ -118,7 +116,6 @@ const emit = defineEmits<{
 }>();
 
 const selectTab = (index: number) => {
-  console.log('selectTab', index);
   emit('tab-selected', index);
 };
 

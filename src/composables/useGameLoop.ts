@@ -1,11 +1,12 @@
 import { useBuildings } from './useBuildings';
-import { computeMilestones } from './useMilestones';
+import { useMilestones } from './useMilestones';
 import { useStore } from './useStore';
 import { emitter } from '../utilities/emitter';
 import { FactionKey } from '../utilities/types';
 
 export function startGameLoop() {
   const store = useStore();
+  const milestones = useMilestones();
   store.initializeSpeedMultiplier();
 
   const TICK_RATE = 50;
@@ -28,7 +29,7 @@ export function startGameLoop() {
       unlockBuildings('moon');
 
       //milestones
-      computeMilestones();
+      milestones.computeMilestones();
     }
 
     store._gameLoopId = requestAnimationFrame(gameLoop);

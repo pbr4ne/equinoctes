@@ -1,5 +1,5 @@
 <template>
-  <n-message-provider :theme-overrides="computedThemeOverrides">
+  <n-message-provider>
     <n-dialog-provider>
       <div id="app">
         <game />
@@ -9,15 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import Game from './components/layout/Game.vue';
-
-const computedThemeOverrides = computed(() => {
-    return {
-      colorWarning: '#077d7d',
-      textColorWarning: '#023047',
-    }
-  });
 </script>
 
 <style scoped>

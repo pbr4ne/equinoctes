@@ -4,7 +4,6 @@ import { createPinia } from 'pinia';
 import { piniaPlugin } from './utilities/piniaPlugin';
 import { naive } from './utilities/naiveUI';
 import { useStore } from './composables/useStore';
-import { startGameLoop } from './composables/useGameLoop'; 
 
 const pinia = createPinia();
 pinia.use(piniaPlugin);
@@ -15,7 +14,5 @@ app.use(pinia);
 
 const store = useStore();
 store.listenForEvents();
-
-startGameLoop();
 
 app.mount('#app');
