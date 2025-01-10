@@ -18,7 +18,7 @@
     <component
       v-if="cell.building"
       :is="iconComponent"
-      :color="getIconColour(cell.isDisabled)"
+      :color="getIconColour()"
       :class="['button-icon', { 'flip-horizontal': shouldFlipIcon }]"
       @click="onClickBuilding"
     />
@@ -116,9 +116,6 @@ function handleMouseEnter() {
   } else if (props.cell.isHighlightEmpty) {
     hovered.value = true;
   }
-
-  console.log('cellHovered', cellHovered.value);
-  console.log('hovered', hovered.value);
 }
 
 function handleMouseLeave() {
@@ -131,16 +128,15 @@ function handleMouseLeave() {
   }
 }
 
-function getIconColour(isDisabled: boolean) {
-  console.log('getIconColour', props.faction, hovered.value);
+function getIconColour() {
   if (props.faction === 'sun') {
-    if (cellHovered.value && !isDisabled) {
+    if (cellHovered.value && !props.cell.isDisabled) {
       return '#264653';
     } else {
       return '#9e2a2b';
     }
   } else {
-    if (cellHovered.value && !isDisabled) {
+    if (cellHovered.value && !props.cell.isDisabled) {
       return '#f4a261';
     } else {
       return '#caf0f8';
@@ -149,7 +145,7 @@ function getIconColour(isDisabled: boolean) {
 }
 
 function onClickBuilding() {
-  if (!props.cell.building) return;
+  if (!props.cell.building || props.cell.isDisabled) return;
   emits('clickBuilding', props.cell.building);
 }
 
@@ -162,6 +158,8 @@ function onDeleteBuilding() {
   emits('deleteBuilding', props.cell.building, props.index);
 
   store.factions[props.faction].grid[props.index] = null;
+  props.cell.building.index = null;
+
   emits('leaveBuilding');
 }
 

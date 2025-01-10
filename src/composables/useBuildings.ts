@@ -78,7 +78,7 @@ const sunCosts = [
   // ─────────────────────────────────────────────────────────────────────────────
   ['sun-farming-1',       1,    30,   15],
   ['sun-production-1',    1,    100,   50],
-  ['sun-religion-1',      1,    150,   75],
+  ['sun-religion-1',      1,    0,   0],
   ['sun-entertainment-1', 1,    180,   90],
   ['sun-education-1',     1,    250,   125],
   ['sun-other-1',         5,    500,   250],
@@ -125,7 +125,7 @@ const moonCosts = [
   // ─────────────────────────────────────────────────────────────────────────
   ['moon-sustenance-1',   1,    30,   15],
   ['moon-science-1',      1,    100,   50],
-  ['moon-religion-1',     1,    150,   75],
+  ['moon-religion-1',     1,    0,   0],
   ['moon-entertainment-1',1,    180,   90],
   ['moon-education-1',    1,    250,   125],
   ['moon-other-1',        5,    500,   250],
@@ -348,14 +348,14 @@ const sunBuildings: Building[] = [
   {
     id: 'sun-religion-1',
     power: 1,
-    unlocked: false,
+    unlocked: true,
     index: 4,
     viewPrerequisite: {},
     buildPrerequisite: {
       power: 0,
     },
-    viewUnlocked: false,
-    buildUnlocked: false,
+    viewUnlocked: true,
+    buildUnlocked: true,
   },
   {
     id: 'sun-religion-2',
@@ -928,14 +928,14 @@ const moonBuildings: Building[] = [
   {
     id: 'moon-religion-1',
     power: 1,
-    unlocked: false,
+    unlocked: true,
     index: 4,
     viewPrerequisite: {},
     buildPrerequisite: {
       power: 0,
     },
-    viewUnlocked: false,
-    buildUnlocked: false,
+    viewUnlocked: true,
+    buildUnlocked: true,
   },
   {
     id: 'moon-religion-2',
