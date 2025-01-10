@@ -13,7 +13,7 @@
       <span><b>{{ singleBuildingMetadata?.name }}</b></span><br />
       <span v-html="processedDescription"></span>
       <br />
-      {{ faction === 'sun' ? 'Aurum/s:' : 'Nocturne/s' }} {{ building?.power }} 
+      <b>{{ faction === 'sun' ? 'Aurum:' : 'Nocturne' }}</b> {{ building?.power }}/s 
       <span 
         v-if="buildingPower !== building?.power || store.factions[faction].boost?.building === building?.id" 
         :class="{
@@ -27,7 +27,7 @@
       </span>
       <span v-if="parent === 'buildings'">
         <br />
-        Cost: {{ building?.buildPrerequisite?.power }} {{ faction === 'sun' ? 'Aurum' : 'Nocturne' }}
+        <b>Cost:</b> {{ building?.buildPrerequisite?.power }} {{ faction === 'sun' ? 'Aurum' : 'Nocturne' }}
       </span>
     </span>
   </span>
