@@ -26,16 +26,8 @@ const initialState = (): GameState => ({
     },
   },
   milestones: {
-    sun: {
-      unlocked: false,
-      level4: false,
-      level5: false,
-    },
-    moon: {
-      unlocked: false,
-      level4: false,
-      level5: false,
-    },
+    sun: {},
+    moon: {},
   },
   fullDaySeconds: 30,
   currentlyDay: true,

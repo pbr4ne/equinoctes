@@ -47,9 +47,11 @@ export interface Building {
 }
 
 export interface Milestones {
-  unlocked: boolean;
-  level4: boolean;
-  level5: boolean;
+  unlocked?: boolean;
+  level4?: boolean;
+  level5?: boolean;
+  offTimeBuilding?: boolean;
+  offTimeProgress?: boolean;
 }
 
 export interface Achievements {

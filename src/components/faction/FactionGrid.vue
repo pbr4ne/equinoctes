@@ -86,7 +86,7 @@ const cells = computed(() => {
     const isDimmed = hasSelected && isOccupied;
     const isHighlightEmpty = hasSelected && !isOccupied;
     const cursorClass = getCursorClass(building);
-    const isDisabled = (
+    const isDisabled = store.milestones[props.faction].offTimeBuilding ? false : (
       (store.currentlyDay && props.faction === 'moon') ||
       (!store.currentlyDay && props.faction === 'sun')
     );

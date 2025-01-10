@@ -73,7 +73,9 @@ const shouldFlipIcon = (building: Building) => {
 
 const canBuyBuilding = (building: Building) => {
   if (store.currentlyDay && props.faction !== 'sun' || !store.currentlyDay && props.faction !== 'moon') {
-    return false;
+    if (!store.milestones[props.faction].offTimeBuilding) {
+      return false;
+    }
   }
 
   if (!store.factions[props.faction].grid.some((slot) => slot === null)) {

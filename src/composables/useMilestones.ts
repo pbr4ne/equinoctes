@@ -43,6 +43,15 @@ export function computeMilestones() {
       store.factionAchievements[factionKey].level5Buildings = true;
     }
 
+    //if offtime building built
+    if (faction.grid.some((cell) => cell === `${factionKey}-other-1`) && !factionMilestones.offTimeBuilding) {
+      faction.lore.push({
+        description: `Can now build during off-time`,
+        time: store.calendar,
+      });
+      factionMilestones.offTimeBuilding = true;
+    }
+
     milestoneLevels.forEach(({ power, levelKey, level }) => {
       if (faction.power > power && !factionMilestones[levelKey]) {
         factionMilestones[levelKey] = true;

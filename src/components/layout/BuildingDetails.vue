@@ -71,6 +71,9 @@ const processedDescription = computed(() => {
 });
 
 const isOffTime = computed(() => {
+  if (store.milestones[props.faction].offTimeBuilding) {
+    return false;
+  }
   return store.currentlyDay ? props.faction !== 'sun' : props.faction !== 'moon';
 });
 
