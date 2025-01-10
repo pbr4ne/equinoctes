@@ -142,7 +142,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-religion-1',
     name: 'Glowing Shrine',
-    description: 'Glowing Shrine description',
+    description: `Zephyra stacked the rocks until they were the height of an oxcart, and knelt down to pray. And as she finished her prayer she heard a sound like the flames of a hearth, and she looked up and behold! The shrine of rocks was glowing as though it had been kissed by the LADY herself. And the glow did not subside as the years passed.`,
     icon: Sun as DefineComponent,
   },
   {
@@ -340,7 +340,11 @@ Sundown
   {
     id: 'moon-religion-1',
     name: 'Obsidian Shrine',
-    description: 'Obsidian Shrine description',
+    description: `Seek ye the land where the earth doth spit<br />
+Ye rock of blackest night, find it and split<br />
+Taketh ye the pieces and buildeth yon shrine<br />
+Under the LORD’s light, pray, and altar will shine
+`,
     icon: MoonOutline as DefineComponent,
   },
   {
