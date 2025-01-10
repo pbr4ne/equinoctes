@@ -18,6 +18,7 @@
           </n-icon>
           <span style="padding-left: 10px;"> {{getBuildingMetadata(building).name}}</span>
         </n-button>
+        <span v-if="visibleBuildings.length === 0" :class="['noBuilding', `noBuilding-${faction}`]">No buildings available</span>
     </n-space>
   </n-scrollbar>
 </template>
@@ -108,6 +109,19 @@ function onBuildingLeave() {
 .buildingButton-moon {
   border: 1px solid #caf0f8;
   background-color: #264653;
+  color: #caf0f8;
+}
+
+.noBuilding {
+  font-family: "Texturina", serif;
+  font-size: 1.25em;
+}
+
+.noBuilding-sun {
+  color: #9e2a2b;
+}
+
+.noBuilding-moon {
   color: #caf0f8;
 }
 </style>
