@@ -6,6 +6,7 @@
         :key="item.id" 
         trigger="hover"
         placement="top"
+        :theme-overrides="faction === 'sun' ? sunPopoverThemeOverride : moonPopoverThemeOverride"
       >
         <template #trigger>
           <n-badge 
@@ -93,6 +94,20 @@ const selectTab = (index: number) => {
 const currentLabel = (item: TabComponent) => {
   return props.faction === 'sun' ? item.sunLabel : item.moonLabel;
 };
+
+const sunPopoverThemeOverride = {
+  "color": "#9e2a2b",
+  "textColor": "#e9c46a",
+  "titleTextColor": "#e9c46a",
+  "borderColor": "#e9c46a"
+}
+
+const moonPopoverThemeOverride = {
+  "color": "#caf0f8",
+  "textColor": "#264653",
+  "titleTextColor": "#264653",
+  "borderColor": "#264653"
+}
 </script>
 
 <style scoped>
