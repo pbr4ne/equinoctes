@@ -13,6 +13,7 @@
     ]"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
+    :style="specialColor"
   >
     <component
       v-if="cell.building"
@@ -154,6 +155,14 @@ function getArrowColor(modifier: number | null): string {
 
 const shouldFlipIcon = computed(() => {
   return iconComponent.value === YinYang && props.faction === 'moon';
+});
+
+const specialColor = computed(() => {
+  if (iconComponent.value === YinYang) {
+    return {
+      color: props.faction === 'sun' ? '#caf0f8' : '#9e2a2b'
+    }
+  }
 });
 </script>
   

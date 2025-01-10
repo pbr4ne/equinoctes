@@ -8,12 +8,14 @@
           @click="buyBuilding(building)"
           @mouseenter="onBuildingEnter(building, index)"
           @mouseleave="onBuildingLeave"
+          :disabled="!canBuyBuilding(building)"
         >
           <n-icon>
             <component
               :is="getIcon(building)"
               :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
               :class="[{ 'flip-horizontal': shouldFlipIcon }]"
+              :style="specialColor(building)"
             />
           </n-icon>
           <span style="padding-left: 10px;"> {{getBuildingMetadata(building).name}}</span>
@@ -83,6 +85,14 @@ const canBuyBuilding = (building: Building) => {
   }
   return true;
 }
+
+const specialColor = (building: Building) => {
+  if (getIcon(building) === YinYang) {
+    return {
+      color: props.faction === 'sun' ? '#264653' : '#e9c46a'
+    }
+  }
+};
 
 const buyBuilding = (building: Building) => {
   store.factions[props.faction].selectedBuilding = building;
