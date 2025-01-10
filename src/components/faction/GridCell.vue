@@ -143,13 +143,13 @@ function handleMouseLeave() {
 
 function getIconColour() {
   if (props.faction === 'sun') {
-    if (cellHovered.value && !props.cell.isDisabled) {
+    if (cellHovered.value && !props.cell.isDisabled && !props.cell.isDimmed) {
       return '#264653';
     } else {
       return '#9e2a2b';
     }
   } else {
-    if (cellHovered.value && !props.cell.isDisabled) {
+    if (cellHovered.value && !props.cell.isDisabled && !props.cell.isDimmed) {
       return '#f4a261';
     } else {
       return '#caf0f8';
