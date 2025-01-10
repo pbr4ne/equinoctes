@@ -79,7 +79,6 @@ const loreCount = computed(() => {
 });
 
 const unseenBuildings = computed(() => {
-  console.log(store.factions[props.faction].unseenBuildings);
   return store.factions[props.faction].unseenBuildings ? 1 : 0;
 });
 

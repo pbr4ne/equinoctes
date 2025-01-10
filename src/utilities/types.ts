@@ -52,6 +52,22 @@ export interface Milestones {
   level5: boolean;
 }
 
+export interface Achievements {
+  met?: boolean;
+  level3Buildings?: boolean;
+  level4Buildings?: boolean;
+  level5Buildings?: boolean;
+  cooperativeEnding?: boolean;
+  wonEnding?: boolean;
+  lostEnding?: boolean;
+  neitherEnding?: boolean;
+}
+
+export interface FactionAchievements {
+  sun: Achievements,
+  moon: Achievements,
+}
+
 export interface Faction {
   level: number;
   power: number;
@@ -75,4 +91,5 @@ export interface GameState {
   fullDaySeconds: number,
   currentlyDay: boolean,
   speedMultiplier: number,
+  factionAchievements: FactionAchievements,
 }

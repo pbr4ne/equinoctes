@@ -39,6 +39,10 @@ const initialState = (): GameState => ({
   fullDaySeconds: 30,
   currentlyDay: true,
   speedMultiplier: 1,
+  factionAchievements: {
+    sun: {},
+    moon: {},
+  }
 });
 
 export const useStore = defineStore('gameState', {
