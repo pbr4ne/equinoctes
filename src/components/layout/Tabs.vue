@@ -41,6 +41,22 @@
               <component :is="item.icon"/>
             </button>
           </n-badge>
+          <n-badge
+            v-else-if="item.id === 'milestones'"
+            :value="unseenAchievements"
+            :show="unseenAchievements > 0"
+            :color="faction === 'sun' ? '#264653' : '#e9c46a'"
+            dot
+            processing
+          >
+            <button
+              @click="selectTab(index)"
+              :class="['icon-button', `icon-button-${faction}`]"
+              aria-label="Select {{ currentLabel(item) }} tab"
+            >
+              <component :is="item.icon"/>
+            </button>
+          </n-badge>
           <button 
             v-else
             @click="selectTab(index)"
@@ -81,6 +97,10 @@ const loreCount = computed(() => {
 
 const unseenBuildings = computed(() => {
   return store.factions[props.faction].unseenBuildings ? 1 : 0;
+});
+
+const unseenAchievements = computed(() => {
+  return store.factions[props.faction].unseenAchievements ? 1 : 0;
 });
 
 const emit = defineEmits<{

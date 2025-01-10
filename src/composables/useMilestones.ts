@@ -26,21 +26,25 @@ export function computeMilestones() {
         time: store.calendar,
       });
       store.factionAchievements[factionKey].met = true;
+      store.factions[factionKey].unseenAchievements = true;
     }
 
     //if 9 buildings in grid
     if (faction.grid.filter((cell) => cell).length >= 9 && !store.factionAchievements[factionKey].level3Buildings) {
       store.factionAchievements[factionKey].level3Buildings = true;
+      store.factions[factionKey].unseenAchievements = true;
     }
 
     //if 16 buildings in grid
     if (faction.grid.filter((cell) => cell).length >= 16 && !store.factionAchievements[factionKey].level4Buildings) {
       store.factionAchievements[factionKey].level4Buildings = true;
+      store.factions[factionKey].unseenAchievements = true;
     }
 
     //if 25 buildings in grid
     if (faction.grid.filter((cell) => cell).length >= 25 && !store.factionAchievements[factionKey].level5Buildings) {
       store.factionAchievements[factionKey].level5Buildings = true;
+      store.factions[factionKey].unseenAchievements = true;
     }
 
     //if offtime building built

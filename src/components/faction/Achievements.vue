@@ -18,11 +18,16 @@
 <script setup lang="ts">
 import { useAchievements } from '../../composables/useAchievements';
 import type { FactionKey } from '../../utilities/types';
+import { useStore } from '../../composables/useStore';
 
 const { sunAchievements, moonAchievements } = useAchievements();
+const store = useStore();
+
 const props = defineProps<{ faction: FactionKey }>();
 
 const achievements = props.faction === 'sun' ? sunAchievements : moonAchievements;
+
+store.factions[props.faction].unseenAchievements = false;
 
 const sunCardThemeOverride = {
   "color": "#e9c46a",

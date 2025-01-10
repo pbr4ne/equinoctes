@@ -78,6 +78,7 @@ export interface Faction {
   selectedBuilding: Building | null;
   lore: LoreEntry[];
   unseenBuildings: boolean;
+  unseenAchievements: boolean;
 }
 
 export interface GameState {
