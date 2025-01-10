@@ -14,8 +14,9 @@
         style="border-radius: 20px;"
       >
         <p v-if="faction === 'sun'">Radiant Lady: <a href="https://github.com/pbr4ne" :class="[`link-${faction}`]" target="_blank">pbrane</a></p>
-        <p v-if="faction === 'moon'">Moon Lord: pbrane</p>
-        <p>Writing: <a href="https://jamesfunfer.com" :class="[`link-${faction}`]" target="_blank">James Funfer</a></p>
+        <p v-if="faction === 'moon'">Silver Lord: <a href="https://github.com/pbr4ne" :class="[`link-${faction}`]" target="_blank">pbrane</a></p>
+        <p v-if="faction === 'sun'">Scripture: <a href="https://jamesfunfer.com" :class="[`link-${faction}`]" target="_blank">James Funfer</a></p>
+        <p v-if="faction === 'moon'">Psalms: <a href="https://jamesfunfer.com" :class="[`link-${faction}`]" target="_blank">James Funfer</a></p>
         <p>Music: <a href="https://www.youtube.com/user/Kitchen1066" :class="[`link-${faction}`]" target="_blank">terranaut1066</a></p>
         <p>Did Some Math: Travis</p>
         <p>Special Thanks: Blake, Cheese, Julz, Kakumeii, Sof</p>
