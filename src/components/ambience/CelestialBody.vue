@@ -11,6 +11,7 @@ import moonSvg from '@/assets/moon.svg';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { useStore } from '../../composables/useStore';
+import { emitter } from '../../utilities/emitter';
 
 gsap.registerPlugin(MotionPathPlugin);
 
@@ -69,6 +70,14 @@ onMounted(() => {
   startAnimation();
 
   window.addEventListener('resize', handleResize);
+});
+
+emitter.on('gameReset', () => {
+  if (animation) {
+    animation.kill();
+  }
+
+  startAnimation();
 });
 
 watch(

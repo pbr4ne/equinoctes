@@ -7,6 +7,7 @@ type GameEvent = {
   powerChanged: { faction: string; power: number };
   buildingEntered: { faction: FactionKey; buildingId: string };
   buildingLeft: {  faction: FactionKey; };
+  gameReset: {};
 };
 
 export const emitter = mitt<GameEvent>();

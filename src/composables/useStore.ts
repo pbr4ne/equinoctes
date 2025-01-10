@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { Building, GameState } from '../utilities/types';
 import { useBuildings } from './useBuildings';
+import { emitter } from '../utilities/emitter';
 
 const initialState = (): GameState => ({
   calendar: { days: 0, hours: 0, minutes: 0, accumulatedTime: 0 },
@@ -90,9 +91,17 @@ export const useStore = defineStore('gameState', {
     listenForEvents() {
     },
 
-    reset() {
+    resetRun() {
+      const preservedFactionAchievements = this.$state.factionAchievements;
+      Object.assign(this.$state, initialState());
+      this.$state.factionAchievements = preservedFactionAchievements;
+      emitter.emit('gameReset', {});
+    },
+
+    resetAll() {
       Object.assign(this.$state, initialState());
       localStorage.removeItem(this.$id);
+      emitter.emit('gameReset', {});
     },
   },
 });

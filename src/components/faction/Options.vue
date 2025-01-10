@@ -1,15 +1,10 @@
 <template>
   <n-space vertical>
-    <n-space>
+    <n-space>      
       <n-button 
         :class="['buildingButton', `buildingButton-${faction}`]" 
         :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
-        @click="reset">Hard Reset
-      </n-button>
-      <n-button 
-        :class="['buildingButton', `buildingButton-${faction}`]" 
-        :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
-        @click="reset">Reset Run
+        @click="resetRun">Reset Run
       </n-button>
     </n-space>    
     <n-card 
@@ -24,6 +19,11 @@
       <p>Did Some Math: Travis</p>
       <p>Special Thanks: Cheese, Julz, Kakumeii, Sof</p>
     </n-card>
+    <n-button 
+        :class="['buildingButton', `buildingButton-${faction}`]" 
+        :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
+        @click="resetAll">Hard Reset (resets achievements)
+      </n-button>
   </n-space>
 </template>
 
@@ -33,8 +33,12 @@ import { FactionKey } from '../../utilities/types';
 
 defineProps<{ faction: FactionKey }>()
 
-function reset() {
-  useStore().reset();
+function resetAll() {
+  useStore().resetAll();
+}
+
+function resetRun() {
+  useStore().resetRun();
 }
 
 const sunCardThemeOverride = {
