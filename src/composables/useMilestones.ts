@@ -42,6 +42,13 @@ What in my pale light is seen?
 What twinkles there, beyond My Eye?
 In Sky you Lie, if Mine you Die
 `;
+
+  const sunPowerful = `You have seen the moon grow dimmer at night, and the long, hot summers and far-off smoke of the wildfires. The Lady is pleased, and the moon folks’ power wanes as she desires, but at what cost?`;
+
+  const moonPowerful = `The harvests have been thin, but it matters not. There are truths that lie beyond life and this prison of flesh, your lord has shown you that. When the final secrets of the night are revealed…
+
+You close your eyes and dream of what lies beyond the sky. In the distance, you can hear the crashing of the surf. The tides are stronger than ever before…
+`;
   
   const sunPerihelionBuilt = `And the tides did still
 And the SILVER LORD was as distant as the twinkling children
@@ -102,29 +109,9 @@ We are One`;
 
       factionUnlocked(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
 
-      if (faction.power > 10000 && faction.power > otherFaction.power * 1.5 && !milestones.morePowerful) {
-        milestones.morePowerful = true;
-        store.factionAchievements[factionKey].morePowerful = true;
+      tooPowerful(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
 
-        if (factionKey === 'sun') {
-          faction.lore.push({
-            description: `You have seen the moon grow dimmer at night, and the long, hot summers and far-off smoke of the wildfires. The Lady is pleased, and the moon folks’ power wanes as she desires, but at what cost?
-  `,
-            time: store.calendar,
-          });
-        } else {
-          faction.lore.push({
-            description: `The harvests have been thin, but it matters not. There are truths that lie beyond life and this prison of flesh, your lord has shown you that. When the final secrets of the night are revealed…
-
-  You close your eyes and dream of what lies beyond the sky. In the distance, you can hear the crashing of the surf. The tides are stronger than ever before…
-  `,
-            time: store.calendar,
-          });
-        }
-
-        store.factions[factionKey].unseenAchievements = true;
-        newLoreAndMilestone(factionKey);
-      }
+      
 
       //if 9 buildings in grid
       if (faction.grid.filter((cell) => cell).length >= 9 && !store.factionAchievements[factionKey].level3Buildings) {
@@ -290,6 +277,24 @@ Only one thing remains to reunite the people of Heliotropolis and Cynthas. Or, y
         achievements.met = true;
         faction.unseenAchievements = true;
       }      
+    }
+  }
+
+  function tooPowerful(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
+    if (faction.power > 10000 && faction.power > otherFaction.power * 1.5 && !milestone.morePowerful) {
+      
+      milestone.morePowerful = true;
+
+      if (factionKey === 'sun') {
+        addLore(faction, sunPowerful);
+      } else {
+        addLore(faction, moonPowerful);
+      }
+
+      
+      store.factionAchievements[factionKey].morePowerful = true;
+      store.factions[factionKey].unseenAchievements = true;
+      newLoreAndMilestone(factionKey);
     }
   }
 
