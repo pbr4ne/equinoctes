@@ -224,7 +224,7 @@ export function useMilestones() {
       }
 
       //if terrible ending
-      if (store.calendar.days > 100 && !factionMilestones.neitherEnding && 
+      if (store.calendar.days > 1000 && !factionMilestones.neitherEnding && 
         !factionMilestones.lostEnding && !factionMilestones.cooperativeEnding && !factionMilestones.wonEnding
       ) {
         faction.lore.push({
