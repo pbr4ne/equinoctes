@@ -174,10 +174,6 @@ const sunBuildings: Building[] = [
     viewPrerequisite: {},
     buildPrerequisite: {},
     adjacency: [
-      { dx:  0, dy: -1, modifier: +0.3 },
-      { dx:  0, dy: -2, modifier: +0.2 },
-      { dx: +1, dy: -1, modifier: -0.1 },
-      { dx: -1, dy: -1, modifier: +0.1 },
       { dx:  0, dy: +1, modifier: -0.1 },
       { dx:  0, dy: +2, modifier: +0.05 },
     ],
@@ -237,8 +233,11 @@ const sunBuildings: Building[] = [
   {
     id: 'sun-production-1',
     viewPrerequisite: {},
-    buildPrerequisite: {
-      },
+    buildPrerequisite: {},
+    adjacency: [
+      { dx: +1, dy: -1, modifier: -0.1 },
+      { dx: -1, dy: -1, modifier: +0.1 },
+    ],
   },
   {
     id: 'sun-production-2',
@@ -296,8 +295,7 @@ const sunBuildings: Building[] = [
     id: 'sun-religion-1',
     index: 4,
     viewPrerequisite: {},
-    buildPrerequisite: {
-      },
+    buildPrerequisite: {},
     viewUnlocked: true,
     buildUnlocked: true,
   },
@@ -351,8 +349,11 @@ const sunBuildings: Building[] = [
   {
     id: 'sun-entertainment-1',
     viewPrerequisite: {},
-    buildPrerequisite: {
-      },
+    buildPrerequisite: {},
+    adjacency: [
+      { dx:  0, dy: -1, modifier: +0.3 },
+      { dx:  0, dy: -2, modifier: +0.2 },
+    ],
   },
   {
     id: 'sun-entertainment-2',
@@ -409,8 +410,11 @@ const sunBuildings: Building[] = [
   {
     id: 'sun-education-1',
     viewPrerequisite: {},
-    buildPrerequisite: {
-      },
+    buildPrerequisite: {},
+    adjacency: [
+      { dx:  0, dy: -1, modifier: +0.3 },
+      { dx:  0, dy: +2, modifier: +0.05 },
+    ],
   },
   {
     id: 'sun-education-2',
@@ -460,8 +464,11 @@ const sunBuildings: Building[] = [
   {
     id: 'sun-other-1',
     viewPrerequisite: {},
-    buildPrerequisite: {
-      },
+    buildPrerequisite: {},
+    adjacency: [
+      { dx:  0, dy: -2, modifier: +0.2 },
+      { dx: +1, dy: -1, modifier: -0.1 },
+    ],
   },
   {
     id: 'sun-other-2',
@@ -515,8 +522,12 @@ const sunBuildings: Building[] = [
       buildings: ['sun-farming-4', 'sun-production-4', 'sun-religion-4', 'sun-entertainment-4', 'sun-education-4', 'sun-other-4'],
     },
     buildPrerequisite: {
-        buildings: ['sun-farming-4', 'sun-production-4', 'sun-religion-4', 'sun-entertainment-4', 'sun-education-4', 'sun-other-4'],
+      buildings: ['sun-farming-4', 'sun-production-4', 'sun-religion-4', 'sun-entertainment-4', 'sun-education-4', 'sun-other-4'],
     },
+    adjacency: [
+      { dx:  0, dy: -1, modifier: +0.3 },
+      { dx:  0, dy: +1, modifier: -0.1 },
+    ],
   },
   {
     id: 'sun-endgame-2',
@@ -576,8 +587,11 @@ const moonBuildings: Building[] = [
   {
     id: 'moon-sustenance-1',
     viewPrerequisite: {},
-    buildPrerequisite: {
-      },
+    buildPrerequisite: {},
+    adjacency: [
+      { dx: -1, dy: -1, modifier: +0.1 },
+      { dx:  0, dy: +2, modifier: +0.05 },
+    ],
   },
   {
     id: 'moon-sustenance-2',
@@ -629,8 +643,12 @@ const moonBuildings: Building[] = [
   {
     id: 'moon-science-1',
     viewPrerequisite: {},
-    buildPrerequisite: {
-      },
+    buildPrerequisite: {},
+    adjacency: [
+      { dx:  0, dy: -1, modifier: +0.3 },
+      { dx: +1, dy: -1, modifier: -0.1 },
+      { dx:  0, dy: +1, modifier: -0.1 },
+    ],
   },
   {
     id: 'moon-science-2',
@@ -690,8 +708,7 @@ const moonBuildings: Building[] = [
     id: 'moon-religion-1',
     index: 4,
     viewPrerequisite: {},
-    buildPrerequisite: {
-      },
+    buildPrerequisite: {},
     viewUnlocked: true,
     buildUnlocked: true,
   },
@@ -747,8 +764,10 @@ const moonBuildings: Building[] = [
   {
     id: 'moon-entertainment-1',
     viewPrerequisite: {},
-    buildPrerequisite: {
-      },
+    buildPrerequisite: {},
+    adjacency: [
+      { dx: -1, dy: -1, modifier: +0.1 },
+    ],
   },
   {
     id: 'moon-entertainment-2',
@@ -801,8 +820,11 @@ const moonBuildings: Building[] = [
   {
     id: 'moon-education-1',
     viewPrerequisite: {},
-    buildPrerequisite: {
-      },
+    buildPrerequisite: {},
+    adjacency: [
+      { dx:  0, dy: -2, modifier: +0.2 },
+      { dx:  0, dy: +2, modifier: +0.05 },
+    ],
   },
   {
     id: 'moon-education-2',
@@ -854,8 +876,11 @@ const moonBuildings: Building[] = [
   {
     id: 'moon-other-1',
     viewPrerequisite: {},
-    buildPrerequisite: {
-      },
+    buildPrerequisite: {},
+    adjacency: [
+      { dx: +1, dy: -1, modifier: -0.1 },
+      { dx: -1, dy: -1, modifier: +0.1 },
+    ],
   },
   {
     id: 'moon-other-2',
@@ -914,6 +939,13 @@ const moonBuildings: Building[] = [
     buildPrerequisite: {
         buildings: ['moon-sustenance-4', 'moon-science-4', 'moon-religion-4', 'moon-entertainment-4', 'moon-education-4', 'moon-other-4'],
     },
+    adjacency: [
+      { dx:  0, dy: -1, modifier: +0.3 },
+      { dx:  0, dy: -2, modifier: +0.2 },
+      { dx: -1, dy: -1, modifier: +0.1 },
+      { dx:  0, dy: +1, modifier: -0.1 },
+      { dx:  0, dy: +2, modifier: +0.05 },
+    ],
   },
   {
     id: 'moon-endgame-2',
