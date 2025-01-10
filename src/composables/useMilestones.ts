@@ -50,6 +50,12 @@ In Sky you Lie, if Mine you Die
 You close your eyes and dream of what lies beyond the sky. In the distance, you can hear the crashing of the surf. The tides are stronger than ever before…
 `;
   
+  const sunOffTimeBuilding = `Can now build during off-time`;
+  const moonOffTimeBuilding = `Can now build during off-time`;
+
+  const sunOffTimeProgress = `Can now progress during off-time`;
+  const moonOffTimeProgress = `Can now progress during off-time`;
+
   const sunPerihelionBuilt = `And the tides did still
 And the SILVER LORD was as distant as the twinkling children
 An Age of Bounty had begun
@@ -93,12 +99,12 @@ We are One`;
       { power: 100000, levelKey: 'level5', level: 5 },
     ];
 
-    const factionsToCheck: { factionKey: FactionKey; milestonesKey: FactionKey }[] = [
-      { factionKey: 'sun', milestonesKey: 'sun' },
-      { factionKey: 'moon', milestonesKey: 'moon' },
+    const factionsToCheck: { factionKey: FactionKey }[] = [
+      { factionKey: 'sun' },
+      { factionKey: 'moon' },
     ];
 
-    factionsToCheck.forEach(({ factionKey, milestonesKey }) => {
+    factionsToCheck.forEach(({ factionKey }) => {
       const faction = store.factions[factionKey];
       const otherFactionKey = factionKey === 'sun' ? 'moon' : 'sun';
       const otherFaction = store.factions[otherFactionKey];
@@ -111,62 +117,12 @@ We are One`;
 
       tooPowerful(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
 
-      
+      nineBuilt(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
+      sixteenBuilt(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
+      twentyFiveBuilt(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
 
-      //if 9 buildings in grid
-      if (faction.grid.filter((cell) => cell).length >= 9 && !store.factionAchievements[factionKey].level3Buildings) {
-        store.factionAchievements[factionKey].level3Buildings = true;
-        store.factions[factionKey].unseenAchievements = true;
-        newLoreAndMilestone(factionKey);
-      }
-
-      //if 16 buildings in grid
-      if (faction.grid.filter((cell) => cell).length >= 16 && !store.factionAchievements[factionKey].level4Buildings) {
-        store.factionAchievements[factionKey].level4Buildings = true;
-        store.factions[factionKey].unseenAchievements = true;
-        newMilestone(factionKey);
-      }
-
-      //if 25 buildings in grid
-      if (faction.grid.filter((cell) => cell).length >= 25 && !store.factionAchievements[factionKey].level5Buildings) {
-        store.factionAchievements[factionKey].level5Buildings = true;
-        store.factions[factionKey].unseenAchievements = true;
-        newMilestone(factionKey);
-      }
-
-      //if offtime building built
-      if (faction.grid.some((cell) => cell === `${factionKey}-other-1`) && !milestones.offTimeBuilding) {
-        if (factionKey === 'sun') {
-          faction.lore.push({
-            description: `Can now build during off-time`,
-            time: store.calendar,
-          });
-        } else {
-          faction.lore.push({
-            description: `Can now build during off-time`,
-            time: store.calendar,
-          });
-        }
-        milestones.offTimeBuilding = true;
-        newLoreAndMilestone(factionKey);
-      }
-
-      //if offtime progress built
-      if (faction.grid.some((cell) => cell === `${factionKey}-other-3`) && !milestones.offTimeProgress) {
-        if (factionKey === 'sun') {
-          faction.lore.push({
-            description: `Can now build during off-time`,
-            time: store.calendar,
-          });
-        } else {
-          faction.lore.push({
-            description: `Can now build during off-time`,
-            time: store.calendar,
-          });
-        }
-        milestones.offTimeProgress = true;
-        newLoreAndMilestone(factionKey);
-      }
+      offtimeBuilding(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
+      offtimeProgress(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
 
       //if first endgame building built
       if (faction.grid.some((cell) => cell === `${factionKey}-endgame-1`) && !milestones.endgame1) {
@@ -294,6 +250,54 @@ Only one thing remains to reunite the people of Heliotropolis and Cynthas. Or, y
       
       store.factionAchievements[factionKey].morePowerful = true;
       store.factions[factionKey].unseenAchievements = true;
+      newLoreAndMilestone(factionKey);
+    }
+  }
+
+  function nineBuilt(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
+    if (faction.grid.filter((building) => building).length >= 9 && !achievements.level3Buildings) {
+      achievements.level3Buildings = true;
+      faction.unseenAchievements = true;
+      newLoreAndMilestone(factionKey);
+    }
+  }
+
+  function sixteenBuilt(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
+    if (faction.grid.filter((building) => building).length >= 16 && !achievements.level4Buildings) {
+      achievements.level4Buildings = true;
+      faction.unseenAchievements = true;
+      newLoreAndMilestone(factionKey);
+    }
+  }
+
+  function twentyFiveBuilt(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
+    if (faction.grid.filter((building) => building).length >= 25 && !achievements.level5Buildings) {
+      achievements.level5Buildings = true;
+      faction.unseenAchievements = true;
+      newLoreAndMilestone(factionKey);
+    }
+  }
+
+  function offtimeBuilding(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
+    if (hasBuilding(faction, factionKey, 'other-1') && !milestone.offTimeBuilding) {
+      if (factionKey === 'sun') {
+        addLore(faction, sunOffTimeBuilding);
+      } else {
+        addLore(faction, moonOffTimeBuilding);
+      }
+      milestone.offTimeBuilding = true;
+      newLoreAndMilestone(factionKey);
+    }
+  }
+
+  function offtimeProgress(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
+    if (hasBuilding(faction, factionKey, 'other-3') && !milestone.offTimeProgress) {
+      if (factionKey === 'sun') {
+        addLore(faction, sunOffTimeProgress);
+      } else {
+        addLore(faction, moonOffTimeProgress);
+      }
+      milestone.offTimeProgress = true;
       newLoreAndMilestone(factionKey);
     }
   }
