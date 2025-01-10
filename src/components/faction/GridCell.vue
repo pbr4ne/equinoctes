@@ -147,6 +147,10 @@ function getIconColour() {
 function onClickBuilding() {
   if (!props.cell.building || props.cell.isDisabled) return;
   emits('clickBuilding', props.cell.building);
+  store.factions[props.faction].boost = {
+    building: props.cell.building.id,
+    start: new Date().getTime(),
+  }
 }
 
 function onClickEmpty() {

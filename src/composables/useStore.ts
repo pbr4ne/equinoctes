@@ -37,7 +37,7 @@ const initialState = (): GameState => ({
   factionAchievements: {
     sun: {},
     moon: {},
-  }
+  },
 });
 
 export const useStore = defineStore('gameState', {

@@ -70,6 +70,11 @@ export interface FactionAchievements {
   moon: Achievements,
 }
 
+export interface Boost {
+  start: number;
+  building: string;
+}
+
 export interface Faction {
   level: number;
   power: number;
@@ -79,6 +84,7 @@ export interface Faction {
   lore: LoreEntry[];
   unseenBuildings: boolean;
   unseenAchievements: boolean;
+  boost?: Boost;
 }
 
 export interface GameState {

@@ -82,7 +82,17 @@ export function computeFactionBuildings(factionKey: FactionKey, delta: number) {
 
     const powerIncrease = computeBuildingPower(factionKey, building);
 
-    const powerGain = powerIncrease * (delta / 1000) * speedMultiplier;
+    let boost = 1;
+    if (faction.boost) {  
+      if (faction.boost.building === building.id && faction.boost.start) {
+        if (new Date().getTime() - faction.boost.start > 5000) {
+          boost = 2;
+          faction.boost = undefined;
+        }        
+      }
+    }
+
+    const powerGain = powerIncrease * (delta / 1000) * speedMultiplier * boost;
     faction.power += powerGain;    
 
     emitter.emit('powerChanged', { faction: factionKey, power: faction.power });
