@@ -201,8 +201,6 @@ We are One`;
     });
   }
 
-  function levelUp
-
   function factionUnlocked(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
     if (faction.power > 0 && !milestone.unlocked) {
       milestone.unlocked = true;
