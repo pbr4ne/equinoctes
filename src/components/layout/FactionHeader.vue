@@ -73,7 +73,9 @@ const props = defineProps<{ faction: FactionKey, building: string | null, parent
 }
 
 .building {
-  font-size: 1.25em;
+  font-family: "Grenze Gotisch", serif;
+  font-weight: 300;
+  font-size: 2em;
 }
 
 .building-sun {
