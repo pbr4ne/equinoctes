@@ -44,7 +44,7 @@
           &#10005;
         </div>
       </template>
-      Deletes this building. You can re-build later.
+      Deletes this building with no refund.<br />You can rebuild later.
     </n-popover>
 
     <div
