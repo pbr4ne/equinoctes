@@ -23,7 +23,7 @@
         ({{ buildingPower * (store.factions[faction].boost?.building === building?.id ? 2 : 1) }})
       </span>
       <span v-if="store.factions[faction].boost?.building === building?.id">
-        BOOSTING
+        <i>boosting</i>
       </span>
       <span v-if="parent === 'buildings'">
         <br />
