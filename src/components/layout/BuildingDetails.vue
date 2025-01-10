@@ -15,10 +15,15 @@
       <br />
       {{ faction === 'sun' ? 'Aurum/s:' : 'Nocturne/s' }} {{ building?.power }} 
       <span 
-        v-if="buildingPower !== building?.power" 
-        :class="{'power-lower': buildingPower < (building?.power ?? 0), 'power-higher': buildingPower > (building?.power ?? 0)}"
+        v-if="buildingPower !== building?.power || store.factions[faction].boost?.building === building?.id" 
+        :class="{
+          'power-lower': buildingPower * (store.factions[faction].boost?.building === building?.id ? 2 : 1) < (building?.power ?? 0), 
+          'power-higher': buildingPower * (store.factions[faction].boost?.building === building?.id ? 2 : 1) > (building?.power ?? 0)}"
       >
-        ({{ buildingPower }})
+        ({{ buildingPower * (store.factions[faction].boost?.building === building?.id ? 2 : 1) }})
+      </span>
+      <span v-if="store.factions[faction].boost?.building === building?.id">
+        BOOSTING
       </span>
       <span v-if="parent === 'buildings'">
         <br />
