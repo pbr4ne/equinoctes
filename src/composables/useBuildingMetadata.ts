@@ -115,8 +115,6 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
     id: 'sun-production-1',
     name: 'Earthen Factory',
     description: `In the days of the First Ones there was a great pit, wherefrom the soil would burst like water from a spring. And the children of the LADY would steal from this spring, for the First Ones would catch and eat them if they were caught.
-
-And the soil from the First Ones pit was so rich and thick that it would grow a forest from a single acorn.
 `,
     icon: BuildingFactory as DefineComponent,
   },
