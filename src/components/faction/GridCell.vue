@@ -18,7 +18,7 @@
     <component
       v-if="cell.building"
       :is="iconComponent"
-      :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
+      :color="getIconColour(cell.isDisabled)"
       :class="['button-icon', { 'flip-horizontal': shouldFlipIcon }]"
       @click="onClickBuilding"
     />
@@ -116,6 +116,9 @@ function handleMouseEnter() {
   } else if (props.cell.isHighlightEmpty) {
     hovered.value = true;
   }
+
+  console.log('cellHovered', cellHovered.value);
+  console.log('hovered', hovered.value);
 }
 
 function handleMouseLeave() {
@@ -125,6 +128,23 @@ function handleMouseLeave() {
 
   if (props.cell.building) {
     emits('leaveBuilding');
+  }
+}
+
+function getIconColour(isDisabled: boolean) {
+  console.log('getIconColour', props.faction, hovered.value);
+  if (props.faction === 'sun') {
+    if (cellHovered.value && !isDisabled) {
+      return '#264653';
+    } else {
+      return '#9e2a2b';
+    }
+  } else {
+    if (cellHovered.value && !isDisabled) {
+      return '#f4a261';
+    } else {
+      return '#caf0f8';
+    }
   }
 }
 
