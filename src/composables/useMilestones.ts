@@ -41,11 +41,14 @@ export function computeMilestones() {
         description: `The ${factionKey} faction has been unlocked!`,
         time: store.calendar,
       });
-      store.factionAchievements[factionKey].met = true;
-      store.factions[factionKey].unseenAchievements = true;
-      
-      const loreMessage = factionKey === 'sun' ? 'New revelation' : 'The moon faction has been unlocked!';
-      newLoreAndMilestone(factionKey);
+
+      if (store.factionAchievements[factionKey].met) {
+        newLore(factionKey);
+      } else {
+        newLoreAndMilestone(factionKey);
+        store.factionAchievements[factionKey].met = true;
+        store.factions[factionKey].unseenAchievements = true;
+      }      
     }
 
     //if 9 buildings in grid
