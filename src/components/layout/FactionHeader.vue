@@ -16,7 +16,7 @@
         <span v-else>Choose an Endeavour to build</span>
       </div>
       <div v-else-if="parent === 'lore'" :class="['building', `building-${faction}`]" >
-        <span v-if="faction === 'sun'">Revelations from her RADIANT LADY</span>
+        <span v-if="faction === 'sun'">Revelations from our RADIANT LADY</span>
         <span v-else>Mysterium of the Silver Lord</span>
       </div>
       <div v-else-if="parent === 'milestones'" :class="['building', `building-${faction}`]" >

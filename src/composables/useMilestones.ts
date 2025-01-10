@@ -37,10 +37,33 @@ export function computeMilestones() {
 
     if (faction.power > 0 && !factionMilestones.unlocked) {
       factionMilestones.unlocked = true;
-      faction.lore.push({
-        description: `The ${factionKey} faction has been unlocked!`,
-        time: store.calendar,
-      });
+      if (factionKey === 'sun') {
+        faction.lore.push({
+          description: `O Lady, why did you leave me in darkness?
+
+Nay, child - it was then that I watched over you, scattering myself across the darkness in twinkling pieces of my greatness
+
+Look now to the east, my children, and witness again my rise in conquering glory ‘gainst the cold and deceptive Night, and the Moon its guardian. Bask once more in my glory; turn thy face to me as does every painted flower.
+
+For without me your crops shall wither, and you shall know only darkness.
+`,
+          time: store.calendar,
+        });
+      } else {
+        faction.lore.push({
+          description: `Breathe deep the gathering dark
+Sun’s harsh light has left its mark
+Now in purple-black embrace
+Silver shines - your Lord’s true face
+
+Cold and clear, bright and keen
+What in my pale light is seen?
+What twinkles there, beyond My Eye?
+In Sky you Lie, if Mine you Die
+`,
+          time: store.calendar,
+        });
+      }
 
       if (store.factionAchievements[factionKey].met) {
         newLore(factionKey);
