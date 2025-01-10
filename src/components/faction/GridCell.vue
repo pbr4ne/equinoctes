@@ -18,7 +18,7 @@
       v-if="cell.building"
       :is="iconComponent"
       :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
-      class="button-icon"
+      :class="['button-icon', { 'flip-horizontal': shouldFlipIcon }]"
       @click="onClickBuilding"
     />
 
@@ -57,6 +57,7 @@ import {
   ArrowBigTop, ArrowBigUpLine, ArrowBigUpLines,
   ArrowBigDown, ArrowBigDownLine, ArrowBigDownLines
 } from '@vicons/tabler'
+import { YinYang } from '@vicons/fa';
 
 const props = defineProps<{
   faction: FactionKey,
@@ -150,6 +151,10 @@ function getArrowColor(modifier: number | null): string {
   if (modifier === null) return '';
   return modifier >= 0 ? '#ecf39e' : '#f26a8d';
 }
+
+const shouldFlipIcon = computed(() => {
+  return iconComponent.value === YinYang && props.faction === 'moon';
+});
 </script>
   
 <style scoped>
@@ -280,5 +285,9 @@ function getArrowColor(modifier: number | null): string {
 
 .delete-icon:hover {
   color: #ffffff;
+}
+
+.flip-horizontal {
+  transform: scaleX(-1);
 }
 </style>

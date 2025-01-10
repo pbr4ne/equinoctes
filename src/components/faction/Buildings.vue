@@ -8,12 +8,12 @@
           @click="buyBuilding(building)"
           @mouseenter="onBuildingEnter(building, index)"
           @mouseleave="onBuildingLeave"
-          :disabled="!canBuyBuilding(building)"
         >
           <n-icon>
             <component
               :is="getIcon(building)"
               :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
+              :class="[{ 'flip-horizontal': shouldFlipIcon }]"
             />
           </n-icon>
           <span style="padding-left: 10px;"> {{getBuildingMetadata(building).name}}</span>
@@ -30,6 +30,7 @@ import { useStore } from '../../composables/useStore';
 import { useBuildings } from '../../composables/useBuildings';
 import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
 import { Building, BuildingMetadata, FactionKey } from '../../utilities/types';
+import { YinYang } from '@vicons/fa';
 
 const props = defineProps<{ faction: FactionKey }>();
 const store = useStore();
@@ -63,6 +64,10 @@ const getIcon = (building: Building) => {
   const metaBuild = getBuildingMetadata(building);
   return metaBuild?.icon;
 }
+
+const shouldFlipIcon = (building: Building) => {
+  return getIcon(building) === YinYang && props.faction === 'moon';
+};
 
 const canBuyBuilding = (building: Building) => {
   if (store.currentlyDay && props.faction !== 'sun' || !store.currentlyDay && props.faction !== 'moon') {
@@ -123,5 +128,9 @@ function onBuildingLeave() {
 
 .noBuilding-moon {
   color: #caf0f8;
+}
+
+.flip-horizontal {
+  transform: scaleX(-1);
 }
 </style>
