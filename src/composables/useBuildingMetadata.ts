@@ -438,6 +438,12 @@ And
   },
   {
     id: 'moon-other-2',
+    name: 'Sensory Chamber',
+    description: 'Sensory Chamber description',
+    icon: ChartMarimekko as DefineComponent,
+  },
+  {
+    id: 'moon-other-3',
     name: 'Eclipse Sanctuary',
     description: `And lo as my shadow crept
 ‘cross my restful lover’s face
@@ -446,12 +452,6 @@ Drenching me like a cloak of purest fire, and I was awash in her greatness
 And the world was twilit and still, gazing upward at that rarest lovers’ embrace
 `,
     icon: ContourDraw as DefineComponent,
-  },
-  {
-    id: 'moon-other-3',
-    name: 'Sensory Chamber',
-    description: 'Sensory Chamber description',
-    icon: ChartMarimekko as DefineComponent,
   },
   {
     id: 'moon-other-4',
