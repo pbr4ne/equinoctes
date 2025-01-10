@@ -118,10 +118,28 @@ In Sky you Lie, if Mine you Die
     milestoneLevels.forEach(({ power, levelKey, level }) => {
       if (faction.power > power && !factionMilestones[levelKey]) {
         factionMilestones[levelKey] = true;
-        faction.lore.push({
-          description: `The ${factionKey} faction has reached ${power} power!`,
-          time: store.calendar,
-        });       
+
+        if (factionKey === 'sun' && level === 4) {
+          faction.lore.push({
+            description: `The shift is subtle at first. Summers that stretch on into autumn. Bountiful harvests. By your guidance, the Lady’s blessings and your careful shepherding has allowed Heliotropolis to thrive and grow strong.`,
+            time: store.calendar,
+          });  
+        } else if (factionKey === 'sun' && level === 5) {
+          faction.lore.push({
+            description: `The people of the sun continue to thrive under your leadership. More and more folk of the hinterlands come to Heliotropolis, seeking the security of your plentiful foodstores and the Lady’s protection. The People of the Sun are ascendant.`,
+            time: store.calendar,
+          });  
+        } else if (factionKey === 'moon' && level === 4) {
+          faction.lore.push({
+            description: `You gaze upon Cynthas City under the silver-kissed light of your lord. Though his messages are obtuse, the truth cannot be mistaken: he has looked upon you with favour. The People of the Moon will continue to uncover the world’s mysteries, with your guidance.`,
+            time: store.calendar,
+          });  
+        } else if (factionKey === 'moon' && level === 5) {
+          faction.lore.push({
+            description: `The past few years have seen the secrets of the sky and stars unfold before you. Blessed by the wisdom of the eternally sky-gazing ancestors, you are at the Dusk of a New Age, led ever onward by the moon’s blessings.`,
+            time: store.calendar,
+          });  
+        }
         
         //size up the grid:
         
