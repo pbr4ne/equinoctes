@@ -87,7 +87,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-farming-1',
     name: 'Golden Fields',
-    description: 'And Esu the Favoured had a Field of Gold, and in that field the stalks did grow to the height of the temple, with trunks as thick as cedars, and Esu bade the woodcutters chop them down, for such was the bounty of the RADIANT LADY.',
+    description: `And Esu the Favoured had a Field of Gold, and in that field the stalks did grow to the height of the temple, with trunks as thick as cedars, and Esu bade the woodcutters chop them down, for such was the bounty of the RADIANT LADY.`,
     icon: SoilMoistureField as DefineComponent,
   },
   {
@@ -114,7 +114,10 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-production-1',
     name: 'Earthen Factory',
-    description: 'In the days of the First Ones there was a great pit, wherefrom the soil would burst like water from a spring. And the children of the LADY would steal from this spring, for the First Ones would catch and eat them if they were caught.\n\nAnd the soil from the First Ones pit was so rich and thick that it would grow a forest from a single acorn.',
+    description: `In the days of the First Ones there was a great pit, wherefrom the soil would burst like water from a spring. And the children of the LADY would steal from this spring, for the First Ones would catch and eat them if they were caught.
+
+And the soil from the First Ones pit was so rich and thick that it would grow a forest from a single acorn.
+`,
     icon: BuildingFactory as DefineComponent,
   },
   {
@@ -213,7 +216,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-education-4',
     name: 'Luminary College',
-    description: 'Luminary College description',
+    description: 'And the pages shall also yellow as though kissed by my golden radiance, for they shall reflect my wisdom and my truth, and the people shall not squint at dusty tomes by candlelight but shall chant hymns while basking in my glow',
     icon: VolcanoOutlined as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
@@ -240,7 +243,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-other-4',
     name: 'Prismatic Array',
-    description: 'Prismatic Array description',
+    description: 'For what is the LORD but a reflection of my brilliance? His sallow light existeth not without my radiance, but this he would not tell thee, for it is a debt of power never repaid.',
     icon: PrismOutline as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
@@ -279,7 +282,10 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'moon-sustenance-1',
     name: 'Moonlit Rookery',
-    description: 'Moonlit Rookery description',
+    description: `Crows like shinies
+Wonder why
+Look up in that evening sky
+`,
     icon: Crow as DefineComponent,
   },
   {
@@ -297,7 +303,10 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'moon-sustenance-4',
     name: 'Nocturnal Vineyard',
-    description: 'Nocturnal Vineyard description',
+    description: `Sip
+Sup
+Sundown
+`,
     icon: WineBottle as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
@@ -414,13 +423,28 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'moon-other-1',
     name: 'Lighthouse',
-    description: 'Lighthouse description',
+    description: `Like my blinking eye
+darkcrescenthalfgibbousMOON
+Shine on
+Ye shoals and shores
+And
+	Not
+		To
+			D
+				O
+					O
+						M`,
     icon: BuildingLighthouse20Filled as DefineComponent,
   },
   {
     id: 'moon-other-2',
     name: 'Eclipse Sanctuary',
-    description: 'Eclipse Sanctuary description',
+    description: `And lo as my shadow crept
+‘cross my restful lover’s face
+She awoke in a blazon of light
+Drenching me like a cloak of purest fire, and I was awash in her greatness
+And the world was twilit and still, gazing upward at that rarest lovers’ embrace
+`,
     icon: ContourDraw as DefineComponent,
   },
   {
