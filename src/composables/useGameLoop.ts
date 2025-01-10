@@ -69,9 +69,9 @@ export function computeFactionBuildings(factionKey: FactionKey, delta: number) {
   const { factions, speedMultiplier, currentlyDay } = store;
 
   //disable during off-time
-  if (factionKey === 'sun' && !currentlyDay) {
+  if (factionKey === 'sun' && !currentlyDay && !store.milestones.sun.offTimeProgress) {
     return;
-  } else if (factionKey === 'moon' && currentlyDay) {
+  } else if (factionKey === 'moon' && currentlyDay && !store.milestones.moon.offTimeProgress) {
     return;
   }
 

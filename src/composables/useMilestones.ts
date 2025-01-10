@@ -52,6 +52,15 @@ export function computeMilestones() {
       factionMilestones.offTimeBuilding = true;
     }
 
+    //if offtime progress built
+    if (faction.grid.some((cell) => cell === `${factionKey}-other-1`) && !factionMilestones.offTimeProgress) {
+      faction.lore.push({
+        description: `Can now progress during off-time`,
+        time: store.calendar,
+      });
+      factionMilestones.offTimeProgress = true;
+    }
+
     milestoneLevels.forEach(({ power, levelKey, level }) => {
       if (faction.power > power && !factionMilestones[levelKey]) {
         factionMilestones[levelKey] = true;
