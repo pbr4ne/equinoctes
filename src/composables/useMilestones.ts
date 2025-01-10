@@ -28,13 +28,28 @@ export function computeMilestones() {
       store.factionAchievements[factionKey].met = true;
     }
 
+    //if 9 buildings in grid
+    if (faction.grid.filter((cell) => cell).length >= 9 && !store.factionAchievements[factionKey].level3Buildings) {
+      store.factionAchievements[factionKey].level3Buildings = true;
+    }
+
+    //if 16 buildings in grid
+    if (faction.grid.filter((cell) => cell).length >= 16 && !store.factionAchievements[factionKey].level4Buildings) {
+      store.factionAchievements[factionKey].level4Buildings = true;
+    }
+
+    //if 25 buildings in grid
+    if (faction.grid.filter((cell) => cell).length >= 25 && !store.factionAchievements[factionKey].level5Buildings) {
+      store.factionAchievements[factionKey].level5Buildings = true;
+    }
+
     milestoneLevels.forEach(({ power, levelKey, level }) => {
       if (faction.power > power && !factionMilestones[levelKey]) {
         factionMilestones[levelKey] = true;
         faction.lore.push({
           description: `The ${factionKey} faction has reached ${power} power!`,
           time: store.calendar,
-        });        
+        });       
         
         //size up the grid:
         
