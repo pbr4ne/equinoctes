@@ -22,39 +22,59 @@ export function useMilestones() {
   const newMilestone = (factionKey: FactionKey) => {
     factionKey === 'sun' ? sendMessage('New Milestone', factionKey) : sendMessage('New Milestone', factionKey);
   }
+
+  const sunUnlocked = `O Lady, why did you leave me in darkness?
+
+Nay, child - it was then that I watched over you, scattering myself across the darkness in twinkling pieces of my greatness.
+
+Look now to the east, my children, and witness again my rise in conquering glory ‘gainst the cold and deceptive Night, and the Moon its guardian. Bask once more in my glory; turn thy face to me as does every painted flower.
+
+For without me your crops shall wither, and you shall know only darkness.
+`;
+
+  const moonUnlocked = `Breathe deep the gathering dark
+Sun’s harsh light has left its mark
+Now in purple-black embrace
+Silver shines - your Lord’s true face
+
+Cold and clear, bright and keen
+What in my pale light is seen?
+What twinkles there, beyond My Eye?
+In Sky you Lie, if Mine you Die
+`;
   
   const sunPerihelionBuilt = `And the tides did still
-    And the SILVER LORD was as distant as the twinkling children
-    An Age of Bounty had begun
-    And the City of Cynthas did wither
-    `;
+And the SILVER LORD was as distant as the twinkling children
+An Age of Bounty had begun
+And the City of Cynthas did wither
+`;
   
   const moonPerihelionBuilt = `Thy wan’dring gaze hath found at last
-    All truths of future, present, past
-    Beyond the stars, beyond the veil
-    Thy soul’s next journey hath set sail
-  
-    Weep not for those still ‘neath the sun
-    Though certainly their time is done
-    & all shall wither on the vine
-    Eternal glory is now thine
-    `;
+All truths of future, present, past
+Beyond the stars, beyond the veil
+Thy soul’s next journey hath set sail
+
+Weep not for those still ‘neath the sun
+Though certainly their time is done
+& all shall wither on the vine
+Eternal glory is now thine
+`;
   
   const sunAphelionBuilt = `And so was built in Heliotropolis a great edifice with two faces, and under the light of the LADY did they chant her praises, and
-  
-    By the light of my Eye
-    Under darkened Sky
-  
-    We are One`;
+
+By the light of my Eye
+Under darkened Sky
+
+We are One`;
   
   const moonAphelionBuilt = `By the light of my Eye
-    Under darkened Sky
-    In Cynthas City
-    A temple so pretty
-  
-    And upon break of day under the light of the LADY did they chant her praises, and sing in raised voices:
-  
-    We are One`;
+Under darkened Sky
+In Cynthas City
+A temple so pretty
+
+And upon break of day under the light of the LADY did they chant her praises, and sing in raised voices:
+
+We are One`;
   
   const neitherEndingText = `Heat death of the universe... great job. Next time try building more stuff?`;
 
@@ -80,44 +100,7 @@ export function useMilestones() {
       const achievements = store.factionAchievements[factionKey];
       const otherAchievements = store.factionAchievements[otherFactionKey];
 
-      if (faction.power > 0 && !milestones.unlocked) {
-        milestones.unlocked = true;
-        if (factionKey === 'sun') {
-          faction.lore.push({
-            description: `O Lady, why did you leave me in darkness?
-
-  Nay, child - it was then that I watched over you, scattering myself across the darkness in twinkling pieces of my greatness
-
-  Look now to the east, my children, and witness again my rise in conquering glory ‘gainst the cold and deceptive Night, and the Moon its guardian. Bask once more in my glory; turn thy face to me as does every painted flower.
-
-  For without me your crops shall wither, and you shall know only darkness.
-  `,
-            time: store.calendar,
-          });
-        } else {
-          faction.lore.push({
-            description: `Breathe deep the gathering dark
-  Sun’s harsh light has left its mark
-  Now in purple-black embrace
-  Silver shines - your Lord’s true face
-
-  Cold and clear, bright and keen
-  What in my pale light is seen?
-  What twinkles there, beyond My Eye?
-  In Sky you Lie, if Mine you Die
-  `,
-            time: store.calendar,
-          });
-        }
-
-        if (store.factionAchievements[factionKey].met) {
-          newLore(factionKey);
-        } else {
-          newLoreAndMilestone(factionKey);
-          store.factionAchievements[factionKey].met = true;
-          store.factions[factionKey].unseenAchievements = true;
-        }      
-      }
+      factionUnlocked(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
 
       if (faction.power > 10000 && faction.power > otherFaction.power * 1.5 && !milestones.morePowerful) {
         milestones.morePowerful = true;
@@ -289,6 +272,25 @@ Only one thing remains to reunite the people of Heliotropolis and Cynthas. Or, y
         }
       });
     });
+  }
+
+  function factionUnlocked(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
+    if (faction.power > 0 && !milestone.unlocked) {
+      milestone.unlocked = true;
+      if (factionKey === 'sun') {
+        addLore(faction, sunUnlocked);
+      } else {
+        addLore(faction, moonUnlocked);
+      }
+
+      if (achievements.met) {
+        newLore(factionKey);
+      } else {
+        newLoreAndMilestone(factionKey);
+        achievements.met = true;
+        faction.unseenAchievements = true;
+      }      
+    }
   }
 
   function perihelionBuilt(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
