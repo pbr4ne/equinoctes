@@ -49,6 +49,11 @@ In Sky you Lie, if Mine you Die
 
 You close your eyes and dream of what lies beyond the sky. In the distance, you can hear the crashing of the surf. The tides are stronger than ever before…
 `;
+
+  const sunLevel4 = `The shift is subtle at first. Summers that stretch on into autumn. Bountiful harvests. By your guidance, the Lady’s blessings and your careful shepherding has allowed Heliotropolis to thrive and grow strong.`;
+  const moonLevel4 = `You gaze upon Cynthas City under the silver-kissed light of your lord. Though his messages are obtuse, the truth cannot be mistaken: he has looked upon you with favour. The People of the Moon will continue to uncover the world’s mysteries, with your guidance.`;
+  const sunLevel5 = `The people of the sun continue to thrive under your leadership. More and more folk of the hinterlands come to Heliotropolis, seeking the security of your plentiful foodstores and the Lady’s protection. The People of the Sun are ascendant.`;
+  const moonLevel5 = `The past few years have seen the secrets of the sky and stars unfold before you. Blessed by the wisdom of the eternally sky-gazing ancestors, you are at the Dusk of a New Age, led ever onward by the moon’s blessings.`;
   
   const sunOffTimeBuilding = `Can now build during off-time`;
   const moonOffTimeBuilding = `Can now build during off-time`;
@@ -163,29 +168,17 @@ We are One`;
       neitherEnding(faction, otherFaction, milestones, otherMilestones, achievements, otherAchievements, factionKey, otherFactionKey);
 
       milestoneLevels.forEach(({ power, levelKey, level }) => {
-        if (faction.power > power && !factionMilestones[levelKey]) {
-          factionMilestones[levelKey] = true;
+        if (faction.power > power && !milestones[levelKey]) {
+          milestones[levelKey] = true;
 
           if (factionKey === 'sun' && level === 4) {
-            faction.lore.push({
-              description: `The shift is subtle at first. Summers that stretch on into autumn. Bountiful harvests. By your guidance, the Lady’s blessings and your careful shepherding has allowed Heliotropolis to thrive and grow strong.`,
-              time: store.calendar,
-            });  
+            addLore(faction, sunLevel4); 
           } else if (factionKey === 'sun' && level === 5) {
-            faction.lore.push({
-              description: `The people of the sun continue to thrive under your leadership. More and more folk of the hinterlands come to Heliotropolis, seeking the security of your plentiful foodstores and the Lady’s protection. The People of the Sun are ascendant.`,
-              time: store.calendar,
-            });  
+            addLore(faction, sunLevel5); 
           } else if (factionKey === 'moon' && level === 4) {
-            faction.lore.push({
-              description: `You gaze upon Cynthas City under the silver-kissed light of your lord. Though his messages are obtuse, the truth cannot be mistaken: he has looked upon you with favour. The People of the Moon will continue to uncover the world’s mysteries, with your guidance.`,
-              time: store.calendar,
-            });  
+            addLore(faction, moonLevel4);
           } else if (factionKey === 'moon' && level === 5) {
-            faction.lore.push({
-              description: `The past few years have seen the secrets of the sky and stars unfold before you. Blessed by the wisdom of the eternally sky-gazing ancestors, you are at the Dusk of a New Age, led ever onward by the moon’s blessings.`,
-              time: store.calendar,
-            });  
+            addLore(faction, moonLevel5); 
           }
           
           //size up the grid:
@@ -207,6 +200,8 @@ We are One`;
       });
     });
   }
+
+  function levelUp
 
   function factionUnlocked(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
     if (faction.power > 0 && !milestone.unlocked) {
