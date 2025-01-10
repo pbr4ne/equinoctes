@@ -29,13 +29,23 @@
       @click="onClickEmpty"
     ></div>
 
-    <div
-      v-if="cellHovered && cell.building && !cell.isDisabled"
-      :class="['delete-icon', `delete-icon-${faction}`]"
-      @click.stop="onDeleteBuilding"
-    >
-      &#10005;
-    </div>
+    <n-popover 
+        v-if="cellHovered && cell.building && !cell.isDisabled"
+        trigger="hover"
+        placement="top"
+        :theme-overrides="faction === 'sun' ? sunPopoverThemeOverride : moonPopoverThemeOverride"
+      >
+      <template #trigger>
+        <div
+          
+          :class="['delete-icon', `delete-icon-${faction}`]"
+          @click.stop="onDeleteBuilding"
+        >
+          &#10005;
+        </div>
+      </template>
+      Deletes this building. You can re-build later.
+    </n-popover>
 
     <div
       v-if="cell.adjacencyModifier !== null"
@@ -133,6 +143,20 @@ function onDeleteBuilding() {
 
   store.factions[props.faction].grid[props.index] = null;
   emits('leaveBuilding');
+}
+
+const sunPopoverThemeOverride = {
+  "color": "#9e2a2b",
+  "textColor": "#e9c46a",
+  "titleTextColor": "#e9c46a",
+  "borderColor": "#e9c46a"
+}
+
+const moonPopoverThemeOverride = {
+  "color": "#caf0f8",
+  "textColor": "#264653",
+  "titleTextColor": "#264653",
+  "borderColor": "#264653"
 }
 
 function getArrowIcon(modifier: number | null) {
