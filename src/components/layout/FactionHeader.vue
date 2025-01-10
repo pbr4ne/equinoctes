@@ -4,16 +4,28 @@
     'bordered-background', 
     `bordered-background-${faction}`
     ]"
-    :style="!building && parent !== 'buildings' ? { border: 'none' } : {}"
+    :style="!building && parent === 'city' ? { border: 'none' } : {}"
   >
     <div class="header" style="padding: 20px;">
       <power 
-        v-if="!building && parent !== 'buildings'"
+        v-if="!building && parent === 'city'"
         :faction="faction"  
       />
       <div v-else-if="!building && parent === 'buildings'" :class="['building', `building-${faction}`]">
         <span v-if="faction === 'sun'">Choose a Wonder to build</span>
         <span v-else>Choose an Endeavour to build</span>
+      </div>
+      <div v-else-if="parent === 'lore'" :class="['building', `building-${faction}`]" >
+        <span v-if="faction === 'sun'">Revelations from her RADIANT LADY</span>
+        <span v-else>Mysterium of the Silver Lord</span>
+      </div>
+      <div v-else-if="parent === 'milestones'" :class="['building', `building-${faction}`]" >
+        <span v-if="faction === 'sun'">Heliotropolis Milestones</span>
+        <span v-else>Cynthas City Milestones</span>
+      </div>
+      <div v-else-if="parent === 'options'" :class="['building', `building-${faction}`]" >
+        <span v-if="faction === 'sun'">Options, may it please her LADY</span>
+        <span v-else>Silver Lord's Options</span>
       </div>
       <building-details
         v-else
