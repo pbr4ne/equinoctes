@@ -83,12 +83,14 @@ export function computeFactionBuildings(factionKey: FactionKey, delta: number) {
     const powerIncrease = computeBuildingPower(factionKey, building);
 
     let boost = 1;
+    
     if (faction.boost) {  
       if (faction.boost.building === building.id && faction.boost.start) {
-        if (new Date().getTime() - faction.boost.start > 5000) {
+        if (new Date().getTime() - faction.boost.start < 5000) {
           boost = 2;
+        }  else {
           faction.boost = undefined;
-        }        
+        }       
       }
     }
 
