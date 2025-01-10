@@ -1,5 +1,5 @@
 <template>
-  <n-scrollbar>
+  <n-scrollbar trigger="none">
       <n-space vertical>
         <n-button 
           v-for="building, index in visibleBuildings"

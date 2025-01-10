@@ -1,5 +1,5 @@
 <template>
-  <n-scrollbar>
+  <n-scrollbar trigger="none">
     <n-space vertical>
       <n-space>      
         <n-button 

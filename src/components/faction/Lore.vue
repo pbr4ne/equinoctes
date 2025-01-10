@@ -1,6 +1,6 @@
 <template>
   <div class="lore-container">
-    <n-scrollbar class="lore-scrollbar">
+    <n-scrollbar class="lore-scrollbar" trigger="none">
       <span
         v-if="currentLore"
         :class="['lore', `lore-${faction}`]"
