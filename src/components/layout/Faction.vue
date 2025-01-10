@@ -21,7 +21,8 @@
 
       <Tabs 
         :faction="faction" 
-        :components="components" 
+        :components="components"
+        :currentComponentIndex="currentComponentIndex"
         @tab-selected="handleTabSelected"
       />
     </n-flex>

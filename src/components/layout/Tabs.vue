@@ -20,7 +20,7 @@
             <button
               @click="selectTab(index)"
               :class="['icon-button', `icon-button-${faction}`]"
-              aria-label="Select {{ currentLabel(item) }} tab"
+              :style="getSelectedStyle(index)"
             >
               <component :is="item.icon"/>
             </button>
@@ -36,7 +36,7 @@
             <button
               @click="selectTab(index)"
               :class="['icon-button', `icon-button-${faction}`]"
-              aria-label="Select {{ currentLabel(item) }} tab"
+              :style="getSelectedStyle(index)"
             >
               <component :is="item.icon"/>
             </button>
@@ -52,7 +52,7 @@
             <button
               @click="selectTab(index)"
               :class="['icon-button', `icon-button-${faction}`]"
-              aria-label="Select {{ currentLabel(item) }} tab"
+              :style="getSelectedStyle(index)"
             >
               <component :is="item.icon"/>
             </button>
@@ -61,7 +61,7 @@
             v-else
             @click="selectTab(index)"
             :class="['icon-button', `icon-button-${faction}`]"
-            aria-label="Select {{ currentLabel(item) }} tab"
+            :style="getSelectedStyle(index)"
           >
             <component :is="item.icon"/>
           </button>
@@ -89,6 +89,7 @@ interface TabComponent {
 const props = defineProps<{
   faction: FactionKey;
   components: TabComponent[];
+  currentComponentIndex: number;
 }>();
 
 const loreCount = computed(() => {
@@ -103,11 +104,21 @@ const unseenAchievements = computed(() => {
   return store.factions[props.faction].unseenAchievements ? 1 : 0;
 });
 
+const getSelectedStyle = computed(() => (index: number) => {
+  console.log('getSelectedStyle', index, props.currentComponentIndex);
+  console.log(props.currentComponentIndex === index ? (props.faction === 'sun' ? '#9e2a2b' : '#caf0f8') : '');
+  return {    
+    backgroundColor: props.currentComponentIndex === index ? (props.faction === 'sun' ? '#9e2a2b' : '#caf0f8') : '',
+    color: props.currentComponentIndex === index ? (props.faction === 'sun' ? '#e9c46a' : '#264653') : ''
+  };
+});
+
 const emit = defineEmits<{
   (e: 'tab-selected', index: number): void;
 }>();
 
 const selectTab = (index: number) => {
+  console.log('selectTab', index);
   emit('tab-selected', index);
 };
 
@@ -156,11 +167,13 @@ const moonPopoverThemeOverride = {
 }
 
 .icon-button-sun:hover {
-  background-color: #ffb703;
+  background-color: #9e2a2b;
+  color: #e9c46a
 }
 
 .icon-button-moon:hover {
-  background-color: #219ebc;
+  background-color: #caf0f8;
+  color: #264653;
 }
 
 .n-badge__content {
