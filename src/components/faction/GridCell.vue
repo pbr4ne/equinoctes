@@ -29,6 +29,16 @@
       @click="onClickEmpty"
     ></div>
 
+    <div class="particle-container">
+      <div
+        v-for="particle in particles"
+        :key="particle.id"
+        :id="`particle-${particle.id}`" 
+        :class="['particle', `particle-${faction}`]" 
+        :style="{ left: particle.x + 'px', top: particle.y + 'px' }"
+      ></div>
+    </div>
+
     <n-popover 
         v-if="cellHovered && cell.building && !cell.isDisabled"
         trigger="hover"
@@ -60,7 +70,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick } from 'vue'
+import { gsap } from 'gsap';
+import { v4 as uuidv4 } from 'uuid';
 import { useStore } from '../../composables/useStore'
 import type { Building, FactionKey } from '../../utilities/types'
 import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
@@ -96,6 +108,7 @@ const emits = defineEmits([
 const store = useStore();
 const cellHovered = ref(false);
 const hovered = ref(false);
+const particles = ref<Array<{ id: string; x: number; y: number }>>([]);
 
 const buildingMetadata = props.faction === 'sun'
   ? sunBuildingMetadata
@@ -146,11 +159,95 @@ function getIconColour() {
 
 function onClickBuilding() {
   if (!props.cell.building || props.cell.isDisabled) return;
-  emits('clickBuilding', props.cell.building);
+  
+  if(store.factions[props.faction].boost?.building === props.cell.building.id) {
+    return;
+  }
+
   store.factions[props.faction].boost = {
     building: props.cell.building.id,
     start: new Date().getTime(),
   }
+  
+  startParticleBurst();
+}
+
+function startParticleBurst() {
+  triggerParticles();
+
+  const intervalId = setInterval(() => {
+    triggerParticles();
+  }, 500);
+
+  setTimeout(() => {
+    clearInterval(intervalId);
+  }, 5000);
+}
+
+function generateParticlePosition(): { x: number; y: number } {
+  const gridCellWidth = 100;
+  const gridCellHeight = 100;
+
+  const x = gridCellWidth / 2;
+  const y = gridCellHeight / 2;
+
+  return { x, y };
+}
+
+function generateParticleMovement(): { x: number; y: number } {
+  const angle = Math.random() * 2 * Math.PI;
+  const distance = Math.random() * 50 + 50;
+
+  const x = Math.cos(angle) * distance;
+  const y = Math.sin(angle) * distance;
+
+  return { x, y };
+}
+
+async function triggerParticles() {
+  const numberOfParticles = 10;
+  const newParticles: Array<{ id: string; x: number; y: number }> = [];
+
+  for (let i = 0; i < numberOfParticles; i++) {
+    const id = uuidv4();
+    const position = generateParticlePosition();
+    newParticles.push({ id, x: position.x, y: position.y });
+  }
+
+  particles.value.push(...newParticles);
+
+  await nextTick();
+
+  newParticles.forEach(particle => {
+    const movement = generateParticleMovement();
+    const particleElement = document.getElementById(`particle-${particle.id}`);
+    if (particleElement) {
+      if (props.faction === 'sun') {
+        gsap.to(particleElement, {
+          x: movement.x,
+          y: movement.y,
+          opacity: 0,
+          duration: 1,
+          ease: 'power1.out',
+          onComplete: () => {
+            particles.value = particles.value.filter(p => p.id !== particle.id);
+          }
+        });
+      } else if (props.faction === 'moon') {
+        gsap.to(particleElement, {
+          x: movement.x,
+          y: movement.y,
+          opacity: 0,
+          scale: 1.2,
+          duration: 1,
+          ease: 'power1.out',
+          onComplete: () => {
+            particles.value = particles.value.filter(p => p.id !== particle.id);
+          }
+        });
+      }
+    }
+  });
 }
 
 function onClickEmpty() {
@@ -344,5 +441,66 @@ const specialColor = computed(() => {
 
 .flip-horizontal {
   transform: scaleX(-1);
+}
+
+.particle-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  opacity: 0.8;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: none;
+}
+
+/*circles*/
+.particle-sun {
+  width: 10px;
+  height: 10px;
+  background: transparent;
+  border: 2px solid #FFD700;
+  border-radius: 50%;
+}
+
+/*crosses*/
+.particle-moon {
+  width: 10px;
+  height: 10px;
+  background: transparent;
+}
+
+.particle-moon::before,
+.particle-moon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background-color: #87ceeb;
+}
+
+.particle-moon::before {
+  transform: translateX(-50%) rotate(0deg);
+}
+
+.particle-moon::after {
+  transform: translateX(-50%) rotate(90deg);
+}
+
+.grid-cell-sun .particle-sun {
+  border-color: #9e2a2b;
+}
+
+.grid-cell-moon .particle-moon::before,
+.grid-cell-moon .particle-moon::after {
+  background-color: #87ceeb;
 }
 </style>
