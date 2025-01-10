@@ -12,6 +12,7 @@ const initialState = (): GameState => ({
       buildings: useBuildings().sunBuildings,
       selectedBuilding: null as Building | null,
       lore: [],
+      unseenBuildings: false,
     },
     moon: {
       level: 3,
@@ -20,6 +21,7 @@ const initialState = (): GameState => ({
       buildings: useBuildings().moonBuildings,
       selectedBuilding: null as Building | null,
       lore: [],
+      unseenBuildings: false,
     },
   },
   milestones: {

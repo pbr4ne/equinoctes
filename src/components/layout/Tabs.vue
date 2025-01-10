@@ -24,6 +24,22 @@
               <component :is="item.icon"/>
             </button>
           </n-badge>
+          <n-badge
+            v-else-if="item.id === 'buildings'"
+            :value="unseenBuildings"
+            :show="unseenBuildings > 0"
+            :color="faction === 'sun' ? '#264653' : '#e9c46a'"
+            dot
+            processing
+          >
+            <button
+              @click="selectTab(index)"
+              :class="['icon-button', `icon-button-${faction}`]"
+              aria-label="Select {{ currentLabel(item) }} tab"
+            >
+              <component :is="item.icon"/>
+            </button>
+          </n-badge>
           <button 
             v-else
             @click="selectTab(index)"
@@ -40,8 +56,11 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
+import { computed, defineProps, defineEmits } from 'vue';
+import { useStore } from '../../composables/useStore';
 import { FactionKey } from '../../utilities/types';
+
+const store = useStore();
 
 interface TabComponent {
   id: string;
@@ -53,8 +72,16 @@ interface TabComponent {
 const props = defineProps<{
   faction: FactionKey;
   components: TabComponent[];
-  loreCount: number;
 }>();
+
+const loreCount = computed(() => {
+  return store.factions[props.faction].lore.filter(lore => !lore.read).length;
+});
+
+const unseenBuildings = computed(() => {
+  console.log(store.factions[props.faction].unseenBuildings);
+  return store.factions[props.faction].unseenBuildings ? 1 : 0;
+});
 
 const emit = defineEmits<{
   (e: 'tab-selected', index: number): void;

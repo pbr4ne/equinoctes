@@ -46,6 +46,8 @@ const visibleBuildings = computed(() =>
     .sort((a, b) => buildingData.filter((b) => b.id === a.id)[0].power - buildingData.filter((c) => c.id === b.id)[0].power)
 );
 
+store.factions[props.faction].unseenBuildings = false;
+
 const getBuildingMetadata = (building: Building) => {
   
   const metaBuild = buildingMetadata.find((b) => b.id === building.id);

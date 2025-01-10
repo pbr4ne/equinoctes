@@ -22,7 +22,6 @@
       <Tabs 
         :faction="faction" 
         :components="components" 
-        :loreCount="loreCount"
         @tab-selected="handleTabSelected"
       />
     </n-flex>
@@ -51,10 +50,6 @@ const props = defineProps<{ faction: FactionKey }>();
 
 const store = useStore();
 
-const loreCount = computed(() => {
-  return store.factions[props.faction].lore.filter(lore => !lore.read).length;
-});
-
 const components = [
   { id: 'city', sunLabel: 'Heliotropolis', moonLabel: 'Cynthas City', icon: markRaw(Grid28Regular) },
   { id: 'buildings', sunLabel: 'Wonders', moonLabel: 'Endeavours', icon: markRaw(BuildingLighthouse20Regular) },
@@ -80,7 +75,6 @@ const currentComponent = computed(() => {
     console.warn(`No component found for tab id: ${selectedTab.id}`);
     return { component: null, props: {} };
   }
-  console.log('currentComponent', componentToRender);
   return {
     component: componentToRender,
     props: { faction: props.faction },
@@ -97,7 +91,6 @@ function handleSwitchToGrid() {
 function handleSwitchToBuilding({ faction, buildingId }: { faction: FactionKey; buildingId: string }) {
   if (faction !== props.faction) return;
   currentBuilding.value = buildingId;
-  console.log('handleSwitchToBuilding currentBuilding', currentBuilding.value);
 }
 
 function handleSwitchToPower({ faction }: { faction: FactionKey }) {
