@@ -47,7 +47,7 @@
   
     fadeIntervalId = window.setInterval(() => {
       if (audio.value) {
-        if (audio.value.volume < 0.1) {
+        if (audio.value.volume < 0.3) {
           audio.value.volume = Math.min(audio.value.volume + step, 1);
         } else {
           clearInterval(fadeIntervalId as number);
