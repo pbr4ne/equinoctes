@@ -339,6 +339,7 @@ We are One`;
     if (hasBuilding(faction, factionKey, 'endgame-4')) {
       const aphelionBuilt = factionKey === 'sun'? sunAphelionBuilt : moonAphelionBuilt;
   
+      milestone.endgame4 = true;
       addLore(faction, aphelionBuilt);
     }
   }
@@ -353,6 +354,8 @@ We are One`;
   
       addLore(faction, aphelionBuilt);
   
+      milestone.endgame4 = true;
+      
       milestone.cooperativeEnding = true;
       otherMilestone.cooperativeEnding = true;
   
