@@ -21,7 +21,8 @@
           <span style="padding-left: 10px;"> {{getBuildingMetadata(building).name}}</span>
         </n-button>
         <span v-if="visibleBuildings.length === 0" :class="['noBuilding', `noBuilding-${faction}`]">
-          No {{ faction === 'sun' ? 'wonders' : 'endeavours' }} available.<br />
+          <span v-if="faction === 'sun'">No wonders available. <br><br>Be patient, as you collect Aurum our <span style="color: #264653; font-weight: bold">RADIANT LADY</span> will lay a path for you.</span>
+          <span v-else>No endeavours available. <br><br>Patience, as you gather Nocturne our <span style="color: #e9c46a; font-weight: bold">SILVER LORD</span> will show you the way.</span>
         </span>
     </n-space>
   </n-scrollbar>
