@@ -208,7 +208,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-education-3',
     name: 'School of Industry',
-    description: 'School of Industry description',
+    description: 'I gave you light so that you might see, and hands that you might work, and thereby raise up great monuments to my glory. Rebuke not those that seek a school of trades.',
     icon: Iot24Regular as DefineComponent,
   },
   {
