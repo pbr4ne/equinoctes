@@ -56,7 +56,7 @@ You close your eyes and dream of what lies beyond the sky. In the distance, you 
   const moonLevel5 = `The past few years have seen the secrets of the sky and stars unfold before you. Blessed by the wisdom of the eternally sky-gazing ancestors, you are at the Dusk of a New Age, led ever onward by the moon’s blessings.`;
   
   const sunOffTimeBuilding = `And thus Bolu had to concede the wisdom of our LADY, as well as her superior grasp of engineering principles. The lesson was learned well, and Bolu learned never to speak over others. And in the college halls there was much rejoicing at this lesson. And Bolu would bear the mark of both her favor and disfavor the rest of his days.`;
-  const moonOffTimeBuilding = `As Tranash  bathed in pure silvery light, he imagined himself floating as if on an ocean of it. For some reason he brought to mind a limerick his father used to assure him with whenever he went trawling for fish.
+  const moonOffTimeBuilding = `As Tranash bathed in pure silvery light, he imagined himself floating as if on an ocean of it. For some reason he brought to mind a limerick his father used to assure him with whenever he went trawling for fish.
 
 Whilst you delve beneath the sea,
 Your guiding light, some miles away,
@@ -67,7 +67,17 @@ And his LORD of quiet and subtle light saw it was good, and that his works would
 `;
 
   const sunOffTimeProgress = `Fear the night no longer my children. My warmth and light will abide with you long after my chariot of fire has left the sky. When you look upon the face of that sallow and sickly lord, know you still work within my light.`;
-  const moonOffTimeProgress = `Can now progress during off-time`;
+  const moonOffTimeProgress = `It was the work of many hands that brought shade and succor everlasting to the people of Cynthas.
+
+Even though my sun each morn did shine,
+With all triumphant splendour on her brow;
+But out, alack, she was but one hour mine,
+Our tangled pass hath mask’d you from her now.
+Yet her for this my love no whit disdaineth;
+Suns of the world may stain when heaven’s sun staineth.
+
+Were not the deepest shadows cast by the brightest light? So too Cynthas knew that their LORD’s strength was such that no day was free of him.
+`;
 
   const sunFirstEndgameBuilt = `As the pages yellow after years of chanting the hymns within under the Lady’s light, a secret message appears between the lines of text, bidding you to build a great brazier, which the Lady shall kiss with her light to bestow a flame that never dies.
 

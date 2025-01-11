@@ -222,27 +222,27 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   // ─────────────────────────────────────────────────────────────────────────────
   {
     id: 'sun-other-1',
-    name: 'Forest Herbalist',
-    description: '…and heather, and dillweed, and rosepetals, and bark of the sunwood, and make a fine paste and feed it to him at sunset, and by morn he shall rise again as strong as the day he defeated Salomund the Sallow…',
-    icon: ForestOutlined as DefineComponent,
-  },
-  {
-    id: 'sun-other-2',
-    name: 'Sprawling Meadows',
-    description: 'It is every faithful’s final duty to lie down in the meadow and become one with all the flowers, awaiting the Pyremaster.',
-    icon: GrassOutlined as DefineComponent,
-  },
-  {
-    id: 'sun-other-3',
     name: 'Atrium',
     description: 'And Bolu said that such a thing as a roof of glass could not be done, and the LADY was displeased.',
     icon: HexagonOutlined as DefineComponent,
   },
   {
-    id: 'sun-other-4',
+    id: 'sun-other-2',
+    name: 'Forest Herbalist',
+    description: '…and heather, and dillweed, and rosepetals, and bark of the sunwood, and make a fine paste and feed it to him at sunset, and by morn he shall rise again as strong as the day he defeated Salomund the Sallow…',
+    icon: ForestOutlined as DefineComponent,
+  },
+  {
+    id: 'sun-other-3',
     name: 'Prismatic Array',
     description: 'For what is the LORD but a reflection of my brilliance? His sallow light existeth not without my radiance, but this he would not tell thee, for it is a debt of power never repaid.',
     icon: PrismOutline as DefineComponent,
+  },
+  {
+    id: 'sun-other-4',
+    name: 'Sprawling Meadows',
+    description: 'It is every faithful’s final duty to lie down in the meadow and become one with all the flowers, awaiting the Pyremaster.',
+    icon: GrassOutlined as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
   // ENDGAME
@@ -250,25 +250,25 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-endgame-1',
     name: 'Everburning Flame',
-    description: 'Everburning Flame description',
+    description: `Our LADY bid us build her a mighty brazier, that we may gaze upon the warmth of her heart and behold her form always. And mind the spelling on this one, lest we be struck down for impertinence.`,
     icon: Fire as DefineComponent,
   },
   {
     id: 'sun-endgame-2',
     name: 'Chariot of the Sun',
-    description: 'Chariot of the Sun description',
+    description: `And the LADY said build this chariot midsize with room for passengers thereby. Driven by a countless multitude of steeds, and make it a standard that my banner be seen by all who gaze ‘pon it.`,
     icon: SteeringWheel as DefineComponent,
   },
   {
     id: 'sun-endgame-3',
     name: 'Perihelion',
-    description: 'Perihelion description',
+    description: `We are the chosen of our LADY, the sun shall never set upon our empire and we shall never be parted from her embrace.`,
     icon: Sunny as DefineComponent,
   },
   {
     id: 'sun-endgame-4',
     name: 'Aphelion',
-    description: 'Aphelion description',
+    description: `Higher and higher the tower grew until it was so great that you might believe it could bridge the gap between two worlds, Sun and Sky, Gods and Mortals, LADY and LORD.`,
     icon: YinYang as DefineComponent,
   }
 ];
@@ -289,20 +289,24 @@ Look up in that evening sky
   {
     id: 'moon-sustenance-2',
     name: 'Tide Pools',
-    description: 'Tide Pools description',
+    description: 'Splish splash',
     icon: ChartBubble as DefineComponent,
   },
   {
     id: 'moon-sustenance-3',
     name: 'Lunar Grotto',
-    description: 'Lunar Grotto description',
+    description: `Within this cave<br />
+The Silver LORD<br />
+Smiles down upon<br />
+You, his Adored
+`,
     icon: TimelapseOutlined as DefineComponent,
   },
   {
     id: 'moon-sustenance-4',
     name: 'Nocturnal Vineyard',
-    description: `Sip
-Sup
+    description: `Sip<br />
+Sup<br />
 Sundown
 `,
     icon: WineBottle as DefineComponent,
@@ -313,25 +317,37 @@ Sundown
   {
     id: 'moon-science-1',
     name: 'Gazing Scope',
-    description: 'Gazing Scope description',
+    description: `Blessed be thy lens<br />
+That thou mayst gaze upon my cragged face
+`,
     icon: CameraDome16Regular as DefineComponent,
   },
   {
     id: 'moon-science-2',
     name: 'Observatory',
-    description: 'Observatory description',
+    description: `O build me an observat’ry<br />
+To witness all there is to see<br />
+My silv’ry face, my twinkling babes<br />
+The planets and their errant ways
+`,
     icon: Moonrise as DefineComponent,
   },
   {
     id: 'moon-science-3',
     name: 'Planetarium',
-    description: 'Planetarium description',
+    description: `Planetarium is hard to rhyme<br />
+I’ll try again some other time
+`,
     icon: PlanetOutline as DefineComponent,
   },
   {
     id: 'moon-science-4',
     name: 'Astrolabe',
-    description: 'Astrolabe description',
+    description: `Astrolabe affix my place<br />
+Between the sea and empty space<br />
+Row them oars and trim them sails<br />
+Protect us LORD from sudden gales
+`,
     icon: TelescopeSharp as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
@@ -367,7 +383,9 @@ Shhhhhh
   {
     id: 'moon-religion-4',
     name: 'Celestial Cathedral',
-    description: 'Celestial Cathedral description',
+    description: `Open your eyes to the stars<br />
+Open your heart to the LORD
+`,
     icon: Church as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
@@ -376,7 +394,9 @@ Shhhhhh
   {
     id: 'moon-entertainment-1',
     name: 'Oneirium',
-    description: 'Oneirium description',
+    description: `Sleep well, sleep well<br />
+Dream deep
+`,
     icon: Autocorrect24Regular as DefineComponent,
   },
   {
@@ -411,25 +431,37 @@ We gather to hear instruments sing
   {
     id: 'moon-education-1',
     name: 'Night School',
-    description: 'Night School description',
+    description: `The greatest of whispered secrets,<br />
+Fill the whole of night’s dreaming,<br />
+Learn all you can with no regrets,<br />
+And race the dawn with sun beaming.
+`,
     icon: SchoolOutlined as DefineComponent,
   },
   {
     id: 'moon-education-2',
     name: 'Twilight Symposium',
-    description: 'Twilight Symposium description',
+    description: `Would that Opportunity, which grows best in the soil of discretion, were as clear to view as it is obscure!`,
     icon: DesignIdeas24Regular as DefineComponent,
   },
   {
     id: 'moon-education-3',
     name: 'University of Cynthas',
-    description: 'University of Cynthas description',
+    description: `Learned folk gather in our fair state, since learning never comes too late, <br />
+And time too swiftly flies.<br />
+Thought would destroy their paradise. No more; while ignorance is bliss,<br />
+Never folly to be wise.
+`,
     icon: BuildingGovernment24Regular as DefineComponent,
   },
   {
     id: 'moon-education-4',
     name: 'Quantum Academy',
-    description: 'Quantum Academy description',
+    description: `Scorching land<br />
+Learn, understand<br />
+I light a path<br />
+Within suns’ wrath
+`,
     icon: LogoElectron as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
@@ -454,16 +486,17 @@ And
   {
     id: 'moon-other-2',
     name: 'Sensory Chamber',
-    description: 'Sensory Chamber description',
+    description: `Moon shines off waters as chambers fill,<br />
+And descend to darkness, darker still.
+`,
     icon: ChartMarimekko as DefineComponent,
   },
   {
     id: 'moon-other-3',
     name: 'Eclipse Sanctuary',
-    description: `And lo as my shadow crept
-‘cross my restful lover’s face
-She awoke in a blazon of light
-Drenching me like a cloak of purest fire, and I was awash in her greatness
+    description: `And lo as my shadow crept ‘cross my restful lover’s face<br />
+She awoke in a blazon of light<br />
+Drenching me like a cloak of purest fire, and I was awash in her greatness<br />
 And the world was twilit and still, gazing upward at that rarest lovers’ embrace
 `,
     icon: ContourDraw as DefineComponent,
@@ -484,25 +517,42 @@ Our light
   {
     id: 'moon-endgame-1',
     name: 'Auroral Archives',
-    description: 'Auroral Archives description',
+    description: `But when, from dewy shade emerging bright,<br />
+Aurora streaks the sky with orient light<br />
+Mirrored then in the LADY’s eye, <br />
+Triumphal arch, that fill’st the sky
+`,
     icon: BookClock24Regular as DefineComponent,
   },
   {
     id: 'moon-endgame-2',
     name: 'Reliquary of the Moon',
-    description: 'Reliquary of the Moon description',
+    description: `'This morn is merry soon, I trow, the moon is waxing fain;<br />
+But sun shall rise ‘pon lands brow, ere we two meet again.'  <br />
+—He turn'd his charger as he spake upon the silver shore,  <br />
+He gave the bridle-reins a shake, said 'Adieu nevermore,  <br />
+       My Love!  And adieu nevermore.'
+`,
     icon: CurrencyEthereum as DefineComponent,
   },
   {
     id: 'moon-endgame-3',
     name: 'Perihelion',
-    description: 'Perihelion description',
+    description: `The stars are not wanted now; put out every one,<br />
+Pack up at noon and dismantle the sun,<br />
+Pour away the ocean and sweep up the wood;<br />
+For nothing can ever be as it should.
+`,
     icon: Moon2 as DefineComponent,
   },
   {
     id: 'moon-endgame-4',
     name: 'Aphelion',
-    description: 'Aphelion description',
+    description: `In dark of night,<br />
+We race the morning light,<br />
+To build a bridge across sky,<br />
+And walk together thereby.
+`,
     icon: YinYang as DefineComponent,
   }
 ];
