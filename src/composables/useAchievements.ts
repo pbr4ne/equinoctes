@@ -45,6 +45,11 @@ const sunAchievementMetadata = () => {
             description: 'Unlock all level 5 buildings',
         },
         {
+            id: 'morePowerful',
+            name: 'Achievement 4',
+            description: 'Be more powerful',
+        },
+        {
             id: 'cooperativeEnding',
             name: 'Achievement 4',
             description: 'Achieve the cooperative ending',
@@ -88,6 +93,11 @@ const moonAchievementMetadata = () => {
             id: 'level5Buildings',
             name: 'Achievement 3',
             description: 'Unlock all level 5 buildings',
+        },
+        {
+            id: 'morePowerful',
+            name: 'Achievement 4',
+            description: 'Be more powerful',
         },
         {
             id: 'cooperativeEnding',
