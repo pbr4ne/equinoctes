@@ -148,7 +148,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-religion-2',
     name: 'Radiant Obelisk',
-    description: 'And Bulau remarked that it looked like a man’s nethers, and the obelisk flashed with the Lady’s light, and struck Bulau blind for a fortnight for such blasphemy.',
+    description: 'And Bulau remarked that it looked like a man’s nethers, and the obelisk flashed with the LADY’s light, and struck Bulau blind for a fortnight for such blasphemy.',
     icon: Poll24Regular as DefineComponent,
   },
   {
@@ -298,7 +298,7 @@ Look up in that evening sky
     id: 'moon-sustenance-3',
     name: 'Lunar Grotto',
     description: `Within this cave<br />
-The Silver LORD<br />
+The SILVER LORD<br />
 Smiles down upon<br />
 You, his Adored
 `,

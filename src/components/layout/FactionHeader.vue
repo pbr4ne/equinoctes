@@ -17,7 +17,7 @@
       </div>
       <div v-else-if="parent === 'lore'" :class="['building', `building-${faction}`]" >
         <span v-if="faction === 'sun'">Revelations from our RADIANT LADY</span>
-        <span v-else>Mysterium of the Silver Lord</span>
+        <span v-else>Mysterium of the SILVER LORD</span>
       </div>
       <div v-else-if="parent === 'milestones'" :class="['building', `building-${faction}`]" >
         <span v-if="faction === 'sun'">Heliotropolis Milestones</span>
@@ -25,7 +25,7 @@
       </div>
       <div v-else-if="parent === 'options'" :class="['building', `building-${faction}`]" >
         <span v-if="faction === 'sun'">Options, may it please her LADY</span>
-        <span v-else>Silver Lord's Options</span>
+        <span v-else>SILVER LORD's Options</span>
       </div>
       <building-details
         v-else

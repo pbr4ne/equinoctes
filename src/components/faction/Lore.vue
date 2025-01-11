@@ -5,7 +5,7 @@
         v-if="currentLore"
         :class="['lore', `lore-${faction}`]"
       >
-        <span v-html="currentLore.description"></span>
+        <span v-html="processedDescription(currentLore.description)"></span>
       </span>
     </n-scrollbar>
 
@@ -42,6 +42,22 @@ const initialPage = firstUnreadIndex !== -1
   : (pageCount.value > 0 ? pageCount.value : 1);
 
 const currentPage = ref(initialPage);
+
+const processedDescription = (desc: string) => {
+  if (props.faction === 'sun') {
+    desc = desc.replace(/RADIANT LADY/gi, '<span style="color: #264653; font-weight: bold;">RADIANT LADY</span>');
+    desc = desc.replace(/\bLADY\b/gi, '<span style="color: #264653; font-weight: bold;">LADY</span>');
+    desc = desc.replace(/SILVER LORD/gi, '<span style="color: #FC8200; font-weight: bold;">SILVER LORD</span>');
+    desc = desc.replace(/\bLORD\b/gi, '<span style="color: #FC8200; font-weight: bold;">LORD</span>');
+  } else {
+    desc = desc.replace(/RADIANT LADY/gi, '<span style="color: #0286ff; font-weight: bold;">RADIANT LADY</span>');
+    desc = desc.replace(/\bLADY\b/gi, '<span style="color: #0286ff; font-weight: bold;">LADY</span>');
+    desc = desc.replace(/SILVER LORD/gi, '<span style="color: #9e2a2b; font-weight: bold;">SILVER LORD</span>');
+    desc = desc.replace(/\bLORD\b/gi, '<span style="color: #9e2a2b; font-weight: bold;">LORD</span>');
+  }
+
+  return desc;
+};
 
 const currentLore = computed(() => {
   const index = currentPage.value - 1;

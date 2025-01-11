@@ -23,7 +23,7 @@ export function useMilestones() {
     factionKey === 'sun' ? sendMessage('New Milestone', factionKey) : sendMessage('New Milestone', factionKey);
   }
 
-  const sunUnlocked = `O Lady, why did you leave me in darkness?
+  const sunUnlocked = `O LADY, why did you leave me in darkness?
 
 Nay, child - it was then that I watched over you, scattering myself across the darkness in twinkling pieces of my greatness.
 
@@ -37,7 +37,7 @@ For without me your crops shall wither, and you shall know only darkness.
 Breathe deep the gathering dark
 Sun’s harsh light has left its mark
 Now in purple-black embrace
-Silver shines - your Lord’s true face
+Silver shines - your LORD’s true face
 
 Cold and clear, bright and keen
 What in my pale light is seen?
@@ -45,16 +45,16 @@ What twinkles there, beyond My Eye?
 In Sky you Lie, if Mine you Die
 `;
 
-  const sunPowerful = `You have seen the moon grow dimmer at night, and the long, hot summers and far-off smoke of the wildfires. The Lady is pleased, and the moon folks’ power wanes as she desires, but at what cost?`;
+  const sunPowerful = `You have seen the moon grow dimmer at night, and the long, hot summers and far-off smoke of the wildfires. The LADY is pleased, and the moon folks’ power wanes as she desires, but at what cost?`;
 
-  const moonPowerful = `The harvests have been thin, but it matters not. There are truths that lie beyond life and this prison of flesh, your lord has shown you that. When the final secrets of the night are revealed…
+  const moonPowerful = `The harvests have been thin, but it matters not. There are truths that lie beyond life and this prison of flesh, your LORD has shown you that. When the final secrets of the night are revealed…
 
 You close your eyes and dream of what lies beyond the sky. In the distance, you can hear the crashing of the surf. The tides are stronger than ever before…
 `;
 
-  const sunLevel4 = `The shift is subtle at first. Summers that stretch on into autumn. Bountiful harvests. By your guidance, the Lady’s blessings and your careful shepherding has allowed Heliotropolis to thrive and grow strong.`;
-  const moonLevel4 = `You gaze upon Cynthas City under the silver-kissed light of your lord. Though his messages are obtuse, the truth cannot be mistaken: he has looked upon you with favour. The People of the Moon will continue to uncover the world’s mysteries, with your guidance.`;
-  const sunLevel5 = `The people of the sun continue to thrive under your leadership. More and more folk of the hinterlands come to Heliotropolis, seeking the security of your plentiful foodstores and the Lady’s protection. The People of the Sun are ascendant.`;
+  const sunLevel4 = `The shift is subtle at first. Summers that stretch on into autumn. Bountiful harvests. By your guidance, the LADY’s blessings and your careful shepherding has allowed Heliotropolis to thrive and grow strong.`;
+  const moonLevel4 = `You gaze upon Cynthas City under the silver-kissed light of your LORD. Though his messages are obtuse, the truth cannot be mistaken: he has looked upon you with favour. The People of the Moon will continue to uncover the world’s mysteries, with your guidance.`;
+  const sunLevel5 = `The people of the sun continue to thrive under your leadership. More and more folk of the hinterlands come to Heliotropolis, seeking the security of your plentiful foodstores and the LADY’s protection. The People of the Sun are ascendant.`;
   const moonLevel5 = `The past few years have seen the secrets of the sky and stars unfold before you. Blessed by the wisdom of the eternally sky-gazing ancestors, you are at the Dusk of a New Age, led ever onward by the moon’s blessings.`;
   
   const sunOffTimeBuilding = `And thus Bolu had to concede the wisdom of our LADY, as well as her superior grasp of engineering principles. The lesson was learned well, and Bolu learned never to speak over others. And in the college halls there was much rejoicing at this lesson. And Bolu would bear the mark of both her favor and disfavor the rest of his days.
@@ -72,7 +72,7 @@ And his LORD of quiet and subtle light saw it was good, and that his works would
 You may now build during the day.
 `;
 
-  const sunOffTimeProgress = `Fear the night no longer my children. My warmth and light will abide with you long after my chariot of fire has left the sky. When you look upon the face of that sallow and sickly lord, know you still work within my light.
+  const sunOffTimeProgress = `Fear the night no longer my children. My warmth and light will abide with you long after my chariot of fire has left the sky. When you look upon the face of that sallow and sickly LORD, know you still work within my light.
   
   You now collect Aurum during the night.`;
   const moonOffTimeProgress = `It was the work of many hands that brought shade and succor everlasting to the people of Cynthas.
@@ -89,13 +89,13 @@ Were not the deepest shadows cast by the brightest light? So too Cynthas knew th
 You now collect Nocturne during the day.
 `;
 
-  const sunFirstEndgameBuilt = `As the pages yellow after years of chanting the hymns within under the Lady’s light, a secret message appears between the lines of text, bidding you to build a great brazier, which the Lady shall kiss with her light to bestow a flame that never dies.
+  const sunFirstEndgameBuilt = `As the pages yellow after years of chanting the hymns within under the LADY’s light, a secret message appears between the lines of text, bidding you to build a great brazier, which the LADY shall kiss with her light to bestow a flame that never dies.
 
-Upon building the brazier, the lady is true to her word. No oil or fuel is needed; it simply burns as though it came from the sun herself.
+Upon building the brazier, the LADY is true to her word. No oil or fuel is needed; it simply burns as though it came from the sun herself.
 
 Gazing at the very same page under the light of the everburning flame, a new message appears in a silvery script:
 
-We are one and the same, my lady
+We are one and the same, my LADY
 
 You await the next message from your gods…
 `;
@@ -107,16 +107,16 @@ You await the next message from your gods…
 Further instructions guide you to build a special reliquary…
 `;
 
-  const sunSecondEndgameBuilt = `The next message speaks of a golden chariot, a symbol of the Lady’s journey across the sky each day. The forges burn for weeks on end to smelt the metals, and finally it is ready. At first you believe it to be solely a symbol of the lady’s grace, but under the light of the moon, the chariot transforms to silver!
+  const sunSecondEndgameBuilt = `The next message speaks of a golden chariot, a symbol of the LADY’s journey across the sky each day. The forges burn for weeks on end to smelt the metals, and finally it is ready. At first you believe it to be solely a symbol of the LADY’s grace, but under the light of the moon, the chariot transforms to silver!
 
-Indeed, it is a symbol not just of the lady’s passage across the sky, but of the lord’s as well.
+Indeed, it is a symbol not just of the LADY’s passage across the sky, but of the LORD’s as well.
 
 The next day, a message from Cynthas City.
 `;
 
   const moonSecondEndgameBuilt = `Completing the LORD’s special reliquary, a relic appears within its hallowed halls unexpectedly: an orb which glows silver on one face and golden upon the other, representing two sides of the same deity.
 
-Only one thing remains to reunite the people of Heliotropolis and Cynthas. Or, you could build the Perihelion and unlock the final mysteries of the moon. What effect that shall have on the Lady’s gardens, however, remains to be seen…
+Only one thing remains to reunite the people of Heliotropolis and Cynthas. Or, you could build the Perihelion and unlock the final mysteries of the moon. What effect that shall have on the LADY’s gardens, however, remains to be seen…
 `
 
   const sunPerihelionBuilt = `And the tides did still<br />
