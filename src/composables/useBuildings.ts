@@ -13,17 +13,19 @@ export const useBuildings = () => {
     let totalPower = building.power;
     let adjacencySum = 0;
     
-    grid.forEach((neighbourId, neighbourIndex) => {
-      
-      if (!neighbourId) return;
-  
-      const neighborBldg = buildings.find(b => b.id === neighbourId);
+    const buildingIndex = grid.indexOf(building.id);
+    if (buildingIndex === -1) return totalPower;
+
+    const { x: bx, y: by } = getXY(buildingIndex, level);
+
+    grid.forEach((neighborId, neighborIndex) => {
+      if (!neighborId) return;
+
+      const neighborBldg = buildings.find(b => b.id === neighborId);
       if (!neighborBldg || !neighborBldg.adjacency) return;
-  
-      if (!building.index) return;
-      const { x: bx, y: by } = getXY(building.index, level);
-      const { x: nx, y: ny } = getXY(neighbourIndex, level);
-  
+
+      const { x: nx, y: ny } = getXY(neighborIndex, level);
+
       const dx = bx - nx;
       const dy = by - ny;
   
@@ -293,7 +295,6 @@ const sunBuildings: Building[] = [
   // ─────────────────────────────────────────────────────────────────────────────
   {
     id: 'sun-religion-1',
-    index: 4,
     viewPrerequisite: {},
     buildPrerequisite: {},
     viewUnlocked: true,
@@ -706,7 +707,6 @@ const moonBuildings: Building[] = [
   // ─────────────────────────────────────────────────────────────────────────────
   {
     id: 'moon-religion-1',
-    index: 4,
     viewPrerequisite: {},
     buildPrerequisite: {},
     viewUnlocked: true,

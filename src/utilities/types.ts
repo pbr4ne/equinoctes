@@ -37,7 +37,6 @@ export interface BuildingMetadata {
 export interface Building {
   id: string;
   power?: number;
-  index?: number;
   viewPrerequisite: BuildingPrerequisite,
   buildPrerequisite: BuildingPrerequisite,
   viewUnlocked?: boolean;

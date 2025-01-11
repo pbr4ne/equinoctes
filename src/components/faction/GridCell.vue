@@ -259,7 +259,6 @@ function onDeleteBuilding() {
   emits('deleteBuilding', props.cell.building, props.index);
 
   store.factions[props.faction].grid[props.index] = null;
-  props.cell.building.index = null;
 
   emits('leaveBuilding');
 }

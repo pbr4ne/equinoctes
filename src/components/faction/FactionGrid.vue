@@ -114,7 +114,6 @@ function onClickEmptyCell(gridIndex: number) {
   if (selectedBuilding.buildPrerequisite.power) {
     store.factions[props.faction].power -= selectedBuilding.buildPrerequisite.power;
   }
-  selectedBuilding.index = gridIndex;
   store.factions[props.faction].selectedBuilding = null;
 }
 
