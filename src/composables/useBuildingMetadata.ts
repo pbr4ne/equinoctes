@@ -280,8 +280,8 @@ export const moonBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'moon-sustenance-1',
     name: 'Moonlit Rookery',
-    description: `Crows like shinies
-Wonder why
+    description: `Crows like shinies<br />
+Wonder why<br />
 Look up in that evening sky
 `,
     icon: Crow as DefineComponent,
@@ -425,13 +425,13 @@ Under the LORD’s light, pray, and altar will shine
   {
     id: 'moon-other-1',
     name: 'Lighthouse',
-    description: `Like my blinking eye
-darkcrescenthalfgibbousMOON
-Shine on
-Ye shoals and shores
+    description: `Like my blinking eye<br>
+darkcrescenthalfgibbousMOON<br>
+Shine on<br>
+Ye shoals and shores<br>
 And
-	Not
-		To
+	not
+		to
 			D
 				O
 					O

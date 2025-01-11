@@ -55,10 +55,10 @@ You close your eyes and dream of what lies beyond the sky. In the distance, you 
   const sunLevel5 = `The people of the sun continue to thrive under your leadership. More and more folk of the hinterlands come to Heliotropolis, seeking the security of your plentiful foodstores and the Lady’s protection. The People of the Sun are ascendant.`;
   const moonLevel5 = `The past few years have seen the secrets of the sky and stars unfold before you. Blessed by the wisdom of the eternally sky-gazing ancestors, you are at the Dusk of a New Age, led ever onward by the moon’s blessings.`;
   
-  const sunOffTimeBuilding = `Can now build during off-time`;
+  const sunOffTimeBuilding = `And thus Bolu had to concede the wisdom of our LADY, as well as her superior grasp of engineering principles. The lesson was learned well, and Bolu learned never to speak over others. And in the college halls there was much rejoicing at this lesson. And Bolu would bear the mark of both her favor and disfavor the rest of his days.`;
   const moonOffTimeBuilding = `Can now build during off-time`;
 
-  const sunOffTimeProgress = `Can now progress during off-time`;
+  const sunOffTimeProgress = `Fear the night no longer my children. My warmth and light will abide with you long after my chariot of fire has left the sky. When you look upon the face of that sallow and sickly lord, know you still work within my light.`;
   const moonOffTimeProgress = `Can now progress during off-time`;
 
   const sunFirstEndgameBuilt = `As the pages yellow after years of chanting the hymns within under the Lady’s light, a secret message appears between the lines of text, bidding you to build a great brazier, which the Lady shall kiss with her light to bestow a flame that never dies.
