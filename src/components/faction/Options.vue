@@ -17,14 +17,16 @@
         <p v-if="faction === 'moon'">Silver Lord: <a href="https://github.com/pbr4ne" :class="[`link-${faction}`]" target="_blank">pbrane</a></p>
         <p v-if="faction === 'sun'">Scripture: <a href="https://jamesfunfer.com" :class="[`link-${faction}`]" target="_blank">James Funfer</a></p>
         <p v-if="faction === 'moon'">Psalms: <a href="https://jamesfunfer.com" :class="[`link-${faction}`]" target="_blank">James Funfer</a></p>
+        <p>Ghostwriting: Travis</p>
         <p>Music: <a href="https://www.youtube.com/user/Kitchen1066" :class="[`link-${faction}`]" target="_blank">terranaut1066</a></p>
         <p>Did Some Math: Travis</p>
-        <p>Special Thanks: Blake, Cheese, Julz, Kakumeii, Sof</p>
+        <p>Special Thanks: Blake, Cheese, Count, Fave, Julz, Kakumeii, Mystic, Sof</p>
       </n-card>
       <n-button 
           :class="['buildingButton', `buildingButton-${faction}`]" 
           :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
-          @click="resetAll">Hard Reset (resets achievements)
+          @click="resetAll">
+          Hard Reset (resets achievements)
         </n-button>
     </n-space>
   </n-scrollbar>
