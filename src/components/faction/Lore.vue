@@ -5,7 +5,7 @@
         v-if="currentLore"
         :class="['lore', `lore-${faction}`]"
       >
-        {{ currentLore.description }}
+        <span v-html="currentLore.description"></span>
       </span>
     </n-scrollbar>
 
