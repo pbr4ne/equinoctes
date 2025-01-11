@@ -175,7 +175,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-entertainment-2',
     name: 'Sunlit Ampitheatre',
-    description: 'Sunlit Ampitheatre description',
+    description: 'Thou shalt reflect the splendor of my aphorisms as your form is a reflection of mine own, and raise your voices in psalm.',
     icon: Blur24Regular as DefineComponent,
   },
   {
@@ -187,7 +187,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-entertainment-4',
     name: 'Circus of Lights',
-    description: 'Circus of Lights description',
+    description: 'And OUR LADY said build unto me a garden of earthly delights that shineth brighter than the stars in night, rest and make merry there, and turn your heads not to darkened sky.',
     icon: Tent24Regular as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
@@ -196,13 +196,13 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-education-1',
     name: 'Sundial',
-    description: 'Sundial description',
+    description: 'Mark the passage of my chariot ‘cross the sky, and live your days thereby. Put your trust in me, it will make sense when it is built.',
     icon: AvTimerOutlined as DefineComponent,
   },
   {
     id: 'sun-education-2',
     name: 'Children\'s Creche',
-    description: 'Proper care and education for thy children remains a cornerstone of thy covenant.',
+    description: 'Proper care and education for thy children remains a cornerstone of thy covenant, for they are unto you as you are unto me.',
     icon: BedroomBabyOutlined as DefineComponent,
   },
   {
