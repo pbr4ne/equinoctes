@@ -471,16 +471,14 @@ const specialColor = computed(() => {
   pointer-events: none;
 }
 
-/*circles*/
 .particle-sun {
   width: 10px;
   height: 10px;
   background: transparent;
-  border: 2px solid #FFD700;
+  border: 2px solid #FC8200;
   border-radius: 50%;
 }
 
-/*crosses*/
 .particle-moon {
   width: 10px;
   height: 10px;
@@ -507,7 +505,7 @@ const specialColor = computed(() => {
 }
 
 .grid-cell-sun .particle-sun {
-  border-color: #9e2a2b;
+  border-color: #FC8200;
 }
 
 .grid-cell-moon .particle-moon::before,
