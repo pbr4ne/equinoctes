@@ -5,129 +5,99 @@
 </template>
   
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, ref, watch } from 'vue';
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
 import sunSvg from '@/assets/sun.svg';
 import moonSvg from '@/assets/moon.svg';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { useStore } from '../../composables/useStore';
-import { emitter } from '../../utilities/emitter';
 
 gsap.registerPlugin(MotionPathPlugin);
 
 const store = useStore();
 const celestial = ref<HTMLImageElement | null>(null);
 const currentIcon = ref(sunSvg);
-const isMoonVisible = ref(false);
-const lastX = ref(0);
-const dayDuration = ref(store.fullDaySeconds / store.speedMultiplier);
 
-let animation: gsap.core.Tween | null = null;
+const dayDuration = 15 / store.speedMultiplier;
+const nightDuration = 15 / store.speedMultiplier;
 
-const screenResized = ref(false);
+let dayNightTimeline: gsap.core.Timeline | null = null;
 
-const createMotionPath = () => {
+function createMotionPath() {
   return `
     M -100,200
     C ${window.innerWidth / 4},0,
       ${(window.innerWidth * 3) / 4},0,
       ${window.innerWidth},200
   `;
-};
+}
 
-const startAnimation = () => {
-  const path = createMotionPath();
-
-  animation = gsap.to(celestial.value, {
-    duration: dayDuration.value,
-    repeat: -1,
-    ease: 'power1.inOut',
-    motionPath: {
-      path: path,
-      autoRotate: false,
-    },
-    onUpdate: () => {
-      const celestialX = Number(gsap.getProperty(celestial.value, 'x'));
-
-      if (store.currentlyDay) {
-        currentIcon.value = sunSvg;
-        isMoonVisible.value = false;
-      } else {
-        currentIcon.value = moonSvg;
-        isMoonVisible.value = true;
-      }
-
-      lastX.value = celestialX;
-    },
-  });
-};
-
-const handleResize = () => {
-  screenResized.value = true;
-};
-
-onMounted(() => {
-  startAnimation();
-
-  window.addEventListener('resize', handleResize);
-});
-
-emitter.on('gameReset', () => {
-  if (animation) {
-    animation.kill();
+ function animateDayNightCycle() {
+  if (dayNightTimeline) {
+    dayNightTimeline.kill();
+    dayNightTimeline = null;
   }
 
-  startAnimation();
+  const path = createMotionPath();
+
+  const tl = gsap.timeline();
+
+  tl.to(celestial.value, {
+    duration: dayDuration,
+    motionPath: {
+      path,
+      start: 0,
+      end: 0.5,
+      autoRotate: false
+    },
+    ease: 'none',
+    onStart: () => {
+      currentIcon.value = sunSvg;
+    }
+  });
+
+  tl.to(celestial.value, {
+    duration: nightDuration,
+    motionPath: {
+      path,
+      start: 0.5,
+      end: 1,
+      autoRotate: false
+    },
+    ease: 'none',
+    onStart: () => {
+      currentIcon.value = moonSvg;
+    }
+  });
+
+  dayNightTimeline = tl;
+}
+
+
+onMounted(() => {
+  animateDayNightCycle();
+
+  window.addEventListener('resize', () => {
+    animateDayNightCycle();
+  });
+});
+
+onBeforeUnmount(() => {
+  if (dayNightTimeline) {
+    dayNightTimeline.kill();
+    dayNightTimeline = null;
+  }
+  window.removeEventListener('resize', () => {});
 });
 
 watch(
-  () => store.currentlyDay,
-  (newVal, oldVal) => {
-    if (screenResized.value && celestial.value && animation) {
-      animation.kill();
-
-      dayDuration.value = store.fullDaySeconds / store.speedMultiplier;
-
-      const newPath = createMotionPath();
-
-      animation = gsap.to(celestial.value, {
-        duration: dayDuration.value,
-        repeat: -1,
-        ease: 'power1.inOut',
-        motionPath: {
-          path: newPath,
-          autoRotate: false,
-        },
-        onUpdate: () => {
-          const celestialX = Number(gsap.getProperty(celestial.value, 'x'));
-
-          if (store.currentlyDay) {
-            currentIcon.value = sunSvg;
-            isMoonVisible.value = false;
-          } else {
-            currentIcon.value = moonSvg;
-            isMoonVisible.value = true;
-          }
-
-          lastX.value = celestialX;
-        },
-      });
-
-      screenResized.value = false;
-    }
+  () => store.calendar.days,
+  () => {
+    animateDayNightCycle();
   }
 );
-
-onBeforeUnmount(() => {
-  //cleanup
-  if (animation) {
-    animation.kill();
-  }
-
-  window.removeEventListener('resize', handleResize);
-});
 </script>
-  
+
 <style scoped>
 .celestial-container {
   position: absolute;
