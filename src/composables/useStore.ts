@@ -87,12 +87,14 @@ export const useStore = defineStore('gameState', {
 
     resetRun() {
       const preservedFactionAchievements = this.$state.factionAchievements;
+      this.clearLocalStorage();
       Object.assign(this.$state, initialState());
       this.$state.factionAchievements = preservedFactionAchievements;
       emitter.emit('gameReset', {});
     },
 
     resetAll() {
+      this.clearLocalStorage();
       Object.assign(this.$state, initialState());
       localStorage.removeItem(this.$id);
       emitter.emit('gameReset', {});
