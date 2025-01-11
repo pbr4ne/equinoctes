@@ -464,8 +464,12 @@ const sunBuildings: Building[] = [
   // ─────────────────────────────────────────────────────────────────────────────
   {
     id: 'sun-other-1',
-    viewPrerequisite: {},
-    buildPrerequisite: {},
+    viewPrerequisite: {
+      buildings: ['sun-religion-1'],
+    },
+    buildPrerequisite: {
+      buildings: ['sun-religion-1'],
+    },
     adjacency: [
       { dx:  0, dy: -2, modifier: +0.2 },
       { dx: +1, dy: -1, modifier: -0.1 },
@@ -875,8 +879,12 @@ const moonBuildings: Building[] = [
   // ─────────────────────────────────────────────────────────────────────────────
   {
     id: 'moon-other-1',
-    viewPrerequisite: {},
-    buildPrerequisite: {},
+    viewPrerequisite: {
+      buildings: ['moon-religion-1'],
+  },
+  buildPrerequisite: {
+      buildings: ['moon-religion-1'],
+  },
     adjacency: [
       { dx: +1, dy: -1, modifier: -0.1 },
       { dx: -1, dy: -1, modifier: +0.1 },
