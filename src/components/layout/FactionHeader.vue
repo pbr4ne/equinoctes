@@ -53,6 +53,12 @@ const props = defineProps<{ faction: FactionKey, building: string | null, parent
   justify-content: center;
 }
 
+@media (max-height: 800px) {
+  .header {
+    width: 100%;
+  }
+}
+
 .bordered-background {
   width: 100%;
   height: 100%;
