@@ -264,14 +264,14 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
     id: 'sun-endgame-3',
     name: 'Perihelion',
     description: `We are the chosen of our LADY, the sun shall never set upon our empire and we shall never be parted from her embrace.
-    <br /><br /><b>This will end the game for the LORD.</b><br />`,
+    <br /><b>This will end the game for the LORD.</b>`,
     icon: DataSunburst24Filled as DefineComponent,
   },
   {
     id: 'sun-endgame-4',
     name: 'Aphelion',
     description: `Higher and higher the tower grew until it was so great that you might believe it could bridge the gap between two worlds, Sun and Sky, Gods and Mortals, LADY and LORD.
-    <br /><br /><b>This will end the game if both LORD and LADY build it.</b><br />`,
+    <br /><b>This will end the game if both LORD and LADY build it.</b>`,
     icon: YinYang as DefineComponent,
   }
 ];
@@ -530,23 +530,24 @@ Triumphal arch, that fill’st the sky
   {
     id: 'moon-endgame-2',
     name: 'Reliquary of the Moon',
-    description: `'This morn is merry soon, I trow, the moon is waxing fain;<br />
-But sun shall rise ‘pon lands brow, ere we two meet again.'  <br />
-—He turn'd his charger as he spake upon the silver shore,  <br />
-He gave the bridle-reins a shake, said 'Adieu nevermore,  <br />
-       My Love!  And adieu nevermore.'
+    description: `This morn is merry soon, I trow,  
+The moon is waxing fain;  
+But sun shall rise ‘pon lands brow,  
+ Ere we two meet again.'  
+ Said 'Adieu nevermore,  
+       My Love!  
+And adieu nevermore.'
 `,
     icon: CurrencyEthereum as DefineComponent,
   },
   {
     id: 'moon-endgame-3',
     name: 'Perihelion',
-    description: `The stars are not wanted now; put out every one,<br />
-Pack up at noon and dismantle the sun,<br />
-Pour away the ocean and sweep up the wood;<br />
-For nothing can ever be as it should.
-
-<br /><br /><b>This will end the game for the LADY.</b><br />
+    description: `She was your North, South, East and West,<br />
+Your working week and my daily rest,<br />
+Your noon and midday, your talk, your song;<br />
+Thought you that time was forever: and were wrong.
+<br /><b>This will end the game for the LADY.</b>
 `,
     icon: Moon2 as DefineComponent,
   },
@@ -557,8 +558,7 @@ For nothing can ever be as it should.
 We race the morning light,<br />
 To build a bridge across sky,<br />
 And walk together thereby.
-
-<br /><br /><b>This will end the game if both LORD and LADY build it.</b><br />
+<br /><b>This will end the game if both LORD and LADY build it.</b>
 `,
     icon: YinYang as DefineComponent,
   }
