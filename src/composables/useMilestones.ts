@@ -257,7 +257,7 @@ We are One`;
   }
 
   function tooPowerful(faction: Faction, otherFaction: Faction, milestone: Milestones, otherMilestone: Milestones, achievements: Achievements, otherAchievements: Achievements, factionKey: FactionKey, otherFactionKey: FactionKey) {
-    if (faction.power > 10000 && faction.power > otherFaction.power * 1.5 && !milestone.morePowerful) {
+    if (faction.power > 10000 && faction.power > otherFaction.power * 2 && !milestone.morePowerful) {
       
       milestone.morePowerful = true;
 
