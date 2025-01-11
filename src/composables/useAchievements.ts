@@ -26,48 +26,48 @@ const sunAchievementMetadata = () => {
     return [
         {
             id: 'met',
-            name: 'Achievement 0',
-            description: 'Unlock the faction',
+            name: 'Behold the Dawn',
+            description: 'Meet the RADIANT LADY',
         },
         {
             id: 'level3Buildings',
-            name: 'Achievement 1',
-            description: 'Unlock all level 3 buildings',
+            name: 'Sun\'s Bounty',
+            description: 'Fill Heliotropolis with 9 buildings',
         },
         {
             id: 'level4Buildings',
-            name: 'Achievement 2',
-            description: 'Unlock all level 4 buildings',
+            name: 'Soak up the Sun',
+            description: 'Fill Heliotropolis with 16 buildings',
         },
         {
             id: 'level5Buildings',
-            name: 'Achievement 3',
-            description: 'Unlock all level 5 buildings',
+            name: 'Her Full Spectrum',
+            description: 'Fill Heliotropolis with 25 buildings',
         },
         {
             id: 'morePowerful',
-            name: 'Achievement 4',
-            description: 'Be more powerful',
+            name: 'An End to Darkness?',
+            description: 'Be twice as strong as the SILVER LORD',
         },
         {
             id: 'cooperativeEnding',
-            name: 'Achievement 4',
-            description: 'Achieve the cooperative ending',
+            name: 'Two Peoples, One Sky',
+            description: 'Embrace duality and reconcile to warring faiths',
         },
         {
             id: 'wonEnding',
-            name: 'Achievement 5',
-            description: 'Achieve the won ending',
+            name: 'The Unconquered Sun',
+            description: 'Banish the SILVER LORD from the sky and leave no shadow for him to hide in',
         },
         {
             id: 'lostEnding',
-            name: 'Achievement 6',
-            description: 'Achieve the lost ending',
+            name: 'A Dwindling Flame',
+            description: 'The torch of the sun has been snuffed out',
         },
         {
             id: 'neitherEnding',
-            name: 'Achievement 7',
-            description: 'Achieve the neither ending',
+            name: 'Strife with No End',
+            description: 'Doomed to lonely nights and loveless days',
         },
     ];
 }
@@ -76,48 +76,48 @@ const moonAchievementMetadata = () => {
     return [
         {
             id: 'met',
-            name: 'Achievement 0',
-            description: 'Unlock the faction',
+            name: 'New Moon Rising',
+            description: 'Meet the SILVER LORD',
         },
         {
             id: 'level3Buildings',
-            name: 'Achievement 1',
-            description: 'Unlock all level 3 buildings',
+            name: 'Rising Tides',
+            description: 'Fill Cynthas City with 9 buildings',
         },
         {
             id: 'level4Buildings',
-            name: 'Achievement 2',
-            description: 'Unlock all level 4 buildings',
+            name: 'Harvest Moon',
+            description: 'Fill Cynthas City with 16 buildings',
         },
         {
             id: 'level5Buildings',
-            name: 'Achievement 3',
-            description: 'Unlock all level 5 buildings',
+            name: 'A Full Firmament',
+            description: 'Fill Cynthas City with 25 buildings',
         },
         {
             id: 'morePowerful',
-            name: 'Achievement 4',
+            name: 'The Dying of the Light?',
             description: 'Be more powerful',
         },
         {
             id: 'cooperativeEnding',
-            name: 'Achievement 4',
-            description: 'Achieve the cooperative ending',
+            name: 'Two Peoples, One Sky',
+            description: 'Embrace duality and reconcile to warring faiths',
         },
         {
             id: 'wonEnding',
-            name: 'Achievement 5',
-            description: 'Achieve the won ending',
+            name: 'Night Everlasting',
+            description: 'Banish the RADIANT LADY and snuff out the torch of the sun',
         },
         {
             id: 'lostEnding',
-            name: 'Achievement 6',
-            description: 'Achieve the lost ending',
+            name: 'Forever Waned',
+            description: 'Banished from the night sky',
         },
         {
             id: 'neitherEnding',
-            name: 'Achievement 7',
-            description: 'Achieve the neither ending',
+            name: 'A Dance with No End',
+            description: 'Doomed to loveless nights and lonely days',
         },
     ];
 }
