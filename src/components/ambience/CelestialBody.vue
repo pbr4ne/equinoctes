@@ -52,7 +52,11 @@ function createMotionPath() {
     },
     ease: 'none',
     onStart: () => {
-      currentIcon.value = sunSvg;
+      if (store.milestones.moon.wonEnding) {
+        currentIcon.value = moonSvg;
+      } else {
+        currentIcon.value = sunSvg;
+      }
     }
   });
 
@@ -66,7 +70,11 @@ function createMotionPath() {
     },
     ease: 'none',
     onStart: () => {
-      currentIcon.value = moonSvg;
+      if (store.milestones.sun.wonEnding) {
+        currentIcon.value = sunSvg;
+      } else {
+        currentIcon.value = moonSvg;
+      }
     }
   });
 

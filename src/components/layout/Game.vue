@@ -1,10 +1,20 @@
 <template>
   <celestial-body /> 
   <n-grid :cols="visiblefactions">
-    <n-grid-item v-if="!isSmallWindow() || (isSmallWindow() && currentFaction === 'sun')">
+    <n-grid-item
+      v-if="
+        !store.milestones.moon.wonEnding 
+        && (!isSmallScreen || (isSmallScreen && activeFaction === 'sun'))
+      "
+    >
       <faction faction="sun" class="day"/>
     </n-grid-item>
-    <n-grid-item v-if="!isSmallWindow() || (isSmallWindow() && currentFaction === 'moon')">
+    <n-grid-item
+      v-if="
+        !store.milestones.sun.wonEnding 
+        && (!isSmallScreen || (isSmallScreen && activeFaction === 'moon'))
+      "
+    >
       <faction faction="moon" class="night"/>
     </n-grid-item>  
   </n-grid>
@@ -12,7 +22,7 @@
   <button 
     v-if="visiblefactions === 1 && unlockedFactions > 1" 
     @click="toggleFaction"
-    :class="['icon-button', `icon-button-${currentFaction}`]"
+    :class="['icon-button', `icon-button-${activeFaction}`]"
   >
       <ArrowCircleRight24Regular />
   </button>
@@ -29,50 +39,56 @@ import { ArrowCircleRight24Regular } from '@vicons/fluent';
 import { startGameLoop } from '../../composables/useGameLoop'; 
 
 const store = useStore();
-
-const isSmallScreen = ref(isSmallWindow());
-const unlockedFactions = computed(() => (store.milestones.moon.unlocked ? 2 : 1));
-const visiblefactions = ref(unlockedFactions.value);
-const currentFaction = ref(store.currentlyDay ? 'sun' : 'moon');
-
 startGameLoop();
 
-const updateScreenSize = () => {
+const isSmallScreen = ref(window.innerWidth < 730);
+window.addEventListener('resize', () => {
   isSmallScreen.value = window.innerWidth < 730;
+});
 
+const unlockedFactions = computed(() => {
+  const numUnlocked = store.milestones.moon.unlocked ? 2 : 1;
+  return store.milestones.sun.wonEnding || store.milestones.moon.wonEnding 
+    ? 1
+    : numUnlocked;
+});
+
+const visiblefactions = ref(1);
+
+watchEffect(() => {
   if (isSmallScreen.value) {
     visiblefactions.value = 1;
   } else {
-    if (unlockedFactions.value === 1) {
-      visiblefactions.value = 1;
-    } else {
+    if (unlockedFactions.value === 2) {
       visiblefactions.value = 2;
+    } else {
+      visiblefactions.value = 1;
     }
   }
-};
+});
 
-const toggleFaction = () => {
-  currentFaction.value = currentFaction.value === 'sun' ? 'moon' : 'sun';
-};
+function getDefaultFaction() {
+  if (store.milestones.sun.wonEnding) return 'sun';
+  if (store.milestones.moon.wonEnding) return 'moon';
+  return store.currentlyDay ? 'sun' : 'moon';
+}
+
+const activeFaction = ref(getDefaultFaction());
 
 watch(
-  () => store.currentlyDay,
-  (newCurrentlyDay) => {
-    currentFaction.value = newCurrentlyDay ? 'sun' : 'moon';
+  () => [
+    store.currentlyDay,
+    store.milestones.sun.wonEnding,
+    store.milestones.moon.wonEnding,
+  ],
+  () => {
+    activeFaction.value = getDefaultFaction();
   }
 );
 
-function isSmallWindow() {
-  return window.innerWidth < 730;
-}
-
-window.addEventListener('resize', updateScreenSize);
-
-watchEffect(() => {
-  updateScreenSize();
-});
-
-
+const toggleFaction = () => {
+  activeFaction.value = activeFaction.value === 'sun' ? 'moon' : 'sun';
+};
 </script>
 
 <style scoped>
