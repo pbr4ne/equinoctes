@@ -323,14 +323,9 @@ We are One`;
   
       milestone.wonEnding = true;
       otherMilestone.lostEnding = true;
-  
-      if (factionKey === 'sun') {
-        achievements.wonEnding = true;
-        otherAchievements.lostEnding = true;
-      } else {
-        achievements.lostEnding = true;
-        otherAchievements.wonEnding = true;
-      }
+
+      achievements.wonEnding = true;
+      otherAchievements.lostEnding = true;
   
       createNotification(perihelionBuilt, factionKey, false, false);
     }
