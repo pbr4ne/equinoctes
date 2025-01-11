@@ -20,7 +20,9 @@
           </n-icon>
           <span style="padding-left: 10px;"> {{getBuildingMetadata(building).name}}</span>
         </n-button>
-        <span v-if="visibleBuildings.length === 0" :class="['noBuilding', `noBuilding-${faction}`]">No buildings available</span>
+        <span v-if="visibleBuildings.length === 0" :class="['noBuilding', `noBuilding-${faction}`]">
+          No {{ faction === 'sun' ? 'wonders' : 'endeavours' }} available.<br />
+        </span>
     </n-space>
   </n-scrollbar>
 </template>

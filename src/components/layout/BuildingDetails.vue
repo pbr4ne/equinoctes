@@ -7,7 +7,7 @@
       No free slots in the grid
     </span>
     <span v-else-if="store.factions[faction].selectedBuilding">
-      Place a building. Navigate to another tab to cancel.
+      Place a{{ faction === 'sun' ? ' wonder': 'n endeavour' }}. Navigate to another tab to cancel.
     </span>
     <span v-else>
       <span><b>{{ singleBuildingMetadata?.name }}</b></span><br />
