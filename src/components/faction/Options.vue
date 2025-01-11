@@ -18,9 +18,11 @@
         <p v-if="faction === 'sun'">Scripture: <a href="https://jamesfunfer.com" :class="[`link-${faction}`]" target="_blank">James Funfer</a></p>
         <p v-if="faction === 'moon'">Psalms: <a href="https://jamesfunfer.com" :class="[`link-${faction}`]" target="_blank">James Funfer</a></p>
         <p>Ghostwriting: Travis</p>
-        <p>Music: <a href="https://www.youtube.com/user/Kitchen1066" :class="[`link-${faction}`]" target="_blank">terranaut1066</a></p>
-        <p>Did Some Math: Travis</p>
-        <p>Special Thanks: Blake, Cheese, Count, Fave, Julz, Kakumeii, Mystic, Sof</p>
+        <p v-if="faction === 'sun'">Hymns: <a href="https://www.youtube.com/user/Kitchen1066" :class="[`link-${faction}`]" target="_blank">terranaut1066</a></p>
+        <p v-if="faction === 'moon'">Chants: <a href="https://www.youtube.com/user/Kitchen1066" :class="[`link-${faction}`]" target="_blank">terranaut1066</a></p>
+        <p v-if="faction === 'sun'">Did Some Math: Travis</p>
+        <p v-if="faction === 'moon'">Made a Spreadsheet: Travis</p>
+        <p>Special Thanks: Blake, Cheese, Count, Fave, Julz, Kakumeii, Mystic, Redlion, Sof, Zelda</p>
       </n-card>
       <n-button 
           :class="['buildingButton', `buildingButton-${faction}`]" 
