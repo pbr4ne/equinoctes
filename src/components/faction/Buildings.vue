@@ -43,12 +43,12 @@ const buildingData = props.faction === 'sun' ? useBuildingsInstance.sunBuildings
 const buildingMetadata = props.faction === 'sun' ? sunBuildingMetadata : moonBuildingMetadata;
 const visibleBuildings = computed(() => 
   store.factions[props.faction].buildings
-    .filter((building) => 
-      !store.factions[props.faction].grid.includes(building.id)
-    )
-    .filter((building) => 
-      building.viewUnlocked
-    )
+    // .filter((building) => 
+    //   !store.factions[props.faction].grid.includes(building.id)
+    // )
+    // .filter((building) => 
+    //   building.viewUnlocked
+    // )
     .sort((a, b) => buildingData.filter((b) => b.id === a.id)[0].power - buildingData.filter((c) => c.id === b.id)[0].power)
 );
 
@@ -74,6 +74,7 @@ const shouldFlipIcon = (building: Building) => {
 };
 
 const canBuyBuilding = (building: Building) => {
+  return true;
   if (store.currentlyDay && props.faction !== 'sun' || !store.currentlyDay && props.faction !== 'moon') {
     if (!store.milestones[props.faction].offTimeBuilding) {
       return false;

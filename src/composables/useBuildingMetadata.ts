@@ -262,13 +262,15 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
   {
     id: 'sun-endgame-3',
     name: 'Perihelion',
-    description: `We are the chosen of our LADY, the sun shall never set upon our empire and we shall never be parted from her embrace.`,
+    description: `We are the chosen of our LADY, the sun shall never set upon our empire and we shall never be parted from her embrace.
+    <br /><br /><b>This will end the game for the LORD.</b><br />`,
     icon: Sunny as DefineComponent,
   },
   {
     id: 'sun-endgame-4',
     name: 'Aphelion',
-    description: `Higher and higher the tower grew until it was so great that you might believe it could bridge the gap between two worlds, Sun and Sky, Gods and Mortals, LADY and LORD.`,
+    description: `Higher and higher the tower grew until it was so great that you might believe it could bridge the gap between two worlds, Sun and Sky, Gods and Mortals, LADY and LORD.
+    <br /><br /><b>This will end the game if both LORD and LADY build it.</b><br />`,
     icon: YinYang as DefineComponent,
   }
 ];
@@ -542,6 +544,8 @@ He gave the bridle-reins a shake, said 'Adieu nevermore,  <br />
 Pack up at noon and dismantle the sun,<br />
 Pour away the ocean and sweep up the wood;<br />
 For nothing can ever be as it should.
+
+<br /><br /><b>This will end the game for the LADY.</b><br />
 `,
     icon: Moon2 as DefineComponent,
   },
@@ -552,6 +556,8 @@ For nothing can ever be as it should.
 We race the morning light,<br />
 To build a bridge across sky,<br />
 And walk together thereby.
+
+<br /><br /><b>This will end the game if both LORD and LADY build it.</b><br />
 `,
     icon: YinYang as DefineComponent,
   }
