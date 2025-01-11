@@ -56,6 +56,7 @@ import {
   Autocorrect24Regular,
   Blur24Regular,
   CameraDome16Regular,
+  DataSunburst24Filled,
   DesignIdeas24Regular,
   Fingerprint24Regular,
   Iot24Regular,
@@ -264,7 +265,7 @@ export const sunBuildingMetadata: BuildingMetadata[] = [
     name: 'Perihelion',
     description: `We are the chosen of our LADY, the sun shall never set upon our empire and we shall never be parted from her embrace.
     <br /><br /><b>This will end the game for the LORD.</b><br />`,
-    icon: Sunny as DefineComponent,
+    icon: DataSunburst24Filled as DefineComponent,
   },
   {
     id: 'sun-endgame-4',

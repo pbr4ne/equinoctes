@@ -13,7 +13,7 @@
     ]"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
-    :style="specialColor"
+
   >
     <component
       v-if="cell.building"
@@ -21,6 +21,7 @@
       :color="getIconColour()"
       :class="['button-icon', { 'flip-horizontal': shouldFlipIcon }]"
       @click="onClickBuilding"
+      :style="specialColor"
     />
 
     <div
@@ -81,6 +82,9 @@ import {
   ArrowBigDown, ArrowBigDownLine, ArrowBigDownLines
 } from '@vicons/tabler'
 import { YinYang } from '@vicons/fa';
+import { Moon2 } from '@vicons/tabler';
+import { Sunny } from '@vicons/carbon';
+import { DataSunburst24Filled } from '@vicons/fluent';
 
 const props = defineProps<{
   faction: FactionKey,
@@ -302,7 +306,15 @@ const shouldFlipIcon = computed(() => {
 const specialColor = computed(() => {
   if (iconComponent.value === YinYang) {
     return {
-      color: props.faction === 'sun' ? '#caf0f8' : '#9e2a2b'
+      color: props.faction === 'sun' ? '#264653' : '#e9c46a'
+    }
+  } else if (iconComponent.value === Moon2) {
+    return {
+      color: '#0286ff'
+    }
+  } else if (iconComponent.value === DataSunburst24Filled) {
+    return {
+      color: '#FC8200'
     }
   }
 });

@@ -35,6 +35,9 @@ import { useBuildings } from '../../composables/useBuildings';
 import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/useBuildingMetadata';
 import { Building, BuildingMetadata, FactionKey } from '../../utilities/types';
 import { YinYang } from '@vicons/fa';
+import { Moon2 } from '@vicons/tabler';
+import { Sunny } from '@vicons/carbon';
+import { DataSunburst24Filled } from '@vicons/fluent';
 
 const props = defineProps<{ faction: FactionKey }>();
 const store = useStore();
@@ -94,6 +97,14 @@ const specialColor = (building: Building) => {
   if (getIcon(building) === YinYang) {
     return {
       color: props.faction === 'sun' ? '#264653' : '#e9c46a'
+    }
+  } else if (getIcon(building) === Moon2) {
+    return {
+      color: '#0286ff'
+    }
+  } else if (getIcon(building) === DataSunburst24Filled) {
+    return {
+      color: '#FC8200'
     }
   }
 };
