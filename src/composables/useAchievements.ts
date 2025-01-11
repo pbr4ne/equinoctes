@@ -97,7 +97,7 @@ const moonAchievementMetadata = () => {
         {
             id: 'morePowerful',
             name: 'The Dying of the Light?',
-            description: 'Be more powerful',
+            description: 'Be twice as strong as the RADIANT LADY',
         },
         {
             id: 'cooperativeEnding',
