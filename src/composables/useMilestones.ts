@@ -112,6 +112,14 @@ Further instructions guide you to build a special reliquary…
 Indeed, it is a symbol not just of the LADY’s passage across the sky, but of the LORD’s as well.
 
 The next day, a message from Cynthas City.
+
+LADY
+AHHH
+ALSO IS THE SILVER ONE
+AHHH
+CHAMPION OF BOTH ORBS
+
+You must cooperate with the moonlit city to build a place of worship for both faces of the One Orb…or you could allow the bounty of the LADY to eclipse the SILVER LORD forever…
 `;
 
   const moonSecondEndgameBuilt = `Completing the LORD’s special reliquary, a relic appears within its hallowed halls unexpectedly: an orb which glows silver on one face and golden upon the other, representing two sides of the same deity.
