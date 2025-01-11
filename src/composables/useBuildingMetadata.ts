@@ -350,13 +350,18 @@ Under the LORD’s light, pray, and altar will shine
   {
     id: 'moon-religion-2',
     name: 'Necropolis',
-    description: 'Necropolis description',
+    description: `The dead sleep<br />
+The willows weep
+`,
     icon: SkullOutline as DefineComponent,
   },
   {
     id: 'moon-religion-3',
     name: 'Athenaeum',
-    description: 'Athenaeum description',
+    description: `Betwixt the dusty tomes<br />
+Arcane knowledge finds a home <br />
+Shhhhhh
+`,
     icon: Library24Regular as DefineComponent,
   },
   {
@@ -377,19 +382,27 @@ Under the LORD’s light, pray, and altar will shine
   {
     id: 'moon-entertainment-2',
     name: 'Hedge Maze',
-    description: 'Hedge Maze description',
+    description: `Not all who wander are lost<br />
+But I might be
+`,
     icon: Fingerprint24Regular as DefineComponent,
   },
   {
     id: 'moon-entertainment-3',
     name: 'Shadow Theatre',
-    description: 'Shadow Theatre description',
+    description: `A pantomime<br />
+A frozen time<br />
+Laugh, cry, clap for more<br />
+Encore! Encore!
+`,
     icon: TheaterComedyOutlined as DefineComponent,
   },
   {
     id: 'moon-entertainment-4',
     name: 'Midnight Symphony',
-    description: 'Midnight Symphony description',
+    description: `Under the cover darkness brings<br />
+We gather to hear instruments sing
+`,
     icon: MusicalNotesOutline as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
@@ -458,7 +471,11 @@ And the world was twilit and still, gazing upward at that rarest lovers’ embra
   {
     id: 'moon-other-4',
     name: 'Museum of Night',
-    description: 'Museum of Night description',
+    description: `From the mystery<br />
+Our history<br />
+From the Night<br />
+Our light
+`,
     icon: BuildingBank24Filled as DefineComponent,
   },
   // ─────────────────────────────────────────────────────────────────────────────
