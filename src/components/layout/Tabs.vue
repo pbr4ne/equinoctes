@@ -76,6 +76,7 @@
 import { computed, defineProps, defineEmits } from 'vue';
 import { useStore } from '../../composables/useStore';
 import { FactionKey } from '../../utilities/types';
+import { emitter } from '../../utilities/emitter';
 
 const store = useStore();
 
@@ -136,6 +137,10 @@ const moonPopoverThemeOverride = {
   "titleTextColor": "#264653",
   "borderColor": "#264653"
 }
+
+emitter.on('gameReset', () => {
+  emit('tab-selected', 0);
+});
 </script>
 
 <style scoped>
