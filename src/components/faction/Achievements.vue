@@ -1,6 +1,6 @@
 <template>
   <n-scrollbar trigger="none">
-    <n-space justify="center">
+    <n-space >
       <n-card 
         v-for="achievement in achievements" 
         size="small" 
