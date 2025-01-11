@@ -14,7 +14,10 @@ export default function useNotifs() {
   const createNotification = (message: string, faction: FactionKey, cooperative: boolean, neither: boolean) => {
     if (cooperative) {
       dialog.create({
-        content: message,
+        content: () =>
+          h('div', null, [
+            h('span', { innerHTML: message })
+          ]),
         positiveButtonProps: { size: 'small', color: '#09F5AE', textColor: '#09F5AE', ghost: true },
         negativeButtonProps: { size: 'small', color: '#09F5AE', textColor: '#09F5AE', ghost: true },
         icon: () => h(NIcon, { color: '#09F5AE'}, { default: () => h(Sunny) }),
@@ -27,7 +30,10 @@ export default function useNotifs() {
       });
     } else if (neither) {
       dialog.create({
-        content: message,
+        content: () =>
+          h('div', null, [
+            h('span', { innerHTML: message })
+          ]),
         positiveButtonProps: { size: 'small', color: '#9FC0C2', textColor: '#9FC0C2', ghost: true },
         negativeButtonProps: { size: 'small', color: '#9FC0C2', textColor: '#9FC0C2', ghost: true },
         icon: () => h(NIcon, { color: '#9FC0C2'}, { default: () => h(Sunny) }),
@@ -40,7 +46,10 @@ export default function useNotifs() {
       });
     }else if (faction === 'sun') {
       dialog.create({
-        content: message,
+        content: () =>
+          h('div', null, [
+            h('span', { innerHTML: message })
+          ]),
         positiveButtonProps: { size: 'small', color: '#e9c46a', textColor: '#e9c46a', ghost: true },
         negativeButtonProps: { size: 'small', color: '#e9c46a', textColor: '#e9c46a', ghost: true },
         icon: () => h(NIcon, { color: '#e9c46a'}, { default: () => h(Sunny) }),
@@ -53,7 +62,10 @@ export default function useNotifs() {
       });
     } else {
       dialog.create({
-        content: message,
+        content: () =>
+          h('div', null, [
+            h('span', { innerHTML: message })
+          ]),
         positiveButtonProps: { size: 'small', color: '#caf0f8', textColor: '#caf0f8', ghost: true },
         negativeButtonProps: { size: 'small', color: '#caf0f8', textColor: '#caf0f8', ghost: true },
         icon: () => h(NIcon, { color: '#caf0f8'}, { default: () => h(MoonOutline) }),

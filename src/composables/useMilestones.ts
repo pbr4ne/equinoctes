@@ -32,7 +32,9 @@ Look now to the east, my children, and witness again my rise in conquering glory
 For without me your crops shall wither, and you shall know only darkness.
 `;
 
-  const moonUnlocked = `Breathe deep the gathering dark
+  const moonUnlocked = `Gather 'round, children, and gaze upon the shepherd of night:
+
+Breathe deep the gathering dark
 Sun’s harsh light has left its mark
 Now in purple-black embrace
 Silver shines - your Lord’s true face
@@ -55,7 +57,9 @@ You close your eyes and dream of what lies beyond the sky. In the distance, you 
   const sunLevel5 = `The people of the sun continue to thrive under your leadership. More and more folk of the hinterlands come to Heliotropolis, seeking the security of your plentiful foodstores and the Lady’s protection. The People of the Sun are ascendant.`;
   const moonLevel5 = `The past few years have seen the secrets of the sky and stars unfold before you. Blessed by the wisdom of the eternally sky-gazing ancestors, you are at the Dusk of a New Age, led ever onward by the moon’s blessings.`;
   
-  const sunOffTimeBuilding = `And thus Bolu had to concede the wisdom of our LADY, as well as her superior grasp of engineering principles. The lesson was learned well, and Bolu learned never to speak over others. And in the college halls there was much rejoicing at this lesson. And Bolu would bear the mark of both her favor and disfavor the rest of his days.`;
+  const sunOffTimeBuilding = `And thus Bolu had to concede the wisdom of our LADY, as well as her superior grasp of engineering principles. The lesson was learned well, and Bolu learned never to speak over others. And in the college halls there was much rejoicing at this lesson. And Bolu would bear the mark of both her favor and disfavor the rest of his days.
+  
+  You may now build during the night.`;
   const moonOffTimeBuilding = `As Tranash bathed in pure silvery light, he imagined himself floating as if on an ocean of it. For some reason he brought to mind a limerick his father used to assure him with whenever he went trawling for fish.
 
 Whilst you delve beneath the sea,
@@ -64,9 +68,13 @@ My Lighthouse lifts its massive masonry,
 Silvered fire by night, dark clouds by day. 
 
 And his LORD of quiet and subtle light saw it was good, and that his works would be unceasing even under the baleful glare of the sun.
+
+You may now build during the day.
 `;
 
-  const sunOffTimeProgress = `Fear the night no longer my children. My warmth and light will abide with you long after my chariot of fire has left the sky. When you look upon the face of that sallow and sickly lord, know you still work within my light.`;
+  const sunOffTimeProgress = `Fear the night no longer my children. My warmth and light will abide with you long after my chariot of fire has left the sky. When you look upon the face of that sallow and sickly lord, know you still work within my light.
+  
+  You now collect Aurum during the night.`;
   const moonOffTimeProgress = `It was the work of many hands that brought shade and succor everlasting to the people of Cynthas.
 
 Even though my sun each morn did shine,
@@ -77,6 +85,8 @@ Yet her for this my love no whit disdaineth;
 Suns of the world may stain when heaven’s sun staineth.
 
 Were not the deepest shadows cast by the brightest light? So too Cynthas knew that their LORD’s strength was such that no day was free of him.
+
+You now collect Nocturne during the day.
 `;
 
   const sunFirstEndgameBuilt = `As the pages yellow after years of chanting the hymns within under the Lady’s light, a secret message appears between the lines of text, bidding you to build a great brazier, which the Lady shall kiss with her light to bestow a flame that never dies.
@@ -109,37 +119,37 @@ The next day, a message from Cynthas City.
 Only one thing remains to reunite the people of Heliotropolis and Cynthas. Or, you could build the Perihelion and unlock the final mysteries of the moon. What effect that shall have on the Lady’s gardens, however, remains to be seen…
 `
 
-  const sunPerihelionBuilt = `And the tides did still
-And the SILVER LORD was as distant as the twinkling children
-An Age of Bounty had begun
+  const sunPerihelionBuilt = `And the tides did still<br />
+And the SILVER LORD was as distant as the twinkling children<br />
+An Age of Bounty had begun<br />
 And the City of Cynthas did wither
 `;
   
-  const moonPerihelionBuilt = `Thy wan’dring gaze hath found at last
-All truths of future, present, past
-Beyond the stars, beyond the veil
-Thy soul’s next journey hath set sail
-
-Weep not for those still ‘neath the sun
-Though certainly their time is done
-& all shall wither on the vine
-Eternal glory is now thine
+  const moonPerihelionBuilt = `Thy wan’dring gaze hath found at last<br />
+All truths of future, present, past<br />
+Beyond the stars, beyond the veil<br />
+Thy soul’s next journey hath set sail<br />
+<br />
+Weep not for those still ‘neath the sun<br />
+Though certainly their time is done<br />
+& all shall wither on the vine<br />
+Eternal glory is now thine<br />
 `;
   
-  const sunAphelionBuilt = `And so was built in Heliotropolis a great edifice with two faces, and under the light of the LADY did they chant her praises, and
-
-By the light of my Eye
-Under darkened Sky
-
+  const sunAphelionBuilt = `And so was built in Heliotropolis a great edifice with two faces, and under the light of the LADY did they chant her praises, and<br />
+<br />
+By the light of my Eye<br />
+Under darkened Sky<br />
+<br />
 We are One`;
   
-  const moonAphelionBuilt = `By the light of my Eye
-Under darkened Sky
-In Cynthas City
-A temple so pretty
-
-And upon break of day under the light of the LADY did they chant her praises, and sing in raised voices:
-
+  const moonAphelionBuilt = `By the light of my Eye<br />
+Under darkened Sky<br />
+In Cynthas City<br />
+A temple so pretty<br />
+<br />
+And upon break of day under the light of the LADY did they chant her praises, and sing in raised voices:<br />
+<br />
 We are One`;
   
   const neitherEndingText = `Heat death of the universe... great job. Next time try building more stuff?`;
