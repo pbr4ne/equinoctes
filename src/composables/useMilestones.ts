@@ -326,6 +326,9 @@ We are One`;
 
       achievements.wonEnding = true;
       otherAchievements.lostEnding = true;
+      
+      faction.unseenAchievements = true;
+      otherFaction.unseenAchievements = true;
   
       createNotification(perihelionBuilt, factionKey, false, false);
     }
