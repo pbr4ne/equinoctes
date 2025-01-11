@@ -16,16 +16,16 @@
         <span v-else>Choose an Endeavour to build</span>
       </div>
       <div v-else-if="parent === 'lore'" :class="['building', `building-${faction}`]" >
-        <span v-if="faction === 'sun'">Revelations from our RADIANT LADY</span>
-        <span v-else>Mysterium of the SILVER LORD</span>
+        <span v-if="faction === 'sun'">Revelations from our <span style="color: #264653">RADIANT LADY</span></span>
+        <span v-else>Mysterium of the <span style="color: #e9c46a">SILVER LORD</span></span>
       </div>
       <div v-else-if="parent === 'milestones'" :class="['building', `building-${faction}`]" >
         <span v-if="faction === 'sun'">Heliotropolis Milestones</span>
         <span v-else>Cynthas City Milestones</span>
       </div>
       <div v-else-if="parent === 'options'" :class="['building', `building-${faction}`]" >
-        <span v-if="faction === 'sun'">Options, may it please her LADY</span>
-        <span v-else>SILVER LORD's Options</span>
+        <span v-if="faction === 'sun'">Settings, may it please her <span style="color: #264653">LADY</span></span>
+        <span v-else><span style="color: #e9c46a">SILVER LORD</span>'s Choices</span>
       </div>
       <building-details
         v-else

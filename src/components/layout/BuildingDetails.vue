@@ -78,8 +78,8 @@ const processedDescription = computed(() => {
   } else {
     desc = desc.replace(/RADIANT LADY/gi, '<span style="color: #0286ff; font-weight: bold;">RADIANT LADY</span>');
     desc = desc.replace(/\bLADY\b/gi, '<span style="color: #0286ff; font-weight: bold;">LADY</span>');
-    desc = desc.replace(/SILVER LORD/gi, '<span style="color: #9e2a2b; font-weight: bold;">SILVER LORD</span>');
-    desc = desc.replace(/\bLORD\b/gi, '<span style="color: #9e2a2b; font-weight: bold;">LORD</span>');
+    desc = desc.replace(/SILVER LORD/gi, '<span style="color: #e9c46a; font-weight: bold;">SILVER LORD</span>');
+    desc = desc.replace(/\bLORD\b/gi, '<span style="color: #e9c46a; font-weight: bold;">LORD</span>');
   }
 
   return desc;
