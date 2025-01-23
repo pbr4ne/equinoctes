@@ -1,9 +1,6 @@
 <template>
   <span :class="['details', `details-${faction}`]">
-    <span v-if="isOffTime">
-      Cannot interact during the {{ store.currentlyDay ? 'day' : 'night' }}
-    </span>
-    <span v-else-if="noSlots">
+    <span v-if="noSlots">
       No free slots in the grid
     </span>
     <span v-else-if="store.factions[faction].selectedBuilding">

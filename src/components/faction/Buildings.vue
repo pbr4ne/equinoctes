@@ -2,7 +2,8 @@
   <n-scrollbar trigger="none">
       <n-space vertical>
         <n-button 
-          v-for="building, index in visibleBuildings"
+          v-for="(building, index) in visibleBuildings"
+          :key="index"
           :class="['buildingButton', `buildingButton-${faction}`]" 
           :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
           @click="buyBuilding(building)"
@@ -18,7 +19,18 @@
               :style="specialColor(building)"
             />
           </n-icon>
-          <span style="padding-left: 10px;"> {{getBuildingMetadata(building).name}}</span>
+            <n-popover
+              v-if="isOffTime"
+              trigger="hover"
+              placement="top"
+              :theme-overrides="faction === 'sun' ? sunPopoverThemeOverride : moonPopoverThemeOverride"
+            >
+            <template #trigger>
+              <span style="padding-left: 10px;">{{ getBuildingMetadata(building).name }}</span>
+            </template>
+            Cannot interact during the {{ store.currentlyDay ? 'day' : 'night' }}
+          </n-popover>
+          <span v-else style="padding-left: 10px;">{{ getBuildingMetadata(building).name }}</span>
         </n-button>
         <span v-if="visibleBuildings.length === 0" :class="['noBuilding', `noBuilding-${faction}`]">
           <span v-if="faction === 'sun'">No wonders available. <br><br>Be patient, as you collect Aurum our <span style="color: #264653; font-weight: bold">RADIANT LADY</span> will lay a path for you.</span>
@@ -57,6 +69,13 @@ const visibleBuildings = computed(() =>
 );
 
 store.factions[props.faction].unseenBuildings = false;
+
+const isOffTime = computed(() => {
+  if (store.milestones[props.faction].offTimeBuilding) {
+    return false;
+  }
+  return store.currentlyDay ? props.faction !== 'sun' : props.faction !== 'moon';
+});
 
 const getBuildingMetadata = (building: Building) => {
   
@@ -109,6 +128,20 @@ const specialColor = (building: Building) => {
     }
   }
 };
+
+const sunPopoverThemeOverride = {
+  "color": "#9e2a2b",
+  "textColor": "#e9c46a",
+  "titleTextColor": "#e9c46a",
+  "borderColor": "#e9c46a"
+}
+
+const moonPopoverThemeOverride = {
+  "color": "#caf0f8",
+  "textColor": "#264653",
+  "titleTextColor": "#264653",
+  "borderColor": "#264653"
+}
 
 const buyBuilding = (building: Building) => {
   store.factions[props.faction].selectedBuilding = building;

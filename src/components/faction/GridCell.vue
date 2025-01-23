@@ -15,8 +15,25 @@
     @mouseleave="handleMouseLeave"
 
   >
+    <n-popover
+      v-if="cell.building && cell.isDisabled"
+      trigger="hover"
+      placement="top"
+      :theme-overrides="faction === 'sun' ? sunPopoverThemeOverride : moonPopoverThemeOverride"
+    >
+    <template #trigger>
+      <component
+        :is="iconComponent"
+        :color="getIconColour()"
+        :class="['button-icon', { 'flip-horizontal': shouldFlipIcon }]"
+        @click="onClickBuilding"
+        :style="specialColor"
+      />
+    </template>
+    Cannot interact during the {{ store.currentlyDay ? 'day' : 'night' }}
+    </n-popover>
     <component
-      v-if="cell.building"
+      v-else-if="cell.building"
       :is="iconComponent"
       :color="getIconColour()"
       :class="['button-icon', { 'flip-horizontal': shouldFlipIcon }]"
@@ -41,11 +58,11 @@
     </div>
 
     <n-popover 
-        v-if="cellHovered && cell.building && !cell.isDisabled"
-        trigger="hover"
-        placement="top"
-        :theme-overrides="faction === 'sun' ? sunPopoverThemeOverride : moonPopoverThemeOverride"
-      >
+      v-if="cellHovered && cell.building && !cell.isDisabled"
+      trigger="hover"
+      placement="top"
+      :theme-overrides="faction === 'sun' ? sunPopoverThemeOverride : moonPopoverThemeOverride"
+    >
       <template #trigger>
         <div
           
