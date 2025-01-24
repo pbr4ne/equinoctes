@@ -20,7 +20,7 @@
             />
           </n-icon>
             <n-popover
-              v-if="isOffTime"
+              v-if="isOffTime || noSlots"
               trigger="hover"
               placement="top"
               :theme-overrides="faction === 'sun' ? sunPopoverThemeOverride : moonPopoverThemeOverride"
@@ -28,7 +28,15 @@
             <template #trigger>
               <span style="padding-left: 10px;">{{ getBuildingMetadata(building).name }}</span>
             </template>
-            Cannot interact during the {{ store.currentlyDay ? 'day' : 'night' }}
+            <span v-if="isOffTime">
+              Cannot interact during the {{ store.currentlyDay ? 'day' : 'night' }}
+            </span>
+            <span v-else-if="store.factions[faction].level < 5">
+              No free slots in the grid. Perhaps you need more {{ faction === 'sun' ? 'Aurum' : 'Nocturne' }}...
+            </span>
+            <span v-else>
+              No free slots in the grid. Perhaps you need to remove a{{ faction === 'sun' ? ' wonder': 'n endeavour' }}.
+            </span>
           </n-popover>
           <span v-else style="padding-left: 10px;">{{ getBuildingMetadata(building).name }}</span>
         </n-button>
@@ -86,6 +94,10 @@ const getBuildingMetadata = (building: Building) => {
   }
   return metaBuild;
 }
+
+const noSlots = computed(() => {
+  return !store.factions[props.faction].grid.some((slot) => slot === null);
+});
 
 const getIcon = (building: Building) => {
   const metaBuild = getBuildingMetadata(building);
