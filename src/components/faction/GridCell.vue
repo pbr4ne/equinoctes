@@ -5,7 +5,7 @@
       `grid-cell-${faction}`,
       !cell.isDisabled && cell.adjacencyModifier !== null ? 'adjacency-highlight' : '',
       cell.isDimmed ? 'dim-building' : '',
-      cell.isHighlightEmpty ? 'highlight-empty' : '',
+      cell.isHighlightEmpty ? (faction === 'sun' ? 'highlight-empty-sun' : 'highlight-empty-moon') : '',
       cell.isDisabled ? 'cursor-not-allowed' : cell.cursorClass,
       hovered && !cell.building ? 'hovered' : '',
       hovered && !cell.building ? (faction === 'sun' ? 'hovered-sun' : 'hovered-moon') : '',
@@ -100,7 +100,6 @@ import {
 } from '@vicons/tabler'
 import { YinYang } from '@vicons/fa';
 import { Moon2 } from '@vicons/tabler';
-import { Sunny } from '@vicons/carbon';
 import { DataSunburst24Filled } from '@vicons/fluent';
 
 const props = defineProps<{
@@ -409,9 +408,14 @@ const specialColor = computed(() => {
   opacity: 0.5;
 }
 
-.highlight-empty {
-  outline: 2px solid white;
-  outline-offset: -2px;
+.highlight-empty-sun {
+  outline: 3px solid #9e2a2b;
+  outline-offset: -3px;
+}
+
+.highlight-empty-moon {
+  outline: 3px solid #caf0f8;
+  outline-offset: -3px;
 }
 
 .cursor-pointer {
