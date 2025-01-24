@@ -17,7 +17,7 @@
           'power-lower': buildingPower * (store.factions[faction].boost?.building === building?.id ? 2 : 1) < (building?.power ?? 0), 
           'power-higher': buildingPower * (store.factions[faction].boost?.building === building?.id ? 2 : 1) > (building?.power ?? 0)}"
       >
-        ({{ buildingPower * (store.factions[faction].boost?.building === building?.id ? 2 : 1) }})
+        ({{ customRound(buildingPower * (store.factions[faction].boost?.building === building?.id ? 2 : 1)) }})
       </span>
       <span v-if="store.factions[faction].boost?.building === building?.id">
         <i>boosting</i>
@@ -82,12 +82,13 @@ const processedDescription = computed(() => {
   return desc;
 });
 
-const isOffTime = computed(() => {
-  if (store.milestones[props.faction].offTimeBuilding) {
-    return false;
+const customRound = (num: number) => {
+  if (Number.isInteger(num)) {
+    return Math.round(num);
+  } else {
+    return Math.round(num * 100) / 100;
   }
-  return store.currentlyDay ? props.faction !== 'sun' : props.faction !== 'moon';
-});
+};
 
 const noSlots = computed(() => {
   return props.parent === 'buildings' && !store.factions[props.faction].grid.some((slot) => slot === null);
