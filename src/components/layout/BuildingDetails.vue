@@ -86,10 +86,6 @@ const customRound = (num: number) => {
     return Math.round(num * 100) / 100;
   }
 };
-
-const noSlots = computed(() => {
-  return props.parent === 'buildings' && !store.factions[props.faction].grid.some((slot) => slot === null);
-});
 </script>
 
 <style scoped>
@@ -111,5 +107,17 @@ const noSlots = computed(() => {
 
 .power-higher {
   color: green;
+}
+
+@media(max-height: 855px) or (max-width: 700px) {
+  .details {
+    font-size: 1em;
+  }
+}
+
+@media(max-height: 700px) {
+  .details {
+    font-size: 0.75em;
+  }
 }
 </style>
