@@ -6,7 +6,7 @@
     ]"
     :style="!building && parent === 'city' ? { border: 'none' } : {}"
   >
-    <div class="header" style="padding: 20px;">
+    <div :class="['header', `header-${building? 'building' : 'most'}`]" style="padding: 20px;">
       <power 
         v-if="!building && parent === 'city'"
         :faction="faction"  
@@ -48,15 +48,17 @@ const props = defineProps<{ faction: FactionKey, building: string | null, parent
 .header {
   width: min(550px, 50svh);
   box-sizing: border-box;
-  display: flex;
+  display: flex;  
+}
+
+.header-most{
   align-items: center;
   justify-content: center;
 }
 
-@media (max-height: 850px) {
-  .header {
-    width: 100%;
-  }
+.header-building{
+  align-items: left;
+  justify-content: left;
 }
 
 .bordered-background {
