@@ -15,7 +15,7 @@
             <component
               :is="getIcon(building)"
               :color="faction === 'sun' ? '#9e2a2b' : '#caf0f8'"
-              :class="[{ 'flip-horizontal': shouldFlipIcon }]"
+              :class="[{ 'flip-horizontal': shouldFlipIcon(building) }]"
               :style="specialColor(building)"
             />
           </n-icon>
