@@ -19,12 +19,12 @@
               :style="specialColor(building)"
             />
           </n-icon>
-            <n-popover
-              v-if="isOffTime || noSlots"
-              trigger="hover"
-              placement="top"
-              :theme-overrides="faction === 'sun' ? sunPopoverThemeOverride : moonPopoverThemeOverride"
-            >
+          <n-popover
+            v-if="isOffTime || noSlots"
+            trigger="hover"
+            placement="top"
+            :theme-overrides="faction === 'sun' ? sunPopoverThemeOverride : moonPopoverThemeOverride"
+          >
             <template #trigger>
               <span style="padding-left: 10px;">{{ getBuildingMetadata(building).name }}</span>
             </template>
@@ -44,12 +44,20 @@
           <span v-if="faction === 'sun'">No wonders available. <br><br>Be patient, as you collect Aurum our <span style="color: #264653; font-weight: bold">RADIANT LADY</span> will lay a path for you.</span>
           <span v-else>No endeavours available. <br><br>Patience, as you gather Nocturne our <span style="color: #e9c46a; font-weight: bold">SILVER LORD</span> will show you the way.</span>
         </span>
-    </n-space>
-  </n-scrollbar>
+      </n-space>
+      <transition name="fade">
+        <div v-if="isGridVisible" class="grid-popup">
+          <AdjacencyPreview
+            :faction="faction"
+            :hoveredBuilding="hoveredBuilding"
+          />
+        </div>
+      </transition>
+    </n-scrollbar>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { emitter } from '../../utilities/emitter';
 import { useStore } from '../../composables/useStore';
 import { useBuildings } from '../../composables/useBuildings';
@@ -57,14 +65,17 @@ import { sunBuildingMetadata, moonBuildingMetadata } from '../../composables/use
 import { Building, BuildingMetadata, FactionKey } from '../../utilities/types';
 import { YinYang } from '@vicons/fa';
 import { Moon2 } from '@vicons/tabler';
-import { Sunny } from '@vicons/carbon';
 import { DataSunburst24Filled } from '@vicons/fluent';
+import AdjacencyPreview from './AdjacencyPreview.vue';
 
 const props = defineProps<{ faction: FactionKey }>();
 const store = useStore();
 const useBuildingsInstance = useBuildings();
 const buildingData = props.faction === 'sun' ? useBuildingsInstance.sunBuildings : useBuildingsInstance.moonBuildings;
 const buildingMetadata = props.faction === 'sun' ? sunBuildingMetadata : moonBuildingMetadata;
+const isGridVisible = ref(false);
+const hoveredBuilding = ref<Building|null>(null);
+
 const visibleBuildings = computed(() => 
   store.factions[props.faction].buildings
     .filter((building) => 
@@ -162,10 +173,14 @@ const buyBuilding = (building: Building) => {
 
 function onBuildingEnter(building: Building, index: number) {
   emitter.emit('buildingEntered', { faction: props.faction, buildingId: building.id });
+  hoveredBuilding.value = building;
+  isGridVisible.value = true;
 }
 
 function onBuildingLeave() {
   emitter.emit('buildingLeft', { faction: props.faction });
+  hoveredBuilding.value = null;
+  isGridVisible.value = false;
 }
 </script>
 
@@ -201,5 +216,44 @@ function onBuildingLeave() {
 
 .flip-horizontal {
   transform: scaleX(-1);
+}
+
+.grid-popup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 120px;
+  height: 120px;
+  padding: 10px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media ((max-width: 935px) and (min-width: 731px)), (max-height: 830px) {
+  .grid-popup {
+    width: 50px;
+    height: 50px;
+    top: 20px;
+  }
+}
+
+@media (max-width: 500px), (max-height: 600px) {
+  .grid-popup {
+    width: 50px;
+    height: 50px;
+    top: 20px;
+  }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
 }
 </style>
