@@ -57,7 +57,10 @@ function unlockBuildings(factionKey: FactionKey) {
     if (canUnlock) {
       const index = faction.buildings.findIndex((b) => b.id === building.id);
       if (index !== -1) {
+        
+        if (faction.buildings[index].viewUnlocked) return;
         faction.buildings[index] = { ...building, viewUnlocked: true };
+        
         faction.unseenBuildings = true;
       }
     }
